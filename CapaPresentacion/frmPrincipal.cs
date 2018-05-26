@@ -1051,5 +1051,13 @@ namespace CapaPresentacion
             frm.MdiParent = this;
             frm.Show();
         }
+
+        private void tipoClienteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmTipoCliente frm = new frmTipoCliente();
+            frm.MdiParent = this;
+            frm.Show();
+            frm.dataListado.ClearSelection();
+        }
     }
 }

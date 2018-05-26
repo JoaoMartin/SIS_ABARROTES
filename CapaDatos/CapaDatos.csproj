@@ -69,6 +69,7 @@
     <Compile Include="DReceta.cs" />
     <Compile Include="DSalon.cs" />
     <Compile Include="DTermino.cs" />
+    <Compile Include="DTipoCliente.cs" />
     <Compile Include="DTipoMovAlmacen.cs" />
     <Compile Include="DTipoTrabajador.cs" />
     <Compile Include="DTrabajador.cs" />

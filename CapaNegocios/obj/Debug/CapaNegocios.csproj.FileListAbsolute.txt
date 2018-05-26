@@ -103,3 +103,10 @@ D:\SIS_PANADERIAS\DLALO\SISTEMAVENTAS_CIERRES\CapaNegocios\bin\Debug\CapaDatos.p
 D:\SIS_PANADERIAS\DLALO\SISTEMAVENTAS_CIERRES\CapaNegocios\obj\Debug\CapaNegocios.csprojResolveAssemblyReference.cache
 D:\SIS_PANADERIAS\DLALO\SISTEMAVENTAS_CIERRES\CapaNegocios\obj\Debug\CapaNegocios.dll
 D:\SIS_PANADERIAS\DLALO\SISTEMAVENTAS_CIERRES\CapaNegocios\obj\Debug\CapaNegocios.pdb
+D:\SIS_RESTAURANTE\SISTEMAVENTAS_CIERRES\CapaNegocios\bin\Debug\CapaNegocios.dll
+D:\SIS_RESTAURANTE\SISTEMAVENTAS_CIERRES\CapaNegocios\bin\Debug\CapaNegocios.pdb
+D:\SIS_RESTAURANTE\SISTEMAVENTAS_CIERRES\CapaNegocios\bin\Debug\CapaDatos.dll
+D:\SIS_RESTAURANTE\SISTEMAVENTAS_CIERRES\CapaNegocios\bin\Debug\CapaDatos.pdb
+D:\SIS_RESTAURANTE\SISTEMAVENTAS_CIERRES\CapaNegocios\obj\Debug\CapaNegocios.csprojResolveAssemblyReference.cache
+D:\SIS_RESTAURANTE\SISTEMAVENTAS_CIERRES\CapaNegocios\obj\Debug\CapaNegocios.dll
+D:\SIS_RESTAURANTE\SISTEMAVENTAS_CIERRES\CapaNegocios\obj\Debug\CapaNegocios.pdb

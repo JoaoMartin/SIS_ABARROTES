@@ -1102,7 +1102,7 @@ namespace CapaPresentacion
         }
         private void btnPedido_Click(object sender, EventArgs e)
         {
-            //Pedir();
+            Pedir();
 
         }
 

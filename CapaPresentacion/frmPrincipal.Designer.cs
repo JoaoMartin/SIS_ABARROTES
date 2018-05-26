@@ -55,6 +55,7 @@
             this.mnuDescuento = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuPuntoVenta = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuPorCobrar = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuDelivery = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuMaestro = new System.Windows.Forms.ToolStripMenuItem();
             this.almacenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuGestionAlmacen = new System.Windows.Forms.ToolStripMenuItem();
@@ -109,7 +110,7 @@
             this.lblMontoCorteCaja = new System.Windows.Forms.Label();
             this.lblFechaCorteCaja = new System.Windows.Forms.Label();
             this.lblApellidos = new System.Windows.Forms.Label();
-            this.mnuDelivery = new System.Windows.Forms.ToolStripMenuItem();
+            this.tipoClienteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -372,6 +373,13 @@
             this.mnuPorCobrar.Text = "Pedidos Pendientes";
             this.mnuPorCobrar.Click += new System.EventHandler(this.porCobrarToolStripMenuItem_Click);
             // 
+            // mnuDelivery
+            // 
+            this.mnuDelivery.Name = "mnuDelivery";
+            this.mnuDelivery.Size = new System.Drawing.Size(212, 26);
+            this.mnuDelivery.Text = "Delivery";
+            this.mnuDelivery.Click += new System.EventHandler(this.mnuDelivery_Click);
+            // 
             // mnuMaestro
             // 
             this.mnuMaestro.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -386,6 +394,7 @@
             this.mnuProveedor,
             this.mnuSalones,
             this.mnuTermino,
+            this.tipoClienteToolStripMenuItem,
             this.mnuTipoTrabajador,
             this.mnuTrabajador,
             this.mnuUnidadMedida});
@@ -867,12 +876,12 @@
             this.lblApellidos.Text = "1";
             this.lblApellidos.Visible = false;
             // 
-            // mnuDelivery
+            // tipoClienteToolStripMenuItem
             // 
-            this.mnuDelivery.Name = "mnuDelivery";
-            this.mnuDelivery.Size = new System.Drawing.Size(212, 26);
-            this.mnuDelivery.Text = "Delivery";
-            this.mnuDelivery.Click += new System.EventHandler(this.mnuDelivery_Click);
+            this.tipoClienteToolStripMenuItem.Name = "tipoClienteToolStripMenuItem";
+            this.tipoClienteToolStripMenuItem.Size = new System.Drawing.Size(208, 26);
+            this.tipoClienteToolStripMenuItem.Text = "Tipo Cliente";
+            this.tipoClienteToolStripMenuItem.Click += new System.EventHandler(this.tipoClienteToolStripMenuItem_Click);
             // 
             // frmPrincipal
             // 
@@ -1002,6 +1011,7 @@
         private System.Windows.Forms.ToolStripMenuItem reporteDeMovProductosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem porTipoComprobanteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mnuDelivery;
+        private System.Windows.Forms.ToolStripMenuItem tipoClienteToolStripMenuItem;
     }
 }
 

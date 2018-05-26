@@ -660,6 +660,12 @@
     <Compile Include="frmTermino.Designer.cs">
       <DependentUpon>frmTermino.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmTipoCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTipoCliente.Designer.cs">
+      <DependentUpon>frmTipoCliente.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmTipoMovAlmacen_Ingreso.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1263,6 +1269,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmTermino.resx">
       <DependentUpon>frmTermino.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTipoCliente.resx">
+      <DependentUpon>frmTipoCliente.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmTipoMovAlmacen_Ingreso.resx">
       <DependentUpon>frmTipoMovAlmacen_Ingreso.cs</DependentUpon>
