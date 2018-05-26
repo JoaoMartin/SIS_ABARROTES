@@ -18,7 +18,7 @@ namespace CapaPresentacion
         private decimal efectivo, tarjeta;
         private string efectivo1, vuelto1, tarjeta1, formaPago1, modoProd;
         private DataTable dtDetalleR;
-        
+
         public frmPagar()
         {
             InitializeComponent();
@@ -40,13 +40,13 @@ namespace CapaPresentacion
                 {
                     this.btnDescuentoTotal.Visible = true;
                 }
- 
+
             }
         }
 
         private void frmPagar_Load(object sender, EventArgs e)
         {
-            if(lblBanderaCobro.Text == "1")
+            if (lblBanderaCobro.Text == "1")
             {
                 groupBox1.Enabled = false;
                 groupBox2.Enabled = false;
@@ -62,7 +62,7 @@ namespace CapaPresentacion
                 lblVuelto.Text = "Vuelto";
             }
 
-            if(lblBanderaCobro.Text == "3")
+            if (lblBanderaCobro.Text == "3")
             {
                 this.gbRecoge.Visible = true;
                 dataDetalleReserva.DataSource = NVenta.reporteDetalleVenta(Convert.ToInt32(lblIdVenta.Text));
@@ -70,7 +70,7 @@ namespace CapaPresentacion
                 lblAdelanto.Visible = true;
                 lblSAdelanto.Visible = true;
                 lblMontoAdelanto.Visible = true;
-                dtDetalleR= NVenta.reporteDetalleVenta(Convert.ToInt32(lblIdVenta.Text));
+                dtDetalleR = NVenta.reporteDetalleVenta(Convert.ToInt32(lblIdVenta.Text));
 
             }
             else
@@ -81,16 +81,16 @@ namespace CapaPresentacion
             this.ValidarAcceso();
             this.txtEfectivo.Select();
         }
-            
+
         private void mostrarTotalesReserva()
         {
             decimal total = 00.00m, subtotal = 00.00m, igv = 00.00m, dctoInd = 00.00m, totalCA = 00.00m, adelanto = 00.00m;
-            for(int i = 0; i < dataDetalleReserva.Rows.Count; i++)
+            for (int i = 0; i < dataDetalleReserva.Rows.Count; i++)
             {
                 total = total + Convert.ToDecimal(dataDetalleReserva.Rows[i].Cells["Importe"].Value.ToString());
                 dctoInd = dctoInd + Convert.ToDecimal(dataDetalleReserva.Rows[i].Cells["Dcto"].Value.ToString());
             }
-            subtotal = (total - dctoInd)/1.18m;
+            subtotal = (total - dctoInd) / 1.18m;
             lblSubTotal.Text = string.Format(" {0:#,##0.00}", Convert.ToDouble(subtotal));
 
             igv = total - subtotal;
@@ -133,21 +133,21 @@ namespace CapaPresentacion
                 modoProd = "Por Consumo";
             }
         }
-       
+
         public void Facturador(int idVenta, DataTable dtDetalle)
         {
-            if(this.lblBanderaComprobante.Text != "0")
+            if (this.lblBanderaComprobante.Text != "0")
             {
                 enviarFormaPago();
                 int? tipoDoc;
-                string cantidad, codigo, descr, valorUnitario, dcto, importe, nroDoc,nombre;
+                string cantidad, codigo, descr, valorUnitario, dcto, importe, nroDoc, nombre;
                 decimal igvUn, afecIgv, valUn;
 
                 if (this.txtDocumento.Text.Length == 8)
                 {
                     tipoDoc = 1;
                     nroDoc = this.txtDocumento.Text.Trim();
-                    
+
                 }
                 else if (this.txtDocumento.Text.Length == 11)
                 {
@@ -160,10 +160,11 @@ namespace CapaPresentacion
                     nroDoc = "0";
                 }
 
-                if(this.txtNombre.Text == string.Empty)
+                if (this.txtNombre.Text == string.Empty)
                 {
                     nombre = "SIN DNI";
-                }else
+                }
+                else
                 {
                     nombre = this.txtNombre.Text.Trim();
                 }
@@ -179,10 +180,10 @@ namespace CapaPresentacion
                     tipoCompr = "FACTURA";
                 }
 
-                NFacturador.registrarComprobanteCabecera("01", DateTime.Now.ToString("yyyy-MM-dd"), "", tipoDoc, nroDoc,nombre, "PEN", this.lblDctoGeneral.Text.Trim(),
+                NFacturador.registrarComprobanteCabecera("01", DateTime.Now.ToString("yyyy-MM-dd"), "", tipoDoc, nroDoc, nombre, "PEN", this.lblDctoGeneral.Text.Trim(),
                     "0.00", this.lblDctoGeneral.Text.Trim(), this.lblSubTotal.Text.Trim(), "0.00", "0.00", this.lblIgv.Text.Trim(), "0.00", "0.00", this.lblTotal.Text, tipoCompr, idVenta);
 
-                for (int i = 0; i <dtDetalle.Rows.Count; i++)
+                for (int i = 0; i < dtDetalle.Rows.Count; i++)
                 {
                     cantidad = dtDetalle.Rows[i]["Cant"].ToString();
                     codigo = dtDetalle.Rows[i]["Cod"].ToString();
@@ -195,17 +196,17 @@ namespace CapaPresentacion
                     importe = dtDetalle.Rows[i]["Importe"].ToString();
 
                     decimal mtoDsctoItem = Convert.ToDecimal(dcto) / Convert.ToDecimal(cantidad);
-                    decimal mtoPrecioVentaItem = Decimal.Round((Convert.ToDecimal(importe) / 1.18m),2) ;
+                    decimal mtoPrecioVentaItem = Decimal.Round((Convert.ToDecimal(importe) / 1.18m), 2);
                     decimal mtoIgvItem = Convert.ToDecimal(importe) - mtoPrecioVentaItem;
                     decimal mtoValorUnitario = mtoPrecioVentaItem / Convert.ToDecimal(cantidad);
-         
 
-                    NFacturador.registrarComprobanteDetalle("NIU", cantidad, codigo, "", descr, mtoValorUnitario.ToString("#0.00#"), mtoDsctoItem.ToString("#0.00#"), mtoIgvItem.ToString("#0.00#"), "10","0.00", "",
-                        mtoPrecioVentaItem.ToString("#0.00#"),importe, tipoCompr, idVenta);
+
+                    NFacturador.registrarComprobanteDetalle("NIU", cantidad, codigo, "", descr, mtoValorUnitario.ToString("#0.00#"), mtoDsctoItem.ToString("#0.00#"), mtoIgvItem.ToString("#0.00#"), "10", "0.00", "",
+                        mtoPrecioVentaItem.ToString("#0.00#"), importe, tipoCompr, idVenta);
                 }
             }
-           
-            
+
+
         }
 
         public void FacturadorR(int idVenta, DataTable dtDetalle)
@@ -285,7 +286,7 @@ namespace CapaPresentacion
 
         public void mostrarTotales()
         {
-            if(lblBanderaCobro.Text == "0" || lblBanderaCobro.Text == "3")
+            if (lblBanderaCobro.Text == "0" || lblBanderaCobro.Text == "3")
             {
                 decimal total = Convert.ToDecimal(this.lblTotal.Text);
                 decimal tarjeta;
@@ -324,7 +325,8 @@ namespace CapaPresentacion
                     }
 
                 }
-            }else
+            }
+            else
             {
                 decimal total = Convert.ToDecimal(this.lblTotal.Text);
                 decimal tarjeta;
@@ -344,7 +346,7 @@ namespace CapaPresentacion
                 }
 
             }
-            
+
 
         }
 
@@ -357,7 +359,7 @@ namespace CapaPresentacion
             {
                 if (rbEfectivo.Checked == true && lblBanderaCobro.Text != "1")
                 {
-                    rptaCaja = NCaja.Insertar(Convert.ToInt32(this.lblIdUsuario.Text), "1", "Ingreso", Convert.ToDecimal(this.lblTotal.Text), "VENTA","EFECTIVO");
+                    rptaCaja = NCaja.Insertar(Convert.ToInt32(this.lblIdUsuario.Text), "1", "Ingreso", Convert.ToDecimal(this.lblTotal.Text), "VENTA", "EFECTIVO");
                     if (rptaCaja == "OK")
                     {
                         return true;
@@ -366,7 +368,7 @@ namespace CapaPresentacion
                     {
                         return false;
                     }
-                   
+
                 }
                 else if (rbEfectivo.Checked == true && lblBanderaCobro.Text == "1")
                 {
@@ -394,9 +396,9 @@ namespace CapaPresentacion
                     }
 
                 }
-                else if(rbTarjeta.Checked == true)
+                else if (rbTarjeta.Checked == true)
                 {
-                    rptaCaja = NCaja.Insertar(Convert.ToInt32(this.lblIdUsuario.Text), "1", "Ingreso", Convert.ToDecimal(this.lblTotal.Text),  "VENTA", "TARJETA");
+                    rptaCaja = NCaja.Insertar(Convert.ToInt32(this.lblIdUsuario.Text), "1", "Ingreso", Convert.ToDecimal(this.lblTotal.Text), "VENTA", "TARJETA");
                     if (rptaCaja == "OK")
                     {
                         return true;
@@ -406,9 +408,9 @@ namespace CapaPresentacion
                         return false;
                     }
                 }
-                else if(rbMixto.Checked == true)
+                else if (rbMixto.Checked == true)
                 {
-                    rptaCaja = NCaja.Insertar(Convert.ToInt32(this.lblIdUsuario.Text), "1", "Ingreso", Convert.ToDecimal(this.txtEfectivo.Text),"VENTA", "EFECTIVO");
+                    rptaCaja = NCaja.Insertar(Convert.ToInt32(this.lblIdUsuario.Text), "1", "Ingreso", Convert.ToDecimal(this.txtEfectivo.Text), "VENTA", "EFECTIVO");
                     rptaCaja = NCaja.Insertar(Convert.ToInt32(this.lblIdUsuario.Text), "1", "Ingreso", Convert.ToDecimal(this.txtTarjeta.Text), "VENTA", "TARJETA");
                     if (rptaCaja == "OK")
                     {
@@ -419,9 +421,9 @@ namespace CapaPresentacion
                         return false;
                     }
                 }
-               
+
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.StackTrace);
             }
@@ -430,28 +432,28 @@ namespace CapaPresentacion
 
         private bool verMontosPago()
         {
-            if(rbEfectivo.Checked == true)
+            if (rbEfectivo.Checked == true)
             {
                 efectivo = Convert.ToDecimal(this.lblTotal.Text);
                 tarjeta = 00.00m;
                 return true;
             }
-            else if(rbTarjeta.Checked == true)
+            else if (rbTarjeta.Checked == true)
             {
                 efectivo = 00.00m;
                 tarjeta = Convert.ToDecimal(this.lblTotal.Text);
                 return true;
             }
-            else if(rbMixto.Checked == true)
+            else if (rbMixto.Checked == true)
             {
-                if(this.txtEfectivo.Text.Trim().Equals(string.Empty) || this.txtTarjeta.Text.Trim().Equals(string.Empty))
+                if (this.txtEfectivo.Text.Trim().Equals(string.Empty) || this.txtTarjeta.Text.Trim().Equals(string.Empty))
                 {
                     MessageBox.Show("Complete el campo efectivo y/o tarjeta");
                     return false;
                 }
                 else
                 {
-                    if(Convert.ToDecimal(this.lblTotal.Text)>(Convert.ToDecimal(this.txtEfectivo.Text) + Convert.ToDecimal(this.txtTarjeta.Text)))
+                    if (Convert.ToDecimal(this.lblTotal.Text) > (Convert.ToDecimal(this.txtEfectivo.Text) + Convert.ToDecimal(this.txtTarjeta.Text)))
                     {
                         MessageBox.Show("Los monto son menores al total, complete los campos");
                         return false;
@@ -476,7 +478,7 @@ namespace CapaPresentacion
 
                 mostrarTotales();
                 this.dataListadoProducto.Select();
-              
+
             }
             else if (this.lblBanderaTexto.Text == "1")
             {
@@ -650,7 +652,7 @@ namespace CapaPresentacion
 
             if (this.lblBanderaTexto.Text == "0")
             {
-               
+
                 if (this.txtEfectivo.Text.Length == 1)
                 {
                     this.txtEfectivo.Text = string.Empty;
@@ -718,7 +720,7 @@ namespace CapaPresentacion
                 e.Handled = true;
 
 
- 
+
         }
 
         private void txtTarjeta_KeyPress(object sender, KeyPressEventArgs e)
@@ -766,10 +768,11 @@ namespace CapaPresentacion
                 {
                     Cobrar();
                 }
-                else if(this.lblBanderaCobro.Text == "3")
+                else if (this.lblBanderaCobro.Text == "3")
                 {
                     CobrarReserva();
-                }else
+                }
+                else
                 {
                     CobrarAdelanto();
                 }
@@ -851,41 +854,42 @@ namespace CapaPresentacion
                                 this.verFormaPago();
                                 if (this.lblBanderaComprobante.Text == "0" || this.lblBanderaComprobante.Text == "1")
                                 {
-                                        
-                                            
-                                            for (int p = 0; p < dataDetalleReserva.Rows.Count; p++)
+
+
+                                    for (int p = 0; p < dataDetalleReserva.Rows.Count; p++)
+                                    {
+                                        if (dataDetalleReserva.Rows[p].Cells["Tipo"].Value.ToString() == "C")
+                                        {
+
+                                            DataTable dtDetalleProducto = new DataTable();
+                                            dtDetalleProducto = NProducto.mostrarDetalleProducto_Venta(Convert.ToInt32(dataDetalleReserva.Rows[p].Cells["Cod_Producto"].Value.ToString()));
+                                            int cantPedido = Convert.ToInt32(dataDetalleReserva.Rows[p].Cells["Cant"].Value.ToString());
+                                            for (int j = 0; j < dtDetalleProducto.Rows.Count; j++)
                                             {
-                                                if (dataDetalleReserva.Rows[p].Cells["Tipo"].Value.ToString() == "C")
-                                                {
+                                                int idProducto_Com = Convert.ToInt32(dtDetalleProducto.Rows[j][0].ToString());
+                                                int cantRequerida = Convert.ToInt32(dtDetalleProducto.Rows[j][1].ToString());
 
-                                                    DataTable dtDetalleProducto = new DataTable();
-                                                    dtDetalleProducto = NProducto.mostrarDetalleProducto_Venta(Convert.ToInt32(dataDetalleReserva.Rows[p].Cells["Cod_Producto"].Value.ToString()));
-                                                    int cantPedido = Convert.ToInt32(dataDetalleReserva.Rows[p].Cells["Cant"].Value.ToString());
-                                                    for (int j = 0; j < dtDetalleProducto.Rows.Count; j++)
-                                                    {
-                                                        int idProducto_Com = Convert.ToInt32(dtDetalleProducto.Rows[j][0].ToString());
-                                                        int cantRequerida = Convert.ToInt32(dtDetalleProducto.Rows[j][1].ToString());
+                                                NProducto.EditarStock(idProducto_Com, cantRequerida * cantPedido);
+                                            }
 
-                                                        NProducto.EditarStock(idProducto_Com, cantRequerida * cantPedido);
-                                                    }
-
-                                                }
+                                        }
                                         NDetalleVenta.EditarStockProductoR(Convert.ToInt32(Convert.ToInt32(dataDetalleReserva.Rows[p].Cells["Cant"].Value.ToString())),
                                             Convert.ToInt32(dataDetalleReserva.Rows[p].Cells["idProducto"].Value.ToString()));
-                                            }
+                                    }
 
 
                                     string estadoR = "";
-                                    if(rbRecojo.Checked == true)
+                                    if (rbRecojo.Checked == true)
                                     {
                                         estadoR = "PAGADA-RECOGIDA";
-                                    }else
+                                    }
+                                    else
                                     {
                                         estadoR = "PAGADA-R";
                                     }
 
-                                    rpta = NVenta.EditarVentaCanceladaR(Convert.ToInt32(this.lblIdVenta.Text),estadoR);
-                                    
+                                    rpta = NVenta.EditarVentaCanceladaR(Convert.ToInt32(this.lblIdVenta.Text), estadoR);
+
                                     if (rpta == "OK")
                                     {
                                         string formaPago = "";
@@ -930,25 +934,25 @@ namespace CapaPresentacion
                                             if (insertarCaja() == true)
                                             {
                                                 // MessageBox.Show("Se registró correctamente");
-                                              
+
                                                 //frmModuloSalon.f3.limpiarMesas();
                                                 //frmModuloSalon.f3.mostrarSalones();
 
                                                 this.enviarFormaPago();
 
-                                                NImprimir_Comprobante.imprimirComR(Convert.ToInt32(this.lblIdVenta.Text), tipoCompr, this.txtNombre.Text.Trim(), 
-                                                    this.txtDireccion.Text.Trim(),this.txtDocumento.Text.Trim(),
+                                                NImprimir_Comprobante.imprimirComR(Convert.ToInt32(this.lblIdVenta.Text), tipoCompr, this.txtNombre.Text.Trim(),
+                                                    this.txtDireccion.Text.Trim(), this.txtDocumento.Text.Trim(),
                                              dataDetalleReserva, this.lblDescuento.Text, this.lblDctoGeneral.Text, this.lblSubTotal.Text,
                                                                          this.lblIgv.Text, this.lblTotalReal.Text, efectivo1, vuelto1, tarjeta1, formaPago1, modoProd, "00.00", "",
-                                                                         lblMontoAdelanto.Text,frmPrincipal.f1.lblIdUsuario.Text+frmPrincipal.f1.lblApellidos.Text,
+                                                                         lblMontoAdelanto.Text, frmPrincipal.f1.lblIdUsuario.Text + frmPrincipal.f1.lblApellidos.Text,
                                                                          NAliento.MensajeAliento());
 
-                                                
+
                                                 this.FacturadorR(Convert.ToInt32(this.lblIdVenta.Text), dtDetalleR);
                                                 lblIdVenta.Text = "";
                                                 frmVentasReservadas.f1.Mostrar();
                                                 this.Close();
-                                               
+
 
                                             }
 
@@ -1054,7 +1058,7 @@ namespace CapaPresentacion
                                                 {
 
                                                     // MessageBox.Show("Se registró correctamente");
-                                                  
+
                                                     enviarFormaPago();
                                                     // this.imprimir(Convert.ToInt32(this.lblIdVenta.Text));
 
@@ -1069,7 +1073,7 @@ namespace CapaPresentacion
 
 
                                                     //this.imprimir(Convert.ToInt32(this.lblIdVenta.Text));
-                                                   
+
                                                     this.FacturadorR(Convert.ToInt32(this.lblIdVenta.Text), dtDetalleR);
                                                     lblIdVenta.Text = "";
                                                     frmVentasReservadas.f1.Mostrar();
@@ -1154,7 +1158,7 @@ namespace CapaPresentacion
                     vuelto = Convert.ToDecimal(this.txtVuelto.Text);
                 }
 
-                if(lblIdVenta.Text =="0")
+                if (lblIdVenta.Text == "0")
                 {
                     try
                     {
@@ -1209,7 +1213,7 @@ namespace CapaPresentacion
                                     rpta = NVenta.InsertarPedidoPagadoR(idCliente, Convert.ToInt32(this.lblIdMesa.Text), DateTime.Now, "RESERVADA", formaPago, Convert.ToDecimal(this.lblDctoGeneral.Text),
 Convert.ToInt32(this.lblIdUsuario.Text), "CU", 1, frmVenta.f1.dtDetalle, frmVenta.f1.dtDetalleMenu, Convert.ToDateTime(this.lblFechaEntrega.Text),
 Convert.ToDecimal(txtEfectivo.Text), Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text), this.lblObs.Text, frmReservar.f1.txtMotivo.Text.Trim(),
-frmReservar.f1.txtNombre.Text.ToUpper().Trim(),frmReservar.f1.txtCel.Text.Trim());
+frmReservar.f1.txtNombre.Text.ToUpper().Trim(), frmReservar.f1.txtCel.Text.Trim());
                                     if (rpta != "")
                                     {
                                         for (int p = 0; p < frmVenta.f1.dataListadoDetalle.Rows.Count; p++)
@@ -1263,9 +1267,9 @@ frmReservar.f1.txtNombre.Text.ToUpper().Trim(),frmReservar.f1.txtCel.Text.Trim()
     */
                                             //this.imprimir(Convert.ToInt32(rpta));
                                             // this.Facturador(Convert.ToInt32(rpta), frmVenta.f1.dtDetalle);
-                                            NImprimirComanda.imprimirReserva(frmVenta.f1.dataListadoDetalle, lblFechaEntrega.Text, lblObs.Text, rpta, 
-                                                lblTotal.Text,txtEfectivo.Text,txtVuelto.Text,frmPrincipal.f1.lblUsuario.Text+
-                                                " " +frmPrincipal.f1.lblApellidos.Text, frmReservar.f1.txtNombre.Text.Trim(),
+                                            NImprimirComanda.imprimirReserva(frmVenta.f1.dataListadoDetalle, lblFechaEntrega.Text, lblObs.Text, rpta,
+                                                lblTotal.Text, txtEfectivo.Text, txtVuelto.Text, frmPrincipal.f1.lblUsuario.Text +
+                                                " " + frmPrincipal.f1.lblApellidos.Text, frmReservar.f1.txtNombre.Text.Trim(),
                                                 frmReservar.f1.txtCel.Text.Trim(), frmReservar.f1.txtMotivo.Text.Trim());
                                             lblIdVenta.Text = "";
                                             this.Close();
@@ -1317,8 +1321,8 @@ frmReservar.f1.txtNombre.Text.ToUpper().Trim(), frmReservar.f1.txtCel.Text.Trim(
 
                                                   this.Facturador(Convert.ToInt32(rpta), frmVenta.f1.dtDetalle);
                                                   */
-                                                NImprimirComanda.imprimirReserva(frmVenta.f1.dataListadoDetalle,lblFechaEntrega.Text, lblObs.Text, rpta,lblTotal.Text,txtEfectivo.Text,txtVuelto.Text,
-                                                    frmPrincipal.f1.lblUsuario.Text + " "+ frmPrincipal.f1.lblApellidos.Text, frmReservar.f1.txtNombre.Text.Trim(),
+                                                NImprimirComanda.imprimirReserva(frmVenta.f1.dataListadoDetalle, lblFechaEntrega.Text, lblObs.Text, rpta, lblTotal.Text, txtEfectivo.Text, txtVuelto.Text,
+                                                    frmPrincipal.f1.lblUsuario.Text + " " + frmPrincipal.f1.lblApellidos.Text, frmReservar.f1.txtNombre.Text.Trim(),
                                                 frmReservar.f1.txtCel.Text.Trim(), frmReservar.f1.txtMotivo.Text.Trim());
                                                 lblIdVenta.Text = "";
                                                 this.Close();
@@ -1440,7 +1444,7 @@ frmReservar.f1.txtNombre.Text.ToUpper().Trim(), frmReservar.f1.txtCel.Text.Trim(
                                             string tipo = frmVenta.f1.dataListadoDetalle.Rows[i].Cells["Tipo"].Value.ToString();
                                             string estado = frmVenta.f1.dataListadoDetalle.Rows[i].Cells["Estado"].Value.ToString();
                                             NDetalleVenta.InsertarAdicPedido(Convert.ToInt32(frmVenta.f1.lblIdVenta.Text), idProducto, cantidad, prVenta, desc,
-                                                frmVenta.f1.dataListadoDetalle.Rows[i].Cells[6].Value.ToString(), tipo, barra, frmVenta.f1.dtDetalleMenu,"Pedido");
+                                                frmVenta.f1.dataListadoDetalle.Rows[i].Cells[6].Value.ToString(), tipo, barra, frmVenta.f1.dtDetalleMenu, "Pedido");
                                             for (int p = cont; p < frmVenta.f1.dataListadoDetalle.Rows.Count; p++)
                                             {
                                                 if (frmVenta.f1.dataListadoDetalle.Rows[i].Cells["Tipo"].Value.ToString() == "C")
@@ -1463,7 +1467,7 @@ frmReservar.f1.txtNombre.Text.ToUpper().Trim(), frmReservar.f1.txtCel.Text.Trim(
 
                                     }
 
-                                    rpta = NVenta.EditarVentaCancelada(Convert.ToInt32(this.lblIdVenta.Text), Convert.ToDecimal(this.lblDctoGeneral.Text), formaPago,"",
+                                    rpta = NVenta.EditarVentaCancelada(Convert.ToInt32(this.lblIdVenta.Text), Convert.ToDecimal(this.lblDctoGeneral.Text), formaPago, "",
                                         Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text));
                                     if (rpta == "OK")
                                     {
@@ -1502,13 +1506,13 @@ frmReservar.f1.txtNombre.Text.ToUpper().Trim(), frmReservar.f1.txtCel.Text.Trim(
                                             tipoCompr = "FACTURA";
                                         }
 
-                                        rpta1 = NComprobante.Insertar(tipoCompr,1, Convert.ToDecimal(this.lblIgv.Text), DateTime.Now, Convert.ToInt32(this.lblIdVenta.Text), "EMITIDA", idCliente,
+                                        rpta1 = NComprobante.Insertar(tipoCompr, 1, Convert.ToDecimal(this.lblIgv.Text), DateTime.Now, Convert.ToInt32(this.lblIdVenta.Text), "EMITIDA", idCliente,
                                                         Convert.ToDecimal(this.lblTotal.Text), pagoEfectivo, pagoTarjeta, 00.00m, formaPago, vuelto);
                                         if (rpta1 == "OK")
                                         {
                                             if (insertarCaja() == true)
                                             {
-                                               // MessageBox.Show("Se registró correctamente");
+                                                // MessageBox.Show("Se registró correctamente");
                                                 NMesa.EditarEstadoMesa(Convert.ToInt32(this.lblIdMesa.Text), "Libre");
                                                 frmModuloSalon.f3.limpiarMesas();
                                                 frmModuloSalon.f3.mostrarSalones();
@@ -1534,8 +1538,8 @@ frmReservar.f1.txtNombre.Text.ToUpper().Trim(), frmReservar.f1.txtCel.Text.Trim(
                                                                             this.lblIgv.Text, this.lblTotal.Text, efectivo1, vuelto1, tarjeta1, formaPago1, modoProd, "00.00", "", NAliento.MensajeAliento());
                                                 }
 
-                                                   
-                                                
+
+
 
                                                 this.Facturador(Convert.ToInt32(this.lblIdVenta.Text), frmVenta.f1.dtDetalleVenta);
                                                 lblIdVenta.Text = "";
@@ -1579,7 +1583,7 @@ frmReservar.f1.txtNombre.Text.ToUpper().Trim(), frmReservar.f1.txtCel.Text.Trim(
                                                 string barra = frmVenta.f1.dataListadoDetalle.Rows[i].Cells["Barra"].Value.ToString();
                                                 string tipo = frmVenta.f1.dataListadoDetalle.Rows[i].Cells["Tipo"].Value.ToString();
                                                 NDetalleVenta.InsertarAdicPedido(Convert.ToInt32(frmVenta.f1.lblIdVenta.Text), idProducto, cantidad, prVenta, desc,
-                                                    frmVenta.f1.dataListadoDetalle.Rows[i].Cells[6].Value.ToString(), tipo, barra, frmVenta.f1.dtDetalleMenu,"Pedido");
+                                                    frmVenta.f1.dataListadoDetalle.Rows[i].Cells[6].Value.ToString(), tipo, barra, frmVenta.f1.dtDetalleMenu, "Pedido");
 
                                                 for (int p = cont; p < frmVenta.f1.dataListadoDetalle.Rows.Count; p++)
                                                 {
@@ -1618,7 +1622,7 @@ frmReservar.f1.txtNombre.Text.ToUpper().Trim(), frmReservar.f1.txtCel.Text.Trim(
                                         }
 
                                         //   rpta1= NFactura.Insertar(1, Convert.ToDecimal(this.lblIgv.Text), DateTime.Now, Convert.ToInt32(this.lblIdVenta.Text),"EMITIDA", Convert.ToInt32(this.lblIdMesa.Text));
-                                        rpta = NVenta.EditarVentaCancelada(Convert.ToInt32(this.lblIdVenta.Text), Convert.ToDecimal(this.lblDctoGeneral.Text), formaPago,"", Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text));
+                                        rpta = NVenta.EditarVentaCancelada(Convert.ToInt32(this.lblIdVenta.Text), Convert.ToDecimal(this.lblDctoGeneral.Text), formaPago, "", Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text));
                                         if (rpta == "OK")
                                         {
                                             string formaPago = "";
@@ -1648,7 +1652,7 @@ frmReservar.f1.txtNombre.Text.ToUpper().Trim(), frmReservar.f1.txtCel.Text.Trim(
                                                 if (insertarCaja() == true)
                                                 {
 
-                                                   // MessageBox.Show("Se registró correctamente");
+                                                    // MessageBox.Show("Se registró correctamente");
                                                     NMesa.EditarEstadoMesa(Convert.ToInt32(this.lblIdMesa.Text), "Libre");
                                                     frmModuloSalon.f3.limpiarMesas();
                                                     frmModuloSalon.f3.mostrarSalones();
@@ -1673,8 +1677,8 @@ frmReservar.f1.txtNombre.Text.ToUpper().Trim(), frmReservar.f1.txtCel.Text.Trim(
                                                                           frmVenta.f1.dataListadoDetalle, this.lblDescuento.Text, this.lblDctoGeneral.Text, this.lblSubTotal.Text,
                                                                           this.lblIgv.Text, this.lblTotal.Text, efectivo1, vuelto1, tarjeta1, formaPago1, modoProd, "00.00", "", NAliento.MensajeAliento());
                                                     }
-                                                        
-                                                    
+
+
 
                                                     //this.imprimir(Convert.ToInt32(this.lblIdVenta.Text));
                                                     this.Facturador(Convert.ToInt32(this.lblIdVenta.Text), frmVenta.f1.dtDetalleVenta);
@@ -1772,26 +1776,27 @@ frmReservar.f1.txtNombre.Text.ToUpper().Trim(), frmReservar.f1.txtCel.Text.Trim(
                                         tipoCompr = "BOLETA";
                                     }
                                     string rpta = "";
-                             
-                                    if(lblFechaEntrega.Text == "1")
+
+                                    if (lblFechaEntrega.Text == "1")
                                     {
                                         rpta = NVenta.InsertarPedidoPagado(idCliente, Convert.ToInt32(this.lblIdMesa.Text), DateTime.Now, estadoVenta, formaPago, Convert.ToDecimal(this.lblDctoGeneral.Text)
                                                                               , Convert.ToInt32(this.lblIdUsuario.Text), "CU", 1, tipoCompr, 1, Convert.ToDecimal(this.lblIgv.Text), "EMITIDA",
                                                                               Convert.ToDecimal(this.lblTotal.Text), pagoEfectivo, pagoTarjeta,
                                                                               00.00m, frmVenta.f1.dtDetalle, vuelto, frmVenta.f1.dtDetalleMenu,
-                                                                              Convert.ToDateTime(fechaEntrega), Convert.ToDecimal(lblTotal.Text), Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text), 
-                                                                              this.lblObs.Text,"","","");
-                                    }else
+                                                                              Convert.ToDateTime(fechaEntrega), Convert.ToDecimal(lblTotal.Text), Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text),
+                                                                              this.lblObs.Text, "", "", "");
+                                    }
+                                    else
                                     {
                                         rpta = NVenta.InsertarPedidoPagadoR(idCliente, Convert.ToInt32(this.lblIdMesa.Text), DateTime.Now, estadoVenta, formaPago, Convert.ToDecimal(this.lblDctoGeneral.Text)
                                                                               , Convert.ToInt32(this.lblIdUsuario.Text), "CU", 1, tipoCompr, 1, Convert.ToDecimal(this.lblIgv.Text), "EMITIDA",
                                                                               Convert.ToDecimal(this.lblTotal.Text), pagoEfectivo, pagoTarjeta,
                                                                               00.00m, frmVenta.f1.dtDetalle, vuelto, frmVenta.f1.dtDetalleMenu,
                                                                               Convert.ToDateTime(fechaEntrega), Convert.ToDecimal(lblTotal.Text), Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text),
-                                                                              this.lblObs.Text,frmReservar.f1.txtMotivo.Text.Trim(),frmReservar.f1.txtNombre.Text.Trim(),
+                                                                              this.lblObs.Text, frmReservar.f1.txtMotivo.Text.Trim(), frmReservar.f1.txtNombre.Text.Trim(),
                                                                               frmReservar.f1.txtCel.Text.Trim());
                                     }
-                                  
+
                                     if (rpta != "")
                                     {
                                         for (int p = 0; p < frmVenta.f1.dataListadoDetalle.Rows.Count; p++)
@@ -1852,14 +1857,14 @@ frmReservar.f1.txtNombre.Text.ToUpper().Trim(), frmReservar.f1.txtCel.Text.Trim(
                                                 NImprimir_Comprobante.imprimirCom(Convert.ToInt32(rpta), tipoCompr, this.txtNombre.Text.Trim(), this.txtDireccion.Text.Trim(),
                                                                     this.txtDocumento.Text.Trim(), frmVenta.f1.lblMesero.Text, frmVenta.f1.lblSalon.Text, frmVenta.f1.lblMesa.Text,
                                                                     frmVenta.f1.dataListadoDetalle, this.lblDescuento.Text, this.lblDctoGeneral.Text, this.lblSubTotal.Text,
-                                                                    this.lblIgv.Text, this.lblTotal.Text, efectivo1, vuelto1, tarjeta1, formaPago1, modoProd, "00.00", "",NAliento.MensajeAliento());
+                                                                    this.lblIgv.Text, this.lblTotal.Text, efectivo1, vuelto1, tarjeta1, formaPago1, modoProd, "00.00", "", NAliento.MensajeAliento());
                                             }
-                                                
-                                            
-                                            if(this.lblFechaEntrega.Text != "1")
+
+
+                                            if (this.lblFechaEntrega.Text != "1")
                                             {
                                                 NImprimirComanda.imprimirReserva(frmVenta.f1.dataListadoDetalle, lblFechaEntrega.Text, lblObs.Text, rpta, lblTotal.Text,
-                                                    "00", "00.00",frmPrincipal.f1.lblUsuario.Text + " " + frmPrincipal.f1.lblApellidos.Text, frmReservar.f1.txtNombre.Text.Trim(),
+                                                    "00", "00.00", frmPrincipal.f1.lblUsuario.Text + " " + frmPrincipal.f1.lblApellidos.Text, frmReservar.f1.txtNombre.Text.Trim(),
                                                 frmReservar.f1.txtCel.Text.Trim(), frmReservar.f1.txtMotivo.Text.Trim());
                                             }
 
@@ -1868,7 +1873,7 @@ frmReservar.f1.txtNombre.Text.ToUpper().Trim(), frmReservar.f1.txtCel.Text.Trim(
                                             lblIdVenta.Text = "";
                                             this.Close();
                                             frmVenta.f1.Close();
-                                            if(lblFechaEntrega.Text != "1")
+                                            if (lblFechaEntrega.Text != "1")
                                             {
                                                 frmReservar.f1.Close();
                                             }
@@ -1887,16 +1892,16 @@ frmReservar.f1.txtNombre.Text.ToUpper().Trim(), frmReservar.f1.txtCel.Text.Trim(
                                     {
 
                                         string rpta = "";
-                                        if(lblFechaEntrega.Text == "1")
+                                        if (lblFechaEntrega.Text == "1")
                                         {
                                             rpta = NVenta.InsertarPedidoPagado(idCliente, Convert.ToInt32(this.lblIdMesa.Text), DateTime.Now, estadoVenta, formaPago, Convert.ToDecimal(this.lblDctoGeneral.Text)
                                                                              , Convert.ToInt32(this.lblIdUsuario.Text), "CU", 1, "FACTURA", 1, Convert.ToDecimal(this.lblIgv.Text),
                                                                              "EMITIDA", Convert.ToDecimal(this.lblTotal.Text), pagoEfectivo,
                                                                              pagoTarjeta, 00.00m, frmVenta.f1.dtDetalle, vuelto,
                                                                              frmVenta.f1.dtDetalleMenu, Convert.ToDateTime(fechaEntrega), Convert.ToDecimal(lblTotal.Text),
-                                                                             Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text), this.lblObs.Text, "", "","");
+                                                                             Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text), this.lblObs.Text, "", "", "");
                                         }
-                                       else
+                                        else
                                         {
                                             rpta = NVenta.InsertarPedidoPagadoR(idCliente, Convert.ToInt32(this.lblIdMesa.Text), DateTime.Now, estadoVenta, formaPago, Convert.ToDecimal(this.lblDctoGeneral.Text)
                                                                              , Convert.ToInt32(this.lblIdUsuario.Text), "CU", 1, "FACTURA", 1, Convert.ToDecimal(this.lblIgv.Text),
@@ -1934,14 +1939,14 @@ frmReservar.f1.txtNombre.Text.ToUpper().Trim(), frmReservar.f1.txtCel.Text.Trim(
                                                     NImprimir_Comprobante.imprimirCom(Convert.ToInt32(rpta), "FACTURA", this.txtNombre.Text.Trim(), this.txtDireccion.Text.Trim(),
                                                                             this.txtDocumento.Text.Trim(), frmVenta.f1.lblMesero.Text, frmVenta.f1.lblSalon.Text, frmVenta.f1.lblMesa.Text,
                                                                             frmVenta.f1.dataListadoDetalle, this.lblDescuento.Text, this.lblDctoGeneral.Text, this.lblSubTotal.Text,
-                                                                            this.lblIgv.Text, this.lblTotal.Text, efectivo1, vuelto1, tarjeta1, formaPago1, modoProd, "00.00", "",NAliento.MensajeAliento());
+                                                                            this.lblIgv.Text, this.lblTotal.Text, efectivo1, vuelto1, tarjeta1, formaPago1, modoProd, "00.00", "", NAliento.MensajeAliento());
                                                 }
-                                                   
+
 
                                                 if (this.lblFechaEntrega.Text != "1")
                                                 {
-                                                    NImprimirComanda.imprimirReserva(frmVenta.f1.dataListadoDetalle, lblFechaEntrega.Text, lblObs.Text, rpta, 
-                                                        lblTotal.Text, "00", "00.00",frmPrincipal.f1.lblUsuario.Text + " "+frmPrincipal.f1.lblApellidos.Text, frmReservar.f1.txtNombre.Text.Trim(),
+                                                    NImprimirComanda.imprimirReserva(frmVenta.f1.dataListadoDetalle, lblFechaEntrega.Text, lblObs.Text, rpta,
+                                                        lblTotal.Text, "00", "00.00", frmPrincipal.f1.lblUsuario.Text + " " + frmPrincipal.f1.lblApellidos.Text, frmReservar.f1.txtNombre.Text.Trim(),
                                                 frmReservar.f1.txtCel.Text.Trim(), frmReservar.f1.txtMotivo.Text.Trim());
                                                 }
                                                 this.Facturador(Convert.ToInt32(rpta), frmVenta.f1.dtDetalle);
@@ -1990,26 +1995,7 @@ frmReservar.f1.txtNombre.Text.ToUpper().Trim(), frmReservar.f1.txtCel.Text.Trim(
             else if (lblBanderaCobro.Text == "3")
             {
 
-                if (lblBanderaComprobante.Text == "1")
-                {
-                    if (total > 700 && (txtIdCliente.Text.Length == 0 || txtDocumento.Text.Length == 0 || txtNombre.Text.Length == 0 || txtDireccion.Text.Length == 0))
-                    {
-                        MessageBox.Show("El monto supera los 700 soles, complete todos los datos del cliente");
-                        return;
-                    }
-                    else
-                    {
-                        CobrarReserva();
-                    }
-                }
-                else if (lblBanderaComprobante.Text == "0")
-                {
-                    MessageBox.Show("Seleccione BOLETA o FACTURA");
-                }
-                else if (lblBanderaComprobante.Text == "2")
-                {
-                    CobrarReserva();
-                }
+                CobrarReserva();
             }
             else
             {
@@ -2046,17 +2032,7 @@ frmReservar.f1.txtNombre.Text.ToUpper().Trim(), frmReservar.f1.txtCel.Text.Trim(
             this.btnBoleta.BackColor = Color.FromArgb(236, 236, 236);
             this.btnFactura.BackColor = Color.FromArgb(205, 201, 201);
             this.btnTicket.BackColor = Color.FromArgb(205, 201, 201);
-
-            if(lblBanderaCobro.Text != "3")
-            {
-                decimal totalText = Convert.ToDecimal(this.lblTotal.Text);
-                decimal totalSubTotalText = (totalText - Convert.ToDecimal(this.lblDctoGeneral.Text)) / 1.18m;
-
-                this.lblSubTotal.Text = string.Format(" {0:#,##0.00}", Convert.ToDouble(totalSubTotalText));
-                decimal totalIgvText = totalText - totalSubTotalText;
-                this.lblIgv.Text = string.Format(" {0:#,##0.00}", Convert.ToDouble(totalIgvText));
-            }
-           
+            MontosNuevosDescuento();
             this.dataListadoProducto.Select();
 
         }
@@ -2067,18 +2043,7 @@ frmReservar.f1.txtNombre.Text.ToUpper().Trim(), frmReservar.f1.txtCel.Text.Trim(
             this.btnFactura.BackColor = Color.FromArgb(236, 236, 236);
             this.btnBoleta.BackColor = Color.FromArgb(205, 201, 201);
             this.btnTicket.BackColor = Color.FromArgb(205, 201, 201);
-
-            if(lblBanderaCobro.Text != "3")
-            {
-
-                decimal totalText = Convert.ToDecimal(this.lblTotal.Text);
-                decimal totalSubTotalText = (totalText - Convert.ToDecimal(this.lblDctoGeneral.Text)) / 1.18m;
-
-                this.lblSubTotal.Text = string.Format(" {0:#,##0.00}", Convert.ToDouble(totalSubTotalText));
-                decimal totalIgvText = totalText - totalSubTotalText;
-                this.lblIgv.Text = string.Format(" {0:#,##0.00}", Convert.ToDouble(totalIgvText));
-            }
-
+            MontosNuevosDescuento();
             this.dataListadoProducto.Select();
         }
 
@@ -2108,7 +2073,7 @@ frmReservar.f1.txtNombre.Text.ToUpper().Trim(), frmReservar.f1.txtCel.Text.Trim(
             {
                 DataTable dtClienteVenta;
                 dtClienteVenta = NCliente.mostrarClienteVenta(this.txtDocumento.Text.Trim());
-                if(dtClienteVenta.Rows.Count <= 0)
+                if (dtClienteVenta.Rows.Count <= 0)
                 {
                     MessageBox.Show("No existe el cliente, regístrelo");
                 }
@@ -2140,7 +2105,9 @@ frmReservar.f1.txtNombre.Text.ToUpper().Trim(), frmReservar.f1.txtCel.Text.Trim(
                 this.txtDocumento.Focus();
             }
 
+
         }
+
 
         private void GuardarCliente()
         {
@@ -2226,9 +2193,12 @@ frmReservar.f1.txtNombre.Text.ToUpper().Trim(), frmReservar.f1.txtCel.Text.Trim(
             }
         }
 
+
         private void btnGuardar_Click(object sender, EventArgs e)
         {
+
             GuardarCliente();
+
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -2291,26 +2261,30 @@ frmReservar.f1.txtNombre.Text.ToUpper().Trim(), frmReservar.f1.txtCel.Text.Trim(
             }
         }
 
+        public void MontosNuevosDescuento()
+        {
+            decimal totalText = Convert.ToDecimal(this.lblTotal.Text) + Convert.ToDecimal(lblDctoGeneral.Text) + Convert.ToDecimal(lblDescuento.Text) -
+                                Convert.ToDecimal(this.lblDescuento.Text);
+            decimal totalSubTotalText = (totalText - Convert.ToDecimal(this.lblDctoGeneral.Text)) / 1.18m;
+
+            this.lblSubTotal.Text = string.Format(" {0:#,##0.00}", Convert.ToDouble(totalSubTotalText));
+            decimal totalIgvText = Convert.ToDecimal(lblTotal.Text) - totalSubTotalText;
+            this.lblIgv.Text = string.Format(" {0:#,##0.00}", Convert.ToDouble(totalIgvText));
+        }
+
         private void btnTicket_Click(object sender, EventArgs e)
         {
             this.lblBanderaComprobante.Text = "0";
             this.btnTicket.BackColor = Color.FromArgb(236, 236, 236);
             this.btnFactura.BackColor = Color.FromArgb(205, 201, 201);
             this.btnBoleta.BackColor = Color.FromArgb(205, 201, 201);
-            if(lblBanderaCobro.Text != "3")
-            {
-                decimal totalText = Convert.ToDecimal(this.lblTotal.Text);
-                decimal totalSubTotalText = (totalText - Convert.ToDecimal(this.lblDctoGeneral.Text)) / 1.18m;
+            MontosNuevosDescuento();
 
-                this.lblSubTotal.Text = string.Format(" {0:#,##0.00}", Convert.ToDouble(totalSubTotalText));
-                decimal totalIgvText = totalText - totalSubTotalText;
-                this.lblIgv.Text = string.Format(" {0:#,##0.00}", Convert.ToDouble(totalIgvText));
-            }
+            //txtDocumento.ReadOnly = true;
             txtNombre.ReadOnly = true;
             txtDireccion.ReadOnly = true;
             btnGuardar.Enabled = false;
             btnNuevo.Enabled = true;
-
             this.dataListadoProducto.Select();
         }
 
@@ -2367,6 +2341,11 @@ frmReservar.f1.txtNombre.Text.ToUpper().Trim(), frmReservar.f1.txtCel.Text.Trim(
 
         }
 
+        private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
+
         private void verFormaPago()
         {
             if (rbEfectivo.Checked == true)
@@ -2386,7 +2365,7 @@ frmReservar.f1.txtNombre.Text.ToUpper().Trim(), frmReservar.f1.txtCel.Text.Trim(
 
         private void radioButton5_CheckedChanged(object sender, EventArgs e)
         {
-            if(rbMixto.Checked == true)
+            if (rbMixto.Checked == true)
             {
                 this.txtEfectivo.ReadOnly = false;
                 this.txtTarjeta.ReadOnly = true;
@@ -2416,7 +2395,7 @@ frmReservar.f1.txtNombre.Text.ToUpper().Trim(), frmReservar.f1.txtCel.Text.Trim(
 
         private void rbEfectivo_CheckedChanged(object sender, EventArgs e)
         {
-            if(rbEfectivo.Checked == true)
+            if (rbEfectivo.Checked == true)
             {
                 this.txtTarjeta.ReadOnly = true;
                 this.txtEfectivo.ReadOnly = false;

@@ -60,7 +60,7 @@ namespace CapaPresentacion
                 {
                     tipoCompr = "BOLETA";
                 }
-                else if(this.lblBanderaComprobante.Text =="2")
+                else if (this.lblBanderaComprobante.Text == "2")
                 {
                     tipoCompr = "FACTURA";
                 }
@@ -84,14 +84,14 @@ namespace CapaPresentacion
                     decimal mtoDsctoItem = Convert.ToDecimal(dcto) / Convert.ToDecimal(cantidad);
                     decimal mtoPrecioVentaItem = Decimal.Round((Convert.ToDecimal(importe) / 1.18m), 2);
                     decimal mtoIgvItem = Convert.ToDecimal(importe) - mtoPrecioVentaItem;
-                    decimal mtoValorUnitario = Decimal.Round(mtoPrecioVentaItem / Convert.ToDecimal(cantidad),2);
+                    decimal mtoValorUnitario = Decimal.Round(mtoPrecioVentaItem / Convert.ToDecimal(cantidad), 2);
 
 
                     NFacturador.registrarComprobanteDetalle("NIU", cantidad, codigo, "", descr, mtoValorUnitario.ToString("#0.00#"), mtoDsctoItem.ToString("#0.00#"), mtoIgvItem.ToString("#0.00#"), "10", "0.00", "",
                         mtoPrecioVentaItem.ToString("#0.00#"), importe, tipoCompr, idVenta);
 
-                   /* NFacturador.registrarComprobanteDetalle("NIU", cantidad, codigo, "", descr, (valUn - igvUn).ToString(), dcto, igvUn.ToString(), "10", "0.00", "", valorUnitario,
-                        importe, tipoCompr, idVenta);¨*/
+                    /* NFacturador.registrarComprobanteDetalle("NIU", cantidad, codigo, "", descr, (valUn - igvUn).ToString(), dcto, igvUn.ToString(), "10", "0.00", "", valorUnitario,
+                         importe, tipoCompr, idVenta);¨*/
                 }
             }
 
@@ -101,7 +101,7 @@ namespace CapaPresentacion
         {
             if (rbEfectivo.Checked == true)
             {
-                formaPago = rbEfectivo.Text.ToUpper() ;
+                formaPago = rbEfectivo.Text.ToUpper();
             }
             else if (rbTarjeta.Checked == true)
             {
@@ -115,7 +115,7 @@ namespace CapaPresentacion
         }
         private void DeshabilitarCuentas()
         {
-            if(this.lblBanderaCuenta.Text == "1")
+            if (this.lblBanderaCuenta.Text == "1")
             {
                 btn1.Enabled = false;
             }
@@ -514,6 +514,16 @@ namespace CapaPresentacion
             form.ShowDialog();
             this.dataListadoProducto.Select();
         }
+        public void MontosNuevosDescuento()
+        {
+            decimal totalText = Convert.ToDecimal(this.lblTotal.Text) + Convert.ToDecimal(lblDctoGeneral.Text) + Convert.ToDecimal(lblDescuento.Text) -
+                                Convert.ToDecimal(this.lblDescuento.Text);
+            decimal totalSubTotalText = (totalText - Convert.ToDecimal(this.lblDctoGeneral.Text)) / 1.18m;
+
+            this.lblSubTotal.Text = string.Format(" {0:#,##0.00}", Convert.ToDouble(totalSubTotalText));
+            decimal totalIgvText = Convert.ToDecimal(lblTotal.Text) - totalSubTotalText;
+            this.lblIgv.Text = string.Format(" {0:#,##0.00}", Convert.ToDouble(totalIgvText));
+        }
 
         private void btnBoleta_Click(object sender, EventArgs e)
         {
@@ -522,12 +532,7 @@ namespace CapaPresentacion
             this.btnFactura.BackColor = Color.FromArgb(205, 201, 201);
             this.btnTicket.BackColor = Color.FromArgb(205, 201, 201);
 
-            decimal totalText = Convert.ToDecimal(this.lblTotal.Text);
-            decimal totalSubTotalText = (totalText - Convert.ToDecimal(this.lblDctoGeneral.Text)) / 1.18m;
-
-            this.lblSubTotal.Text = string.Format(" {0:#,##0.00}", Convert.ToDouble(totalSubTotalText));
-            decimal totalIgvText = totalText - totalSubTotalText;
-            this.lblIgv.Text = string.Format(" {0:#,##0.00}", Convert.ToDouble(totalIgvText));
+            MontosNuevosDescuento();
             this.dataListadoProducto.Select();
         }
 
@@ -537,13 +542,7 @@ namespace CapaPresentacion
             this.btnFactura.BackColor = Color.FromArgb(236, 236, 236);
             this.btnBoleta.BackColor = Color.FromArgb(205, 201, 201);
             this.btnTicket.BackColor = Color.FromArgb(205, 201, 201);
-
-            decimal totalText = Convert.ToDecimal(this.lblTotal.Text);
-            decimal totalSubTotalText = (totalText - Convert.ToDecimal(this.lblDctoGeneral.Text)) / 1.18m;
-
-            this.lblSubTotal.Text = string.Format(" {0:#,##0.00}", Convert.ToDouble(totalSubTotalText));
-            decimal totalIgvText = totalText - totalSubTotalText;
-            this.lblIgv.Text = string.Format(" {0:#,##0.00}", Convert.ToDouble(totalIgvText));
+            MontosNuevosDescuento();
             this.dataListadoProducto.Select();
         }
 
@@ -599,9 +598,9 @@ namespace CapaPresentacion
 
             this.lblDescuento.Text = frmDividirCuenta.f1.lblDescuento.Text;
             this.lblTotal.Text = frmDividirCuenta.f1.lblTotal.Text;
-            decimal subTotal = (Convert.ToDecimal(frmDividirCuenta.f1.lblTotal.Text)  - Convert.ToDecimal(frmDividirCuenta.f1.lblDescuento.Text))/ 1.18m;
+            decimal subTotal = (Convert.ToDecimal(frmDividirCuenta.f1.lblTotal.Text)) / 1.18m;
             this.lblSubTotal.Text = string.Format(" {0:#,##0.00}", Convert.ToDouble(subTotal));
-            
+
 
             decimal totalIgvText = Convert.ToDecimal(frmDividirCuenta.f1.lblTotal.Text) - Convert.ToDecimal(this.lblSubTotal.Text);
             this.lblIgv.Text = string.Format(" {0:#,##0.00}", Convert.ToDouble(totalIgvText));
@@ -616,7 +615,7 @@ namespace CapaPresentacion
 
         private void btn1_Click(object sender, EventArgs e)
         {
-         
+
             this.btn1.Enabled = true;
             this.mostrarMontosAPagar();
             this.lblBanderaCuenta.Text = "1";
@@ -754,15 +753,15 @@ namespace CapaPresentacion
                                 NVenta.EditarVentaD(Convert.ToInt32(this.lblIdVenta.Text));
                                 if (insertarCaja() == true)
                                 {
-                                   // MessageBox.Show("Se registró correctamente");
+                                    // MessageBox.Show("Se registró correctamente");
                                     enviarFormaPago();
 
-                          
-                                        NImprimir_Comprobante.imprimirCom(Convert.ToInt32(this.lblIdVenta.Text), tipoCompr, this.txtNombre.Text.Trim(), this.txtDireccion.Text.Trim(),
-                                     this.txtDocumento.Text.Trim(), frmDividirCuenta.f1.lblTrabajador.Text, frmDividirCuenta.f1.lblSalon.Text,
-                                     frmDividirCuenta.f1.lblMesa.Text, frmDividirCuenta.f1.dgSepara1, this.lblDescuento.Text, this.lblDctoGeneral.Text,
-                                     this.lblSubTotal.Text, this.lblIgv.Text, this.lblTotal.Text, efectivo1, vuelto1, tarjeta1, formaPago1, modoProd, this.lblRedondeo.Text, "", NAliento.MensajeAliento());
-                                    
+
+                                    NImprimir_Comprobante.imprimirCom(Convert.ToInt32(this.lblIdVenta.Text), tipoCompr, this.txtNombre.Text.Trim(), this.txtDireccion.Text.Trim(),
+                                 this.txtDocumento.Text.Trim(), frmDividirCuenta.f1.lblTrabajador.Text, frmDividirCuenta.f1.lblSalon.Text,
+                                 frmDividirCuenta.f1.lblMesa.Text, frmDividirCuenta.f1.dgSepara1, this.lblDescuento.Text, this.lblDctoGeneral.Text,
+                                 this.lblSubTotal.Text, this.lblIgv.Text, this.lblTotal.Text, efectivo1, vuelto1, tarjeta1, formaPago1, modoProd, this.lblRedondeo.Text, "", NAliento.MensajeAliento());
+
 
 
                                     this.Facturador(Convert.ToInt32(this.lblIdVenta.Text), frmDividirCuenta.f1.dgSepara1);
@@ -830,14 +829,14 @@ namespace CapaPresentacion
                                     NVenta.EditarVentaD(Convert.ToInt32(this.lblIdVenta.Text));
                                     if (insertarCaja() == true)
                                     {
-                                       // MessageBox.Show("Se registró correctamente");
+                                        // MessageBox.Show("Se registró correctamente");
                                         enviarFormaPago();
 
-                         
-                                            NImprimir_Comprobante.imprimirCom(Convert.ToInt32(this.lblIdVenta.Text), "FACTURA", this.txtNombre.Text.Trim(), this.txtDireccion.Text.Trim(),
-                                                       this.txtDocumento.Text.Trim(), frmDividirCuenta.f1.lblTrabajador.Text, frmDividirCuenta.f1.lblSalon.Text,
-                                                       frmDividirCuenta.f1.lblMesa.Text, frmDividirCuenta.f1.dgSepara1, this.lblDescuento.Text, this.lblDctoGeneral.Text,
-                                                       this.lblSubTotal.Text, this.lblIgv.Text, this.lblTotal.Text, efectivo1, vuelto1, tarjeta1, formaPago1, modoProd, this.lblRedondeo.Text, "", NAliento.MensajeAliento());
+
+                                        NImprimir_Comprobante.imprimirCom(Convert.ToInt32(this.lblIdVenta.Text), "FACTURA", this.txtNombre.Text.Trim(), this.txtDireccion.Text.Trim(),
+                                                   this.txtDocumento.Text.Trim(), frmDividirCuenta.f1.lblTrabajador.Text, frmDividirCuenta.f1.lblSalon.Text,
+                                                   frmDividirCuenta.f1.lblMesa.Text, frmDividirCuenta.f1.dgSepara1, this.lblDescuento.Text, this.lblDctoGeneral.Text,
+                                                   this.lblSubTotal.Text, this.lblIgv.Text, this.lblTotal.Text, efectivo1, vuelto1, tarjeta1, formaPago1, modoProd, this.lblRedondeo.Text, "", NAliento.MensajeAliento());
 
 
                                         this.Facturador(Convert.ToInt32(this.lblIdVenta.Text), frmDividirCuenta.f1.dgSepara1);
@@ -913,7 +912,7 @@ namespace CapaPresentacion
         {
             if (this.lblBanderaTexto.Text == "0")
             {
-                this.txtEfectivo.Text ="20";
+                this.txtEfectivo.Text = "20";
                 mostrarTotales();
                 this.dataListadoProducto.Select();
             }
@@ -994,13 +993,7 @@ namespace CapaPresentacion
             this.btnTicket.BackColor = Color.FromArgb(236, 236, 236);
             this.btnFactura.BackColor = Color.FromArgb(205, 201, 201);
             this.btnBoleta.BackColor = Color.FromArgb(205, 201, 201);
-
-            decimal totalText = Convert.ToDecimal(this.lblTotal.Text);
-            decimal totalSubTotalText = (totalText - Convert.ToDecimal(this.lblDctoGeneral.Text)) / 1.18m;
-
-            this.lblSubTotal.Text = string.Format(" {0:#,##0.00}", Convert.ToDouble(totalSubTotalText));
-            decimal totalIgvText = totalText - totalSubTotalText;
-            this.lblIgv.Text = string.Format(" {0:#,##0.00}", Convert.ToDouble(totalIgvText));
+            MontosNuevosDescuento();
             this.dataListadoProducto.Select();
         }
 
@@ -1027,7 +1020,7 @@ namespace CapaPresentacion
             }
         }
 
-        private void mostrarTotales()
+        public void mostrarTotales()
         {
             decimal total = Convert.ToDecimal(this.lblTotal.Text);
             decimal tarjeta;

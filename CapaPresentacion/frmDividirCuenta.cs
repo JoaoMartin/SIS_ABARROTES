@@ -60,7 +60,7 @@ namespace CapaPresentacion
                         {
                             for (int i = 0; i < frmVenta.f1.dtDetalle.Rows.Count; i++)
                             {
-                                cod= frmVenta.f1.dtDetalle.Rows[i][0].ToString();
+                                cod = frmVenta.f1.dtDetalle.Rows[i][0].ToString();
                                 producto = frmVenta.f1.dtDetalle.Rows[i][1].ToString();
                                 cantidad1 = frmVenta.f1.dtDetalle.Rows[i][2].ToString();
                                 precioVenta = Convert.ToDecimal(frmVenta.f1.dtDetalle.Rows[i][3].ToString());
@@ -80,12 +80,12 @@ namespace CapaPresentacion
 
                                 subTotal = subTotal + Convert.ToDecimal(importeR);
                                 descInd = descInd + Convert.ToDecimal(descuentoR);
-                                total = total + Convert.ToDecimal(importeR) - descuentoR;
+                                total = total + Convert.ToDecimal(importeR);
 
-                                dgSepara1.Rows.Add(cod,producto, cantidad1, precioVenta, descuentoR, importe, importeR,barra,tipo);
+                                dgSepara1.Rows.Add(cod, producto, cantidad1, precioVenta, descuentoR, importe, importeR, barra, tipo);
                             }
 
-                            this.lblSubTotal.Text = subTotal.ToString();
+
                             if (descInd == 0)
                             {
                                 this.lblDescuento.Text = "00.00";
@@ -105,6 +105,8 @@ namespace CapaPresentacion
                             {
                                 this.lblRedondeo.Text = redondeo.ToString();
                             }
+                            this.lblSubTotal.Text = subTotal.ToString();
+                            lblSubTotal.Text = Convert.ToString(Convert.ToDecimal(lblSubTotal.Text) + Convert.ToDecimal(lblDescuento.Text));
 
                             this.lblTotal.Text = totalR.ToString();
                         }
@@ -132,11 +134,11 @@ namespace CapaPresentacion
                                 subTotal = subTotal + Convert.ToDecimal(importeR) + descuentoR;
                                 total = total + Convert.ToDecimal(importeR);
 
-                                dgSepara1.Rows.Add(cod,producto, cantidad1, precioVenta, descuentoR, importe, importeR,barra,tipo);
+                                dgSepara1.Rows.Add(cod, producto, cantidad1, precioVenta, descuentoR, importe, importeR, barra, tipo);
                             }
 
 
-                            this.lblSubTotal.Text = subTotal.ToString();
+
                             if (descInd == 0)
                             {
                                 this.lblDescuento.Text = "00.00";
@@ -156,6 +158,8 @@ namespace CapaPresentacion
                             {
                                 this.lblRedondeo.Text = redondeo.ToString();
                             }
+                            this.lblSubTotal.Text = subTotal.ToString();
+                            lblSubTotal.Text = Convert.ToString(Convert.ToDecimal(lblSubTotal.Text) + Convert.ToDecimal(lblDescuento.Text));
 
                             this.lblTotal.Text = totalR.ToString();
 
@@ -191,8 +195,8 @@ namespace CapaPresentacion
                                                          Convert.ToDecimal(this.lblDescuento.Text), Convert.ToInt32(this.lblIdUsuario.Text), "CS", frmVenta.f1.dtDetalle);
                                                          */
                     rpta = NVenta.InsertarPedidoSeparado(null, Convert.ToInt32(this.lblIdMesa.Text), DateTime.Now, "Pedido DV", "",
-                    Convert.ToDecimal(this.lblDescuento.Text), Convert.ToInt32(this.lblIdUsuario.Text), "CD",1, frmVenta.f1.dtDetalle,
-                    frmVenta.f1.dtDetalleMenu,DateTime.Now,00.00m, Convert.ToInt32(this.lblIdUsuario.Text),"","","","");
+                    Convert.ToDecimal(this.lblDescuento.Text), Convert.ToInt32(this.lblIdUsuario.Text), "CD", 1, frmVenta.f1.dtDetalle,
+                    frmVenta.f1.dtDetalleMenu, DateTime.Now, 00.00m, Convert.ToInt32(this.lblIdUsuario.Text), "", "", "", "");
                     if (rpta != "")
                     {
                         for (int i = 0; i < frmVenta.f1.dataListadoDetalle.Rows.Count; i++)
@@ -220,7 +224,7 @@ namespace CapaPresentacion
                 else
                 {
                     int cont = Convert.ToInt32(frmVenta.f1.lblNroFilas.Text);
-                    for (int i =cont; i < frmVenta.f1.dataListadoDetalle.Rows.Count; i++)
+                    for (int i = cont; i < frmVenta.f1.dataListadoDetalle.Rows.Count; i++)
                     {
                         int idProducto = Convert.ToInt32(frmVenta.f1.dataListadoDetalle.Rows[i].Cells[0].Value.ToString());
                         int cantidad = Convert.ToInt32(frmVenta.f1.dataListadoDetalle.Rows[i].Cells[2].Value.ToString());
@@ -228,9 +232,9 @@ namespace CapaPresentacion
                         decimal desc = Convert.ToDecimal(frmVenta.f1.dataListadoDetalle.Rows[i].Cells[4].Value.ToString());
                         string barra = frmVenta.f1.dataListadoDetalle.Rows[i].Cells["Barra"].Value.ToString();
                         string tipo = frmVenta.f1.dataListadoDetalle.Rows[i].Cells["Tipo"].Value.ToString();
-                       
+
                         rpta = NDetalleVenta.InsertarAdicPedido(Convert.ToInt32(this.lblIdVenta.Text), idProducto, cantidad, prVenta, desc,
-                            frmVenta.f1.dataListadoDetalle.Rows[i].Cells[6].Value.ToString(),tipo,barra,frmVenta.f1.dtDetalleMenu,"Pedido");
+                            frmVenta.f1.dataListadoDetalle.Rows[i].Cells[6].Value.ToString(), tipo, barra, frmVenta.f1.dtDetalleMenu, "Pedido");
                         if (rpta == "OK")
                         {
                             for (int p = cont; p < frmVenta.f1.dataListadoDetalle.Rows.Count; p++)
@@ -246,7 +250,7 @@ namespace CapaPresentacion
                                         int idProducto_Com = Convert.ToInt32(dtDetalleProducto.Rows[j][0].ToString());
                                         int cantRequerida = Convert.ToInt32(dtDetalleProducto.Rows[j][1].ToString());
 
-                                         NProducto.EditarStock(idProducto_Com, cantRequerida * cantPedido);
+                                        NProducto.EditarStock(idProducto_Com, cantRequerida * cantPedido);
                                     }
 
                                 }
@@ -328,7 +332,7 @@ namespace CapaPresentacion
         private void frmDividirCuenta_Load(object sender, EventArgs e)
         {
             this.txtNumeroDiv.Focus();
-            
+
             this.dgSepara1.ColumnHeadersDefaultCellStyle.Font = new Font(dgSepara1.ColumnHeadersDefaultCellStyle.Font, FontStyle.Bold);
             this.dgSepara1.GridColor = SystemColors.ActiveBorder;
             this.dgSepara1.AlternatingRowsDefaultCellStyle.BackColor = Color.Beige;
