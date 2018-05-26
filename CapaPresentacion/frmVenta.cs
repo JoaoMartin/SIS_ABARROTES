@@ -1102,7 +1102,7 @@ namespace CapaPresentacion
         }
         private void btnPedido_Click(object sender, EventArgs e)
         {
-            Pedir();
+            //Pedir();
 
         }
 
@@ -2974,6 +2974,7 @@ namespace CapaPresentacion
                 this.btnLimpiar.Enabled = true;
                 this.btnReservar.Enabled = false;
                 cantFilas = dataListadoDetalle.Rows.Count;
+                
             }
             else
             {
