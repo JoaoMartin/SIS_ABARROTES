@@ -1982,18 +1982,62 @@ frmReservar.f1.txtNombre.Text.ToUpper().Trim(), frmReservar.f1.txtCel.Text.Trim(
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if(lblBanderaCobro.Text == "1")
+            decimal total = Convert.ToDecimal(lblTotal.Text) + Convert.ToDecimal(lblMontoAdelanto.Text);
+            if (lblBanderaCobro.Text == "1")
             {
                 CobrarAdelanto();
-            }else if(lblBanderaCobro.Text == "3")
+            }
+            else if (lblBanderaCobro.Text == "3")
             {
-                CobrarReserva();
-            }else
+
+                if (lblBanderaComprobante.Text == "1")
+                {
+                    if (total > 700 && (txtIdCliente.Text.Length == 0 || txtDocumento.Text.Length == 0 || txtNombre.Text.Length == 0 || txtDireccion.Text.Length == 0))
+                    {
+                        MessageBox.Show("El monto supera los 700 soles, complete todos los datos del cliente");
+                        return;
+                    }
+                    else
+                    {
+                        CobrarReserva();
+                    }
+                }
+                else if (lblBanderaComprobante.Text == "0")
+                {
+                    MessageBox.Show("Seleccione BOLETA o FACTURA");
+                }
+                else if (lblBanderaComprobante.Text == "2")
+                {
+                    CobrarReserva();
+                }
+            }
+            else
             {
-                Cobrar();
+                if (lblBanderaComprobante.Text == "1")
+                {
+                    if (total > 700 && (txtIdCliente.Text.Length == 0 || txtDocumento.Text.Length == 0 || txtNombre.Text.Length == 0 || txtDireccion.Text.Length == 0))
+                    {
+                        MessageBox.Show("El monto supera los 700 soles, complete todos los datos del cliente");
+                        return;
+                    }
+                    else
+                    {
+                        Cobrar();
+                    }
+                }
+                else if (lblBanderaComprobante.Text == "0")
+                {
+                    MessageBox.Show("Seleccione BOLETA o FACTURA");
+                }
+                else if (lblBanderaComprobante.Text == "2")
+                {
+                    Cobrar();
+                }
+
+
             }
 
-            
+
         }
 
         private void btnBoleta_Click(object sender, EventArgs e)
@@ -2080,60 +2124,111 @@ frmReservar.f1.txtNombre.Text.ToUpper().Trim(), frmReservar.f1.txtCel.Text.Trim(
 
         private void btnNuevo_Click(object sender, EventArgs e)
         {
-            this.btnGuardar.Enabled = true;
-            this.txtNombre.ReadOnly = false;
-            this.txtDireccion.ReadOnly = false;
-            this.txtNombre.Text = string.Empty;
-            this.txtDireccion.Text = string.Empty;
-            this.txtDocumento.Text = string.Empty;
-            this.txtIdCliente.Text = string.Empty;
-            this.txtDocumento.Focus();
-            
+            if (lblBanderaComprobante.Text == "0")
+            {
+                MessageBox.Show("Seleccione BOLETA O FACTURA");
+            }
+            else
+            {
+                this.btnGuardar.Enabled = true;
+                this.txtNombre.ReadOnly = false;
+                this.txtDireccion.ReadOnly = false;
+                this.txtNombre.Text = string.Empty;
+                this.txtDireccion.Text = string.Empty;
+                this.txtDocumento.Text = string.Empty;
+                this.txtIdCliente.Text = string.Empty;
+                this.txtDocumento.Focus();
+            }
+
+        }
+
+        private void GuardarCliente()
+        {
+            string rpta = "";
+            decimal monto = 00.00m;
+            string tipoDoc = "";
+            monto = Convert.ToDecimal(this.lblTotal.Text) + Convert.ToDecimal(lblMontoAdelanto.Text);
+            if (lblBanderaComprobante.Text == "1")
+            {
+                if (monto <= 700)
+                {
+                    if (txtDocumento.Text.Trim() != "" && (txtDocumento.Text.Trim().Length == 8 || txtDocumento.Text.Trim().Length == 11))
+                    {
+                        if (txtDocumento.Text.Length == 8)
+                        {
+                            tipoDoc = "DNI";
+                        }
+                        else if (txtDocumento.Text.Length == 11)
+                        {
+                            tipoDoc = "RUC";
+                        }
+                        else
+                        {
+                            MessageBox.Show("Ingrese un número de documento válido");
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        tipoDoc = "";
+
+                    }
+                    rpta = NCliente.InsertarVenta(txtNombre.Text.Trim().ToUpper(), DateTime.MinValue, tipoDoc, txtDocumento.Text.Trim(), txtDireccion.Text, "", "");
+                }
+                else if (monto > 700)
+                {
+                    if (txtDocumento.Text.Trim().Length == 0 && (txtDocumento.Text.Trim().Length != 8 || txtDocumento.Text.Trim().Length != 11))
+                    {
+                        MessageBox.Show("Ingrese un número de documento válido");
+                        return;
+                    }
+                    else if (txtDocumento.Text.Trim().Length == 11)
+                    {
+                        tipoDoc = "RUC";
+                    }
+                    else if (txtDocumento.Text.Trim().Length == 8)
+                    {
+                        tipoDoc = "DNI";
+                    }
+
+                    if (txtNombre.Text.Trim() == "" || txtDireccion.Text.Trim() == "")
+                    {
+                        MessageBox.Show("Complete el nombre y la dirección");
+                        return;
+                    }
+                    rpta = NCliente.InsertarVenta(txtNombre.Text.Trim().ToUpper(), DateTime.MinValue, tipoDoc, txtDocumento.Text.Trim(), txtDireccion.Text, "", "");
+                }
+
+                this.txtIdCliente.Text = rpta;
+                this.txtNombre.ReadOnly = true;
+                this.txtDireccion.ReadOnly = true;
+                this.dataListadoProducto.Select();
+            }
+            else if (lblBanderaComprobante.Text == "2")
+            {
+                if (txtDocumento.Text.Trim().Length == 0 || txtDocumento.Text.Trim().Length != 11)
+                {
+                    MessageBox.Show("Ingrese un número de documento válido");
+                    return;
+                }
+                else if (txtNombre.Text.Trim().Length == 0 || txtDireccion.Text.Trim().Length == 0)
+                {
+                    MessageBox.Show("Complete el nombre y la dirección");
+                }
+                else
+                {
+                    rpta = NCliente.InsertarVenta(txtNombre.Text.Trim().ToUpper(), DateTime.MinValue, "RUC", txtDocumento.Text.Trim(), txtDireccion.Text.Trim(), "", "");
+                    this.txtIdCliente.Text = rpta;
+                    this.txtNombre.ReadOnly = true;
+                    this.txtDireccion.ReadOnly = true;
+                    this.dataListadoProducto.Select();
+                }
+            }
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            string rpta = "";
-            if(this.txtDocumento.Text.Length == 11)
-            {
-                if(this.txtNombre.Text.Trim() == "" || this.txtDireccion.Text.Trim() == "")
-                {
-                    MessageBox.Show("Complete el nombre y dirección");
-                }
-                else
-                {
-                    rpta = NCliente.InsertarVenta(this.txtNombre.Text.Trim().ToUpper(), DateTime.MinValue, "RUC", this.txtDocumento.Text, this.txtDireccion.Text.Trim(), "", "");
-                    this.txtIdCliente.Text = rpta;
-                    this.txtNombre.ReadOnly = true;
-                    this.txtDireccion.ReadOnly = true;
-                    this.btnGuardar.Enabled = false;
-                    this.btnNuevo.Enabled = false;
-                    this.dataListadoProducto.Select();
-                }
-
-            }else if(this.txtDocumento.Text.Length == 8)
-            {
-                if (this.txtNombre.Text.Trim() == "")
-                {
-                    MessageBox.Show("Complete el nombre");
-                    this.dataListadoProducto.Select();
-                }
-                else
-                {
-                    rpta = NCliente.InsertarVenta(this.txtNombre.Text.Trim().ToUpper(), DateTime.MinValue, "DNI", this.txtDocumento.Text, this.txtDireccion.Text.Trim(), "", "");
-                    this.txtIdCliente.Text = rpta;
-                    this.txtNombre.ReadOnly = true;
-                    this.txtDireccion.ReadOnly = true;
-                    this.dataListadoProducto.Select();
-                }
-             
-            }
-            else
-            {
-                MessageBox.Show("Ingrese un nro de Documento válido");
-                this.dataListadoProducto.Select();
-            }
-            
+            GuardarCliente();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -2211,7 +2306,11 @@ frmReservar.f1.txtNombre.Text.ToUpper().Trim(), frmReservar.f1.txtCel.Text.Trim(
                 decimal totalIgvText = totalText - totalSubTotalText;
                 this.lblIgv.Text = string.Format(" {0:#,##0.00}", Convert.ToDouble(totalIgvText));
             }
-      
+            txtNombre.ReadOnly = true;
+            txtDireccion.ReadOnly = true;
+            btnGuardar.Enabled = false;
+            btnNuevo.Enabled = true;
+
             this.dataListadoProducto.Select();
         }
 

@@ -65,6 +65,8 @@
             this.btnEditar = new System.Windows.Forms.Button();
             this.btnNuevo = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.cbTipoCliente = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataListado)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorIcono)).BeginInit();
             this.tabControl2.SuspendLayout();
@@ -105,18 +107,18 @@
             // txtEmail
             // 
             this.txtEmail.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtEmail.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEmail.Location = new System.Drawing.Point(167, 348);
+            this.txtEmail.Font = new System.Drawing.Font("Roboto", 12.30769F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtEmail.Location = new System.Drawing.Point(132, 344);
             this.txtEmail.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(312, 27);
+            this.txtEmail.Size = new System.Drawing.Size(225, 34);
             this.txtEmail.TabIndex = 10;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(96, 358);
+            this.label9.Location = new System.Drawing.Point(65, 358);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(47, 20);
             this.label9.TabIndex = 26;
@@ -124,7 +126,7 @@
             // 
             // mcFecha
             // 
-            this.mcFecha.Location = new System.Drawing.Point(836, 70);
+            this.mcFecha.Location = new System.Drawing.Point(632, 121);
             this.mcFecha.Margin = new System.Windows.Forms.Padding(10, 11, 10, 11);
             this.mcFecha.Name = "mcFecha";
             this.mcFecha.TabIndex = 24;
@@ -134,19 +136,19 @@
             // txtFechaNac
             // 
             this.txtFechaNac.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtFechaNac.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFechaNac.Location = new System.Drawing.Point(645, 98);
+            this.txtFechaNac.Font = new System.Drawing.Font("Roboto", 12.30769F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFechaNac.Location = new System.Drawing.Point(450, 296);
             this.txtFechaNac.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtFechaNac.Name = "txtFechaNac";
             this.txtFechaNac.ReadOnly = true;
-            this.txtFechaNac.Size = new System.Drawing.Size(136, 30);
+            this.txtFechaNac.Size = new System.Drawing.Size(136, 34);
             this.txtFechaNac.TabIndex = 6;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(557, 102);
+            this.label10.Location = new System.Drawing.Point(363, 306);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(81, 20);
             this.label10.TabIndex = 21;
@@ -156,7 +158,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(54, 102);
+            this.label4.Location = new System.Drawing.Point(25, 126);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(87, 20);
             this.label4.TabIndex = 20;
@@ -165,18 +167,18 @@
             // txtTelefono
             // 
             this.txtTelefono.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtTelefono.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTelefono.Location = new System.Drawing.Point(167, 415);
+            this.txtTelefono.Font = new System.Drawing.Font("Roboto", 12.30769F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTelefono.Location = new System.Drawing.Point(132, 298);
             this.txtTelefono.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtTelefono.Name = "txtTelefono";
-            this.txtTelefono.Size = new System.Drawing.Size(312, 27);
+            this.txtTelefono.Size = new System.Drawing.Size(225, 34);
             this.txtTelefono.TabIndex = 11;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(76, 425);
+            this.label8.Location = new System.Drawing.Point(47, 312);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(66, 20);
             this.label8.TabIndex = 17;
@@ -186,7 +188,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(69, 221);
+            this.label7.Location = new System.Drawing.Point(40, 200);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(72, 20);
             this.label7.TabIndex = 16;
@@ -195,8 +197,8 @@
             // txtDireccion
             // 
             this.txtDireccion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtDireccion.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDireccion.Location = new System.Drawing.Point(167, 221);
+            this.txtDireccion.Font = new System.Drawing.Font("Roboto", 12.30769F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDireccion.Location = new System.Drawing.Point(132, 200);
             this.txtDireccion.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtDireccion.Multiline = true;
             this.txtDireccion.Name = "txtDireccion";
@@ -206,44 +208,44 @@
             // txtNumDoc
             // 
             this.txtNumDoc.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtNumDoc.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNumDoc.Location = new System.Drawing.Point(309, 159);
+            this.txtNumDoc.Font = new System.Drawing.Font("Roboto", 12.30769F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNumDoc.Location = new System.Drawing.Point(274, 158);
             this.txtNumDoc.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtNumDoc.MaxLength = 11;
             this.txtNumDoc.Name = "txtNumDoc";
-            this.txtNumDoc.Size = new System.Drawing.Size(312, 27);
+            this.txtNumDoc.Size = new System.Drawing.Size(312, 34);
             this.txtNumDoc.TabIndex = 8;
             // 
             // cbTipoDoc
             // 
             this.cbTipoDoc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbTipoDoc.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbTipoDoc.Font = new System.Drawing.Font("Roboto", 12.30769F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbTipoDoc.FormattingEnabled = true;
             this.cbTipoDoc.Items.AddRange(new object[] {
             "DNI",
             "RUC",
             "PASAPORTE"});
-            this.cbTipoDoc.Location = new System.Drawing.Point(167, 159);
+            this.cbTipoDoc.Location = new System.Drawing.Point(132, 158);
             this.cbTipoDoc.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbTipoDoc.Name = "cbTipoDoc";
-            this.cbTipoDoc.Size = new System.Drawing.Size(136, 28);
+            this.cbTipoDoc.Size = new System.Drawing.Size(136, 34);
             this.cbTipoDoc.TabIndex = 7;
             // 
             // txtNombre
             // 
             this.txtNombre.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtNombre.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNombre.Location = new System.Drawing.Point(167, 92);
+            this.txtNombre.Font = new System.Drawing.Font("Roboto", 12.30769F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNombre.Location = new System.Drawing.Point(132, 116);
             this.txtNombre.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(340, 27);
+            this.txtNombre.Size = new System.Drawing.Size(454, 34);
             this.txtNombre.TabIndex = 5;
             // 
             // txtIdCliente
             // 
             this.txtIdCliente.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtIdCliente.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtIdCliente.Location = new System.Drawing.Point(167, 36);
+            this.txtIdCliente.Location = new System.Drawing.Point(132, 33);
             this.txtIdCliente.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtIdCliente.Name = "txtIdCliente";
             this.txtIdCliente.ReadOnly = true;
@@ -254,7 +256,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(72, 170);
+            this.label5.Location = new System.Drawing.Point(43, 169);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(68, 20);
             this.label5.TabIndex = 2;
@@ -264,7 +266,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(84, 43);
+            this.label3.Location = new System.Drawing.Point(55, 40);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(55, 20);
             this.label3.TabIndex = 0;
@@ -348,7 +350,7 @@
             this.rbTodos.Font = new System.Drawing.Font("Roboto", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbTodos.Location = new System.Drawing.Point(345, 36);
             this.rbTodos.Name = "rbTodos";
-            this.rbTodos.Size = new System.Drawing.Size(121, 23);
+            this.rbTodos.Size = new System.Drawing.Size(109, 22);
             this.rbTodos.TabIndex = 4;
             this.rbTodos.TabStop = true;
             this.rbTodos.Text = "Mostrar Todos";
@@ -361,7 +363,7 @@
             this.rbTipoDoc.Font = new System.Drawing.Font("Roboto", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbTipoDoc.Location = new System.Drawing.Point(223, 36);
             this.rbTipoDoc.Name = "rbTipoDoc";
-            this.rbTipoDoc.Size = new System.Drawing.Size(94, 23);
+            this.rbTipoDoc.Size = new System.Drawing.Size(87, 22);
             this.rbTipoDoc.TabIndex = 3;
             this.rbTipoDoc.Text = "DNI o RUC";
             this.rbTipoDoc.UseVisualStyleBackColor = true;
@@ -372,7 +374,7 @@
             this.rbNombre.Font = new System.Drawing.Font("Roboto", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbNombre.Location = new System.Drawing.Point(30, 36);
             this.rbNombre.Name = "rbNombre";
-            this.rbNombre.Size = new System.Drawing.Size(177, 23);
+            this.rbNombre.Size = new System.Drawing.Size(159, 22);
             this.rbNombre.TabIndex = 2;
             this.rbNombre.Text = "Nombre o Razón Social";
             this.rbNombre.UseVisualStyleBackColor = true;
@@ -380,6 +382,8 @@
             // tabPage3
             // 
             this.tabPage3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.tabPage3.Controls.Add(this.cbTipoCliente);
+            this.tabPage3.Controls.Add(this.label2);
             this.tabPage3.Controls.Add(this.txtEmail);
             this.tabPage3.Controls.Add(this.mcFecha);
             this.tabPage3.Controls.Add(this.txtTelefono);
@@ -409,7 +413,7 @@
             // pbFecha
             // 
             this.pbFecha.Image = global::CapaPresentacion.Properties.Resources.calendar1;
-            this.pbFecha.Location = new System.Drawing.Point(787, 92);
+            this.pbFecha.Location = new System.Drawing.Point(592, 290);
             this.pbFecha.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pbFecha.Name = "pbFecha";
             this.pbFecha.Size = new System.Drawing.Size(36, 40);
@@ -502,6 +506,31 @@
             this.btnCancelar.UseVisualStyleBackColor = false;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(21, 88);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(89, 20);
+            this.label2.TabIndex = 27;
+            this.label2.Text = "Tipo Cliente";
+            // 
+            // cbTipoCliente
+            // 
+            this.cbTipoCliente.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbTipoCliente.Font = new System.Drawing.Font("Roboto", 12.30769F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbTipoCliente.FormattingEnabled = true;
+            this.cbTipoCliente.Items.AddRange(new object[] {
+            "DNI",
+            "RUC",
+            "PASAPORTE"});
+            this.cbTipoCliente.Location = new System.Drawing.Point(132, 74);
+            this.cbTipoCliente.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbTipoCliente.Name = "cbTipoCliente";
+            this.cbTipoCliente.Size = new System.Drawing.Size(454, 34);
+            this.cbTipoCliente.TabIndex = 28;
+            // 
             // frmCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -575,5 +604,7 @@
         private System.Windows.Forms.RadioButton rbTodos;
         private System.Windows.Forms.Label lblTotal;
         public System.Windows.Forms.DataGridView dataListado;
+        private System.Windows.Forms.ComboBox cbTipoCliente;
+        private System.Windows.Forms.Label label2;
     }
 }
