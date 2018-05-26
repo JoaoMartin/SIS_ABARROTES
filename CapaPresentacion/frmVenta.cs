@@ -2557,7 +2557,7 @@ namespace CapaPresentacion
                 btnProducto[i].Name = string.Concat("btnProducto", i.ToString());
                 //String mesa = row[0].ToString();
                 //btnMesa[i].Name = string.Concat("btnMesa",mesa);
-                btnProducto[i].Size = new Size(104, 75);
+                btnProducto[i].Size = new Size(104, 78);
                 btnProducto[i].Font = new Font("Roboto", 7f, FontStyle.Regular);
                 btnProducto[i].TabIndex = i;
                 btnProducto[i].TextAlign = ContentAlignment.TopCenter;
