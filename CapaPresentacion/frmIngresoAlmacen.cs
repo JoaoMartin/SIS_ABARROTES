@@ -635,6 +635,12 @@ namespace CapaPresentacion
 
         private void txtPrecioUnitario_KeyPress(object sender, KeyPressEventArgs e)
         {
+            if ((int)e.KeyChar == (int)Keys.Enter)
+            {
+                this.Agregar();
+                Total();
+
+            }
             if (e.KeyChar == 8)
             {
                 e.Handled = false;
@@ -645,6 +651,7 @@ namespace CapaPresentacion
                 e.Handled = true;
                 return;
             }
+
             bool IsDec = false;
             int nroDec = 0;
 
@@ -668,6 +675,8 @@ namespace CapaPresentacion
                 e.Handled = (IsDec) ? true : false;
             else
                 e.Handled = true;
+
+        
         }
 
         private void txtCantidad_KeyUp(object sender, KeyEventArgs e)

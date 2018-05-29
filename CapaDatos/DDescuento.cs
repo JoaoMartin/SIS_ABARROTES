@@ -195,6 +195,13 @@ namespace CapaDatos
                 ParEstado.Value = Descuento.Estado;
                 sqlCmd.Parameters.Add(ParEstado);
 
+                SqlParameter ParTipo = new SqlParameter();
+                ParTipo.ParameterName = "@tipo";
+                ParTipo.SqlDbType = SqlDbType.Char;
+                ParTipo.Size = 1;
+                ParTipo.Value = Descuento.Tipo;
+                sqlCmd.Parameters.Add(ParTipo);
+
                 rpta = sqlCmd.ExecuteNonQuery() >= 1 ? "OK" : "No se editó el Registro";
             }
             catch (Exception ex)
@@ -218,6 +225,30 @@ namespace CapaDatos
                 SqlCommand sqlCmd = new SqlCommand();
                 sqlCmd.Connection = sqlCon;
                 sqlCmd.CommandText = "sp_mostrarDescuentoCategoria";
+                sqlCmd.CommandType = CommandType.StoredProcedure;
+
+                SqlDataAdapter sqlDat = new SqlDataAdapter(sqlCmd);
+                sqlDat.Fill(dtResultado);
+            }
+            catch (Exception ex)
+            {
+                dtResultado = null;
+            }
+
+            return dtResultado;
+        }
+
+        public DataTable MostrarDescuentoTipoCliente()
+        {
+            DataTable dtResultado = new DataTable("Descuento");
+            SqlConnection sqlCon = new SqlConnection();
+
+            try
+            {
+                sqlCon.ConnectionString = Conexion.cn;
+                SqlCommand sqlCmd = new SqlCommand();
+                sqlCmd.Connection = sqlCon;
+                sqlCmd.CommandText = "sp_mostrarDescuentoTipoCliente";
                 sqlCmd.CommandType = CommandType.StoredProcedure;
 
                 SqlDataAdapter sqlDat = new SqlDataAdapter(sqlCmd);

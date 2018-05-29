@@ -72,6 +72,7 @@ namespace CapaPresentacion
             {
                 this.btnNuevo.Visible = true;
             }
+            txtBuscar.Select();
         }
 
         private void txtBuscar_TextChanged(object sender, EventArgs e)
@@ -81,14 +82,26 @@ namespace CapaPresentacion
 
         private void dataListado_DoubleClick(object sender, EventArgs e)
         {
-            if(this.lblBanderaCierre.Text == "0")
+       
+
+        }
+
+        private void btnNuevo_Click(object sender, EventArgs e)
+        {
+            frmInsumo_Rapido form = new frmInsumo_Rapido();
+            form.ShowDialog();
+        }
+
+        private void dataListado_Click(object sender, EventArgs e)
+        {
+            if (this.lblBanderaCierre.Text == "0")
             {
                 frmCompra.f1.txtIdArticulo.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["Codigo"].Value);
                 frmCompra.f1.txtProducto.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["Nombre"].Value);
                 frmCompra.f1.txtUnidad.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["Unidad"].Value);
                 frmCompra.f1.txtPrecioVenta.Text = "";
                 frmCompra.f1.lblBandera.Text = "I";
-                this.Hide();
+                this.Close();
             }
             else if (this.lblBanderaCierre.Text == "1")
             {
@@ -96,7 +109,7 @@ namespace CapaPresentacion
                 frmIngresoAlmacen.f1.txtProducto.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["Nombre"].Value);
                 frmIngresoAlmacen.f1.txtUnidad.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["Unidad"].Value);
                 frmIngresoAlmacen.f1.lblBandera.Text = "I";
-                this.Hide();
+                this.Close();
             }
             else if (this.lblBanderaCierre.Text == "2")
             {
@@ -105,15 +118,8 @@ namespace CapaPresentacion
                 frmSalidaAlmacen.f1.txtUnidad.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["Unidad"].Value);
                 frmSalidaAlmacen.f1.lblStockActual.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["Stock"].Value);
                 frmSalidaAlmacen.f1.lblBandera.Text = "I";
-                this.Hide();
+                this.Close();
             }
-
-        }
-
-        private void btnNuevo_Click(object sender, EventArgs e)
-        {
-            frmInsumo_Rapido form = new frmInsumo_Rapido();
-            form.ShowDialog();
         }
     }
 }

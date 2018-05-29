@@ -13,6 +13,7 @@ namespace CapaPresentacion
 {
     public partial class frmInsumo : Form
     {
+        private int idInsumo;
         private bool IsNuevo = false;
         private bool IsEditar = false;
         public frmInsumo()
@@ -36,7 +37,7 @@ namespace CapaPresentacion
             this.txtNombre.Text = string.Empty;
             this.txtStockMinimo.Text = string.Empty;
             this.txtIdInsumo.Text = string.Empty;
-
+            this.txtStockActual.Text = string.Empty;
             this.cbUnidad.SelectedIndex = -1;
         }
 
@@ -46,6 +47,7 @@ namespace CapaPresentacion
             this.txtNombre.ReadOnly = !valor;
             this.cbUnidad.Enabled = valor;
             this.txtStockMinimo.ReadOnly = !valor;
+            this.txtStockActual.ReadOnly = !valor;
 
         }
 
@@ -79,9 +81,9 @@ namespace CapaPresentacion
             //this.dataListado.Columns[7].Visible = false;
             this.dataListado.Columns[9].Visible = false;
             this.dataListado.Columns[10].Visible = false;
-            this.dataListado.Columns[11].Visible = false;
-            this.dataListado.Columns[12].Visible = false;
-            this.dataListado.Columns[13].Visible = false;
+            //this.dataListado.Columns[11].Visible = false;
+            //this.dataListado.Columns[12].Visible = false;
+            //this.dataListado.Columns[13].Visible = false;
             //this.dataListado.Columns[14].Visible = false;
             //this.dataListado.Columns[4].Visible = false;
 
@@ -137,6 +139,31 @@ namespace CapaPresentacion
 
         }
 
+        private void BuscarCodigoInsumo()
+        {
+            DataTable dtCodigoInsumo= NInsumo.BuscarCodigoInsumo();
+            if (dtCodigoInsumo.Rows.Count > 0)
+            {
+                idInsumo = Convert.ToInt32(dtCodigoInsumo.Rows[0][0].ToString());
+                this.Mostrar();
+                this.Habilitar(false);
+                this.cargarUnidadMedida();
+                this.Botones();
+                txtBuscar.Select();
+            }
+            else
+            {
+                MessageBox.Show("Registre la Categoria INSUMO");
+                btnGuardar.Enabled = false;
+                btnCancelar.Enabled = false;
+
+                btnNuevo.Enabled = false;
+                dataListado.ReadOnly = true;
+                return;
+
+            }
+        }
+
 
 
         private void Guardar()
@@ -145,7 +172,7 @@ namespace CapaPresentacion
             {
                 string rpta = "";
                 decimal costo = 00.00m;
-
+                decimal stockActual = 00.00m;
                 if (this.cbUnidad.SelectedIndex == -1)
                 {
                     MensajeError("Seleccione una unidad");
@@ -157,11 +184,7 @@ namespace CapaPresentacion
                     MensajeError("Ingrese el nombre del insumo");
                     errorIcono.SetError(txtNombre, "Ingrese el nombre");
                 }
-                else if (this.txtCosto.Text.Trim() == string.Empty)
-                {
-                    MensajeError("Ingrese el costo del insumo");
-                    errorIcono.SetError(txtCosto, "Ingrese el costo");
-                }
+              
                 else
                 {
                     decimal stockMinimo;
@@ -174,14 +197,31 @@ namespace CapaPresentacion
                         stockMinimo = Convert.ToDecimal(this.txtStockMinimo.Text.Trim());
                     }
 
-                    costo = Convert.ToDecimal(this.txtCosto.Text.Trim());
+                    if (txtStockActual.Text.Trim() != "")
+                    {
+                        stockActual = Convert.ToInt32(txtStockActual.Text.Trim());
+                    }
+                    else
+                    {
+                        stockActual = 0;
+                    }
+
+                    if (txtCosto.Text.Trim() != "")
+                    {
+                        costo = Convert.ToDecimal(this.txtCosto.Text.Trim());
+                    }
+                    else
+                    {
+                        costo = 00.00m;
+                    }
+                   
     
                     if (this.IsNuevo)
                     {
                         //rpta = NInsumo.Insertar(Convert.ToInt32(this.cbUnidad.SelectedValue.ToString()), this.txtNombre.Text.Trim().ToUpper(), costo, Convert.ToDecimal(this.txtStock.Text.Trim()),
                                                 //stockMinimo, "A");
 
-                        rpta = NProducto.Insertar(this.txtNombre.Text.Trim().ToUpper(), this.txtDescripcion.Text.Trim(), 00.00m, 00.00m,"I", "A",10,
+                        rpta = NProducto.Insertar(this.txtNombre.Text.Trim().ToUpper(), this.txtDescripcion.Text.Trim(),stockActual,00.00m,"I", "A",idInsumo,
                                                     "", stockMinimo, costo, Convert.ToInt32(this.cbUnidad.SelectedValue));
                     }
                     else
@@ -189,7 +229,7 @@ namespace CapaPresentacion
                         //rpta = NInsumo.Editar(Convert.ToInt32(this.txtIdInsumo.Text), Convert.ToInt32(this.cbUnidad.SelectedValue.ToString()), this.txtNombre.Text.Trim().ToUpper(), costo, Convert.ToDecimal(this.txtStock.Text.Trim()),
                         //stockMinimo, "A");
 
-                        rpta = NProducto.Editar(Convert.ToInt32(this.txtIdInsumo.Text), this.txtNombre.Text.Trim().ToUpper(), this.txtDescripcion.Text.Trim(), 00.00m, 00.00m, "I", "A",10,
+                        rpta = NProducto.Editar(Convert.ToInt32(this.txtIdInsumo.Text), this.txtNombre.Text.Trim().ToUpper(), this.txtDescripcion.Text.Trim(),stockActual, 00.00m, "I", "A",idInsumo,
                                                     "", stockMinimo, costo, Convert.ToInt32(this.cbUnidad.SelectedValue));
                     }
 
@@ -197,11 +237,11 @@ namespace CapaPresentacion
                     {
                         if (this.IsNuevo)
                         {
-                            this.MensajeOK("Se insertó correctamente");
+                            
                         }
                         else
                         {
-                            this.MensajeOK("Se actualizó correctamente");
+                            
                         }
                     }
                     else
@@ -215,6 +255,8 @@ namespace CapaPresentacion
                     this.Limpiar();
                     this.Mostrar();
                     this.tabControl2.SelectedIndex = 0;
+                    txtBuscar.Clear();
+                    txtBuscar.Select();
                 }
             }
             catch (Exception ex)
@@ -227,11 +269,8 @@ namespace CapaPresentacion
         {
             this.Top = 0;
             this.Left = 0;
-
-            this.Mostrar();
-            this.Habilitar(false);
-            this.cargarUnidadMedida();
-            this.Botones();
+            BuscarCodigoInsumo();
+     
           
         }
 
@@ -284,6 +323,8 @@ namespace CapaPresentacion
             this.Habilitar(false);
             this.dataListado.ClearSelection();
             this.tabControl2.SelectedIndex = 0;
+            txtBuscar.Clear();
+            txtBuscar.Select();
         }
 
         private void dataListado_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -346,6 +387,7 @@ namespace CapaPresentacion
                     this.Limpiar();
                     this.btnEliminar.Enabled = false;
                     this.btnCancelar.Enabled = false;
+                    this.btnNuevo.Enabled = true;
                 }
             }
             catch (Exception ex)
@@ -372,6 +414,7 @@ namespace CapaPresentacion
             this.txtDescripcion.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["Descripcion"].Value);
             this.txtStockMinimo.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["stockMinimo"].Value);
             this.txtCosto.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["Costo"].Value);
+            this.txtStockActual.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["Stock"].Value);
 
             idUnidad = Convert.ToString(this.dataListado.CurrentRow.Cells["idUnidadMedida"].Value);
 

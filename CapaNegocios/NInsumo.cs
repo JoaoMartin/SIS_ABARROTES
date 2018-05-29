@@ -53,6 +53,11 @@ namespace CapaNegocios
             return new DInsumo().Mostrar();
         }
 
+        public static DataTable BuscarCodigoInsumo()
+        {
+            return new DInsumo().BuscarCodigoInsumo();
+        }
+
 
         public static DataTable Buscar(string textoBuscar)
         {

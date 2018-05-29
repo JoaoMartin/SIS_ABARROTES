@@ -238,7 +238,7 @@
             this.lblDescrProducto.Font = new System.Drawing.Font("Roboto", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDescrProducto.Location = new System.Drawing.Point(201, 0);
             this.lblDescrProducto.Name = "lblDescrProducto";
-            this.lblDescrProducto.Size = new System.Drawing.Size(63, 19);
+            this.lblDescrProducto.Size = new System.Drawing.Size(55, 18);
             this.lblDescrProducto.TabIndex = 93;
             this.lblDescrProducto.Text = "Ninguno";
             this.lblDescrProducto.Visible = false;
@@ -249,7 +249,7 @@
             this.lblIndice.Font = new System.Drawing.Font("Roboto", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblIndice.Location = new System.Drawing.Point(382, 5);
             this.lblIndice.Name = "lblIndice";
-            this.lblIndice.Size = new System.Drawing.Size(63, 19);
+            this.lblIndice.Size = new System.Drawing.Size(55, 18);
             this.lblIndice.TabIndex = 10;
             this.lblIndice.Text = "Ninguno";
             this.lblIndice.Visible = false;
@@ -259,7 +259,7 @@
             this.txtCantidad.Font = new System.Drawing.Font("Roboto", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCantidad.Location = new System.Drawing.Point(8, 27);
             this.txtCantidad.Name = "txtCantidad";
-            this.txtCantidad.Size = new System.Drawing.Size(74, 43);
+            this.txtCantidad.Size = new System.Drawing.Size(74, 42);
             this.txtCantidad.TabIndex = 51;
             this.txtCantidad.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtCantidad.TextChanged += new System.EventHandler(this.txtCantidad_TextChanged);
@@ -515,7 +515,7 @@
             this.txtTotalPagado.Location = new System.Drawing.Point(309, 669);
             this.txtTotalPagado.Name = "txtTotalPagado";
             this.txtTotalPagado.ReadOnly = true;
-            this.txtTotalPagado.Size = new System.Drawing.Size(130, 60);
+            this.txtTotalPagado.Size = new System.Drawing.Size(130, 59);
             this.txtTotalPagado.TabIndex = 40;
             this.txtTotalPagado.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtTotalPagado.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTotalPagado_KeyDown);
@@ -528,7 +528,7 @@
             this.txtDescuento.Location = new System.Drawing.Point(309, 618);
             this.txtDescuento.Name = "txtDescuento";
             this.txtDescuento.ReadOnly = true;
-            this.txtDescuento.Size = new System.Drawing.Size(126, 47);
+            this.txtDescuento.Size = new System.Drawing.Size(126, 46);
             this.txtDescuento.TabIndex = 50;
             this.txtDescuento.Text = "00.00";
             this.txtDescuento.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -540,7 +540,7 @@
             this.label15.Font = new System.Drawing.Font("Roboto", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.Location = new System.Drawing.Point(207, 689);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(92, 32);
+            this.label15.Size = new System.Drawing.Size(87, 30);
             this.label15.TabIndex = 39;
             this.label15.Text = "TOTAL ";
             // 
@@ -562,7 +562,7 @@
             this.txtSubTotal.Location = new System.Drawing.Point(309, 556);
             this.txtSubTotal.Name = "txtSubTotal";
             this.txtSubTotal.ReadOnly = true;
-            this.txtSubTotal.Size = new System.Drawing.Size(126, 47);
+            this.txtSubTotal.Size = new System.Drawing.Size(126, 46);
             this.txtSubTotal.TabIndex = 53;
             this.txtSubTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtSubTotal.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSubTotal_KeyDown);
@@ -718,7 +718,7 @@
             this.lblSalon.Font = new System.Drawing.Font("Roboto", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSalon.Location = new System.Drawing.Point(153, 17);
             this.lblSalon.Name = "lblSalon";
-            this.lblSalon.Size = new System.Drawing.Size(46, 19);
+            this.lblSalon.Size = new System.Drawing.Size(40, 18);
             this.lblSalon.TabIndex = 6;
             this.lblSalon.Text = "Salon";
             // 
@@ -728,7 +728,7 @@
             this.lblBanderaEstado.Font = new System.Drawing.Font("Roboto", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBanderaEstado.Location = new System.Drawing.Point(519, 20);
             this.lblBanderaEstado.Name = "lblBanderaEstado";
-            this.lblBanderaEstado.Size = new System.Drawing.Size(63, 19);
+            this.lblBanderaEstado.Size = new System.Drawing.Size(55, 18);
             this.lblBanderaEstado.TabIndex = 98;
             this.lblBanderaEstado.Text = "Ninguno";
             this.lblBanderaEstado.Visible = false;
@@ -739,7 +739,7 @@
             this.lblIdUsuario.Font = new System.Drawing.Font("Roboto", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblIdUsuario.Location = new System.Drawing.Point(588, 2);
             this.lblIdUsuario.Name = "lblIdUsuario";
-            this.lblIdUsuario.Size = new System.Drawing.Size(43, 19);
+            this.lblIdUsuario.Size = new System.Drawing.Size(40, 18);
             this.lblIdUsuario.TabIndex = 9;
             this.lblIdUsuario.Text = "Mesa";
             this.lblIdUsuario.Visible = false;
@@ -750,7 +750,7 @@
             this.lblMesa.Font = new System.Drawing.Font("Roboto", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMesa.Location = new System.Drawing.Point(48, 16);
             this.lblMesa.Name = "lblMesa";
-            this.lblMesa.Size = new System.Drawing.Size(43, 19);
+            this.lblMesa.Size = new System.Drawing.Size(40, 18);
             this.lblMesa.TabIndex = 8;
             this.lblMesa.Text = "Mesa";
             // 
@@ -760,7 +760,7 @@
             this.label5.Font = new System.Drawing.Font("Roboto", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(4, 16);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(47, 19);
+            this.label5.Size = new System.Drawing.Size(43, 18);
             this.label5.TabIndex = 7;
             this.label5.Text = "Mesa:";
             // 
@@ -770,7 +770,7 @@
             this.lblMesero.Font = new System.Drawing.Font("Roboto", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMesero.Location = new System.Drawing.Point(348, 17);
             this.lblMesero.Name = "lblMesero";
-            this.lblMesero.Size = new System.Drawing.Size(63, 19);
+            this.lblMesero.Size = new System.Drawing.Size(55, 18);
             this.lblMesero.TabIndex = 5;
             this.lblMesero.Text = "Ninguno";
             // 
@@ -780,7 +780,7 @@
             this.label3.Font = new System.Drawing.Font("Roboto", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(97, 17);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(50, 19);
+            this.label3.Size = new System.Drawing.Size(43, 18);
             this.label3.TabIndex = 2;
             this.label3.Text = "Salón:";
             // 
@@ -790,7 +790,7 @@
             this.label2.Font = new System.Drawing.Font("Roboto", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(270, 17);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(64, 19);
+            this.label2.Size = new System.Drawing.Size(58, 18);
             this.label2.TabIndex = 1;
             this.label2.Text = "Atiende: ";
             // 
@@ -800,7 +800,7 @@
             this.lblBanderaCatMen.Font = new System.Drawing.Font("Roboto", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBanderaCatMen.Location = new System.Drawing.Point(532, 61);
             this.lblBanderaCatMen.Name = "lblBanderaCatMen";
-            this.lblBanderaCatMen.Size = new System.Drawing.Size(17, 19);
+            this.lblBanderaCatMen.Size = new System.Drawing.Size(15, 18);
             this.lblBanderaCatMen.TabIndex = 96;
             this.lblBanderaCatMen.Text = "0";
             this.lblBanderaCatMen.Visible = false;
@@ -808,9 +808,10 @@
             // lblTipo
             // 
             this.lblTipo.AutoSize = true;
+            this.lblTipo.Font = new System.Drawing.Font("Roboto", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTipo.Location = new System.Drawing.Point(708, 29);
             this.lblTipo.Name = "lblTipo";
-            this.lblTipo.Size = new System.Drawing.Size(50, 20);
+            this.lblTipo.Size = new System.Drawing.Size(42, 18);
             this.lblTipo.TabIndex = 10;
             this.lblTipo.Text = "label9";
             this.lblTipo.Visible = false;
@@ -893,7 +894,7 @@
             this.lblNroProducto.Font = new System.Drawing.Font("Roboto", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNroProducto.Location = new System.Drawing.Point(431, 21);
             this.lblNroProducto.Name = "lblNroProducto";
-            this.lblNroProducto.Size = new System.Drawing.Size(17, 19);
+            this.lblNroProducto.Size = new System.Drawing.Size(15, 18);
             this.lblNroProducto.TabIndex = 9;
             this.lblNroProducto.Text = "0";
             // 
@@ -967,9 +968,10 @@
             // lblCantidadCom
             // 
             this.lblCantidadCom.AutoSize = true;
+            this.lblCantidadCom.Font = new System.Drawing.Font("Roboto", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCantidadCom.Location = new System.Drawing.Point(708, 29);
             this.lblCantidadCom.Name = "lblCantidadCom";
-            this.lblCantidadCom.Size = new System.Drawing.Size(50, 20);
+            this.lblCantidadCom.Size = new System.Drawing.Size(42, 18);
             this.lblCantidadCom.TabIndex = 11;
             this.lblCantidadCom.Text = "label9";
             this.lblCantidadCom.Visible = false;
@@ -977,9 +979,10 @@
             // lblIdProductoCom
             // 
             this.lblIdProductoCom.AutoSize = true;
+            this.lblIdProductoCom.Font = new System.Drawing.Font("Roboto", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblIdProductoCom.Location = new System.Drawing.Point(708, 49);
             this.lblIdProductoCom.Name = "lblIdProductoCom";
-            this.lblIdProductoCom.Size = new System.Drawing.Size(50, 20);
+            this.lblIdProductoCom.Size = new System.Drawing.Size(42, 18);
             this.lblIdProductoCom.TabIndex = 85;
             this.lblIdProductoCom.Text = "label9";
             this.lblIdProductoCom.Visible = false;
@@ -1049,7 +1052,7 @@
             // btnReservar
             // 
             this.btnReservar.BackColor = System.Drawing.Color.LightGray;
-            this.btnReservar.Font = new System.Drawing.Font("Roboto", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReservar.Font = new System.Drawing.Font("Roboto", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReservar.Image = global::CapaPresentacion.Properties.Resources.vale;
             this.btnReservar.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnReservar.Location = new System.Drawing.Point(380, 101);
@@ -1064,7 +1067,7 @@
             // btnManual
             // 
             this.btnManual.BackColor = System.Drawing.Color.LightGray;
-            this.btnManual.Font = new System.Drawing.Font("Roboto", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnManual.Font = new System.Drawing.Font("Roboto", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnManual.Image = global::CapaPresentacion.Properties.Resources.if_remove_ticket_49613__1_;
             this.btnManual.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnManual.Location = new System.Drawing.Point(186, 101);
@@ -1080,7 +1083,7 @@
             // btnDividir
             // 
             this.btnDividir.BackColor = System.Drawing.Color.LightGray;
-            this.btnDividir.Font = new System.Drawing.Font("Roboto", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDividir.Font = new System.Drawing.Font("Roboto", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDividir.Image = global::CapaPresentacion.Properties.Resources.if_12_1874864;
             this.btnDividir.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnDividir.Location = new System.Drawing.Point(607, 101);
@@ -1095,7 +1098,7 @@
             // btnCobrar
             // 
             this.btnCobrar.BackColor = System.Drawing.Color.LightGray;
-            this.btnCobrar.Font = new System.Drawing.Font("Roboto", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCobrar.Font = new System.Drawing.Font("Roboto", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCobrar.Image = global::CapaPresentacion.Properties.Resources.if_cashbox_45016;
             this.btnCobrar.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnCobrar.Location = new System.Drawing.Point(186, 22);
@@ -1110,7 +1113,7 @@
             // btnPedido
             // 
             this.btnPedido.BackColor = System.Drawing.Color.LightGray;
-            this.btnPedido.Font = new System.Drawing.Font("Roboto", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPedido.Font = new System.Drawing.Font("Roboto", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPedido.Image = global::CapaPresentacion.Properties.Resources.if_food_hamburder_v1_2386376;
             this.btnPedido.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
             this.btnPedido.Location = new System.Drawing.Point(0, 20);
@@ -1125,7 +1128,7 @@
             // btnCambiarMesa
             // 
             this.btnCambiarMesa.BackColor = System.Drawing.Color.LightGray;
-            this.btnCambiarMesa.Font = new System.Drawing.Font("Roboto", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCambiarMesa.Font = new System.Drawing.Font("Roboto", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCambiarMesa.Image = global::CapaPresentacion.Properties.Resources.intercambio;
             this.btnCambiarMesa.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnCambiarMesa.Location = new System.Drawing.Point(380, 20);
@@ -1140,7 +1143,7 @@
             // btnImprimirPreCuenta
             // 
             this.btnImprimirPreCuenta.BackColor = System.Drawing.Color.LightGray;
-            this.btnImprimirPreCuenta.Font = new System.Drawing.Font("Roboto", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnImprimirPreCuenta.Font = new System.Drawing.Font("Roboto", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnImprimirPreCuenta.Image = global::CapaPresentacion.Properties.Resources.if_order_history_49596;
             this.btnImprimirPreCuenta.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnImprimirPreCuenta.Location = new System.Drawing.Point(4, 101);
@@ -1155,7 +1158,7 @@
             // btnSeparar
             // 
             this.btnSeparar.BackColor = System.Drawing.Color.LightGray;
-            this.btnSeparar.Font = new System.Drawing.Font("Roboto", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSeparar.Font = new System.Drawing.Font("Roboto", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSeparar.Image = global::CapaPresentacion.Properties.Resources.if_Cut_728989;
             this.btnSeparar.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnSeparar.Location = new System.Drawing.Point(607, 20);
@@ -1170,7 +1173,7 @@
             // btnDctoProducto
             // 
             this.btnDctoProducto.BackColor = System.Drawing.Color.LightGray;
-            this.btnDctoProducto.Font = new System.Drawing.Font("Roboto", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDctoProducto.Font = new System.Drawing.Font("Roboto", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDctoProducto.Image = global::CapaPresentacion.Properties.Resources.vale;
             this.btnDctoProducto.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnDctoProducto.Location = new System.Drawing.Point(676, 27);
@@ -1189,7 +1192,7 @@
             this.lblNombreCat.Font = new System.Drawing.Font("Roboto", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNombreCat.Location = new System.Drawing.Point(471, 61);
             this.lblNombreCat.Name = "lblNombreCat";
-            this.lblNombreCat.Size = new System.Drawing.Size(63, 19);
+            this.lblNombreCat.Size = new System.Drawing.Size(55, 18);
             this.lblNombreCat.TabIndex = 95;
             this.lblNombreCat.Text = "Ninguno";
             this.lblNombreCat.Visible = false;
@@ -1316,7 +1319,7 @@
             // btnLimpiar
             // 
             this.btnLimpiar.BackColor = System.Drawing.Color.LightGray;
-            this.btnLimpiar.Font = new System.Drawing.Font("Roboto", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLimpiar.Font = new System.Drawing.Font("Roboto", 9.230769F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLimpiar.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnLimpiar.Location = new System.Drawing.Point(1341, 640);
             this.btnLimpiar.Name = "btnLimpiar";

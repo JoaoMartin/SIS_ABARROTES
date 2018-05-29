@@ -1059,5 +1059,13 @@ namespace CapaPresentacion
             frm.Show();
             frm.dataListado.ClearSelection();
         }
+
+        private void mnuCobroDelivery_Click(object sender, EventArgs e)
+        {
+            frmCobroDelivery frm = new frmCobroDelivery();
+            frm.MdiParent = this;
+            frm.Show();
+            frm.dataListado.ClearSelection();
+        }
     }
 }

@@ -100,5 +100,213 @@ namespace CapaNegocios
 
             return total2;
         }
+
+        public static decimal redondearDown(decimal numero1)
+        {
+            decimal resta, dec, total1, total2;
+            resta = 00.00m;
+            total1 = 00.00m;
+            total2 = 00.00m;
+            int numero2 = (int)numero1;
+            dec = numero1 - numero2;
+            if (dec >= 0.01m && dec <= 0.09m)
+            {
+                resta = 0 - dec;
+                total1 = dec + resta;
+                total2 = numero2 + total1;
+            }
+            else if (dec >= 0.11m && dec <= 0.19m)
+            {
+                resta = 0.1m - dec;
+                total1 = dec + resta;
+                total2 = numero2 + total1;
+            }
+            else if (dec >= 0.21m && dec <= 0.29m)
+            {
+                resta = 0.2m - dec;
+                total1 = dec + resta;
+                total2 = numero2 + total1;
+            }
+            else if (dec >= 0.31m && dec <= 0.39m)
+            {
+                resta = 0.3m - dec;
+                total1 = dec + resta;
+                total2 = numero2 + total1;
+            }
+            else if (dec >= 0.41m && dec <= 0.49m)
+            {
+                resta = 0.4m - dec;
+                total1 = dec + resta;
+                total2 = numero2 + total1;
+            }
+            else if (dec >= 0.51m && dec <= 0.59m)
+            {
+                resta = 0.5m - dec;
+                total1 = dec + resta;
+                total2 = numero2 + total1;
+            }
+            else if (dec >= 0.61m && dec <= 0.69m)
+            {
+                resta = 0.6m - dec;
+                total1 = dec + resta;
+                total2 = numero2 + total1;
+            }
+
+            else if (dec >= 0.71m && dec <= 0.79m)
+            {
+                resta = 0.7m - dec;
+                total1 = dec + resta;
+                total2 = numero2 + total1;
+            }
+            else if (dec >= 0.81m && dec <= 0.89m)
+            {
+                resta = 0.8m - dec;
+                total1 = dec + resta;
+                total2 = numero2 + total1;
+            }
+            else if (dec >= 0.91m && dec <= 0.99m)
+            {
+                resta = 0.9m - dec;
+                total1 = dec + resta;
+                total2 = numero2 + total1;
+            }
+            else
+            {
+                total2 = Math.Round(numero1, 2);
+            }
+
+            return total2;
+        }
+
+        public static decimal redondearParcial(decimal numero1)
+        {
+            decimal resta, dec, total1, total2;
+            resta = 00.00m;
+            total1 = 00.00m;
+            total2 = 00.00m;
+            int numero2 = (int)numero1;
+            dec = numero1 - numero2;
+            if (dec >= 0.01m && dec < 0.05m)
+            {
+                resta = 0 - dec;
+                total1 = dec + resta;
+                total2 = numero2 + total1;
+            }
+            else if (dec >= 0.05m && dec <= 0.09m)
+            {
+                resta = 0.1m - dec;
+                total1 = dec + resta;
+                total2 = numero2 + total1;
+            }
+            else if (dec >= 0.11m && dec < 0.15m)
+            {
+                resta = 0.1m - dec;
+                total1 = dec + resta;
+                total2 = numero2 + total1;
+            }
+            else if (dec >= 0.15m && dec < 0.19m)
+            {
+                resta = 0.2m - dec;
+                total1 = dec + resta;
+                total2 = numero2 + total1;
+            }
+            else if (dec >= 0.21m && dec < 0.25m)
+            {
+                resta = 0.2m - dec;
+                total1 = dec + resta;
+                total2 = numero2 + total1;
+            }
+            else if (dec >= 0.25m && dec <= 0.29m)
+            {
+                resta = 0.3m - dec;
+                total1 = dec + resta;
+                total2 = numero2 + total1;
+            }
+            else if (dec >= 0.31m && dec < 0.35m)
+            {
+                resta = 0.3m - dec;
+                total1 = dec + resta;
+                total2 = numero2 + total1;
+            }
+            else if (dec >= 0.35m && dec <= 0.39m)
+            {
+                resta = 0.4m - dec;
+                total1 = dec + resta;
+                total2 = numero2 + total1;
+            }
+            else if (dec >= 0.41m && dec <= 0.49m)
+            {
+                resta = 0.4m - dec;
+                total1 = dec + resta;
+                total2 = numero2 + total1;
+            }
+            else if (dec >= 0.51m && dec < 0.55m)
+            {
+                resta = 0.5m - dec;
+                total1 = dec + resta;
+                total2 = numero2 + total1;
+            }
+            else if (dec >= 0.55m && dec <= 0.59m)
+            {
+                resta = 0.6m - dec;
+                total1 = dec + resta;
+                total2 = numero2 + total1;
+            }
+            else if (dec >= 0.61m && dec < 0.65m)
+            {
+                resta = 0.6m - dec;
+                total1 = dec + resta;
+                total2 = numero2 + total1;
+            }
+            else if (dec >= 0.65m && dec <= 0.69m)
+            {
+                resta = 0.7m - dec;
+                total1 = dec + resta;
+                total2 = numero2 + total1;
+            }
+
+            else if (dec >= 0.71m && dec < 0.75m)
+            {
+                resta = 0.7m - dec;
+                total1 = dec + resta;
+                total2 = numero2 + total1;
+            }
+            else if (dec >= 0.75m && dec <= 0.79m)
+            {
+                resta = 0.8m - dec;
+                total1 = dec + resta;
+                total2 = numero2 + total1;
+            }
+            else if (dec >= 0.81m && dec < 0.85m)
+            {
+                resta = 0.8m - dec;
+                total1 = dec + resta;
+                total2 = numero2 + total1;
+            }
+            else if (dec >= 0.85m && dec <= 0.89m)
+            {
+                resta = 0.9m - dec;
+                total1 = dec + resta;
+                total2 = numero2 + total1;
+            }
+            else if (dec >= 0.91m && dec < 0.95m)
+            {
+                resta = 0.9m - dec;
+                total1 = dec + resta;
+                total2 = numero2 + total1;
+            }
+            else if (dec >= 0.95m && dec <= 0.99m)
+            {
+                resta = 1 - dec;
+                total1 = dec + resta;
+                total2 = numero2 + total1;
+            }
+            else
+            {
+                total2 = Math.Round(numero1, 2);
+            }
+
+            return total2;
+        }
     }
 }

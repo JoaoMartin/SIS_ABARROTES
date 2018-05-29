@@ -132,6 +132,7 @@
             this.dataListado.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataListado.Size = new System.Drawing.Size(869, 449);
             this.dataListado.TabIndex = 7;
+            this.dataListado.Click += new System.EventHandler(this.dataListado_Click);
             this.dataListado.DoubleClick += new System.EventHandler(this.dataListado_DoubleClick);
             // 
             // lblTotal

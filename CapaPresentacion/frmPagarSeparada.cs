@@ -16,6 +16,7 @@ namespace CapaPresentacion
         Button[] btnCuenta;
         int nroCuentas;
         public static frmPagarSeparada f1;
+        private bool isNuevo;
         private string formaPago;
         private decimal efectivo, tarjeta;
         private string efectivo1, vuelto1, tarjeta1, formaPago1, modoProd;
@@ -267,8 +268,10 @@ namespace CapaPresentacion
 
         private void frmPagarSeparada_Load(object sender, EventArgs e)
         {
+            cargarTipoCliente();
             this.ValidarAcceso();
             this.txtEfectivo.Select();
+            cbTipoCliente.Enabled = false;
         }
 
         private void btn1_Click(object sender, EventArgs e)
@@ -279,13 +282,17 @@ namespace CapaPresentacion
 
             decimal precioVenta, total;
             precioVenta = Convert.ToDecimal(frmSepararCuenta.f1.lblTotalC1.Text);
-            total = precioVenta + Convert.ToDecimal(frmSepararCuenta.f1.tdC1.Text);
-            this.lblTotal.Text = frmSepararCuenta.f1.lblTotalC1.Text;
+            decimal totalRedondeo = NRedondeo.redondearParcial(precioVenta);
+            //total = precioVenta + Convert.ToDecimal(frmSepararCuenta.f1.tdC1.Text);
+            total = totalRedondeo + Convert.ToDecimal(frmSepararCuenta.f1.tdC1.Text);
+            this.lblTotal.Text = totalRedondeo.ToString();
             this.lblDescuento.Text = frmSepararCuenta.f1.lblDescuento_Actual.Text;
-            decimal subTotal = (precioVenta - Convert.ToDecimal(frmSepararCuenta.f1.tdC1.Text)) / 1.18m;
+            //decimal subTotal = (precioVenta - Convert.ToDecimal(frmSepararCuenta.f1.tdC1.Text)) / 1.18m;
+            decimal subTotal = (totalRedondeo - Convert.ToDecimal(frmSepararCuenta.f1.tdC1.Text)) / 1.18m;
             this.lblDescuento.Text = frmSepararCuenta.f1.tdC1.Text;
             this.lblSubTotal.Text = string.Format(" {0:#,##0.00}", Convert.ToDouble(subTotal));
-            decimal igv = precioVenta - Convert.ToDecimal(this.lblSubTotal.Text);
+            //decimal igv = precioVenta - Convert.ToDecimal(this.lblSubTotal.Text);
+            decimal igv = totalRedondeo - Convert.ToDecimal(this.lblSubTotal.Text);
             this.lblIgv.Text = string.Format(" {0:#,##0.00}", Convert.ToDouble(igv));
 
 
@@ -306,13 +313,17 @@ namespace CapaPresentacion
             this.txtEfectivo.Select();
             decimal precioVenta, total;
             precioVenta = Convert.ToDecimal(frmSepararCuenta.f1.lblTotalC2.Text);
-            total = precioVenta + Convert.ToDecimal(frmSepararCuenta.f1.tdC2.Text);
-            this.lblTotal.Text = frmSepararCuenta.f1.lblTotalC2.Text;
+            decimal totalRedondeo = NRedondeo.redondearParcial(precioVenta);
+            //total = precioVenta + Convert.ToDecimal(frmSepararCuenta.f1.tdC1.Text);
+            total = totalRedondeo + Convert.ToDecimal(frmSepararCuenta.f1.tdC2.Text);
+            this.lblTotal.Text = totalRedondeo.ToString();
             this.lblDescuento.Text = frmSepararCuenta.f1.lblDescuento_Actual.Text;
-            decimal subTotal = (precioVenta - Convert.ToDecimal(frmSepararCuenta.f1.tdC2.Text)) / 1.18m;
+            //decimal subTotal = (precioVenta - Convert.ToDecimal(frmSepararCuenta.f1.tdC1.Text)) / 1.18m;
+            decimal subTotal = (totalRedondeo - Convert.ToDecimal(frmSepararCuenta.f1.tdC2.Text)) / 1.18m;
             this.lblDescuento.Text = frmSepararCuenta.f1.tdC2.Text;
             this.lblSubTotal.Text = string.Format(" {0:#,##0.00}", Convert.ToDouble(subTotal));
-            decimal igv = precioVenta - Convert.ToDecimal(this.lblSubTotal.Text);
+            //decimal igv = precioVenta - Convert.ToDecimal(this.lblSubTotal.Text);
+            decimal igv = totalRedondeo - Convert.ToDecimal(this.lblSubTotal.Text);
             this.lblIgv.Text = string.Format(" {0:#,##0.00}", Convert.ToDouble(igv));
             this.lblBanderaCuenta.Text = "2";
             this.lblBanderaComprobante.Text = "0";
@@ -329,13 +340,17 @@ namespace CapaPresentacion
             this.txtEfectivo.Select();
             decimal precioVenta, total;
             precioVenta = Convert.ToDecimal(frmSepararCuenta.f1.lblTotalC3.Text);
-            total = precioVenta + Convert.ToDecimal(frmSepararCuenta.f1.tdC3.Text);
-            this.lblTotal.Text = frmSepararCuenta.f1.lblTotalC3.Text;
+            decimal totalRedondeo = NRedondeo.redondearParcial(precioVenta);
+            //total = precioVenta + Convert.ToDecimal(frmSepararCuenta.f1.tdC1.Text);
+            total = totalRedondeo + Convert.ToDecimal(frmSepararCuenta.f1.tdC3.Text);
+            this.lblTotal.Text = totalRedondeo.ToString();
             this.lblDescuento.Text = frmSepararCuenta.f1.lblDescuento_Actual.Text;
-            decimal subTotal = (precioVenta - Convert.ToDecimal(frmSepararCuenta.f1.tdC3.Text)) / 1.18m;
+            //decimal subTotal = (precioVenta - Convert.ToDecimal(frmSepararCuenta.f1.tdC1.Text)) / 1.18m;
+            decimal subTotal = (totalRedondeo - Convert.ToDecimal(frmSepararCuenta.f1.tdC3.Text)) / 1.18m;
             this.lblDescuento.Text = frmSepararCuenta.f1.tdC3.Text;
             this.lblSubTotal.Text = string.Format(" {0:#,##0.00}", Convert.ToDouble(subTotal));
-            decimal igv = precioVenta - Convert.ToDecimal(this.lblSubTotal.Text);
+            //decimal igv = precioVenta - Convert.ToDecimal(this.lblSubTotal.Text);
+            decimal igv = totalRedondeo - Convert.ToDecimal(this.lblSubTotal.Text);
             this.lblIgv.Text = string.Format(" {0:#,##0.00}", Convert.ToDouble(igv));
             this.lblBanderaCuenta.Text = "3";
             this.lblBanderaComprobante.Text = "0";
@@ -352,13 +367,17 @@ namespace CapaPresentacion
             this.txtEfectivo.Select();
             decimal precioVenta, total;
             precioVenta = Convert.ToDecimal(frmSepararCuenta.f1.lblTotalC4.Text);
-            total = precioVenta + Convert.ToDecimal(frmSepararCuenta.f1.tdC4.Text);
-            this.lblTotal.Text = frmSepararCuenta.f1.lblTotalC4.Text;
+            decimal totalRedondeo = NRedondeo.redondearParcial(precioVenta);
+            //total = precioVenta + Convert.ToDecimal(frmSepararCuenta.f1.tdC1.Text);
+            total = totalRedondeo + Convert.ToDecimal(frmSepararCuenta.f1.tdC4.Text);
+            this.lblTotal.Text = totalRedondeo.ToString();
             this.lblDescuento.Text = frmSepararCuenta.f1.lblDescuento_Actual.Text;
-            decimal subTotal = (precioVenta - Convert.ToDecimal(frmSepararCuenta.f1.tdC4.Text)) / 1.18m;
+            //decimal subTotal = (precioVenta - Convert.ToDecimal(frmSepararCuenta.f1.tdC1.Text)) / 1.18m;
+            decimal subTotal = (totalRedondeo - Convert.ToDecimal(frmSepararCuenta.f1.tdC4.Text)) / 1.18m;
             this.lblDescuento.Text = frmSepararCuenta.f1.tdC4.Text;
             this.lblSubTotal.Text = string.Format(" {0:#,##0.00}", Convert.ToDouble(subTotal));
-            decimal igv = precioVenta - Convert.ToDecimal(this.lblSubTotal.Text);
+            //decimal igv = precioVenta - Convert.ToDecimal(this.lblSubTotal.Text);
+            decimal igv = totalRedondeo - Convert.ToDecimal(this.lblSubTotal.Text);
             this.lblIgv.Text = string.Format(" {0:#,##0.00}", Convert.ToDouble(igv));
             this.lblBanderaCuenta.Text = "4";
             this.lblBanderaComprobante.Text = "0";
@@ -375,13 +394,17 @@ namespace CapaPresentacion
             this.txtEfectivo.Select();
             decimal precioVenta, total;
             precioVenta = Convert.ToDecimal(frmSepararCuenta.f1.lblTotalC5.Text);
-            total = precioVenta + Convert.ToDecimal(frmSepararCuenta.f1.tdC5.Text);
-            this.lblTotal.Text = frmSepararCuenta.f1.lblTotalC5.Text;
+            decimal totalRedondeo = NRedondeo.redondearParcial(precioVenta);
+            //total = precioVenta + Convert.ToDecimal(frmSepararCuenta.f1.tdC1.Text);
+            total = totalRedondeo + Convert.ToDecimal(frmSepararCuenta.f1.tdC5.Text);
+            this.lblTotal.Text = totalRedondeo.ToString();
             this.lblDescuento.Text = frmSepararCuenta.f1.lblDescuento_Actual.Text;
-            decimal subTotal = (precioVenta - Convert.ToDecimal(frmSepararCuenta.f1.tdC5.Text)) / 1.18m;
+            //decimal subTotal = (precioVenta - Convert.ToDecimal(frmSepararCuenta.f1.tdC1.Text)) / 1.18m;
+            decimal subTotal = (totalRedondeo - Convert.ToDecimal(frmSepararCuenta.f1.tdC5.Text)) / 1.18m;
             this.lblDescuento.Text = frmSepararCuenta.f1.tdC5.Text;
             this.lblSubTotal.Text = string.Format(" {0:#,##0.00}", Convert.ToDouble(subTotal));
-            decimal igv = precioVenta - Convert.ToDecimal(this.lblSubTotal.Text);
+            //decimal igv = precioVenta - Convert.ToDecimal(this.lblSubTotal.Text);
+            decimal igv = totalRedondeo - Convert.ToDecimal(this.lblSubTotal.Text);
             this.lblIgv.Text = string.Format(" {0:#,##0.00}", Convert.ToDouble(igv));
             this.lblBanderaCuenta.Text = "5";
             this.lblBanderaComprobante.Text = "0";
@@ -398,19 +421,264 @@ namespace CapaPresentacion
             this.txtEfectivo.Select();
             decimal precioVenta, total;
             precioVenta = Convert.ToDecimal(frmSepararCuenta.f1.lblTotalC6.Text);
-            total = precioVenta + Convert.ToDecimal(frmSepararCuenta.f1.tdC6.Text);
-            this.lblTotal.Text = frmSepararCuenta.f1.lblTotalC6.Text;
+            decimal totalRedondeo = NRedondeo.redondearParcial(precioVenta);
+            //total = precioVenta + Convert.ToDecimal(frmSepararCuenta.f1.tdC1.Text);
+            total = totalRedondeo + Convert.ToDecimal(frmSepararCuenta.f1.tdC6.Text);
+            this.lblTotal.Text = totalRedondeo.ToString();
             this.lblDescuento.Text = frmSepararCuenta.f1.lblDescuento_Actual.Text;
-            decimal subTotal = (precioVenta - Convert.ToDecimal(frmSepararCuenta.f1.tdC6.Text)) / 1.18m;
+            //decimal subTotal = (precioVenta - Convert.ToDecimal(frmSepararCuenta.f1.tdC1.Text)) / 1.18m;
+            decimal subTotal = (totalRedondeo - Convert.ToDecimal(frmSepararCuenta.f1.tdC6.Text)) / 1.18m;
             this.lblDescuento.Text = frmSepararCuenta.f1.tdC6.Text;
             this.lblSubTotal.Text = string.Format(" {0:#,##0.00}", Convert.ToDouble(subTotal));
-            decimal igv = precioVenta - Convert.ToDecimal(this.lblSubTotal.Text);
+            //decimal igv = precioVenta - Convert.ToDecimal(this.lblSubTotal.Text);
+            decimal igv = totalRedondeo - Convert.ToDecimal(this.lblSubTotal.Text);
             this.lblIgv.Text = string.Format(" {0:#,##0.00}", Convert.ToDouble(igv));
             this.lblBanderaCuenta.Text = "6";
             this.lblBanderaComprobante.Text = "0";
             this.btnTicket.BackColor = Color.FromArgb(236, 236, 236);
             this.btnBoleta.BackColor = Color.FromArgb(205, 201, 201);
             this.btnFactura.BackColor = Color.FromArgb(205, 201, 201);
+        }
+
+        public void PagoPorCuentaVentaSinRegistrar(int? idCliente, DataTable dtDetalle, decimal vuelto,Button btn, DataGridView dgv)
+        {
+            //recorrer dg1 y eliminar detalles
+            string rpta = "";
+            if (this.txtIdCliente.Text == string.Empty && this.lblBanderaComprobante.Text == "2")
+            {
+                MessageBox.Show("Seleccione un cliente");
+                return;
+            }
+            else if (this.lblBanderaComprobante.Text == "2" && this.txtDocumento.Text.Trim().Length != 11)
+            {
+                MessageBox.Show("Ingrese un número de RUC válido");
+                return;
+            }
+            else
+            {
+                for (int i = 0; i < dtDetalle.Rows.Count; i++)
+                {
+                    rpta = NDetalleVenta.Eliminar(Convert.ToInt32(dtDetalle.Rows[i]["idDetalleVenta"].ToString()));
+                }
+
+            }
+
+
+            if (rpta == "OK")
+            {
+                if (this.lblBanderaComprobante.Text == "0" || this.lblBanderaComprobante.Text == "1")
+                {
+                    string tipoCompr = "";
+                    if (this.lblBanderaComprobante.Text == "0")
+                    {
+                        tipoCompr = "TICKET";
+                    }
+                    else
+                    {
+                        tipoCompr = "BOLETA";
+                    }
+                    rpta = NVenta.InsertarPedidoPagado(idCliente, Convert.ToInt32(this.lblIdMesa.Text), DateTime.Now, "PAGADA",
+                        formaPago, Convert.ToDecimal(this.lblDctoGeneral.Text.Trim()), Convert.ToInt32(this.lblIdUsuario.Text), "CS", 1, tipoCompr, 1,
+                        Convert.ToDecimal(this.lblIgv.Text), "EMITIDA", Convert.ToDecimal(this.lblTotal.Text), efectivo,
+                        tarjeta, 00.00m, dtDetalle, vuelto, frmVenta.f1.dtDetalleMenu,
+                        DateTime.Now, 00.00m, Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text), "", "", "", "");
+
+
+                    btn.Enabled = false;
+                }
+                else if (this.lblBanderaComprobante.Text == "2")
+                {
+                    if (this.txtIdCliente.Text.Trim() == string.Empty || this.txtDocumento.Text.Trim().Length != 11)
+                    {
+                        MessageBox.Show("Seleccione un cliente o ingrese un número de RUC válido");
+                        return;
+                    }
+                    else
+                    {
+                        rpta = NVenta.InsertarPedidoPagado(idCliente, Convert.ToInt32(this.lblIdMesa.Text), DateTime.Now, "PAGADA",
+                            formaPago, Convert.ToDecimal(this.lblDctoGeneral.Text.Trim()), Convert.ToInt32(this.lblIdUsuario.Text), "CS", 1, "FACTURA", 1,
+                            Convert.ToDecimal(this.lblIgv.Text), "EMITIDA", Convert.ToDecimal(this.lblTotal.Text), efectivo,
+                            tarjeta, 00.00m, dtDetalle, vuelto, frmVenta.f1.dtDetalleMenu,
+                            DateTime.Now, 00.00m, Convert.ToInt32(this.lblIdUsuario.Text), "", "", "", "");
+
+                        btn.Enabled= false;
+
+                    }
+
+                }
+                if (rpta != "")
+                {
+                    if (insertarCaja() == true)
+                    {
+                        //MessageBox.Show("Se registró correctamente");
+                        enviarFormaPago();
+                        string tipoCompr = "";
+                        if (this.lblBanderaComprobante.Text == "0")
+                        {
+                            tipoCompr = "TICKET";
+                        }
+                        else if (this.lblBanderaComprobante.Text == "1")
+                        {
+                            tipoCompr = "BOLETA";
+                        }
+                        else
+                        {
+                            tipoCompr = "FACTURA";
+                        }
+
+                        NImprimir_Comprobante.imprimirCom(Convert.ToInt32(rpta), tipoCompr, this.txtNombre.Text.Trim(), this.txtDireccion.Text.Trim(),
+                                        this.txtDocumento.Text.Trim(), frmSepararCuenta.f1.lblTrabajador.Text, frmSepararCuenta.f1.lblSalon.Text,
+                                        frmSepararCuenta.f1.lblMesa.Text, dgv, this.lblDescuento.Text, this.lblDctoGeneral.Text,
+                                        this.lblSubTotal.Text, this.lblIgv.Text, this.lblTotal.Text, efectivo1, vuelto1, tarjeta1, formaPago1, modoProd,
+                                        "00.00", "", NAliento.MensajeAliento());
+
+
+
+                        this.Facturador(Convert.ToInt32(rpta), dgv);
+                        this.Limpiar();
+                    }
+
+                    btn.Enabled = false;
+                    cbTipoCliente.Enabled = false;
+                    cbTipoCliente.SelectedIndex = -1;
+                    if (btn1.Enabled == false && btn2.Enabled == false && btn3.Enabled == false && btn4.Enabled == false && btn5.Enabled == false && btn6.Enabled == false)
+                    {
+                        rpta = NVenta.EliminarCS(Convert.ToInt32(this.lblIdVenta.Text));
+                        NMesa.EditarEstadoMesa(Convert.ToInt32(this.lblIdMesa.Text), "Libre");
+                        frmModuloSalon.f3.limpiarMesas();
+                        frmModuloSalon.f3.mostrarSalones();
+
+                        this.Close();
+                        frmVenta.f1.Close();
+                        frmSepararCuenta.f1.Close();
+                        frmModuloSalon.f3.tEstado.Enabled = true;
+
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show(rpta);
+                }
+            }
+            else
+            {
+                MessageBox.Show(rpta);
+            }
+
+        }
+
+        public void PagoPorCuentaVentaRegistrada(int? idCliente,DataTable dtDetalle, decimal vuelto, Button btn,DataGridView dgv)
+        {
+            string rpta = "";
+            if (this.lblBanderaComprobante.Text == "0" || this.lblBanderaComprobante.Text == "1")
+            {
+                string tipoCompr = "";
+                if (this.lblBanderaComprobante.Text == "0")
+                {
+                    tipoCompr = "TICKET";
+                }
+                else
+                {
+                    tipoCompr = "BOLETA";
+                }
+                rpta = NVenta.InsertarPedidoPagado(idCliente, Convert.ToInt32(this.lblIdMesa.Text), DateTime.Now, "PAGADA", formaPago, Convert.ToDecimal(this.lblDctoGeneral.Text.Trim())
+                                                , Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text), "CS", 1, tipoCompr, 1, Convert.ToDecimal(this.lblIgv.Text), "EMITIDA",
+                                                Convert.ToDecimal(this.lblTotal.Text), efectivo, tarjeta, 00.00m,
+                                                dtDetalle, vuelto, frmVenta.f1.dtDetalleMenu,
+                                                DateTime.Now, 00.00m, Convert.ToInt32(this.lblIdUsuario.Text), "", "", "", "");
+
+                btn.Enabled = false;
+            }
+            else if (this.lblBanderaComprobante.Text == "2")
+            {
+                if (this.txtIdCliente.Text.Trim() == string.Empty || this.txtDocumento.Text.Trim().Length != 11)
+                {
+                    MessageBox.Show("Seleccione un cliente o ingrese un número de RUC válido");
+                    return;
+                }
+                else
+                {
+                    rpta = NVenta.InsertarPedidoPagado(idCliente, Convert.ToInt32(this.lblIdMesa.Text), DateTime.Now, "PAGADA",
+                        formaPago, Convert.ToDecimal(this.lblDctoGeneral.Text.Trim()), Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text), "CS", 1, "FACTURA",
+                        1, Convert.ToDecimal(this.lblIgv.Text), "EMITIDA", Convert.ToDecimal(this.lblTotal.Text), efectivo, tarjeta, 00.00m,
+                        dtDetalle, vuelto, frmVenta.f1.dtDetalleMenu, DateTime.Now, 00.00m, Convert.ToInt32(this.lblIdUsuario.Text), "",
+                        "", "", "");
+
+                    btn.Enabled = false;
+                }
+
+            }
+            if (rpta == "OK")
+            {
+                if (insertarCaja() == true)
+                {
+                    //MessageBox.Show("Se registró correctamente");
+                    enviarFormaPago();
+                    string tipoCompr = "";
+                    if (this.lblBanderaComprobante.Text == "0")
+                    {
+                        tipoCompr = "TICKET";
+                    }
+                    else if (this.lblBanderaComprobante.Text == "1")
+                    {
+                        tipoCompr = "BOLETA";
+                    }
+                    else
+                    {
+                        tipoCompr = "FACTURA";
+                    }
+
+                    int count = 0;
+                    DataTable dtCategoriaProducto = new DataTable();
+                    for (int i = 0; i < dgv.Rows.Count; i++)
+                    {
+
+                        dtCategoriaProducto = NCategoria.MostrarCategoriaProducto(Convert.ToInt32(dgv.Rows[i].Cells[0].ToString()));
+                        if (dtCategoriaProducto.Rows[0][1].ToString() == "BOCADITOS POR MENOR" || dtCategoriaProducto.Rows[0][1].ToString() == "PANES POR MENOR")
+                        {
+                            count = count + 1;
+                        }
+
+                    }
+                    if (count != dgv.Rows.Count)
+                    {
+                        NImprimir_Comprobante.imprimirCom(Convert.ToInt32(this.lblIdVenta.Text), tipoCompr, this.txtNombre.Text.Trim(), this.txtDireccion.Text.Trim(),
+                                           this.txtDocumento.Text.Trim(), frmSepararCuenta.f1.lblTrabajador.Text, frmSepararCuenta.f1.lblSalon.Text,
+                                           frmSepararCuenta.f1.lblMesa.Text, dgv, this.lblDescuento.Text, this.lblDctoGeneral.Text,
+                                           this.lblSubTotal.Text, this.lblIgv.Text, this.lblTotal.Text, efectivo1, vuelto1, tarjeta1, formaPago1, modoProd, "00.00",
+                                           "", NAliento.MensajeAliento());
+
+                    }
+
+
+                    this.Facturador(Convert.ToInt32(this.lblIdVenta.Text), dgv);
+                    this.Limpiar();
+                }
+                btn.Enabled = false;
+                cbTipoCliente.Enabled = false;
+                cbTipoCliente.SelectedIndex = -1;
+                if (btn1.Enabled == false && btn2.Enabled == false && btn3.Enabled == false && btn4.Enabled == false && btn5.Enabled == false && btn6.Enabled == false)
+                {
+                    NMesa.EditarEstadoMesa(Convert.ToInt32(this.lblIdMesa.Text), "Libre");
+
+
+
+                    frmModuloSalon.f3.limpiarMesas();
+                    frmModuloSalon.f3.mostrarSalones();
+
+                    this.Close();
+                    frmVenta.f1.Close();
+                    frmSepararCuenta.f1.Close();
+                    frmModuloSalon.f3.tEstado.Enabled = true;
+
+                }
+
+            }
+            else
+            {
+                MessageBox.Show(rpta);
+            }
         }
 
         private void Cobrar()
@@ -464,645 +732,31 @@ namespace CapaPresentacion
                             this.verFormaPago();
                             if (lblBanderaCuenta.Text == "1")
                             {
-                                if (this.lblBanderaComprobante.Text == "0" || this.lblBanderaComprobante.Text == "1")
-                                {
-                                    string tipoCompr = "";
-                                    if (this.lblBanderaComprobante.Text == "0")
-                                    {
-                                        tipoCompr = "TICKET";
-                                    }
-                                    else
-                                    {
-                                        tipoCompr = "BOLETA";
-                                    }
-                                    rpta = NVenta.InsertarPedidoPagado(idCliente, Convert.ToInt32(this.lblIdMesa.Text), DateTime.Now, "PAGADA", formaPago, Convert.ToDecimal(this.lblDctoGeneral.Text.Trim())
-                                                                    , Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text), "CS", 1, tipoCompr, 1, Convert.ToDecimal(this.lblIgv.Text), "EMITIDA",
-                                                                    Convert.ToDecimal(this.lblTotal.Text), efectivo, tarjeta, 00.00m,
-                                                                    frmSepararCuenta.f1.dtDetalle, vuelto, frmVenta.f1.dtDetalleMenu,
-                                                                    DateTime.Now, 00.00m, Convert.ToInt32(this.lblIdUsuario.Text), "", "", "", "");
-
-                                    this.button1.Enabled = false;
-                                }
-                                else if (this.lblBanderaComprobante.Text == "2")
-                                {
-                                    if (this.txtIdCliente.Text.Trim() == string.Empty || this.txtDocumento.Text.Trim().Length != 11)
-                                    {
-                                        MessageBox.Show("Seleccione un cliente o ingrese un número de RUC válido");
-                                        return;
-                                    }
-                                    else
-                                    {
-                                        rpta = NVenta.InsertarPedidoPagado(idCliente, Convert.ToInt32(this.lblIdMesa.Text), DateTime.Now, "PAGADA",
-                                            formaPago, Convert.ToDecimal(this.lblDctoGeneral.Text.Trim()), Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text), "CS", 1, "FACTURA",
-                                            1, Convert.ToDecimal(this.lblIgv.Text), "EMITIDA", Convert.ToDecimal(this.lblTotal.Text), efectivo, tarjeta, 00.00m,
-                                            frmSepararCuenta.f1.dtDetalle, vuelto, frmVenta.f1.dtDetalleMenu, DateTime.Now, 00.00m, Convert.ToInt32(this.lblIdUsuario.Text), "",
-                                            "", "", "");
-
-                                        this.button1.Enabled = false;
-                                    }
-
-                                }
-                                if (rpta == "OK")
-                                {
-                                    if (insertarCaja() == true)
-                                    {
-                                        //MessageBox.Show("Se registró correctamente");
-                                        enviarFormaPago();
-                                        string tipoCompr = "";
-                                        if (this.lblBanderaComprobante.Text == "0")
-                                        {
-                                            tipoCompr = "TICKET";
-                                        }
-                                        else if (this.lblBanderaComprobante.Text == "1")
-                                        {
-                                            tipoCompr = "BOLETA";
-                                        }
-                                        else
-                                        {
-                                            tipoCompr = "FACTURA";
-                                        }
-
-                                        int count = 0;
-                                        DataTable dtCategoriaProducto = new DataTable();
-                                        for (int i = 0; i < frmSepararCuenta.f1.dgCuenta1.Rows.Count; i++)
-                                        {
-
-                                            dtCategoriaProducto = NCategoria.MostrarCategoriaProducto(Convert.ToInt32(frmSepararCuenta.f1.dgCuenta1.Rows[i].Cells[0].ToString()));
-                                            if (dtCategoriaProducto.Rows[0][1].ToString() == "BOCADITOS POR MENOR" || dtCategoriaProducto.Rows[0][1].ToString() == "PANES POR MENOR")
-                                            {
-                                                count = count + 1;
-                                            }
-
-                                        }
-                                        if (count != frmSepararCuenta.f1.dgCuenta1.Rows.Count)
-                                        {
-                                            NImprimir_Comprobante.imprimirCom(Convert.ToInt32(this.lblIdVenta.Text), tipoCompr, this.txtNombre.Text.Trim(), this.txtDireccion.Text.Trim(),
-                                                               this.txtDocumento.Text.Trim(), frmSepararCuenta.f1.lblTrabajador.Text, frmSepararCuenta.f1.lblSalon.Text,
-                                                               frmSepararCuenta.f1.lblMesa.Text, frmSepararCuenta.f1.dgCuenta1, this.lblDescuento.Text, this.lblDctoGeneral.Text,
-                                                               this.lblSubTotal.Text, this.lblIgv.Text, this.lblTotal.Text, efectivo1, vuelto1, tarjeta1, formaPago1, modoProd, "00.00",
-                                                               "", NAliento.MensajeAliento());
-
-                                        }
-
-
-                                        this.Facturador(Convert.ToInt32(this.lblIdVenta.Text), frmSepararCuenta.f1.dgCuenta1);
-                                        this.Limpiar();
-                                    }
-                                    this.btn1.Enabled = false;
-                                    if (btn1.Enabled == false && btn2.Enabled == false && btn3.Enabled == false && btn4.Enabled == false && btn5.Enabled == false && btn6.Enabled == false)
-                                    {
-                                        NMesa.EditarEstadoMesa(Convert.ToInt32(this.lblIdMesa.Text), "Libre");
-
-
-
-                                        frmModuloSalon.f3.limpiarMesas();
-                                        frmModuloSalon.f3.mostrarSalones();
-
-                                        this.Close();
-                                        frmVenta.f1.Close();
-                                        frmSepararCuenta.f1.Close();
-                                        frmModuloSalon.f3.tEstado.Enabled = true;
-
-                                    }
-
-                                }
-                                else
-                                {
-                                    MessageBox.Show(rpta);
-                                }
-
-
+                                PagoPorCuentaVentaRegistrada(idCliente, frmSepararCuenta.f1.dtDetalle, vuelto,btn1,frmSepararCuenta.f1.dgCuenta1);
                             }
                             else if (lblBanderaCuenta.Text == "2")
                             {
-                                if (this.lblBanderaComprobante.Text == "0" || this.lblBanderaComprobante.Text == "1")
-                                {
-                                    string tipoCompr = "";
-                                    if (this.lblBanderaComprobante.Text == "0")
-                                    {
-                                        tipoCompr = "TICKET";
-                                    }
-                                    else
-                                    {
-                                        tipoCompr = "BOLETA";
-                                    }
-                                    rpta = NVenta.InsertarPedidoPagado(idCliente, Convert.ToInt32(this.lblIdMesa.Text), DateTime.Now, "PAGADA",
-                                        formaPago, Convert.ToDecimal(this.lblDctoGeneral.Text.Trim()), Convert.ToInt32(this.lblIdUsuario.Text), "CS", 1, tipoCompr, 1, Convert.ToDecimal(this.lblIgv.Text), "EMITIDA",
-                                                                    Convert.ToDecimal(this.lblTotal.Text), efectivo, tarjeta, 00.00m,
-                                                                    frmSepararCuenta.f1.dtDetalle2, vuelto, frmVenta.f1.dtDetalleMenu,
-                                                                    DateTime.Now, 00.00m, Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text), "", "", "", "");
-
-                                    this.button1.Enabled = false;
-
-                                }
-                                else if (this.lblBanderaComprobante.Text == "2")
-                                {
-                                    if (this.txtIdCliente.Text.Trim() == string.Empty || this.txtDocumento.Text.Trim().Length != 11)
-                                    {
-                                        MessageBox.Show("Seleccione un cliente o ingrese un número de RUC válido");
-                                        return;
-                                    }
-                                    else
-                                    {
-                                        rpta = NVenta.InsertarPedidoPagado(idCliente, Convert.ToInt32(this.lblIdMesa.Text), DateTime.Now, "PAGADA",
-                                            formaPago, Convert.ToDecimal(this.lblDctoGeneral.Text.Trim()), Convert.ToInt32(this.lblIdUsuario.Text), "CS", 1, "FACTURA", 1,
-                                            Convert.ToDecimal(this.lblIgv.Text), "EMITIDA", Convert.ToDecimal(this.lblTotal.Text), efectivo,
-                                            tarjeta, 00.00m, frmSepararCuenta.f1.dtDetalle2, vuelto, frmVenta.f1.dtDetalleMenu,
-                                            DateTime.Now, 00.00m, Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text), "", "", "", "");
-
-                                        this.button1.Enabled = false;
-                                    }
-                                }
-                                if (rpta == "OK")
-                                {
-                                    if (insertarCaja() == true)
-                                    {
-                                        //MessageBox.Show("Se registró correctamente");
-                                        enviarFormaPago();
-                                        string tipoCompr = "";
-                                        if (this.lblBanderaComprobante.Text == "0")
-                                        {
-                                            tipoCompr = "TICKET";
-                                        }
-                                        else if (this.lblBanderaComprobante.Text == "1")
-                                        {
-                                            tipoCompr = "BOLETA";
-                                        }
-                                        else
-                                        {
-                                            tipoCompr = "FACTURA";
-                                        }
-
-                                        int count = 0;
-                                        DataTable dtCategoriaProducto = new DataTable();
-                                        for (int i = 0; i < frmSepararCuenta.f1.dgCuenta2.Rows.Count; i++)
-                                        {
-
-                                            dtCategoriaProducto = NCategoria.MostrarCategoriaProducto(Convert.ToInt32(frmSepararCuenta.f1.dgCuenta2.Rows[i].Cells[0].ToString()));
-                                            if (dtCategoriaProducto.Rows[0][1].ToString() == "BOCADITOS POR MENOR" || dtCategoriaProducto.Rows[0][1].ToString() == "PANES POR MENOR")
-                                            {
-                                                count = count + 1;
-                                            }
-
-                                        }
-                                        if (count != frmSepararCuenta.f1.dgCuenta2.Rows.Count)
-                                        {
-                                            NImprimir_Comprobante.imprimirCom(Convert.ToInt32(this.lblIdVenta.Text), tipoCompr, this.txtNombre.Text.Trim(), this.txtDireccion.Text.Trim(),
-                                                            this.txtDocumento.Text.Trim(), frmSepararCuenta.f1.lblTrabajador.Text, frmSepararCuenta.f1.lblSalon.Text,
-                                                            frmSepararCuenta.f1.lblMesa.Text, frmSepararCuenta.f1.dgCuenta2, this.lblDescuento.Text, this.lblDctoGeneral.Text,
-                                                            this.lblSubTotal.Text, this.lblIgv.Text, this.lblTotal.Text, efectivo1, vuelto1, tarjeta1, formaPago1, modoProd, "00.00",
-                                                            "", NAliento.MensajeAliento());
-                                        }
-
-
-                                        this.Facturador(Convert.ToInt32(this.lblIdVenta.Text), frmSepararCuenta.f1.dgCuenta2);
-                                        this.Limpiar();
-                                    }
-                                    this.Limpiar();
-                                    this.btn2.Enabled = false;
-                                    if (btn1.Enabled == false && btn2.Enabled == false && btn3.Enabled == false && btn4.Enabled == false && btn5.Enabled == false && btn6.Enabled == false)
-                                    {
-                                        NMesa.EditarEstadoMesa(Convert.ToInt32(this.lblIdMesa.Text), "Libre");
-                                        ;
-                                        frmModuloSalon.f3.limpiarMesas();
-                                        frmModuloSalon.f3.mostrarSalones();
-
-                                        frmVenta.f1.Close();
-                                        frmSepararCuenta.f1.Close();
-                                        frmModuloSalon.f3.tEstado.Enabled = true;
-
-                                    }
-
-                                }
-                                else
-                                {
-                                    MessageBox.Show(rpta);
-                                }
-
+                                PagoPorCuentaVentaRegistrada(idCliente, frmSepararCuenta.f1.dtDetalle2, vuelto,btn2, frmSepararCuenta.f1.dgCuenta2);
 
                             }
                             else if (lblBanderaCuenta.Text == "3")
                             {
-                                if (this.lblBanderaComprobante.Text == "0" || this.lblBanderaComprobante.Text == "1")
-                                {
-                                    string tipoCompr = "";
-                                    if (this.lblBanderaComprobante.Text == "0")
-                                    {
-                                        tipoCompr = "TICKET";
-                                    }
-                                    else
-                                    {
-                                        tipoCompr = "BOLETA";
-                                    }
-                                    rpta = NVenta.InsertarPedidoPagado(idCliente, Convert.ToInt32(this.lblIdMesa.Text), DateTime.Now, "PAGADA", formaPago,
-                                        Convert.ToDecimal(this.lblDctoGeneral.Text.Trim()), Convert.ToInt32(this.lblIdUsuario.Text), "CS", 1, tipoCompr, 1,
-                                        Convert.ToDecimal(this.lblIgv.Text), "EMITIDA", Convert.ToDecimal(this.lblTotal.Text), efectivo, tarjeta,
-                                        00.00m, frmSepararCuenta.f1.dtDetalle3, vuelto, frmVenta.f1.dtDetalleMenu, DateTime.Now, 00.00m, Convert.ToInt32(this.lblIdUsuario.Text), "",
-                                        "", "", "");
-
-                                    this.button1.Enabled = false;
-                                }
-                                else if (this.lblBanderaComprobante.Text == "2")
-                                {
-                                    if (this.txtIdCliente.Text.Trim() == string.Empty || this.txtDocumento.Text.Trim().Length != 11)
-                                    {
-                                        MessageBox.Show("Seleccione un cliente o ingrese un número de RUC válido");
-                                        return;
-                                    }
-                                    else
-                                    {
-                                        rpta = NVenta.InsertarPedidoPagado(idCliente, Convert.ToInt32(this.lblIdMesa.Text), DateTime.Now, "PAGADA",
-                                            formaPago, Convert.ToDecimal(this.lblDctoGeneral.Text.Trim()), Convert.ToInt32(this.lblIdUsuario.Text), "CS", 1, "FACTURA", 1,
-                                            Convert.ToDecimal(this.lblIgv.Text), "EMITIDA", Convert.ToDecimal(this.lblTotal.Text), efectivo,
-                                            tarjeta, 00.00m, frmSepararCuenta.f1.dtDetalle3, vuelto, frmVenta.f1.dtDetalleMenu,
-                                            DateTime.Now, 00.00m, Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text), "", "", "", "");
-
-                                        this.button1.Enabled = false;
-                                    }
-                                }
-                                if (rpta == "OK")
-                                {
-                                    if (insertarCaja() == true)
-                                    {
-                                        //MessageBox.Show("Se registró correctamente");
-                                        enviarFormaPago();
-                                        string tipoCompr = "";
-                                        if (this.lblBanderaComprobante.Text == "0")
-                                        {
-                                            tipoCompr = "TICKET";
-                                        }
-                                        else if (this.lblBanderaComprobante.Text == "1")
-                                        {
-                                            tipoCompr = "BOLETA";
-                                        }
-                                        else
-                                        {
-                                            tipoCompr = "FACTURA";
-                                        }
-                                        int count = 0;
-                                        DataTable dtCategoriaProducto = new DataTable();
-                                        for (int i = 0; i < frmSepararCuenta.f1.dgCuenta3.Rows.Count; i++)
-                                        {
-
-                                            dtCategoriaProducto = NCategoria.MostrarCategoriaProducto(Convert.ToInt32(frmSepararCuenta.f1.dgCuenta3.Rows[i].Cells[0].ToString()));
-                                            if (dtCategoriaProducto.Rows[0][1].ToString() == "BOCADITOS POR MENOR" || dtCategoriaProducto.Rows[0][1].ToString() == "PANES POR MENOR")
-                                            {
-                                                count = count + 1;
-                                            }
-
-                                        }
-                                        if (count != frmSepararCuenta.f1.dgCuenta3.Rows.Count)
-                                        {
-                                            NImprimir_Comprobante.imprimirCom(Convert.ToInt32(this.lblIdVenta.Text), tipoCompr, this.txtNombre.Text.Trim(), this.txtDireccion.Text.Trim(),
-                                                           this.txtDocumento.Text.Trim(), frmSepararCuenta.f1.lblTrabajador.Text, frmSepararCuenta.f1.lblSalon.Text,
-                                                           frmSepararCuenta.f1.lblMesa.Text, frmSepararCuenta.f1.dgCuenta3, this.lblDescuento.Text, this.lblDctoGeneral.Text,
-                                                           this.lblSubTotal.Text, this.lblIgv.Text, this.lblTotal.Text, efectivo1, vuelto1, tarjeta1, formaPago1, modoProd,
-                                                           "00.00", "", NAliento.MensajeAliento());
-                                        }
-
-                                        this.Facturador(Convert.ToInt32(this.lblIdVenta.Text), frmSepararCuenta.f1.dgCuenta3);
-                                        this.Limpiar();
-                                    }
-                                    this.Limpiar();
-                                    this.btn3.Enabled = false;
-                                    if (btn1.Enabled == false && btn2.Enabled == false && btn3.Enabled == false && btn4.Enabled == false && btn5.Enabled == false && btn6.Enabled == false)
-                                    {
-                                        NMesa.EditarEstadoMesa(Convert.ToInt32(this.lblIdMesa.Text), "Libre");
-                                        frmModuloSalon.f3.limpiarMesas();
-                                        frmModuloSalon.f3.mostrarSalones();
-
-                                        this.Close();
-                                        frmVenta.f1.Close();
-                                        frmSepararCuenta.f1.Close();
-                                        frmModuloSalon.f3.tEstado.Enabled = true;
-
-                                    }
-
-                                }
-                                else
-                                {
-                                    MessageBox.Show(rpta);
-                                }
-
+                                PagoPorCuentaVentaRegistrada(idCliente, frmSepararCuenta.f1.dtDetalle3, vuelto,btn3, frmSepararCuenta.f1.dgCuenta3);
 
                             }
                             else if (lblBanderaCuenta.Text == "4")
                             {
-                                if (this.lblBanderaComprobante.Text == "0" || this.lblBanderaComprobante.Text == "1")
-                                {
-                                    string tipoCompr = "";
-                                    if (this.lblBanderaComprobante.Text == "0")
-                                    {
-                                        tipoCompr = "TICKET";
-                                    }
-                                    else
-                                    {
-                                        tipoCompr = "BOLETA";
-                                    }
-                                    rpta = NVenta.InsertarPedidoPagado(idCliente, Convert.ToInt32(this.lblIdMesa.Text), DateTime.Now, "PAGADA",
-                                        formaPago, Convert.ToDecimal(this.lblDctoGeneral.Text.Trim()), Convert.ToInt32(this.lblIdUsuario.Text), "CS", 1, tipoCompr, 1,
-                                        Convert.ToDecimal(this.lblIgv.Text), "EMITIDA", Convert.ToDecimal(this.lblTotal.Text), efectivo, tarjeta,
-                                        00.00m, frmSepararCuenta.f1.dtDetalle4, vuelto, frmVenta.f1.dtDetalleMenu,
-                                        DateTime.Now, 00.00m, Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text), "", "", "", "");
-
-                                    this.button1.Enabled = false;
-                                }
-                                else if (this.lblBanderaComprobante.Text == "2")
-                                {
-                                    if (this.txtIdCliente.Text.Trim() == string.Empty || this.txtDocumento.Text.Trim().Length != 11)
-                                    {
-                                        MessageBox.Show("Seleccione un cliente o ingrese un número de RUC válido");
-                                        return;
-                                    }
-                                    else
-                                    {
-                                        rpta = NVenta.InsertarPedidoPagado(idCliente, Convert.ToInt32(this.lblIdMesa.Text), DateTime.Now, "PAGADA",
-                                            formaPago, Convert.ToDecimal(this.lblDctoGeneral.Text.Trim()), Convert.ToInt32(this.lblIdUsuario.Text), "CS", 1, "FACTURA", 1,
-                                            Convert.ToDecimal(this.lblIgv.Text), "EMITIDA", Convert.ToDecimal(this.lblTotal.Text), efectivo,
-                                            tarjeta, 00.00m, frmSepararCuenta.f1.dtDetalle4, vuelto, frmVenta.f1.dtDetalleMenu,
-                                            DateTime.Now, 00.00m, Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text), "", "", "", "");
-
-                                        this.button1.Enabled = false;
-                                    }
-                                }
-                                if (rpta == "OK")
-                                {
-                                    if (insertarCaja() == true)
-                                    {
-                                        // MessageBox.Show("Se registró correctamente");
-                                        enviarFormaPago();
-                                        string tipoCompr = "";
-                                        if (this.lblBanderaComprobante.Text == "0")
-                                        {
-                                            tipoCompr = "TICKET";
-                                        }
-                                        else if (this.lblBanderaComprobante.Text == "1")
-                                        {
-                                            tipoCompr = "BOLETA";
-                                        }
-                                        else
-                                        {
-                                            tipoCompr = "FACTURA";
-                                        }
-
-                                        int count = 0;
-                                        DataTable dtCategoriaProducto = new DataTable();
-                                        for (int i = 0; i < frmSepararCuenta.f1.dgCuenta4.Rows.Count; i++)
-                                        {
-
-                                            dtCategoriaProducto = NCategoria.MostrarCategoriaProducto(Convert.ToInt32(frmSepararCuenta.f1.dgCuenta4.Rows[i].Cells[0].ToString()));
-                                            if (dtCategoriaProducto.Rows[0][1].ToString() == "BOCADITOS POR MENOR" || dtCategoriaProducto.Rows[0][1].ToString() == "PANES POR MENOR")
-                                            {
-                                                count = count + 1;
-                                            }
-
-                                        }
-                                        if (count != frmSepararCuenta.f1.dgCuenta4.Rows.Count)
-                                        {
-                                            NImprimir_Comprobante.imprimirCom(Convert.ToInt32(this.lblIdVenta.Text), tipoCompr, this.txtNombre.Text.Trim(), this.txtDireccion.Text.Trim(),
-                                                                this.txtDocumento.Text.Trim(), frmSepararCuenta.f1.lblTrabajador.Text, frmSepararCuenta.f1.lblSalon.Text,
-                                                                frmSepararCuenta.f1.lblMesa.Text, frmSepararCuenta.f1.dgCuenta4, this.lblDescuento.Text, this.lblDctoGeneral.Text,
-                                                                this.lblSubTotal.Text, this.lblIgv.Text, this.lblTotal.Text, efectivo1, vuelto1, tarjeta1, formaPago1, modoProd,
-                                                                "00.00", "", NAliento.MensajeAliento());
-                                        }
-
-                                        this.Facturador(Convert.ToInt32(this.lblIdVenta.Text), frmSepararCuenta.f1.dgCuenta4);
-                                        this.Limpiar();
-                                    }
-                                    this.Limpiar();
-                                    this.btn4.Enabled = false;
-                                    if (btn1.Enabled == false && btn2.Enabled == false && btn3.Enabled == false && btn4.Enabled == false && btn5.Enabled == false && btn6.Enabled == false)
-                                    {
-                                        NMesa.EditarEstadoMesa(Convert.ToInt32(this.lblIdMesa.Text), "Libre");
-                                        frmModuloSalon.f3.limpiarMesas();
-                                        frmModuloSalon.f3.mostrarSalones();
-
-                                        this.Close();
-                                        frmVenta.f1.Close();
-                                        frmSepararCuenta.f1.Close();
-                                        frmModuloSalon.f3.tEstado.Enabled = true;
-
-                                    }
-
-                                }
-                                else
-                                {
-                                    MessageBox.Show(rpta);
-                                }
-
-
+                                PagoPorCuentaVentaRegistrada(idCliente, frmSepararCuenta.f1.dtDetalle4, vuelto,btn4, frmSepararCuenta.f1.dgCuenta4);
                             }
                             else if (lblBanderaCuenta.Text == "5")
                             {
-                                if (this.lblBanderaComprobante.Text == "0" || this.lblBanderaComprobante.Text == "1")
-                                {
-                                    string tipoCompr = "";
-                                    if (this.lblBanderaComprobante.Text == "0")
-                                    {
-                                        tipoCompr = "TICKET";
-                                    }
-                                    else
-                                    {
-                                        tipoCompr = "BOLETA";
-                                    }
-                                    rpta = NVenta.InsertarPedidoPagado(idCliente, Convert.ToInt32(this.lblIdMesa.Text), DateTime.Now, "PAGADA",
-                                        formaPago, Convert.ToDecimal(this.lblDctoGeneral.Text.Trim()), Convert.ToInt32(this.lblIdUsuario.Text), "CS", 1, tipoCompr, 1,
-                                        Convert.ToDecimal(this.lblIgv.Text), "EMITIDA", efectivo, tarjeta, Convert.ToDecimal(this.lblTotal.Text),
-                                        00.00m, frmSepararCuenta.f1.dtDetalle5, vuelto, frmVenta.f1.dtDetalleMenu,
-                                        DateTime.Now, 00.00m, Convert.ToInt32(this.lblIdUsuario.Text), "", "", "", "");
-
-                                    this.button1.Enabled = false;
-                                }
-                                else if (this.lblBanderaComprobante.Text == "2")
-                                {
-                                    if (this.txtIdCliente.Text.Trim() == string.Empty || this.txtDocumento.Text.Trim().Length != 11)
-                                    {
-                                        MessageBox.Show("Seleccione un cliente o ingrese un número de RUC válido");
-                                        return;
-                                    }
-                                    else
-                                    {
-                                        rpta = NVenta.InsertarPedidoPagado(idCliente, Convert.ToInt32(this.lblIdMesa.Text), DateTime.Now, "PAGADA",
-                                            formaPago, Convert.ToDecimal(this.lblDctoGeneral.Text.Trim()), Convert.ToInt32(this.lblIdUsuario.Text), "CS", 1, "FACTURA", 1,
-                                            Convert.ToDecimal(this.lblIgv.Text), "EMITIDA", Convert.ToDecimal(this.lblTotal.Text), efectivo,
-                                            tarjeta, 00.00m, frmSepararCuenta.f1.dtDetalle5, vuelto, frmVenta.f1.dtDetalleMenu,
-                                            DateTime.Now, 00.00m, Convert.ToInt32(this.lblIdUsuario.Text), "", "", "", "");
-
-                                        this.button1.Enabled = false;
-                                    }
-                                }
-                                if (rpta == "OK")
-                                {
-                                    if (insertarCaja() == true)
-                                    {
-                                        //MessageBox.Show("Se registró correctamente");
-                                        enviarFormaPago();
-                                        string tipoCompr = "";
-
-                                        if (this.lblBanderaComprobante.Text == "0")
-                                        {
-                                            tipoCompr = "TICKET";
-                                        }
-                                        else if (this.lblBanderaComprobante.Text == "1")
-                                        {
-                                            tipoCompr = "BOLETA";
-                                        }
-                                        else
-                                        {
-                                            tipoCompr = "FACTURA";
-                                        }
-
-                                        int count = 0;
-                                        DataTable dtCategoriaProducto = new DataTable();
-                                        for (int i = 0; i < frmSepararCuenta.f1.dgCuenta5.Rows.Count; i++)
-                                        {
-
-                                            dtCategoriaProducto = NCategoria.MostrarCategoriaProducto(Convert.ToInt32(frmSepararCuenta.f1.dgCuenta5.Rows[i].Cells[0].ToString()));
-                                            if (dtCategoriaProducto.Rows[0][1].ToString() == "BOCADITOS POR MENOR" || dtCategoriaProducto.Rows[0][1].ToString() == "PANES POR MENOR")
-                                            {
-                                                count = count + 1;
-                                            }
-
-                                        }
-                                        if (count != frmSepararCuenta.f1.dgCuenta5.Rows.Count)
-                                        {
-                                            NImprimir_Comprobante.imprimirCom(Convert.ToInt32(this.lblIdVenta.Text), tipoCompr, this.txtNombre.Text.Trim(), this.txtDireccion.Text.Trim(),
-                                                                    this.txtDocumento.Text.Trim(), frmSepararCuenta.f1.lblTrabajador.Text, frmSepararCuenta.f1.lblSalon.Text,
-                                                                    frmSepararCuenta.f1.lblMesa.Text, frmSepararCuenta.f1.dgCuenta5, this.lblDescuento.Text, this.lblDctoGeneral.Text,
-                                                                    this.lblSubTotal.Text, this.lblIgv.Text, this.lblTotal.Text, efectivo1, vuelto1, tarjeta1, formaPago1, modoProd,
-                                                                    "00.00", "", NAliento.MensajeAliento());
-                                        }
-
-
-                                        this.Facturador(Convert.ToInt32(this.lblIdVenta.Text), frmSepararCuenta.f1.dgCuenta5);
-                                        this.Limpiar();
-                                    }
-                                    this.Limpiar();
-                                    this.btn5.Enabled = false;
-                                    if (btn1.Enabled == false && btn2.Enabled == false && btn3.Enabled == false && btn4.Enabled == false && btn5.Enabled == false && btn6.Enabled == false)
-                                    {
-                                        NMesa.EditarEstadoMesa(Convert.ToInt32(this.lblIdMesa.Text), "Libre");
-                                        frmModuloSalon.f3.limpiarMesas();
-                                        frmModuloSalon.f3.mostrarSalones();
-
-                                        this.Close();
-                                        frmVenta.f1.Close();
-                                        frmSepararCuenta.f1.Close();
-                                        frmModuloSalon.f3.tEstado.Enabled = true;
-
-                                    }
-
-                                }
-                                else
-                                {
-                                    MessageBox.Show(rpta);
-                                }
-
+                                PagoPorCuentaVentaRegistrada(idCliente, frmSepararCuenta.f1.dtDetalle5, vuelto,btn5, frmSepararCuenta.f1.dgCuenta5);
                             }
                             else if (lblBanderaCuenta.Text == "6")
                             {
-                                if (this.lblBanderaComprobante.Text == "0" || this.lblBanderaComprobante.Text == "1")
-                                {
-                                    string tipoCompr = "";
-                                    if (this.lblBanderaComprobante.Text == "0")
-                                    {
-                                        tipoCompr = "TICKET";
-                                    }
-                                    else
-                                    {
-                                        tipoCompr = "BOLETA";
-                                    }
-                                    rpta = NVenta.InsertarPedidoPagado(idCliente, Convert.ToInt32(this.lblIdMesa.Text), DateTime.Now, "PAGADA",
-                                        formaPago, Convert.ToDecimal(this.lblDctoGeneral.Text.Trim()), Convert.ToInt32(this.lblIdUsuario.Text), "CS", 1, tipoCompr, 1,
-                                        Convert.ToDecimal(this.lblIgv.Text), "EMITIDA", Convert.ToDecimal(this.lblTotal.Text), efectivo,
-                                        tarjeta, 00.00m, frmSepararCuenta.f1.dtDetalle6, vuelto, frmVenta.f1.dtDetalleMenu,
-                                        DateTime.Now, 00.00m, Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text), "", "", "", "");
 
-                                    this.button1.Enabled = false;
-                                }
-                                else if (this.lblBanderaComprobante.Text == "2")
-                                {
-                                    if (this.txtIdCliente.Text.Trim() == string.Empty || this.txtDocumento.Text.Trim().Length != 11)
-                                    {
-                                        MessageBox.Show("Seleccione un cliente o ingrese un número de RUC válido");
-                                        return;
-                                    }
-                                    else
-                                    {
-                                        rpta = NVenta.InsertarPedidoPagado(idCliente, Convert.ToInt32(this.lblIdMesa.Text), DateTime.Now, "PAGADA",
-                                            formaPago, Convert.ToDecimal(this.lblDctoGeneral.Text.Trim()), Convert.ToInt32(this.lblIdUsuario.Text), "CS", 1, "FACTURA", 1,
-                                            Convert.ToDecimal(this.lblIgv.Text), "EMITIDA", Convert.ToDecimal(this.lblTotal.Text), efectivo,
-                                            tarjeta, 00.00m, frmSepararCuenta.f1.dtDetalle6, vuelto, frmVenta.f1.dtDetalleMenu,
-                                            DateTime.Now, 00.00m, Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text), "", "", "", "");
 
-                                        this.button1.Enabled = false;
-                                    }
-                                }
-                                if (rpta == "OK")
-                                {
-                                    if (insertarCaja() == true)
-                                    {
-                                        // MessageBox.Show("Se registró correctamente");
-                                        enviarFormaPago();
-                                        string tipoCompr = "";
-
-                                        if (this.lblBanderaComprobante.Text == "0")
-                                        {
-                                            tipoCompr = "TICKET";
-                                        }
-                                        else if (this.lblBanderaComprobante.Text == "1")
-                                        {
-                                            tipoCompr = "BOLETA";
-                                        }
-                                        else
-                                        {
-                                            tipoCompr = "FACTURA";
-                                        }
-                                        int count = 0;
-                                        DataTable dtCategoriaProducto = new DataTable();
-                                        for (int i = 0; i < frmSepararCuenta.f1.dgCuenta6.Rows.Count; i++)
-                                        {
-
-                                            dtCategoriaProducto = NCategoria.MostrarCategoriaProducto(Convert.ToInt32(frmSepararCuenta.f1.dgCuenta6.Rows[i].Cells[0].ToString()));
-                                            if (dtCategoriaProducto.Rows[0][1].ToString() == "BOCADITOS POR MENOR" || dtCategoriaProducto.Rows[0][1].ToString() == "PANES POR MENOR")
-                                            {
-                                                count = count + 1;
-                                            }
-
-                                        }
-                                        if (count != frmSepararCuenta.f1.dgCuenta6.Rows.Count)
-                                        {
-                                            NImprimir_Comprobante.imprimirCom(Convert.ToInt32(this.lblIdVenta.Text), tipoCompr, this.txtNombre.Text.Trim(), this.txtDireccion.Text.Trim(),
-                                                                this.txtDocumento.Text.Trim(), frmSepararCuenta.f1.lblTrabajador.Text, frmSepararCuenta.f1.lblSalon.Text,
-                                                                frmSepararCuenta.f1.lblMesa.Text, frmSepararCuenta.f1.dgCuenta6, this.lblDescuento.Text, this.lblDctoGeneral.Text,
-                                                                this.lblSubTotal.Text, this.lblIgv.Text, this.lblTotal.Text, efectivo1, vuelto1, tarjeta1, formaPago1, modoProd,
-                                                                "00.00", "", NAliento.MensajeAliento());
-                                        }
-
-                                        this.Facturador(Convert.ToInt32(this.lblIdVenta.Text), frmSepararCuenta.f1.dgCuenta6);
-                                        this.Limpiar();
-                                    }
-                                    this.Limpiar();
-                                    this.btn6.Enabled = false;
-                                    if (btn1.Enabled == false && btn2.Enabled == false && btn3.Enabled == false && btn4.Enabled == false && btn5.Enabled == false && btn6.Enabled == false)
-                                    {
-                                        NMesa.EditarEstadoMesa(Convert.ToInt32(this.lblIdMesa.Text), "Libre");
-                                        frmModuloSalon.f3.limpiarMesas();
-                                        frmModuloSalon.f3.mostrarSalones();
-
-                                        this.Close();
-                                        frmVenta.f1.Close();
-                                        frmSepararCuenta.f1.Close();
-                                        frmModuloSalon.f3.tEstado.Enabled = true;
-
-                                    }
-
-                                }
-                                else
-                                {
-                                    MessageBox.Show(rpta);
-                                }
-
+                                PagoPorCuentaVentaRegistrada(idCliente, frmSepararCuenta.f1.dtDetalle6, vuelto,btn6, frmSepararCuenta.f1.dgCuenta6);
                             }
                         }
                     }
@@ -1123,726 +777,30 @@ namespace CapaPresentacion
 
                             if (lblBanderaCuenta.Text == "1")
                             {
-
-                                //recorrer dg1 y eliminar detalles
-                                if (this.txtIdCliente.Text == string.Empty && this.lblBanderaComprobante.Text == "2")
-                                {
-                                    MessageBox.Show("Seleccione un cliente");
-                                    return;
-                                }
-                                else if (this.lblBanderaComprobante.Text == "2" && this.txtDocumento.Text.Trim().Length != 11)
-                                {
-                                    MessageBox.Show("Ingrese un número de RUC válido");
-                                    return;
-                                }
-                                else
-                                {
-                                    for (int i = 0; i < frmSepararCuenta.f1.dtDetalle.Rows.Count; i++)
-                                    {
-                                        rpta = NDetalleVenta.Eliminar(Convert.ToInt32(frmSepararCuenta.f1.dtDetalle.Rows[i]["idDetalleVenta"].ToString()));
-                                    }
-
-                                }
-
-
-                                if (rpta == "OK")
-                                {
-                                    if (this.lblBanderaComprobante.Text == "0" || this.lblBanderaComprobante.Text == "1")
-                                    {
-                                        string tipoCompr = "";
-                                        if (this.lblBanderaComprobante.Text == "0")
-                                        {
-                                            tipoCompr = "TICKET";
-                                        }
-                                        else
-                                        {
-                                            tipoCompr = "BOLETA";
-                                        }
-                                        rpta = NVenta.InsertarPedidoPagado(idCliente, Convert.ToInt32(this.lblIdMesa.Text), DateTime.Now, "PAGADA",
-                                            formaPago, Convert.ToDecimal(this.lblDctoGeneral.Text.Trim()), Convert.ToInt32(this.lblIdUsuario.Text), "CS", 1, tipoCompr, 1,
-                                            Convert.ToDecimal(this.lblIgv.Text), "EMITIDA", Convert.ToDecimal(this.lblTotal.Text), efectivo,
-                                            tarjeta, 00.00m, frmSepararCuenta.f1.dtDetalle, vuelto, frmVenta.f1.dtDetalleMenu,
-                                            DateTime.Now, 00.00m, Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text), "", "", "", "");
-
-
-                                        this.button1.Enabled = false;
-                                    }
-                                    else if (this.lblBanderaComprobante.Text == "2")
-                                    {
-                                        if (this.txtIdCliente.Text.Trim() == string.Empty || this.txtDocumento.Text.Trim().Length != 11)
-                                        {
-                                            MessageBox.Show("Seleccione un cliente o ingrese un número de RUC válido");
-                                            return;
-                                        }
-                                        else
-                                        {
-                                            rpta = NVenta.InsertarPedidoPagado(idCliente, Convert.ToInt32(this.lblIdMesa.Text), DateTime.Now, "PAGADA",
-                                                formaPago, Convert.ToDecimal(this.lblDctoGeneral.Text.Trim()), Convert.ToInt32(this.lblIdUsuario.Text), "CS", 1, "FACTURA", 1,
-                                                Convert.ToDecimal(this.lblIgv.Text), "EMITIDA", Convert.ToDecimal(this.lblTotal.Text), efectivo,
-                                                tarjeta, 00.00m, frmSepararCuenta.f1.dtDetalle, vuelto, frmVenta.f1.dtDetalleMenu,
-                                                DateTime.Now, 00.00m, Convert.ToInt32(this.lblIdUsuario.Text), "", "", "", "");
-
-                                            this.button1.Enabled = false;
-
-                                        }
-
-                                    }
-                                    if (rpta != "")
-                                    {
-                                        if (insertarCaja() == true)
-                                        {
-                                            //MessageBox.Show("Se registró correctamente");
-                                            enviarFormaPago();
-                                            string tipoCompr = "";
-                                            if (this.lblBanderaComprobante.Text == "0")
-                                            {
-                                                tipoCompr = "TICKET";
-                                            }
-                                            else if (this.lblBanderaComprobante.Text == "1")
-                                            {
-                                                tipoCompr = "BOLETA";
-                                            }
-                                            else
-                                            {
-                                                tipoCompr = "FACTURA";
-                                            }
-
-                                            NImprimir_Comprobante.imprimirCom(Convert.ToInt32(rpta), tipoCompr, this.txtNombre.Text.Trim(), this.txtDireccion.Text.Trim(),
-                                                            this.txtDocumento.Text.Trim(), frmSepararCuenta.f1.lblTrabajador.Text, frmSepararCuenta.f1.lblSalon.Text,
-                                                            frmSepararCuenta.f1.lblMesa.Text, frmSepararCuenta.f1.dgCuenta1, this.lblDescuento.Text, this.lblDctoGeneral.Text,
-                                                            this.lblSubTotal.Text, this.lblIgv.Text, this.lblTotal.Text, efectivo1, vuelto1, tarjeta1, formaPago1, modoProd,
-                                                            "00.00", "", NAliento.MensajeAliento());
-
-
-
-                                            this.Facturador(Convert.ToInt32(rpta), frmSepararCuenta.f1.dgCuenta1);
-                                            this.Limpiar();
-                                        }
-
-                                        this.btn1.Enabled = false;
-                                        if (btn1.Enabled == false && btn2.Enabled == false && btn3.Enabled == false && btn4.Enabled == false && btn5.Enabled == false && btn6.Enabled == false)
-                                        {
-                                            rpta = NVenta.EliminarCS(Convert.ToInt32(this.lblIdVenta.Text));
-                                            NMesa.EditarEstadoMesa(Convert.ToInt32(this.lblIdMesa.Text), "Libre");
-                                            frmModuloSalon.f3.limpiarMesas();
-                                            frmModuloSalon.f3.mostrarSalones();
-
-                                            this.Close();
-                                            frmVenta.f1.Close();
-                                            frmSepararCuenta.f1.Close();
-                                            frmModuloSalon.f3.tEstado.Enabled = true;
-
-                                        }
-
-                                    }
-                                    else
-                                    {
-                                        MessageBox.Show(rpta);
-                                    }
-                                }
-                                else
-                                {
-                                    MessageBox.Show(rpta);
-                                }
-
-
+                                PagoPorCuentaVentaSinRegistrar(idCliente, frmSepararCuenta.f1.dtDetalle, vuelto, btn1, frmSepararCuenta.f1.dgCuenta1);
                             }
                             else if (lblBanderaCuenta.Text == "2")
                             {
-                                if (this.txtIdCliente.Text == string.Empty && this.lblBanderaComprobante.Text == "2")
-                                {
-                                    MessageBox.Show("Seleccione un cliente");
-                                    return;
-                                }
-                                else if (this.lblBanderaComprobante.Text == "2" && this.txtDocumento.Text.Trim().Length != 11)
-                                {
-                                    MessageBox.Show("Ingrese un número de RUC válido");
-                                    return;
-                                }
-                                else
-                                {
-                                    for (int i = 0; i < frmSepararCuenta.f1.dtDetalle2.Rows.Count; i++)
-                                    {
-                                        rpta = NDetalleVenta.Eliminar(Convert.ToInt32(frmSepararCuenta.f1.dtDetalle2.Rows[i]["idDetalleVenta"].ToString()));
-
-                                    }
-                                }
-
-                                if (rpta == "OK")
-                                {
-                                    if (this.lblBanderaComprobante.Text == "0" || this.lblBanderaComprobante.Text == "1")
-                                    {
-                                        string tipoCompr = "";
-                                        if (this.lblBanderaComprobante.Text == "0")
-                                        {
-                                            tipoCompr = "TICKET";
-                                        }
-                                        else
-                                        {
-                                            tipoCompr = "BOLETA";
-                                        }
-                                        rpta = NVenta.InsertarPedidoPagado(idCliente, Convert.ToInt32(this.lblIdMesa.Text), DateTime.Now, "PAGADA",
-                                            formaPago, Convert.ToDecimal(this.lblDctoGeneral.Text.Trim()), Convert.ToInt32(this.lblIdUsuario.Text), "CS", 1, tipoCompr, 1,
-                                            Convert.ToDecimal(this.lblIgv.Text), "EMITIDA", Convert.ToDecimal(this.lblTotal.Text), efectivo,
-                                            tarjeta, 00.00m, frmSepararCuenta.f1.dtDetalle2, vuelto, frmVenta.f1.dtDetalleMenu,
-                                            DateTime.Now, 00.00m, Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text), "", "", "", "");
-
-                                        this.button1.Enabled = false;
-                                    }
-                                    else if (this.lblBanderaComprobante.Text == "2")
-                                    {
-                                        if (this.txtIdCliente.Text.Trim() == string.Empty || this.txtDocumento.Text.Trim().Length != 11)
-                                        {
-                                            MessageBox.Show("Seleccione un cliente o ingrese un número de RUC válido");
-                                            return;
-                                        }
-                                        else
-                                        {
-                                            rpta = NVenta.InsertarPedidoPagado(idCliente, Convert.ToInt32(this.lblIdMesa.Text), DateTime.Now, "PAGADA",
-                                                formaPago, Convert.ToDecimal(this.lblDctoGeneral.Text.Trim()), Convert.ToInt32(this.lblIdUsuario.Text), "CS", 1, "FACTURA", 1,
-                                                Convert.ToDecimal(this.lblIgv.Text), "EMITIDA", Convert.ToDecimal(this.lblTotal.Text),
-                                                efectivo, tarjeta, 00.00m, frmSepararCuenta.f1.dtDetalle2, vuelto, frmVenta.f1.dtDetalleMenu,
-                                                DateTime.Now, 00.00m, Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text), "", "", "", "");
-
-                                            this.button1.Enabled = false;
-                                        }
-                                    }
-                                    if (rpta != "")
-                                    {
-                                        if (insertarCaja() == true)
-                                        {
-                                            //MessageBox.Show("Se registró correctamente");
-                                            enviarFormaPago();
-                                            string tipoCompr = "";
-                                            if (this.lblBanderaComprobante.Text == "0")
-                                            {
-                                                tipoCompr = "TICKET";
-                                            }
-                                            else if (this.lblBanderaComprobante.Text == "1")
-                                            {
-                                                tipoCompr = "BOLETA";
-                                            }
-                                            else
-                                            {
-                                                tipoCompr = "FACTURA";
-                                            }
-
-
-                                            NImprimir_Comprobante.imprimirCom(Convert.ToInt32(rpta), tipoCompr, this.txtNombre.Text.Trim(), this.txtDireccion.Text.Trim(),
-                                                            this.txtDocumento.Text.Trim(), frmSepararCuenta.f1.lblTrabajador.Text, frmSepararCuenta.f1.lblSalon.Text,
-                                                            frmSepararCuenta.f1.lblMesa.Text, frmSepararCuenta.f1.dgCuenta2, this.lblDescuento.Text, this.lblDctoGeneral.Text,
-                                                            this.lblSubTotal.Text, this.lblIgv.Text, this.lblTotal.Text, efectivo1, vuelto1, tarjeta1,
-                                                            formaPago1, modoProd, "00.00", "", NAliento.MensajeAliento());
-
-
-                                            this.Facturador(Convert.ToInt32(rpta), frmSepararCuenta.f1.dgCuenta2);
-                                            this.Limpiar();
-                                        }
-
-                                        this.btn2.Enabled = false;
-                                        if (btn1.Enabled == false && btn2.Enabled == false && btn3.Enabled == false && btn4.Enabled == false && btn5.Enabled == false && btn6.Enabled == false)
-                                        {
-                                            rpta = NVenta.EliminarCS(Convert.ToInt32(this.lblIdVenta.Text));
-                                            NMesa.EditarEstadoMesa(Convert.ToInt32(this.lblIdMesa.Text), "Libre");
-                                            frmModuloSalon.f3.limpiarMesas();
-                                            frmModuloSalon.f3.mostrarSalones();
-
-                                            this.Close();
-                                            frmVenta.f1.Close();
-                                            frmSepararCuenta.f1.Close();
-                                            frmModuloSalon.f3.tEstado.Enabled = true;
-
-                                        }
-
-                                    }
-                                    else
-                                    {
-                                        MessageBox.Show(rpta);
-                                    }
-
-                                }
-                                else
-                                {
-                                    MessageBox.Show(rpta);
-                                }
-
+                                PagoPorCuentaVentaSinRegistrar(idCliente, frmSepararCuenta.f1.dtDetalle2, vuelto, btn2, frmSepararCuenta.f1.dgCuenta2);
                             }
                             else if (lblBanderaCuenta.Text == "3")
                             {
-                                if (this.txtIdCliente.Text == string.Empty && this.lblBanderaComprobante.Text == "2")
-                                {
-                                    MessageBox.Show("Seleccione un cliente");
-                                    return;
-                                }
-                                else if (this.lblBanderaComprobante.Text == "2" && this.txtDocumento.Text.Trim().Length != 11)
-                                {
-                                    MessageBox.Show("Ingrese un número de RUC válido");
-                                    return;
-                                }
-                                else
-                                {
-                                    for (int i = 0; i < frmSepararCuenta.f1.dtDetalle3.Rows.Count; i++)
-                                    {
-                                        rpta = NDetalleVenta.Eliminar(Convert.ToInt32(frmSepararCuenta.f1.dtDetalle3.Rows[i]["idDetalleVenta"].ToString()));
-                                    }
-                                }
-
-                                if (rpta == "OK")
-                                {
-                                    if (this.lblBanderaComprobante.Text == "0" || this.lblBanderaComprobante.Text == "1")
-                                    {
-                                        string tipoCompr = "";
-                                        if (this.lblBanderaComprobante.Text == "0")
-                                        {
-                                            tipoCompr = "TICKET";
-                                        }
-                                        else
-                                        {
-                                            tipoCompr = "BOLETA";
-                                        }
-                                        rpta = NVenta.InsertarPedidoPagado(idCliente, Convert.ToInt32(this.lblIdMesa.Text), DateTime.Now, "PAGADA",
-                                            formaPago, Convert.ToDecimal(this.lblDctoGeneral.Text.Trim()), Convert.ToInt32(this.lblIdUsuario.Text), "CS", 1, tipoCompr, 1,
-                                            Convert.ToDecimal(this.lblIgv.Text), "EMITIDA", Convert.ToDecimal(this.lblTotal.Text), efectivo,
-                                            tarjeta, 00.00m, frmSepararCuenta.f1.dtDetalle3, vuelto, frmVenta.f1.dtDetalleMenu,
-                                            DateTime.Now, 00.00m, Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text), "", "", "", "");
-
-                                        this.button1.Enabled = false;
-                                    }
-                                    else if (this.lblBanderaComprobante.Text == "2")
-                                    {
-                                        if (this.txtIdCliente.Text.Trim() == string.Empty || this.txtDocumento.Text.Trim().Length != 11)
-                                        {
-                                            MessageBox.Show("Seleccione un cliente o ingrese un número de RUC válido");
-                                            return;
-                                        }
-                                        else
-                                        {
-                                            rpta = NVenta.InsertarPedidoPagado(idCliente, Convert.ToInt32(this.lblIdMesa.Text), DateTime.Now, "PAGADA",
-                                                formaPago, Convert.ToDecimal(this.lblDctoGeneral.Text.Trim()), Convert.ToInt32(this.lblIdUsuario.Text), "CS", 1, "FACTURA", 1,
-                                                Convert.ToDecimal(this.lblIgv.Text), "EMITIDA", Convert.ToDecimal(this.lblTotal.Text), efectivo,
-                                                tarjeta, 00.00m, frmSepararCuenta.f1.dtDetalle3, vuelto, frmVenta.f1.dtDetalleMenu,
-                                                DateTime.Now, 00.00m, Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text), "", "", "", "");
-
-                                            this.button1.Enabled = false;
-                                        }
-                                    }
-                                    if (rpta != "")
-                                    {
-                                        if (insertarCaja() == true)
-                                        {
-                                            // MessageBox.Show("Se registró correctamente");
-                                            enviarFormaPago();
-                                            string tipoCompr = "";
-                                            if (this.lblBanderaComprobante.Text == "0")
-                                            {
-                                                tipoCompr = "TICKET";
-                                            }
-                                            else if (this.lblBanderaComprobante.Text == "1")
-                                            {
-                                                tipoCompr = "BOLETA";
-                                            }
-                                            else
-                                            {
-                                                tipoCompr = "FACTURA";
-                                            }
-
-                                            NImprimir_Comprobante.imprimirCom(Convert.ToInt32(rpta), tipoCompr, this.txtNombre.Text.Trim(), this.txtDireccion.Text.Trim(),
-                                                               this.txtDocumento.Text.Trim(), frmSepararCuenta.f1.lblTrabajador.Text, frmSepararCuenta.f1.lblSalon.Text,
-                                                               frmSepararCuenta.f1.lblMesa.Text, frmSepararCuenta.f1.dgCuenta3, this.lblDescuento.Text, this.lblDctoGeneral.Text,
-                                                               this.lblSubTotal.Text, this.lblIgv.Text, this.lblTotal.Text, efectivo1, vuelto1, tarjeta1, formaPago1,
-                                                               modoProd, "00.00", "", NAliento.MensajeAliento());
-
-
-
-                                            this.Facturador(Convert.ToInt32(rpta), frmSepararCuenta.f1.dgCuenta3);
-                                            this.Limpiar();
-                                        }
-
-                                        this.btn3.Enabled = false;
-                                        if (btn1.Enabled == false && btn2.Enabled == false && btn3.Enabled == false && btn4.Enabled == false && btn5.Enabled == false && btn6.Enabled == false)
-                                        {
-                                            rpta = NVenta.EliminarCS(Convert.ToInt32(this.lblIdVenta.Text));
-                                            NMesa.EditarEstadoMesa(Convert.ToInt32(this.lblIdMesa.Text), "Libre");
-                                            frmModuloSalon.f3.limpiarMesas();
-                                            frmModuloSalon.f3.mostrarSalones();
-
-                                            this.Close();
-                                            frmVenta.f1.Close();
-                                            frmSepararCuenta.f1.Close();
-                                            frmModuloSalon.f3.tEstado.Enabled = true;
-
-                                        }
-
-                                    }
-                                    else
-                                    {
-                                        MessageBox.Show(rpta);
-                                    }
-
-
-                                }
-                                else
-                                {
-                                    MessageBox.Show(rpta);
-                                }
-
-
+                                PagoPorCuentaVentaSinRegistrar(idCliente, frmSepararCuenta.f1.dtDetalle3, vuelto, btn3, frmSepararCuenta.f1.dgCuenta3);
                             }
                             else if (lblBanderaCuenta.Text == "4")
                             {
-                                if (this.txtIdCliente.Text == string.Empty && this.lblBanderaComprobante.Text == "2")
-                                {
-                                    MessageBox.Show("Seleccione un cliente");
-                                    return;
-                                }
-                                else if (this.lblBanderaComprobante.Text == "2" && this.txtDocumento.Text.Trim().Length != 11)
-                                {
-                                    MessageBox.Show("Ingrese un número de RUC válido");
-                                    return;
-                                }
-                                else
-                                {
-                                    for (int i = 0; i < frmSepararCuenta.f1.dtDetalle4.Rows.Count; i++)
-                                    {
-                                        rpta = NDetalleVenta.Eliminar(Convert.ToInt32(frmSepararCuenta.f1.dtDetalle4.Rows[i]["idDetalleVenta"].ToString()));
-                                    }
-
-                                }
-
-                                if (rpta == "OK")
-                                {
-                                    if (this.lblBanderaComprobante.Text == "0" || this.lblBanderaComprobante.Text == "1")
-                                    {
-                                        string tipoCompr = "";
-                                        if (this.lblBanderaComprobante.Text == "0")
-                                        {
-                                            tipoCompr = "TICKET";
-                                        }
-                                        else
-                                        {
-                                            tipoCompr = "BOLETA";
-                                        }
-                                        rpta = NVenta.InsertarPedidoPagado(idCliente, Convert.ToInt32(this.lblIdMesa.Text), DateTime.Now, "PAGADA",
-                                            formaPago, Convert.ToDecimal(this.lblDctoGeneral.Text.Trim()), Convert.ToInt32(this.lblIdUsuario.Text), "CS", 1, tipoCompr, 1,
-                                            Convert.ToDecimal(this.lblIgv.Text), "EMITIDA", Convert.ToDecimal(this.lblTotal.Text), efectivo, tarjeta, 00.00m,
-                                            frmSepararCuenta.f1.dtDetalle4, vuelto, frmVenta.f1.dtDetalleMenu, DateTime.Now, 00.00m, Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text), "",
-                                            "", "", "");
-
-                                        this.button1.Enabled = false;
-                                    }
-                                    else if (this.lblBanderaComprobante.Text == "2")
-                                    {
-                                        if (this.txtIdCliente.Text.Trim() == string.Empty || this.txtDocumento.Text.Trim().Length != 11)
-                                        {
-                                            MessageBox.Show("Seleccione un cliente o ingrese un número de RUC válido");
-                                            return;
-                                        }
-                                        else
-                                        {
-                                            rpta = NVenta.InsertarPedidoPagado(idCliente, Convert.ToInt32(this.lblIdMesa.Text), DateTime.Now, "PAGADA",
-                                                formaPago, Convert.ToDecimal(this.lblDctoGeneral.Text.Trim()), Convert.ToInt32(this.lblIdUsuario.Text), "CS", 1, "FACTURA", 1,
-                                                Convert.ToDecimal(this.lblIgv.Text), "EMITIDA", Convert.ToDecimal(this.lblTotal.Text), efectivo, tarjeta, 00.00m,
-                                                frmSepararCuenta.f1.dtDetalle4, vuelto, frmVenta.f1.dtDetalleMenu, DateTime.Now, 00.00m, Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text), "",
-                                                "", "", "");
-
-                                            this.button1.Enabled = false;
-                                        }
-                                    }
-                                    if (rpta != "")
-                                    {
-                                        if (insertarCaja() == true)
-                                        {
-                                            // MessageBox.Show("Se registró correctamente");
-                                            enviarFormaPago();
-                                            string tipoCompr = "";
-                                            if (this.lblBanderaComprobante.Text == "0")
-                                            {
-                                                tipoCompr = "TICKET";
-                                            }
-                                            else if (this.lblBanderaComprobante.Text == "1")
-                                            {
-                                                tipoCompr = "BOLETA";
-                                            }
-                                            else
-                                            {
-                                                tipoCompr = "FACTURA";
-                                            }
-
-                                            NImprimir_Comprobante.imprimirCom(Convert.ToInt32(rpta), tipoCompr, this.txtNombre.Text.Trim(), this.txtDireccion.Text.Trim(),
-                                                               this.txtDocumento.Text.Trim(), frmSepararCuenta.f1.lblTrabajador.Text, frmSepararCuenta.f1.lblSalon.Text,
-                                                               frmSepararCuenta.f1.lblMesa.Text, frmSepararCuenta.f1.dgCuenta4, this.lblDescuento.Text, this.lblDctoGeneral.Text,
-                                                               this.lblSubTotal.Text, this.lblIgv.Text, this.lblTotal.Text, efectivo1, vuelto1, tarjeta1, formaPago1,
-                                                               modoProd, "00.00", "", NAliento.MensajeAliento());
-
-
-                                            this.Facturador(Convert.ToInt32(rpta), frmSepararCuenta.f1.dgCuenta4);
-                                            this.Limpiar();
-                                        }
-
-                                        this.btn4.Enabled = false;
-                                        if (btn1.Enabled == false && btn2.Enabled == false && btn3.Enabled == false && btn4.Enabled == false && btn5.Enabled == false && btn6.Enabled == false)
-                                        {
-                                            rpta = NVenta.EliminarCS(Convert.ToInt32(this.lblIdVenta.Text));
-                                            NMesa.EditarEstadoMesa(Convert.ToInt32(this.lblIdMesa.Text), "Libre");
-                                            frmModuloSalon.f3.limpiarMesas();
-                                            frmModuloSalon.f3.mostrarSalones();
-
-                                            this.Close();
-                                            frmVenta.f1.Close();
-                                            frmSepararCuenta.f1.Close();
-                                            frmModuloSalon.f3.tEstado.Enabled = true;
-
-                                        }
-
-                                    }
-                                    else
-                                    {
-                                        MessageBox.Show(rpta);
-                                    }
-                                }
-
-                                else
-                                {
-                                    MessageBox.Show(rpta);
-                                }
+                                PagoPorCuentaVentaSinRegistrar(idCliente, frmSepararCuenta.f1.dtDetalle4, vuelto, btn4, frmSepararCuenta.f1.dgCuenta4);
 
                             }
                             else if (lblBanderaCuenta.Text == "5")
                             {
-                                if (this.txtIdCliente.Text == string.Empty && this.lblBanderaComprobante.Text == "2")
-                                {
-                                    MessageBox.Show("Seleccione un cliente");
-                                    return;
-                                }
-                                else if (this.lblBanderaComprobante.Text == "2" && this.txtDocumento.Text.Trim().Length != 11)
-                                {
-                                    MessageBox.Show("Ingrese un número de RUC válido");
-                                    return;
-                                }
-                                else
-                                {
-                                    for (int i = 0; i < frmSepararCuenta.f1.dtDetalle5.Rows.Count; i++)
-                                    {
-                                        rpta = NDetalleVenta.Eliminar(Convert.ToInt32(frmSepararCuenta.f1.dtDetalle5.Rows[i]["idDetalleVenta"].ToString()));
-                                    }
-                                }
 
-                                if (rpta == "OK")
-                                {
-                                    if (this.lblBanderaComprobante.Text == "0" || this.lblBanderaComprobante.Text == "1")
-                                    {
-                                        string tipoCompr = "";
-                                        if (this.lblBanderaComprobante.Text == "0")
-                                        {
-                                            tipoCompr = "TICKET";
-                                        }
-                                        else
-                                        {
-                                            tipoCompr = "BOLETA";
-                                        }
-                                        rpta = NVenta.InsertarPedidoPagado(idCliente, Convert.ToInt32(this.lblIdMesa.Text), DateTime.Now, "PAGADA",
-                                            formaPago, Convert.ToDecimal(this.lblDctoGeneral.Text.Trim()), Convert.ToInt32(this.lblIdUsuario.Text), "CS", 1, tipoCompr, 1,
-                                            Convert.ToDecimal(this.lblIgv.Text), "EMITIDA", Convert.ToDecimal(this.lblTotal.Text), efectivo, tarjeta, 00.00m,
-                                            frmSepararCuenta.f1.dtDetalle5, vuelto, frmVenta.f1.dtDetalleMenu, DateTime.Now, 00.00m, Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text), "",
-                                            "", "", "");
-
-                                        this.button1.Enabled = false;
-                                    }
-                                    else if (this.lblBanderaComprobante.Text == "2")
-                                    {
-                                        if (this.txtIdCliente.Text.Trim() == string.Empty || this.txtDocumento.Text.Trim().Length != 11)
-                                        {
-                                            MessageBox.Show("Seleccione un cliente o ingrese un número de RUC válido");
-                                            return;
-                                        }
-                                        else
-                                        {
-                                            rpta = NVenta.InsertarPedidoPagado(idCliente, Convert.ToInt32(this.lblIdMesa.Text), DateTime.Now, "PAGADA",
-                                                formaPago, Convert.ToDecimal(this.lblDctoGeneral.Text.Trim()), Convert.ToInt32(this.lblIdUsuario.Text), "CS", 1, "FACTURA", 1,
-                                                Convert.ToDecimal(this.lblIgv.Text), "EMITIDA", Convert.ToDecimal(this.lblTotal.Text), efectivo, tarjeta, 00.00m,
-                                                frmSepararCuenta.f1.dtDetalle5, vuelto, frmVenta.f1.dtDetalleMenu, DateTime.Now, 00.00m, Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text), "",
-                                                "", "", "");
-
-                                            this.button1.Enabled = false;
-                                        }
-                                    }
-                                    if (rpta != "")
-                                    {
-                                        if (insertarCaja() == true)
-                                        {
-                                            // MessageBox.Show("Se registró correctamente");
-                                            enviarFormaPago();
-                                            string tipoCompr = "";
-
-                                            if (this.lblBanderaComprobante.Text == "0")
-                                            {
-                                                tipoCompr = "TICKET";
-                                            }
-                                            else if (this.lblBanderaComprobante.Text == "1")
-                                            {
-                                                tipoCompr = "BOLETA";
-                                            }
-                                            else
-                                            {
-                                                tipoCompr = "FACTURA";
-                                            }
-
-
-                                            NImprimir_Comprobante.imprimirCom(Convert.ToInt32(rpta), tipoCompr, this.txtNombre.Text.Trim(), this.txtDireccion.Text.Trim(),
-                                                                this.txtDocumento.Text.Trim(), frmSepararCuenta.f1.lblTrabajador.Text, frmSepararCuenta.f1.lblSalon.Text,
-                                                                frmSepararCuenta.f1.lblMesa.Text, frmSepararCuenta.f1.dgCuenta5, this.lblDescuento.Text, this.lblDctoGeneral.Text,
-                                                                this.lblSubTotal.Text, this.lblIgv.Text, this.lblTotal.Text, efectivo1, vuelto1, tarjeta1, formaPago1, modoProd,
-                                                                "00.00", "", NAliento.MensajeAliento());
-
-
-                                            this.Facturador(Convert.ToInt32(rpta), frmSepararCuenta.f1.dgCuenta5);
-                                            this.Limpiar();
-                                        }
-
-                                        this.btn5.Enabled = false;
-                                        if (btn1.Enabled == false && btn2.Enabled == false && btn3.Enabled == false && btn4.Enabled == false && btn5.Enabled == false && btn6.Enabled == false)
-                                        {
-                                            NMesa.EditarEstadoMesa(Convert.ToInt32(this.lblIdMesa.Text), "Libre");
-                                            rpta = NVenta.EliminarCS(Convert.ToInt32(this.lblIdVenta.Text));
-                                            frmModuloSalon.f3.limpiarMesas();
-                                            frmModuloSalon.f3.mostrarSalones();
-
-                                            this.Close();
-                                            frmVenta.f1.Close();
-                                            frmSepararCuenta.f1.Close();
-                                            frmModuloSalon.f3.tEstado.Enabled = true;
-
-                                        }
-
-                                    }
-                                    else
-                                    {
-                                        MessageBox.Show(rpta);
-                                    }
-                                }
-                                else
-                                {
-                                    MessageBox.Show(rpta);
-                                }
-
+                                PagoPorCuentaVentaSinRegistrar(idCliente, frmSepararCuenta.f1.dtDetalle5, vuelto, btn5, frmSepararCuenta.f1.dgCuenta5);
                             }
                             else if (lblBanderaCuenta.Text == "6")
                             {
-                                if (this.txtIdCliente.Text == string.Empty && this.lblBanderaComprobante.Text == "2")
-                                {
-                                    MessageBox.Show("Seleccione un cliente");
-                                    return;
-                                }
-                                else if (this.lblBanderaComprobante.Text == "2" && this.txtDocumento.Text.Trim().Length != 11)
-                                {
-                                    MessageBox.Show("Ingrese un número de RUC válido");
-                                    return;
-                                }
-                                else
-                                {
-                                    for (int i = 0; i < frmSepararCuenta.f1.dtDetalle6.Rows.Count; i++)
-                                    {
-                                        rpta = NDetalleVenta.Eliminar(Convert.ToInt32(frmSepararCuenta.f1.dtDetalle6.Rows[i]["idDetalleVenta"].ToString()));
-                                    }
-                                }
 
-                                if (rpta == "OK")
-                                {
-                                    if (this.lblBanderaComprobante.Text == "0" || this.lblBanderaComprobante.Text == "1")
-                                    {
-                                        string tipoCompr = "";
-                                        if (this.lblBanderaComprobante.Text == "0")
-                                        {
-                                            tipoCompr = "TICKET";
-                                        }
-                                        else
-                                        {
-                                            tipoCompr = "BOLETA";
-                                        }
-                                        rpta = NVenta.InsertarPedidoPagado(idCliente, Convert.ToInt32(this.lblIdMesa.Text), DateTime.Now, "PAGADA",
-                                            formaPago, Convert.ToDecimal(this.lblDctoGeneral.Text.Trim()), Convert.ToInt32(this.lblIdUsuario.Text), "CS", 1, tipoCompr, 1,
-                                            Convert.ToDecimal(this.lblIgv.Text), "EMITIDA", Convert.ToDecimal(this.lblTotal.Text), efectivo, tarjeta, 00.00m,
-                                            frmSepararCuenta.f1.dtDetalle6, vuelto, frmVenta.f1.dtDetalleMenu, DateTime.Now, 00.00m, Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text), "", "",
-                                            "", "");
-
-                                        this.button1.Enabled = false;
-                                    }
-                                    else if (this.lblBanderaComprobante.Text == "2")
-                                    {
-                                        if (this.txtIdCliente.Text.Trim() == string.Empty || this.txtDocumento.Text.Trim().Length != 11)
-                                        {
-                                            MessageBox.Show("Seleccione un cliente o ingrese un número de RUC válido");
-                                            return;
-                                        }
-                                        else
-                                        {
-                                            rpta = NVenta.InsertarPedidoPagado(idCliente, Convert.ToInt32(this.lblIdMesa.Text), DateTime.Now, "PAGADA",
-                                                formaPago, Convert.ToDecimal(this.lblDctoGeneral.Text.Trim()), Convert.ToInt32(this.lblIdUsuario.Text), "CS", 1, "FACTURA", 1,
-                                                Convert.ToDecimal(this.lblIgv.Text), "EMITIDA", Convert.ToDecimal(this.lblTotal.Text),
-                                                efectivo, tarjeta, 00.00m, frmSepararCuenta.f1.dtDetalle6, vuelto, frmVenta.f1.dtDetalleMenu,
-                                                DateTime.Now, 00.00m, Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text), "", "", "", "");
-
-                                            this.button1.Enabled = false;
-                                        }
-                                    }
-                                    if (rpta != "")
-                                    {
-                                        if (insertarCaja() == true)
-                                        {
-                                            //MessageBox.Show("Se registró correctamente");
-                                            enviarFormaPago();
-                                            string tipoCompr = "";
-
-                                            if (this.lblBanderaComprobante.Text == "0")
-                                            {
-                                                tipoCompr = "TICKET";
-                                            }
-                                            else if (this.lblBanderaComprobante.Text == "1")
-                                            {
-                                                tipoCompr = "BOLETA";
-                                            }
-                                            else
-                                            {
-                                                tipoCompr = "FACTURA";
-                                            }
-
-
-                                            NImprimir_Comprobante.imprimirCom(Convert.ToInt32(rpta), tipoCompr, this.txtNombre.Text.Trim(), this.txtDireccion.Text.Trim(),
-                                                        this.txtDocumento.Text.Trim(), frmSepararCuenta.f1.lblTrabajador.Text, frmSepararCuenta.f1.lblSalon.Text,
-                                                        frmSepararCuenta.f1.lblMesa.Text, frmSepararCuenta.f1.dgCuenta6, this.lblDescuento.Text, this.lblDctoGeneral.Text,
-                                                        this.lblSubTotal.Text, this.lblIgv.Text, this.lblTotal.Text, efectivo1, vuelto1, tarjeta1, formaPago1, modoProd, "00.00",
-                                                        "", NAliento.MensajeAliento());
-
-
-                                            this.Facturador(Convert.ToInt32(rpta), frmSepararCuenta.f1.dgCuenta6);
-                                            this.Limpiar();
-                                        }
-
-                                        this.btn6.Enabled = false;
-                                        if (btn1.Enabled == false && btn2.Enabled == false && btn3.Enabled == false && btn4.Enabled == false && btn5.Enabled == false && btn6.Enabled == false)
-                                        {
-                                            NMesa.EditarEstadoMesa(Convert.ToInt32(this.lblIdMesa.Text), "Libre");
-                                            rpta = NVenta.EliminarCS(Convert.ToInt32(this.lblIdVenta.Text));
-
-                                            frmModuloSalon.f3.limpiarMesas();
-                                            frmModuloSalon.f3.mostrarSalones();
-                                            this.Close();
-                                            frmVenta.f1.Close();
-                                            frmSepararCuenta.f1.Close();
-                                            frmModuloSalon.f3.tEstado.Enabled = true;
-
-                                        }
-
-                                    }
-                                    else
-                                    {
-                                        MessageBox.Show(rpta);
-                                    }
-                                }
-                                else
-                                {
-                                    MessageBox.Show(rpta);
-                                }
+                                PagoPorCuentaVentaSinRegistrar(idCliente, frmSepararCuenta.f1.dtDetalle6, vuelto, btn6, frmSepararCuenta.f1.dgCuenta6);
 
                             }
                             NVenta.EditarVentaCS(Convert.ToInt32(this.lblIdVenta.Text));
@@ -2268,63 +1226,86 @@ namespace CapaPresentacion
                     this.txtNombre.Text = dtClienteVenta.Rows[0][1].ToString();
                     this.txtDocumento.Text = dtClienteVenta.Rows[0][2].ToString();
                     this.txtDireccion.Text = dtClienteVenta.Rows[0][3].ToString();
+                    this.lblClase.Text = dtClienteVenta.Rows[0][7].ToString();
+                    if (lblClase.Text == "C")
+                    {
+                        string idTipoCliente;
+                        idTipoCliente = dtClienteVenta.Rows[0][6].ToString();
+                        if (idTipoCliente == "" || idTipoCliente == null)
+                        {
+                            cbTipoCliente.SelectedIndex = -1;
+                        }
+                        else
+                        {
+                            cbTipoCliente.SelectedValue = idTipoCliente;
+                            cbTipoCliente.Enabled = true;
+                        }
+                        NDescuento.DescuentoClientes(idTipoCliente, Convert.ToDecimal(lblSubTotal.Text), Convert.ToDecimal(lblIgv.Text), 00.00m,
+                                 Convert.ToDecimal(lblDescuento.Text), Convert.ToDecimal(lblDctoGeneral.Text), lblDctoGeneral, lblSubTotal, lblIgv, lblTotal);
+                        mostrarTotales();
+                    }
+                    else
+                    {
+                        cbTipoCliente.Enabled = false;
+                        cbTipoCliente.SelectedIndex = -1;
+                    }
+                    btnEditar.Enabled = true;
                 }
             }
         }
 
         private void btnNuevo_Click(object sender, EventArgs e)
         {
-            this.btnGuardar.Enabled = true;
-            this.txtNombre.ReadOnly = false;
-            this.txtDireccion.ReadOnly = false;
-            this.txtNombre.Text = string.Empty;
-            this.txtDireccion.Text = string.Empty;
-            this.txtDocumento.Text = string.Empty;
-            this.txtIdCliente.Text = string.Empty;
-            this.txtDocumento.Focus();
-
-        }
-
-        private void btnGuardar_Click(object sender, EventArgs e)
-        {
-            string rpta = "";
-            if (this.txtDocumento.Text.Length == 11)
+            if (lblBanderaComprobante.Text == "0")
             {
-                if (this.txtNombre.Text.Trim() == "" || this.txtDireccion.Text.Trim() == "")
-                {
-                    MessageBox.Show("Complete el nombre y dirección");
-                    this.dataListadoProducto.Select();
-                }
-                else
-                {
-                    rpta = NCliente.InsertarVenta(this.txtNombre.Text.Trim().ToUpper(), DateTime.MinValue, "RUC", this.txtDocumento.Text, this.txtDireccion.Text.Trim(), "", "");
-                    this.txtIdCliente.Text = rpta;
-                    this.txtNombre.ReadOnly = true;
-                    this.txtDireccion.ReadOnly = true;
-                    this.btnGuardar.Enabled = false;
-                    this.btnNuevo.Enabled = false;
-                    this.dataListadoProducto.Select();
-                }
-
-            }
-            else if (this.txtDocumento.Text.Length == 8)
-            {
-                if (this.txtNombre.Text.Trim() == "" || this.txtDireccion.Text.Trim() == "")
-                {
-                    MessageBox.Show("Complete el nombre y dirección");
-                }
-                else
-                {
-                    rpta = NCliente.InsertarVenta(this.txtNombre.Text.Trim().ToUpper(), DateTime.MinValue, "DNI", this.txtDocumento.Text, this.txtDireccion.Text.Trim(), "", "");
-                    this.txtIdCliente.Text = rpta;
-                    this.txtNombre.ReadOnly = true;
-                    this.txtDireccion.ReadOnly = true;
-                }
-
+                MessageBox.Show("Seleccione BOLETA O FACTURA");
             }
             else
             {
-                MessageBox.Show("Ingrese un nro de Documento válido");
+                this.btnGuardar.Enabled = true;
+                this.txtNombre.ReadOnly = false;
+                this.txtDireccion.ReadOnly = false;
+                this.cbTipoCliente.Enabled = true;
+                this.txtNombre.Text = string.Empty;
+                this.txtDireccion.Text = string.Empty;
+                this.txtDocumento.Text = string.Empty;
+                this.txtIdCliente.Text = string.Empty;
+                this.cbTipoCliente.Enabled = true;
+                this.txtDocumento.Focus();
+                btnEditar.Enabled = false;
+                isNuevo = true;
+            }
+        }
+
+        private void cargarTipoCliente()
+        {
+            cbTipoCliente.DataSource = NTipoCliente.Mostrar();
+            cbTipoCliente.ValueMember = "Codigo";
+            cbTipoCliente.DisplayMember = "TipoCliente";
+            cbTipoCliente.SelectedIndex = -1;
+            //lblPrueba.Text = cbCategoria.SelectedValue.ToString();
+
+        }
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
+            string rpta = NTipoCliente.GuardarCliente(lblTotal.Text, "00.00", lblBanderaComprobante.Text, txtDocumento.Text, cbTipoCliente, isNuevo, txtNombre.Text,
+               txtDireccion.Text, txtIdCliente.Text);
+            if (isNuevo && rpta != null)
+            {
+                this.txtIdCliente.Text = rpta;
+                this.txtNombre.ReadOnly = true;
+                this.txtDireccion.ReadOnly = true;
+                this.btnGuardar.Enabled = false;
+                this.btnNuevo.Enabled = false;
+                cbTipoCliente.Enabled = false;
+                
+            }
+            else if (rpta == "OK")
+            {
+                this.txtNombre.ReadOnly = true;
+                this.txtDireccion.ReadOnly = true;
+                this.btnGuardar.Enabled = false;
+                this.btnNuevo.Enabled = false;
             }
         }
 
@@ -2429,6 +1410,24 @@ namespace CapaPresentacion
             if (e.KeyValue == (char)Keys.Enter)
             {
                 Cobrar();
+
+            }
+        }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            if (txtIdCliente.Text != "")
+            {
+                txtDocumento.ReadOnly = false;
+                txtNombre.ReadOnly = false;
+                txtDireccion.ReadOnly = false;
+                // cbTipoCliente.Enabled = true;
+                isNuevo = false;
+                btnGuardar.Enabled = true;
+                if (lblClase.Text == "C")
+                {
+                    cbTipoCliente.Enabled = true;
+                }
 
             }
         }

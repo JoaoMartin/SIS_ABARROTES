@@ -68,6 +68,7 @@
             this.rbNroComp = new System.Windows.Forms.RadioButton();
             this.rbCategoria = new System.Windows.Forms.RadioButton();
             this.txtBuscar = new System.Windows.Forms.TextBox();
+            this.lblIdVenta1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataListado)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataDetalle)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -100,7 +101,7 @@
             this.label3.Location = new System.Drawing.Point(1136, 692);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(44, 15);
+            this.label3.Size = new System.Drawing.Size(55, 18);
             this.label3.TabIndex = 13;
             this.label3.Text = "TOTAL";
             // 
@@ -111,19 +112,19 @@
             this.lblSumaTotal.Location = new System.Drawing.Point(1225, 692);
             this.lblSumaTotal.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSumaTotal.Name = "lblSumaTotal";
-            this.lblSumaTotal.Size = new System.Drawing.Size(49, 17);
+            this.lblSumaTotal.Size = new System.Drawing.Size(54, 20);
             this.lblSumaTotal.TabIndex = 14;
             this.lblSumaTotal.Text = "00.00";
             // 
             // lblTotal
             // 
             this.lblTotal.AutoSize = true;
-            this.lblTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotal.Font = new System.Drawing.Font("Roboto", 9.230769F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotal.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblTotal.Location = new System.Drawing.Point(1136, 154);
+            this.lblTotal.Location = new System.Drawing.Point(1135, 154);
             this.lblTotal.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(108, 15);
+            this.lblTotal.Size = new System.Drawing.Size(114, 20);
             this.lblTotal.TabIndex = 33;
             this.lblTotal.Text = "Total Registros:";
             // 
@@ -135,7 +136,7 @@
             this.label4.Location = new System.Drawing.Point(625, 9);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(71, 21);
+            this.label4.Size = new System.Drawing.Size(88, 28);
             this.label4.TabIndex = 36;
             this.label4.Text = "VENTAS";
             // 
@@ -146,7 +147,7 @@
             this.lblIdComprobante.Location = new System.Drawing.Point(860, 204);
             this.lblIdComprobante.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblIdComprobante.Name = "lblIdComprobante";
-            this.lblIdComprobante.Size = new System.Drawing.Size(17, 17);
+            this.lblIdComprobante.Size = new System.Drawing.Size(19, 20);
             this.lblIdComprobante.TabIndex = 37;
             this.lblIdComprobante.Text = "0";
             this.lblIdComprobante.Visible = false;
@@ -158,7 +159,7 @@
             this.lblSerie.Location = new System.Drawing.Point(766, 177);
             this.lblSerie.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSerie.Name = "lblSerie";
-            this.lblSerie.Size = new System.Drawing.Size(17, 17);
+            this.lblSerie.Size = new System.Drawing.Size(19, 20);
             this.lblSerie.TabIndex = 38;
             this.lblSerie.Text = "0";
             this.lblSerie.Visible = false;
@@ -170,7 +171,7 @@
             this.lblNumero.Location = new System.Drawing.Point(834, 265);
             this.lblNumero.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNumero.Name = "lblNumero";
-            this.lblNumero.Size = new System.Drawing.Size(17, 17);
+            this.lblNumero.Size = new System.Drawing.Size(19, 20);
             this.lblNumero.TabIndex = 39;
             this.lblNumero.Text = "0";
             this.lblNumero.Visible = false;
@@ -182,7 +183,7 @@
             this.lblComprobante.Location = new System.Drawing.Point(792, 221);
             this.lblComprobante.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblComprobante.Name = "lblComprobante";
-            this.lblComprobante.Size = new System.Drawing.Size(17, 17);
+            this.lblComprobante.Size = new System.Drawing.Size(19, 20);
             this.lblComprobante.TabIndex = 40;
             this.lblComprobante.Text = "0";
             this.lblComprobante.Visible = false;
@@ -194,7 +195,7 @@
             this.lblFechaGene.Location = new System.Drawing.Point(746, 204);
             this.lblFechaGene.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblFechaGene.Name = "lblFechaGene";
-            this.lblFechaGene.Size = new System.Drawing.Size(17, 17);
+            this.lblFechaGene.Size = new System.Drawing.Size(19, 20);
             this.lblFechaGene.TabIndex = 41;
             this.lblFechaGene.Text = "0";
             this.lblFechaGene.Visible = false;
@@ -204,7 +205,7 @@
             this.lblIdVenta.AutoSize = true;
             this.lblIdVenta.Location = new System.Drawing.Point(784, 188);
             this.lblIdVenta.Name = "lblIdVenta";
-            this.lblIdVenta.Size = new System.Drawing.Size(14, 15);
+            this.lblIdVenta.Size = new System.Drawing.Size(16, 18);
             this.lblIdVenta.TabIndex = 43;
             this.lblIdVenta.Text = "0";
             this.lblIdVenta.Visible = false;
@@ -232,7 +233,7 @@
             this.lblDcto.AutoSize = true;
             this.lblDcto.Location = new System.Drawing.Point(670, 245);
             this.lblDcto.Name = "lblDcto";
-            this.lblDcto.Size = new System.Drawing.Size(14, 15);
+            this.lblDcto.Size = new System.Drawing.Size(16, 18);
             this.lblDcto.TabIndex = 45;
             this.lblDcto.Text = "0";
             this.lblDcto.Visible = false;
@@ -242,7 +243,7 @@
             this.lblIgv.AutoSize = true;
             this.lblIgv.Location = new System.Drawing.Point(652, 202);
             this.lblIgv.Name = "lblIgv";
-            this.lblIgv.Size = new System.Drawing.Size(14, 15);
+            this.lblIgv.Size = new System.Drawing.Size(16, 18);
             this.lblIgv.TabIndex = 46;
             this.lblIgv.Text = "0";
             this.lblIgv.Visible = false;
@@ -252,7 +253,7 @@
             this.lblTotalVenta.AutoSize = true;
             this.lblTotalVenta.Location = new System.Drawing.Point(707, 240);
             this.lblTotalVenta.Name = "lblTotalVenta";
-            this.lblTotalVenta.Size = new System.Drawing.Size(14, 15);
+            this.lblTotalVenta.Size = new System.Drawing.Size(16, 18);
             this.lblTotalVenta.TabIndex = 47;
             this.lblTotalVenta.Text = "0";
             this.lblTotalVenta.Visible = false;
@@ -262,7 +263,7 @@
             this.lblVuelto.AutoSize = true;
             this.lblVuelto.Location = new System.Drawing.Point(758, 178);
             this.lblVuelto.Name = "lblVuelto";
-            this.lblVuelto.Size = new System.Drawing.Size(14, 15);
+            this.lblVuelto.Size = new System.Drawing.Size(16, 18);
             this.lblVuelto.TabIndex = 48;
             this.lblVuelto.Text = "0";
             this.lblVuelto.Visible = false;
@@ -272,7 +273,7 @@
             this.lblEfectivo.AutoSize = true;
             this.lblEfectivo.Location = new System.Drawing.Point(758, 221);
             this.lblEfectivo.Name = "lblEfectivo";
-            this.lblEfectivo.Size = new System.Drawing.Size(14, 15);
+            this.lblEfectivo.Size = new System.Drawing.Size(16, 18);
             this.lblEfectivo.TabIndex = 49;
             this.lblEfectivo.Text = "0";
             this.lblEfectivo.Visible = false;
@@ -282,7 +283,7 @@
             this.lblTarjeta.AutoSize = true;
             this.lblTarjeta.Location = new System.Drawing.Point(824, 245);
             this.lblTarjeta.Name = "lblTarjeta";
-            this.lblTarjeta.Size = new System.Drawing.Size(14, 15);
+            this.lblTarjeta.Size = new System.Drawing.Size(16, 18);
             this.lblTarjeta.TabIndex = 50;
             this.lblTarjeta.Text = "0";
             this.lblTarjeta.Visible = false;
@@ -292,7 +293,7 @@
             this.lblForma.AutoSize = true;
             this.lblForma.Location = new System.Drawing.Point(652, 219);
             this.lblForma.Name = "lblForma";
-            this.lblForma.Size = new System.Drawing.Size(14, 15);
+            this.lblForma.Size = new System.Drawing.Size(16, 18);
             this.lblForma.TabIndex = 51;
             this.lblForma.Text = "0";
             this.lblForma.Visible = false;
@@ -302,7 +303,7 @@
             this.lblRedondeo.AutoSize = true;
             this.lblRedondeo.Location = new System.Drawing.Point(696, 202);
             this.lblRedondeo.Name = "lblRedondeo";
-            this.lblRedondeo.Size = new System.Drawing.Size(14, 15);
+            this.lblRedondeo.Size = new System.Drawing.Size(16, 18);
             this.lblRedondeo.TabIndex = 52;
             this.lblRedondeo.Text = "0";
             this.lblRedondeo.Visible = false;
@@ -310,7 +311,7 @@
             // btnCambioComprobante
             // 
             this.btnCambioComprobante.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnCambioComprobante.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCambioComprobante.Font = new System.Drawing.Font("Roboto", 9.230769F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCambioComprobante.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnCambioComprobante.Image = global::CapaPresentacion.Properties.Resources.if_Account_albums_screens_tabs_1886179__1_;
             this.btnCambioComprobante.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -327,7 +328,7 @@
             // btnImprCompr
             // 
             this.btnImprCompr.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnImprCompr.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnImprCompr.Font = new System.Drawing.Font("Roboto", 9.230769F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnImprCompr.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnImprCompr.Image = global::CapaPresentacion.Properties.Resources.print4;
             this.btnImprCompr.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -345,7 +346,7 @@
             // 
             this.btnEliminar.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.btnEliminar.Enabled = false;
-            this.btnEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEliminar.Font = new System.Drawing.Font("Roboto", 9.230769F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEliminar.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnEliminar.Image = global::CapaPresentacion.Properties.Resources.if_Cut_728989;
             this.btnEliminar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -378,7 +379,7 @@
             // btnImprimir
             // 
             this.btnImprimir.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnImprimir.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnImprimir.Font = new System.Drawing.Font("Roboto", 9.230769F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnImprimir.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnImprimir.Image = global::CapaPresentacion.Properties.Resources.print4;
             this.btnImprimir.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -395,7 +396,7 @@
             // btnCancelar
             // 
             this.btnCancelar.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancelar.Font = new System.Drawing.Font("Roboto", 9.230769F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancelar.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnCancelar.Image = global::CapaPresentacion.Properties.Resources.cancel2;
             this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -412,10 +413,10 @@
             // rbElegir
             // 
             this.rbElegir.AutoSize = true;
-            this.rbElegir.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbElegir.Font = new System.Drawing.Font("Roboto", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbElegir.Location = new System.Drawing.Point(13, 139);
             this.rbElegir.Name = "rbElegir";
-            this.rbElegir.Size = new System.Drawing.Size(96, 17);
+            this.rbElegir.Size = new System.Drawing.Size(97, 22);
             this.rbElegir.TabIndex = 76;
             this.rbElegir.Text = "Elegir Fecha";
             this.rbElegir.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -426,10 +427,10 @@
             // 
             this.rbAperturaCaja.AutoSize = true;
             this.rbAperturaCaja.Checked = true;
-            this.rbAperturaCaja.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbAperturaCaja.Font = new System.Drawing.Font("Roboto", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbAperturaCaja.Location = new System.Drawing.Point(13, 110);
             this.rbAperturaCaja.Name = "rbAperturaCaja";
-            this.rbAperturaCaja.Size = new System.Drawing.Size(102, 17);
+            this.rbAperturaCaja.Size = new System.Drawing.Size(105, 22);
             this.rbAperturaCaja.TabIndex = 75;
             this.rbAperturaCaja.TabStop = true;
             this.rbAperturaCaja.Text = "Apertura Caja";
@@ -440,9 +441,9 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 88);
+            this.label1.Location = new System.Drawing.Point(10, 74);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(73, 15);
+            this.label1.Size = new System.Drawing.Size(87, 18);
             this.label1.TabIndex = 73;
             this.label1.Text = "Fecha Inicio";
             // 
@@ -453,9 +454,9 @@
             this.groupBox1.Controls.Add(this.dtpFechaFin);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Enabled = false;
-            this.groupBox1.Location = new System.Drawing.Point(121, 60);
+            this.groupBox1.Location = new System.Drawing.Point(133, 60);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(283, 107);
+            this.groupBox1.Size = new System.Drawing.Size(271, 107);
             this.groupBox1.TabIndex = 74;
             this.groupBox1.TabStop = false;
             // 
@@ -464,7 +465,7 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(6, 21);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(73, 15);
+            this.label2.Size = new System.Drawing.Size(87, 18);
             this.label2.TabIndex = 52;
             this.label2.Text = "Fecha Inicio";
             // 
@@ -475,7 +476,7 @@
             this.dtpFechaInicio.Location = new System.Drawing.Point(126, 21);
             this.dtpFechaInicio.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dtpFechaInicio.Name = "dtpFechaInicio";
-            this.dtpFechaInicio.Size = new System.Drawing.Size(134, 23);
+            this.dtpFechaInicio.Size = new System.Drawing.Size(134, 26);
             this.dtpFechaInicio.TabIndex = 50;
             // 
             // dtpFechaFin
@@ -485,7 +486,7 @@
             this.dtpFechaFin.Location = new System.Drawing.Point(126, 65);
             this.dtpFechaFin.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dtpFechaFin.Name = "dtpFechaFin";
-            this.dtpFechaFin.Size = new System.Drawing.Size(134, 23);
+            this.dtpFechaFin.Size = new System.Drawing.Size(134, 26);
             this.dtpFechaFin.TabIndex = 51;
             // 
             // label6
@@ -493,7 +494,7 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(18, 72);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(61, 15);
+            this.label6.Size = new System.Drawing.Size(73, 18);
             this.label6.TabIndex = 53;
             this.label6.Text = "Fecha Fin";
             // 
@@ -504,7 +505,7 @@
             this.lblIdUsuario.Location = new System.Drawing.Point(1105, 30);
             this.lblIdUsuario.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblIdUsuario.Name = "lblIdUsuario";
-            this.lblIdUsuario.Size = new System.Drawing.Size(49, 17);
+            this.lblIdUsuario.Size = new System.Drawing.Size(54, 20);
             this.lblIdUsuario.TabIndex = 78;
             this.lblIdUsuario.Text = "00.00";
             this.lblIdUsuario.Visible = false;
@@ -514,7 +515,7 @@
             this.groupBox2.Controls.Add(this.rbNroComp);
             this.groupBox2.Controls.Add(this.rbCategoria);
             this.groupBox2.Controls.Add(this.txtBuscar);
-            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox2.Font = new System.Drawing.Font("Roboto", 9.230769F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(562, 58);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(450, 111);
@@ -527,7 +528,7 @@
             this.rbNroComp.AutoSize = true;
             this.rbNroComp.Location = new System.Drawing.Point(24, 37);
             this.rbNroComp.Name = "rbNroComp";
-            this.rbNroComp.Size = new System.Drawing.Size(138, 19);
+            this.rbNroComp.Size = new System.Drawing.Size(144, 24);
             this.rbNroComp.TabIndex = 8;
             this.rbNroComp.Text = "Nro Comprobante";
             this.rbNroComp.UseVisualStyleBackColor = true;
@@ -536,9 +537,9 @@
             // rbCategoria
             // 
             this.rbCategoria.AutoSize = true;
-            this.rbCategoria.Location = new System.Drawing.Point(167, 37);
+            this.rbCategoria.Location = new System.Drawing.Point(174, 37);
             this.rbCategoria.Name = "rbCategoria";
-            this.rbCategoria.Size = new System.Drawing.Size(143, 19);
+            this.rbCategoria.Size = new System.Drawing.Size(149, 24);
             this.rbCategoria.TabIndex = 9;
             this.rbCategoria.Text = "Tipo Comprobante";
             this.rbCategoria.UseVisualStyleBackColor = true;
@@ -551,16 +552,28 @@
             this.txtBuscar.Location = new System.Drawing.Point(20, 74);
             this.txtBuscar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtBuscar.Name = "txtBuscar";
-            this.txtBuscar.Size = new System.Drawing.Size(402, 23);
+            this.txtBuscar.Size = new System.Drawing.Size(402, 26);
             this.txtBuscar.TabIndex = 1;
             this.txtBuscar.TextChanged += new System.EventHandler(this.txtBuscar_TextChanged);
             // 
+            // lblIdVenta1
+            // 
+            this.lblIdVenta1.AutoSize = true;
+            this.lblIdVenta1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblIdVenta1.Location = new System.Drawing.Point(1033, 99);
+            this.lblIdVenta1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblIdVenta1.Name = "lblIdVenta1";
+            this.lblIdVenta1.Size = new System.Drawing.Size(54, 20);
+            this.lblIdVenta1.TabIndex = 80;
+            this.lblIdVenta1.Text = "00.00";
+            // 
             // frmMostrarVentas
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1417, 716);
+            this.Controls.Add(this.lblIdVenta1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.lblIdUsuario);
             this.Controls.Add(this.rbElegir);
@@ -655,5 +668,6 @@
         private System.Windows.Forms.RadioButton rbNroComp;
         private System.Windows.Forms.RadioButton rbCategoria;
         private System.Windows.Forms.TextBox txtBuscar;
+        public System.Windows.Forms.Label lblIdVenta1;
     }
 }

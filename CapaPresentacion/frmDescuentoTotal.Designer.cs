@@ -76,7 +76,7 @@
             this.txtNumero.Font = new System.Drawing.Font("Roboto", 25.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNumero.Location = new System.Drawing.Point(12, 12);
             this.txtNumero.Name = "txtNumero";
-            this.txtNumero.Size = new System.Drawing.Size(331, 64);
+            this.txtNumero.Size = new System.Drawing.Size(331, 63);
             this.txtNumero.TabIndex = 41;
             this.txtNumero.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNumero_KeyPress);
             // 
@@ -229,7 +229,7 @@
             this.lblIdBandera.AutoSize = true;
             this.lblIdBandera.Location = new System.Drawing.Point(366, 101);
             this.lblIdBandera.Name = "lblIdBandera";
-            this.lblIdBandera.Size = new System.Drawing.Size(46, 17);
+            this.lblIdBandera.Size = new System.Drawing.Size(45, 16);
             this.lblIdBandera.TabIndex = 44;
             this.lblIdBandera.Text = "label1";
             // 
@@ -262,6 +262,7 @@
             this.Name = "frmDescuentoTotal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = ".:: DESCUENTO GENERAL ::.";
+            this.Load += new System.EventHandler(this.frmDescuentoTotal_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

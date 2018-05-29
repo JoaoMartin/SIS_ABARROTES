@@ -49,12 +49,13 @@
             this.groupBox2.Controls.Add(this.rbNombre);
             this.groupBox2.Controls.Add(this.txtBuscar);
             this.groupBox2.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(12, 66);
+            this.groupBox2.Location = new System.Drawing.Point(12, 19);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(881, 111);
             this.groupBox2.TabIndex = 10;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Criterio de Búsqueda";
+            this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
             // 
             // lblTotal
             // 
@@ -74,7 +75,7 @@
             this.rbTodos.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbTodos.Location = new System.Drawing.Point(505, 40);
             this.rbTodos.Name = "rbTodos";
-            this.rbTodos.Size = new System.Drawing.Size(126, 24);
+            this.rbTodos.Size = new System.Drawing.Size(123, 24);
             this.rbTodos.TabIndex = 4;
             this.rbTodos.TabStop = true;
             this.rbTodos.Text = "Mostrar Todos";
@@ -86,7 +87,7 @@
             this.rbTipoDoc.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbTipoDoc.Location = new System.Drawing.Point(282, 40);
             this.rbTipoDoc.Name = "rbTipoDoc";
-            this.rbTipoDoc.Size = new System.Drawing.Size(101, 24);
+            this.rbTipoDoc.Size = new System.Drawing.Size(98, 24);
             this.rbTipoDoc.TabIndex = 3;
             this.rbTipoDoc.Text = "DNI o RUC";
             this.rbTipoDoc.UseVisualStyleBackColor = true;
@@ -97,7 +98,7 @@
             this.rbNombre.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbNombre.Location = new System.Drawing.Point(30, 43);
             this.rbNombre.Name = "rbNombre";
-            this.rbNombre.Size = new System.Drawing.Size(187, 24);
+            this.rbNombre.Size = new System.Drawing.Size(184, 24);
             this.rbNombre.TabIndex = 2;
             this.rbNombre.Text = "Nombre o Razón Social";
             this.rbNombre.UseVisualStyleBackColor = true;
@@ -108,7 +109,7 @@
             this.txtBuscar.Location = new System.Drawing.Point(30, 74);
             this.txtBuscar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtBuscar.Name = "txtBuscar";
-            this.txtBuscar.Size = new System.Drawing.Size(601, 30);
+            this.txtBuscar.Size = new System.Drawing.Size(601, 29);
             this.txtBuscar.TabIndex = 1;
             this.txtBuscar.TextChanged += new System.EventHandler(this.txtBuscar_TextChanged);
             // 
@@ -119,7 +120,7 @@
             this.dataListado.AllowUserToOrderColumns = true;
             this.dataListado.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             this.dataListado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataListado.Location = new System.Drawing.Point(12, 184);
+            this.dataListado.Location = new System.Drawing.Point(12, 137);
             this.dataListado.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dataListado.MultiSelect = false;
             this.dataListado.Name = "dataListado";
@@ -128,6 +129,7 @@
             this.dataListado.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataListado.Size = new System.Drawing.Size(881, 422);
             this.dataListado.TabIndex = 9;
+            this.dataListado.Click += new System.EventHandler(this.dataListado_Click);
             this.dataListado.DoubleClick += new System.EventHandler(this.dataListado_DoubleClick);
             // 
             // lblBandera
@@ -146,7 +148,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(916, 616);
+            this.ClientSize = new System.Drawing.Size(907, 576);
             this.Controls.Add(this.lblBandera);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.dataListado);

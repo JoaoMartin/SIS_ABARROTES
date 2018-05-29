@@ -50,6 +50,7 @@ namespace CapaPresentacion
             this.txtDescripcion.Text = string.Empty;
             this.txtStockMinimo.Text = string.Empty;
             this.txtIdProducto.Text = string.Empty;
+            this.txtStockActual.Text = string.Empty;
 
             this.cbEliminar.Checked = false;
             this.cbCategoria.SelectedIndex = -1;
@@ -66,6 +67,7 @@ namespace CapaPresentacion
             this.txtPrecioVenta.ReadOnly = !valor;
             this.txtDescripcion.ReadOnly = !valor;
             this.txtStockMinimo.ReadOnly = !valor;
+            this.txtStockActual.ReadOnly = !valor;
             this.cbImprimir.Enabled = valor;
             this.rbProducto.Enabled = valor;
             this.rbCompuesto.Enabled = valor;
@@ -322,6 +324,14 @@ namespace CapaPresentacion
                             stockMinimo = 0;
                         }
 
+                        if(txtStockActual.Text.Trim() != "")
+                        {
+                            stock = Convert.ToInt32(txtStockActual.Text.Trim());
+                        }else
+                        {
+                            stock = 0;
+                        }
+
 
                         if (this.IsNuevo)
                         {
@@ -329,12 +339,7 @@ namespace CapaPresentacion
                             {
                                 rpta = NProducto.InsertarProductoCompuesto(this.txtNombre.Text.Trim().ToUpper(), txtDescripcion.Text.Trim(), stock,
                                                   Convert.ToDecimal(this.txtPrecioVenta.Text.Trim()), tipo,"A", idCategoria, imprimir, stockMinimo,00.00m, dtDetalle,idUnidad);
-                                limpiarDetalle();
-                                limpiarDatatable();
-                                this.lblIdProductoCom.Text = "0";
-                                this.lblTotalVenta.Text = "00.00";
-                                this.rbProducto.Checked = true;
-                                this.btnNuevo.Enabled = true;
+                           
                             }
                             else
                             {
@@ -387,6 +392,7 @@ namespace CapaPresentacion
                         {
                             if (this.IsNuevo)
                             {
+                                
                                 this.MensajeOK("Se insertó correctamente");
                                 this.groupBox2.Visible = false;
                             }
@@ -412,6 +418,15 @@ namespace CapaPresentacion
                         this.rbProducto.Checked = true;
                         this.btnNuevo.Enabled = true;
                         txtPrecioVenta.Text = string.Empty;
+                        if(rbCompuesto.Checked == true)
+                        {
+                            limpiarDetalle();
+                            limpiarDatatable();
+                            this.lblIdProductoCom.Text = "0";
+                            this.lblTotalVenta.Text = "00.00";
+                            this.rbProducto.Checked = true;
+                            this.btnNuevo.Enabled = true;
+                        }
                     }
                 }
             }
@@ -471,6 +486,7 @@ namespace CapaPresentacion
             this.txtNombre.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["Nombre"].Value);
             this.txtDescripcion.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["Descripcion"].Value);
             this.txtStockMinimo.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["stockMinimo"].Value);
+            this.txtStockActual.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["Stock"].Value);
 
             //this.cbCategoria.SelectedItem = Convert.ToString(this.dataListado.CurrentRow.Cells["Categoria"].Value);
             this.txtPrecioVenta.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["Precio_Venta"].Value);
@@ -984,6 +1000,17 @@ namespace CapaPresentacion
         private void frmProducto_FormClosed(object sender, FormClosedEventArgs e)
         {
            
+        }
+
+        private void txtStockActual_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(char.IsNumber(e.KeyChar)) && (e.KeyChar != (char)Keys.Back) && (e.KeyChar != (char)Keys.Enter))
+            {
+                MessageBox.Show("Solo se permiten números", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                e.Handled = true;
+                return;
+            }
+
         }
 
         private void dataListadoDetalle_DoubleClick(object sender, EventArgs e)

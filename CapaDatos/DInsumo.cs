@@ -341,6 +341,30 @@ namespace CapaDatos
             return dtResultado;
         }
 
+        public DataTable BuscarCodigoInsumo()
+        {
+            DataTable dtResultado = new DataTable("Insumo");
+            SqlConnection sqlCon = new SqlConnection();
+
+            try
+            {
+                sqlCon.ConnectionString = Conexion.cn;
+                SqlCommand sqlCmd = new SqlCommand();
+                sqlCmd.Connection = sqlCon;
+                sqlCmd.CommandText = "sp_buscarCodigoInsumo";
+                sqlCmd.CommandType = CommandType.StoredProcedure;
+
+                SqlDataAdapter sqlDat = new SqlDataAdapter(sqlCmd);
+                sqlDat.Fill(dtResultado);
+            }
+            catch (Exception ex)
+            {
+                dtResultado = null;
+            }
+
+            return dtResultado;
+        }
+
         public DataTable Buscar(DInsumo Insumo)
         {
             DataTable dtResultado = new DataTable("Insumo");

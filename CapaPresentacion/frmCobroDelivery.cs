@@ -280,17 +280,47 @@ namespace CapaPresentacion
                         {
                             DataTable dtDetalleProducto = new DataTable();
                             dtDetalleProducto = NProducto.mostrarDetalleProducto_Venta(Convert.ToInt32(Convert.ToInt32(dataDetalle.Rows[i].Cells[0].Value)));
-
+                          
                             for (int j = 0; j < dtDetalleProducto.Rows.Count; j++)
                             {
                                 int idProducto_Com = Convert.ToInt32(dtDetalleProducto.Rows[j][0].ToString());
                                 int cantRequerida = Convert.ToInt32(dtDetalleProducto.Rows[j][1].ToString());
                                 
                                 rpta = NProducto.EditarStock(idProducto_Com, ((cantRequerida * Convert.ToInt32(dataDetalle.Rows[i].Cells[2].Value) * -1)));
+
+                                DataTable dtRecetaC = NReceta.Mostrar(Convert.ToInt32(idProducto_Com));
+                                if (dtRecetaC.Rows.Count > 0)
+                                {
+                                    int cantInsumo = Convert.ToInt32(dataDetalle.Rows[i].Cells["Cant"].Value.ToString());
+                                    decimal cantTotal;
+                                    for (int k = 0; k < dtRecetaC.Rows.Count; k++)
+                                    {
+                                        cantTotal = cantInsumo * Convert.ToDecimal(dtRecetaC.Rows[k][3].ToString());
+                                        NInsumo.EditarStock(Convert.ToInt32(dtRecetaC.Rows[k][0].ToString()), cantTotal * -1);
+                                    }
+                                }
                             }
+                          
+
+                        }
+                        int idProd = Convert.ToInt32(dataDetalle.Rows[i].Cells["idDetalleVenta"].Value.ToString());
+
+                        rpta=NDetalleVenta.ActualizarStockProd_Anulada(idProd);
+                        DataTable dtReceta = NReceta.Mostrar(Convert.ToInt32(dataDetalle.Rows[i].Cells[0].Value));
+
+                        if (dtReceta.Rows.Count > 0)
+                        {
+                            int cantInsumo = Convert.ToInt32(dataDetalle.Rows[i].Cells["Cant"].Value);
+                            decimal cantTotal;
+                            for (int k = 0; k < dtReceta.Rows.Count; k++)
+                            {
+                                cantTotal = cantInsumo * Convert.ToDecimal(dtReceta.Rows[k][3].ToString());
+                                NInsumo.EditarStock(Convert.ToInt32(dtReceta.Rows[k][0].ToString()), ((-1) * cantTotal));
+                            }
+
                         }
                         dataCocina.Rows.Add(dataDetalle.Rows[i].Cells[1].Value, dataDetalle.Rows[i].Cells[2].Value, "");
-                        rpta = NDetalleVenta.Eliminar(Convert.ToInt32(dataDetalle.Rows[i].Cells[7].Value));
+                        //rpta = NDetalleVenta.Eliminar(Convert.ToInt32(dataDetalle.Rows[i].Cells[7].Value));
 
                     }
                     if(rpta == "OK")
@@ -300,7 +330,7 @@ namespace CapaPresentacion
                         {
                             MessageBox.Show("Se anuló correctamente");
                             NImprimirComanda.imprimirCom(this.lblRepartidos.Text, "DELIVERY", "DELIVERY", dataCocina, "COMANDA ANULACION");
-                            this.Hide();
+                            this.Close();
                         }
                     }
 

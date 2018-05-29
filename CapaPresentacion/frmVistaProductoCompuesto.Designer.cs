@@ -99,11 +99,12 @@
             this.rbNombre.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.rbNombre.Location = new System.Drawing.Point(19, 42);
             this.rbNombre.Name = "rbNombre";
-            this.rbNombre.Size = new System.Drawing.Size(83, 24);
+            this.rbNombre.Size = new System.Drawing.Size(80, 24);
             this.rbNombre.TabIndex = 10;
             this.rbNombre.TabStop = true;
             this.rbNombre.Text = "Nombre";
             this.rbNombre.UseVisualStyleBackColor = true;
+            this.rbNombre.CheckedChanged += new System.EventHandler(this.rbNombre_CheckedChanged);
             // 
             // rbCategoria
             // 
@@ -111,11 +112,12 @@
             this.rbCategoria.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.rbCategoria.Location = new System.Drawing.Point(390, 42);
             this.rbCategoria.Name = "rbCategoria";
-            this.rbCategoria.Size = new System.Drawing.Size(94, 24);
+            this.rbCategoria.Size = new System.Drawing.Size(91, 24);
             this.rbCategoria.TabIndex = 11;
             this.rbCategoria.TabStop = true;
             this.rbCategoria.Text = "Categoría";
             this.rbCategoria.UseVisualStyleBackColor = true;
+            this.rbCategoria.CheckedChanged += new System.EventHandler(this.rbCategoria_CheckedChanged);
             // 
             // txtBuscar
             // 
@@ -123,7 +125,7 @@
             this.txtBuscar.ForeColor = System.Drawing.Color.Navy;
             this.txtBuscar.Location = new System.Drawing.Point(19, 81);
             this.txtBuscar.Name = "txtBuscar";
-            this.txtBuscar.Size = new System.Drawing.Size(473, 38);
+            this.txtBuscar.Size = new System.Drawing.Size(473, 37);
             this.txtBuscar.TabIndex = 1;
             this.txtBuscar.TextChanged += new System.EventHandler(this.txtBuscar_TextChanged);
             // 

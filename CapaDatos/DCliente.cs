@@ -19,6 +19,7 @@ namespace CapaDatos
         private string _Email;
         private string _Telefono;
         private string _TextoBuscar;
+        private int? _IdTipoCliente;
 
         public int IdCliente
         {
@@ -137,9 +138,23 @@ namespace CapaDatos
             }
         }
 
+        public int? IdTipoCliente
+        {
+            get
+            {
+                return _IdTipoCliente;
+            }
+
+            set
+            {
+                _IdTipoCliente = value;
+            }
+        }
+
         public DCliente() { }
 
-        public DCliente(int idCliente, string nombre, DateTime fechaNac, string tipoDoc, string nroDoc, string direccion, string email, string telefono, string textoBuscar)
+        public DCliente(int idCliente, string nombre, DateTime fechaNac, string tipoDoc, string nroDoc, string direccion, string email, string telefono, string textoBuscar,
+            int idTipoCliente)
         {
             this.IdCliente = idCliente;
             this.Nombre = nombre;
@@ -150,6 +165,7 @@ namespace CapaDatos
             this.Email = email;
             this.Telefono = telefono;
             this.TextoBuscar = textoBuscar;
+            this.IdTipoCliente = idTipoCliente;
         }
 
         public string Insertar(DCliente Cliente)
@@ -219,6 +235,12 @@ namespace CapaDatos
                 ParTelefono.Size = 30;
                 ParTelefono.Value = Cliente.Telefono;
                 sqlCmd.Parameters.Add(ParTelefono);
+
+                SqlParameter ParIdTipoCliente = new SqlParameter();
+                ParIdTipoCliente.ParameterName = "@idTipoCliente";
+                ParIdTipoCliente.SqlDbType = SqlDbType.Int;
+                ParIdTipoCliente.Value = Cliente.IdTipoCliente;
+                sqlCmd.Parameters.Add(ParIdTipoCliente);
 
                 rpta = sqlCmd.ExecuteNonQuery() == 1 ? "OK" : "No se ingresó el Registro";
             }
@@ -300,6 +322,12 @@ namespace CapaDatos
                 ParTelefono.Size = 30;
                 ParTelefono.Value = Cliente.Telefono;
                 sqlCmd.Parameters.Add(ParTelefono);
+
+                SqlParameter ParIdTipoCliente = new SqlParameter();
+                ParIdTipoCliente.ParameterName = "@idTipoCliente";
+                ParIdTipoCliente.SqlDbType = SqlDbType.Int;
+                ParIdTipoCliente.Value = Cliente.IdTipoCliente;
+                sqlCmd.Parameters.Add(ParIdTipoCliente);
 
                 rpta = sqlCmd.ExecuteNonQuery() == 1 ? "OK" : "No se editó el Registro";
             }
@@ -391,6 +419,62 @@ namespace CapaDatos
                 ParTextoBuscar.Value = Cliente.TextoBuscar;
 
                 sqlCmd.Parameters.Add(ParTextoBuscar);
+
+                SqlDataAdapter sqlDat = new SqlDataAdapter(sqlCmd);
+                sqlDat.Fill(dtResultado);
+            }
+            catch (Exception ex)
+            {
+                dtResultado = null;
+            }
+
+            return dtResultado;
+        }
+
+        public DataTable BuscarTipoCliente(DCliente Cliente)
+        {
+            DataTable dtResultado = new DataTable("Cliente");
+            SqlConnection sqlCon = new SqlConnection();
+
+            try
+            {
+                sqlCon.ConnectionString = Conexion.cn;
+                SqlCommand sqlCmd = new SqlCommand();
+                sqlCmd.Connection = sqlCon;
+                sqlCmd.CommandText = "sp_buscarClienteTipo";
+                sqlCmd.CommandType = CommandType.StoredProcedure;
+
+                SqlParameter ParTextoBuscar = new SqlParameter();
+                ParTextoBuscar.ParameterName = "@textoBuscar";
+                ParTextoBuscar.SqlDbType = SqlDbType.VarChar;
+                ParTextoBuscar.Size = 50;
+                ParTextoBuscar.Value = Cliente.TextoBuscar;
+
+                sqlCmd.Parameters.Add(ParTextoBuscar);
+
+                SqlDataAdapter sqlDat = new SqlDataAdapter(sqlCmd);
+                sqlDat.Fill(dtResultado);
+            }
+            catch (Exception ex)
+            {
+                dtResultado = null;
+            }
+
+            return dtResultado;
+        }
+
+        public DataTable mostrarClienteVenta1(DCliente Cliente)
+        {
+            DataTable dtResultado = new DataTable("Cliente");
+            SqlConnection sqlCon = new SqlConnection();
+
+            try
+            {
+                sqlCon.ConnectionString = Conexion.cn;
+                SqlCommand sqlCmd = new SqlCommand();
+                sqlCmd.Connection = sqlCon;
+                sqlCmd.CommandText = "sp_mostrarClienteVenta_1";
+                sqlCmd.CommandType = CommandType.StoredProcedure;
 
                 SqlDataAdapter sqlDat = new SqlDataAdapter(sqlCmd);
                 sqlDat.Fill(dtResultado);
@@ -502,6 +586,12 @@ namespace CapaDatos
                 ParTelefono.Value = Cliente.Telefono;
                 sqlCmd.Parameters.Add(ParTelefono);
 
+                SqlParameter ParIdTipoCliente = new SqlParameter();
+                ParIdTipoCliente.ParameterName = "@idTipoCliente";
+                ParIdTipoCliente.SqlDbType = SqlDbType.Int;
+                ParIdTipoCliente.Value = Cliente.IdTipoCliente;
+                sqlCmd.Parameters.Add(ParIdTipoCliente);
+
                 rpta = sqlCmd.ExecuteNonQuery() == 1 ? "OK" : "No se ingresó el Registro";
                 if(rpta == "OK")
                 {
@@ -519,6 +609,147 @@ namespace CapaDatos
             }
             return rpta;
         }
+
+        public DataTable BuscarDni_1(DCliente Cliente)
+        {
+            DataTable dtResultado = new DataTable("Cliente");
+            SqlConnection sqlCon = new SqlConnection();
+
+            try
+            {
+                sqlCon.ConnectionString = Conexion.cn;
+                SqlCommand sqlCmd = new SqlCommand();
+                sqlCmd.Connection = sqlCon;
+                sqlCmd.CommandText = "sp_buscarClienteVentaDni_1";
+                sqlCmd.CommandType = CommandType.StoredProcedure;
+
+                SqlParameter ParTextoBuscar = new SqlParameter();
+                ParTextoBuscar.ParameterName = "@textoBuscar";
+                ParTextoBuscar.SqlDbType = SqlDbType.VarChar;
+                ParTextoBuscar.Size = 50;
+                ParTextoBuscar.Value = Cliente.TextoBuscar;
+
+                sqlCmd.Parameters.Add(ParTextoBuscar);
+
+                SqlDataAdapter sqlDat = new SqlDataAdapter(sqlCmd);
+                sqlDat.Fill(dtResultado);
+            }
+            catch (Exception ex)
+            {
+                dtResultado = null;
+            }
+
+            return dtResultado;
+        }
+
+        public DataTable BuscarCliente_1(DCliente Cliente)
+        {
+            DataTable dtResultado = new DataTable("Cliente");
+            SqlConnection sqlCon = new SqlConnection();
+
+            try
+            {
+                sqlCon.ConnectionString = Conexion.cn;
+                SqlCommand sqlCmd = new SqlCommand();
+                sqlCmd.Connection = sqlCon;
+                sqlCmd.CommandText = "sp_buscarClienteVenta_1";
+                sqlCmd.CommandType = CommandType.StoredProcedure;
+
+                SqlParameter ParTextoBuscar = new SqlParameter();
+                ParTextoBuscar.ParameterName = "@textoBuscar";
+                ParTextoBuscar.SqlDbType = SqlDbType.VarChar;
+                ParTextoBuscar.Size = 50;
+                ParTextoBuscar.Value = Cliente.TextoBuscar;
+
+                sqlCmd.Parameters.Add(ParTextoBuscar);
+
+                SqlDataAdapter sqlDat = new SqlDataAdapter(sqlCmd);
+                sqlDat.Fill(dtResultado);
+            }
+            catch (Exception ex)
+            {
+                dtResultado = null;
+            }
+
+            return dtResultado;
+        }
+
+        public string EditarDelivery(DCliente Cliente)
+        {
+            string rpta = "";
+            SqlConnection sqlCon = new SqlConnection();
+            try
+            {
+                sqlCon.ConnectionString = Conexion.cn;
+                sqlCon.Open();
+                //Comandos
+                SqlCommand sqlCmd = new SqlCommand();
+                sqlCmd.Connection = sqlCon;
+                sqlCmd.CommandText = "sp_editarCliente_Delivery";
+                sqlCmd.CommandType = CommandType.StoredProcedure;
+
+                SqlParameter ParIdCliente = new SqlParameter();
+                ParIdCliente.ParameterName = "@idCliente";
+                ParIdCliente.SqlDbType = SqlDbType.Int;
+                ParIdCliente.Value = Cliente.IdCliente;
+                sqlCmd.Parameters.Add(ParIdCliente);
+
+                SqlParameter ParNombre = new SqlParameter();
+                ParNombre.ParameterName = "@nombre";
+                ParNombre.SqlDbType = SqlDbType.VarChar;
+                ParNombre.Size = 100;
+                ParNombre.Value = Cliente.Nombre;
+                sqlCmd.Parameters.Add(ParNombre);
+
+                SqlParameter ParTipoDoc = new SqlParameter();
+                ParTipoDoc.ParameterName = "@tipoDoc";
+                ParTipoDoc.SqlDbType = SqlDbType.VarChar;
+                ParTipoDoc.Size = 10;
+                ParTipoDoc.Value = Cliente.TipoDoc;
+                sqlCmd.Parameters.Add(ParTipoDoc);
+
+                SqlParameter ParNumDoc = new SqlParameter();
+                ParNumDoc.ParameterName = "@nroDoc";
+                ParNumDoc.SqlDbType = SqlDbType.VarChar;
+                ParNumDoc.Size = 11;
+                ParNumDoc.Value = Cliente.NroDoc;
+                sqlCmd.Parameters.Add(ParNumDoc);
+
+                SqlParameter ParDir = new SqlParameter();
+                ParDir.ParameterName = "@direccion";
+                ParDir.SqlDbType = SqlDbType.VarChar;
+                ParDir.Size = 100;
+                ParDir.Value = Cliente.Direccion;
+                sqlCmd.Parameters.Add(ParDir);
+
+                SqlParameter ParEmail = new SqlParameter();
+                ParEmail.ParameterName = "@email";
+                ParEmail.SqlDbType = SqlDbType.VarChar;
+                ParEmail.Size = 50;
+                ParEmail.Value = Cliente.Email;
+                sqlCmd.Parameters.Add(ParEmail);
+
+                SqlParameter ParTelefono = new SqlParameter();
+                ParTelefono.ParameterName = "@telefono";
+                ParTelefono.SqlDbType = SqlDbType.VarChar;
+                ParTelefono.Size = 30;
+                ParTelefono.Value = Cliente.Telefono;
+                sqlCmd.Parameters.Add(ParTelefono);
+
+           
+                rpta = sqlCmd.ExecuteNonQuery() == 1 ? "OK" : "No se editó el Registro";
+            }
+            catch (Exception ex)
+            {
+                rpta = ex.Message;
+            }
+            finally
+            {
+                if (sqlCon.State == ConnectionState.Open) sqlCon.Close();
+            }
+            return rpta;
+        }
+
     }
 }
 

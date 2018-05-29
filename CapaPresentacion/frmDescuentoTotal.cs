@@ -296,5 +296,10 @@ namespace CapaPresentacion
 
             }
         }
+
+        private void frmDescuentoTotal_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

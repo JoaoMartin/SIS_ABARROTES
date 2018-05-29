@@ -13,6 +13,7 @@ namespace CapaPresentacion
 {
     public partial class frmPagarDividida : Form
     {
+        private bool isNuevo;
         public static frmPagarDividida f1;
         private string formaPago;
         private decimal efectivo, tarjeta;
@@ -449,61 +450,59 @@ namespace CapaPresentacion
             this.dataListadoProducto.Select();
         }
 
+        private void cargarTipoCliente()
+        {
+            cbTipoCliente.DataSource = NTipoCliente.Mostrar();
+            cbTipoCliente.ValueMember = "Codigo";
+            cbTipoCliente.DisplayMember = "TipoCliente";
+            cbTipoCliente.SelectedIndex = -1;
+            //lblPrueba.Text = cbCategoria.SelectedValue.ToString();
+
+        }
+
         private void btnNuevo_Click(object sender, EventArgs e)
         {
-            this.btnGuardar.Enabled = true;
-            this.txtNombre.ReadOnly = false;
-            this.txtDireccion.ReadOnly = false;
-            this.txtNombre.Text = string.Empty;
-            this.txtDireccion.Text = string.Empty;
-            this.txtDocumento.Text = string.Empty;
-            this.txtIdCliente.Text = string.Empty;
-            this.txtDocumento.Focus();
+            if (lblBanderaComprobante.Text == "0")
+            {
+                MessageBox.Show("Seleccione BOLETA O FACTURA");
+            }
+            else
+            {
+               
+                this.btnGuardar.Enabled = true;
+                this.txtNombre.ReadOnly = false;
+                this.txtDireccion.ReadOnly = false;
+                this.cbTipoCliente.Enabled = true;
+                this.txtNombre.Text = string.Empty;
+                this.txtDireccion.Text = string.Empty;
+                this.txtDocumento.Text = string.Empty;
+                this.txtIdCliente.Text = string.Empty;
+                this.cbTipoCliente.Enabled = true;
+                this.txtDocumento.Focus();
+                btnEditar.Enabled = false;
+                isNuevo = true;
+            }
+
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            string rpta = "";
-            if (this.txtDocumento.Text.Length == 11)
+            string rpta = NTipoCliente.GuardarCliente(lblTotal.Text, "00.00", lblBanderaComprobante.Text, txtDocumento.Text, cbTipoCliente, isNuevo, txtNombre.Text,
+                txtDireccion.Text, txtIdCliente.Text);
+            if (isNuevo && rpta != null)
             {
-                if (this.txtNombre.Text.Trim() == "" || this.txtDireccion.Text.Trim() == "")
-                {
-                    MessageBox.Show("Complete el nombre y dirección");
-                    this.dataListadoProducto.Select();
-                }
-                else
-                {
-                    rpta = NCliente.InsertarVenta(this.txtNombre.Text.Trim().ToUpper(), DateTime.MinValue, "RUC", this.txtDocumento.Text, this.txtDireccion.Text.Trim(), "", "");
-                    this.txtIdCliente.Text = rpta;
-                    this.txtNombre.ReadOnly = true;
-                    this.txtDireccion.ReadOnly = true;
-                    this.btnGuardar.Enabled = false;
-                    this.btnNuevo.Enabled = false;
-                    this.dataListadoProducto.Select();
-                }
-
+                this.txtIdCliente.Text = rpta;
+                this.txtNombre.ReadOnly = true;
+                this.txtDireccion.ReadOnly = true;
+                this.btnGuardar.Enabled = false;
+                this.btnNuevo.Enabled = false;
             }
-            else if (this.txtDocumento.Text.Length == 8)
+            else if (rpta == "OK")
             {
-                if (this.txtNombre.Text.Trim() == "" || this.txtDireccion.Text.Trim() == "")
-                {
-                    MessageBox.Show("Complete el nombre y dirección");
-                    this.dataListadoProducto.Select();
-                }
-                else
-                {
-                    rpta = NCliente.InsertarVenta(this.txtNombre.Text.Trim().ToUpper(), DateTime.MinValue, "DNI", this.txtDocumento.Text, this.txtDireccion.Text.Trim(), "", "");
-                    this.txtIdCliente.Text = rpta;
-                    this.txtNombre.ReadOnly = true;
-                    this.txtDireccion.ReadOnly = true;
-                    this.dataListadoProducto.Select();
-                }
-
-            }
-            else
-            {
-                MessageBox.Show("Ingrese un nro de Documento válido");
-                this.dataListadoProducto.Select();
+                this.txtNombre.ReadOnly = true;
+                this.txtDireccion.ReadOnly = true;
+                this.btnGuardar.Enabled = false;
+                this.btnNuevo.Enabled = false;
             }
         }
 
@@ -769,6 +768,8 @@ namespace CapaPresentacion
                                     this.Limpiar();
                                 }
                                 this.DeshabilitarCuentas();
+                                cbTipoCliente.Enabled = false;
+                                cbTipoCliente.SelectedIndex = -1;
 
                                 if (btn1.Enabled == false && btn2.Enabled == false && btn3.Enabled == false && btn4.Enabled == false && btn5.Enabled == false && btn6.Enabled == false)
                                 {
@@ -782,6 +783,8 @@ namespace CapaPresentacion
                                     frmDividirCuenta.f1.Close();
                                     frmVenta.f1.Close();
                                     frmModuloSalon.f3.tEstado.Enabled = true;
+                                    cbTipoCliente.Enabled = false;
+                                    cbTipoCliente.SelectedIndex = -1;
 
                                 }
                             }
@@ -844,6 +847,8 @@ namespace CapaPresentacion
                                         this.Limpiar();
                                     }
                                     this.DeshabilitarCuentas();
+                                    cbTipoCliente.Enabled = false;
+                                    cbTipoCliente.SelectedIndex = -1;
 
                                     if (btn1.Enabled == false && btn2.Enabled == false && btn3.Enabled == false && btn4.Enabled == false && btn5.Enabled == false && btn6.Enabled == false)
                                     {
@@ -852,7 +857,8 @@ namespace CapaPresentacion
 
                                         frmModuloSalon.f3.limpiarMesas();
                                         frmModuloSalon.f3.mostrarSalones();
-
+                                        cbTipoCliente.Enabled = false;
+                                        cbTipoCliente.SelectedIndex = -1;
                                         lblIdVenta.Text = "";
                                         this.Close();
                                         frmDividirCuenta.f1.Close();
@@ -894,6 +900,30 @@ namespace CapaPresentacion
                     this.txtNombre.Text = dtClienteVenta.Rows[0][1].ToString();
                     this.txtDocumento.Text = dtClienteVenta.Rows[0][2].ToString();
                     this.txtDireccion.Text = dtClienteVenta.Rows[0][3].ToString();
+                    this.lblClase.Text = dtClienteVenta.Rows[0][7].ToString();
+                    if (lblClase.Text == "C")
+                    {
+                        string idTipoCliente;
+                        idTipoCliente = dtClienteVenta.Rows[0][6].ToString();
+                        if (idTipoCliente == "" || idTipoCliente == null)
+                        {
+                            cbTipoCliente.SelectedIndex = -1;
+                        }
+                        else
+                        {
+                            cbTipoCliente.SelectedValue = idTipoCliente;
+                            cbTipoCliente.Enabled = true;
+                        }
+                        NDescuento.DescuentoClientes(idTipoCliente, Convert.ToDecimal(lblSubTotal.Text), Convert.ToDecimal(lblIgv.Text), 00.00m,
+                              Convert.ToDecimal(lblDescuento.Text), Convert.ToDecimal(lblDctoGeneral.Text), lblDctoGeneral, lblSubTotal, lblIgv, lblTotal);
+                        mostrarTotales();
+                    }
+                    else
+                    {
+                        cbTipoCliente.Enabled = false;
+                        cbTipoCliente.SelectedIndex = -1;
+                    }
+                    btnEditar.Enabled = true;
                 }
             }
         }
@@ -1020,6 +1050,23 @@ namespace CapaPresentacion
             }
         }
 
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            if (txtIdCliente.Text != "")
+            {
+                txtDocumento.ReadOnly = false;
+                txtNombre.ReadOnly = false;
+                txtDireccion.ReadOnly = false;
+                // cbTipoCliente.Enabled = true;
+                isNuevo = false;
+                btnGuardar.Enabled = true;
+                if (lblClase.Text == "C")
+                {
+                    cbTipoCliente.Enabled = true;
+                }
+            }
+        }
+
         public void mostrarTotales()
         {
             decimal total = Convert.ToDecimal(this.lblTotal.Text);
@@ -1136,6 +1183,8 @@ namespace CapaPresentacion
         {
             this.ValidarAcceso();
             this.txtEfectivo.Select();
+            cargarTipoCliente();
+            cbTipoCliente.Enabled = false;
         }
     }
 }

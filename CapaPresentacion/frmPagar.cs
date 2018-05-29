@@ -18,6 +18,7 @@ namespace CapaPresentacion
         private decimal efectivo, tarjeta;
         private string efectivo1, vuelto1, tarjeta1, formaPago1, modoProd;
         private DataTable dtDetalleR;
+        private bool isNuevo = true;
 
         public frmPagar()
         {
@@ -80,6 +81,8 @@ namespace CapaPresentacion
             this.txtEfectivo.Focus();
             this.ValidarAcceso();
             this.txtEfectivo.Select();
+            cbTipoCliente.Enabled = false;
+            cargarTipoCliente();
         }
 
         private void mostrarTotalesReserva()
@@ -1459,6 +1462,32 @@ frmReservar.f1.txtNombre.Text.ToUpper().Trim(), frmReservar.f1.txtCel.Text.Trim(
                                                         int cantRequerida = Convert.ToInt32(dtDetalleProducto.Rows[j][1].ToString());
 
                                                         NProducto.EditarStock(idProducto_Com, cantRequerida * cantPedido);
+
+                                                        DataTable dtRecetaC = NReceta.Mostrar(Convert.ToInt32(idProducto_Com));
+                                                        if (dtRecetaC.Rows.Count > 0)
+                                                        {
+                                                            int cantInsumo = Convert.ToInt32(frmVenta.f1.dataListadoDetalle.Rows[i].Cells["Cant"].Value.ToString());
+                                                            decimal cantTotal;
+                                                            for (int k = 0; k < dtRecetaC.Rows.Count; k++)
+                                                            {
+                                                                cantTotal = cantInsumo * Convert.ToDecimal(dtRecetaC.Rows[k][3].ToString());
+                                                                NInsumo.EditarStock(Convert.ToInt32(dtRecetaC.Rows[k][0].ToString()), cantTotal );
+                                                            }
+                                                        }
+                                                    }
+
+                                                }
+
+                                                DataTable dtReceta = NReceta.Mostrar(Convert.ToInt32(frmVenta.f1.dataListadoDetalle.Rows[p].Cells["Cod"].Value.ToString()));
+
+                                                if (dtReceta.Rows.Count > 0)
+                                                {
+                                                    int cantInsumo = Convert.ToInt32(frmVenta.f1.dataListadoDetalle.Rows[p].Cells["Cant"].Value.ToString());
+                                                    decimal cantTotal;
+                                                    for (int k = 0; k < dtReceta.Rows.Count; k++)
+                                                    {
+                                                        cantTotal = cantInsumo * Convert.ToDecimal(dtReceta.Rows[k][3].ToString());
+                                                        NInsumo.EditarStock(Convert.ToInt32(dtReceta.Rows[k][0].ToString()), cantTotal);
                                                     }
 
                                                 }
@@ -1599,6 +1628,18 @@ frmReservar.f1.txtNombre.Text.ToUpper().Trim(), frmReservar.f1.txtCel.Text.Trim(
                                                             int cantRequerida = Convert.ToInt32(dtDetalleProducto.Rows[j][1].ToString());
 
                                                             NProducto.EditarStock(idProducto_Com, cantRequerida * cantPedido);
+
+                                                            DataTable dtRecetaC = NReceta.Mostrar(Convert.ToInt32(idProducto_Com));
+                                                            if (dtRecetaC.Rows.Count > 0)
+                                                            {
+                                                                int cantInsumo = Convert.ToInt32(frmVenta.f1.dataListadoDetalle.Rows[i].Cells["Cant"].Value.ToString());
+                                                                decimal cantTotal;
+                                                                for (int k = 0; k < dtRecetaC.Rows.Count; k++)
+                                                                {
+                                                                    cantTotal = cantInsumo * Convert.ToDecimal(dtRecetaC.Rows[k][3].ToString());
+                                                                   NInsumo.EditarStock(Convert.ToInt32(dtRecetaC.Rows[k][0].ToString()), cantTotal);
+                                                                }
+                                                            }
                                                         }
 
                                                     }
@@ -1813,6 +1854,20 @@ frmReservar.f1.txtNombre.Text.ToUpper().Trim(), frmReservar.f1.txtCel.Text.Trim(
                                                     int cantRequerida = Convert.ToInt32(dtDetalleProducto.Rows[j][1].ToString());
 
                                                     NProducto.EditarStock(idProducto_Com, cantRequerida * cantPedido);
+
+                                                  
+
+                                                    DataTable dtRecetaC = NReceta.Mostrar(Convert.ToInt32(idProducto_Com));
+                                                    if (dtRecetaC.Rows.Count > 0)
+                                                    {
+                                                        int cantInsumo = Convert.ToInt32(frmVenta.f1.dataListadoDetalle.Rows[j].Cells["Cant"].Value.ToString());
+                                                        decimal cantTotal;
+                                                        for (int k = 0; k < dtRecetaC.Rows.Count; k++)
+                                                        {
+                                                            cantTotal = cantInsumo * Convert.ToDecimal(dtRecetaC.Rows[k][3].ToString());
+                                                            NInsumo.EditarStock(Convert.ToInt32(dtRecetaC.Rows[k][0].ToString()), cantTotal);
+                                                        }
+                                                    }
                                                 }
 
                                             }
@@ -2013,7 +2068,7 @@ frmReservar.f1.txtNombre.Text.ToUpper().Trim(), frmReservar.f1.txtCel.Text.Trim(
                 }
                 else if (lblBanderaComprobante.Text == "0")
                 {
-                    MessageBox.Show("Seleccione BOLETA o FACTURA");
+                    Cobrar();
                 }
                 else if (lblBanderaComprobante.Text == "2")
                 {
@@ -2034,6 +2089,8 @@ frmReservar.f1.txtNombre.Text.ToUpper().Trim(), frmReservar.f1.txtCel.Text.Trim(
             this.btnTicket.BackColor = Color.FromArgb(205, 201, 201);
             MontosNuevosDescuento();
             this.dataListadoProducto.Select();
+            btnGuardar.Enabled = true;
+            btnNuevo.Enabled = true;
 
         }
 
@@ -2069,6 +2126,22 @@ frmReservar.f1.txtNombre.Text.ToUpper().Trim(), frmReservar.f1.txtCel.Text.Trim(
 
         private void txtDocumento_KeyPress(object sender, KeyPressEventArgs e)
         {
+            if (Char.IsDigit(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsSeparator(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
             if ((int)e.KeyChar == (int)Keys.Enter)
             {
                 DataTable dtClienteVenta;
@@ -2083,8 +2156,42 @@ frmReservar.f1.txtNombre.Text.ToUpper().Trim(), frmReservar.f1.txtCel.Text.Trim(
                     this.txtNombre.Text = dtClienteVenta.Rows[0][1].ToString();
                     this.txtDocumento.Text = dtClienteVenta.Rows[0][2].ToString();
                     this.txtDireccion.Text = dtClienteVenta.Rows[0][3].ToString();
+                    this.lblClase.Text = dtClienteVenta.Rows[0][7].ToString();
+                    if(lblClase.Text == "C")
+                    {
+                        string idTipoCliente;
+                        idTipoCliente = dtClienteVenta.Rows[0][6].ToString();
+                        if (idTipoCliente == "" || idTipoCliente == null)
+                        {
+                            cbTipoCliente.SelectedIndex = -1;
+                        }
+                        else
+                        {
+                            cbTipoCliente.SelectedValue = idTipoCliente;
+                            cbTipoCliente.Enabled = true;
+                        }
+
+                        NDescuento.DescuentoClientes(idTipoCliente, Convert.ToDecimal(lblSubTotal.Text), Convert.ToDecimal(lblIgv.Text), Convert.ToDecimal(lblMontoAdelanto.Text),
+                            Convert.ToDecimal(lblDescuento.Text), Convert.ToDecimal(lblDctoGeneral.Text), lblDctoGeneral, lblSubTotal, lblIgv, lblTotal);
+                        mostrarTotales();
+                    }else
+                    {
+                        cbTipoCliente.Enabled = false;
+                        cbTipoCliente.SelectedIndex = -1;
+                    }
+                    btnEditar.Enabled = true;
                 }
             }
+        }
+
+        private void cargarTipoCliente()
+        {
+            cbTipoCliente.DataSource = NTipoCliente.Mostrar();
+            cbTipoCliente.ValueMember = "Codigo";
+            cbTipoCliente.DisplayMember = "TipoCliente";
+            cbTipoCliente.SelectedIndex = -1;
+            //lblPrueba.Text = cbCategoria.SelectedValue.ToString();
+
         }
 
         private void btnNuevo_Click(object sender, EventArgs e)
@@ -2095,14 +2202,19 @@ frmReservar.f1.txtNombre.Text.ToUpper().Trim(), frmReservar.f1.txtCel.Text.Trim(
             }
             else
             {
+                cargarTipoCliente();
                 this.btnGuardar.Enabled = true;
                 this.txtNombre.ReadOnly = false;
                 this.txtDireccion.ReadOnly = false;
+                this.cbTipoCliente.Enabled = true;
                 this.txtNombre.Text = string.Empty;
                 this.txtDireccion.Text = string.Empty;
                 this.txtDocumento.Text = string.Empty;
                 this.txtIdCliente.Text = string.Empty;
+                this.cbTipoCliente.Enabled = true;
                 this.txtDocumento.Focus();
+                btnEditar.Enabled = false;
+                isNuevo = true;
             }
 
 
@@ -2114,6 +2226,7 @@ frmReservar.f1.txtNombre.Text.ToUpper().Trim(), frmReservar.f1.txtCel.Text.Trim(
             string rpta = "";
             decimal monto = 00.00m;
             string tipoDoc = "";
+            int? tipoCliente;
             monto = Convert.ToDecimal(this.lblTotal.Text) + Convert.ToDecimal(lblMontoAdelanto.Text);
             if (lblBanderaComprobante.Text == "1")
             {
@@ -2140,7 +2253,23 @@ frmReservar.f1.txtNombre.Text.ToUpper().Trim(), frmReservar.f1.txtCel.Text.Trim(
                         tipoDoc = "";
 
                     }
-                    rpta = NCliente.InsertarVenta(txtNombre.Text.Trim().ToUpper(), DateTime.MinValue, tipoDoc, txtDocumento.Text.Trim(), txtDireccion.Text, "", "");
+
+                    if(cbTipoCliente.SelectedIndex == -1)
+                    {
+                        tipoCliente = null;
+                    }
+                    else
+                    {
+                        tipoCliente = Convert.ToInt32(cbTipoCliente.SelectedValue.ToString());
+                    }
+                    if (isNuevo)
+                    {
+                        rpta = NCliente.InsertarVenta(txtNombre.Text.Trim().ToUpper(), DateTime.MinValue, tipoDoc, txtDocumento.Text.Trim(), txtDireccion.Text, "", "", tipoCliente);
+                    }else
+                    {
+                        rpta = NCliente.Editar(Convert.ToInt32(txtIdCliente.Text), txtNombre.Text.Trim().ToUpper(), DateTime.MinValue, tipoDoc, txtDocumento.Text.Trim(), txtDireccion.Text, "", "", tipoCliente);
+                    }
+                   
                 }
                 else if (monto > 700)
                 {
@@ -2163,7 +2292,22 @@ frmReservar.f1.txtNombre.Text.ToUpper().Trim(), frmReservar.f1.txtCel.Text.Trim(
                         MessageBox.Show("Complete el nombre y la dirección");
                         return;
                     }
-                    rpta = NCliente.InsertarVenta(txtNombre.Text.Trim().ToUpper(), DateTime.MinValue, tipoDoc, txtDocumento.Text.Trim(), txtDireccion.Text, "", "");
+                    if (cbTipoCliente.SelectedIndex == -1)
+                    {
+                        tipoCliente = null;
+                    }
+                    else
+                    {
+                        tipoCliente = Convert.ToInt32(cbTipoCliente.SelectedValue.ToString());
+                    }
+                    if (isNuevo)
+                    {
+                        rpta = NCliente.InsertarVenta(txtNombre.Text.Trim().ToUpper(), DateTime.MinValue, tipoDoc, txtDocumento.Text.Trim(), txtDireccion.Text, "", "", tipoCliente);
+                    }
+                    else
+                    {
+                        rpta = NCliente.Editar(Convert.ToInt32(txtIdCliente.Text), txtNombre.Text.Trim().ToUpper(), DateTime.MinValue, tipoDoc, txtDocumento.Text.Trim(), txtDireccion.Text, "", "", tipoCliente);
+                    }
                 }
 
                 this.txtIdCliente.Text = rpta;
@@ -2184,7 +2328,22 @@ frmReservar.f1.txtNombre.Text.ToUpper().Trim(), frmReservar.f1.txtCel.Text.Trim(
                 }
                 else
                 {
-                    rpta = NCliente.InsertarVenta(txtNombre.Text.Trim().ToUpper(), DateTime.MinValue, "RUC", txtDocumento.Text.Trim(), txtDireccion.Text.Trim(), "", "");
+                    if (cbTipoCliente.SelectedIndex == -1)
+                    {
+                        tipoCliente = null;
+                    }
+                    else
+                    {
+                        tipoCliente = Convert.ToInt32(cbTipoCliente.SelectedValue.ToString());
+                    }
+                    if (isNuevo)
+                    {
+                        rpta = NCliente.InsertarVenta(txtNombre.Text.Trim().ToUpper(), DateTime.MinValue, tipoDoc, txtDocumento.Text.Trim(), txtDireccion.Text, "", "", tipoCliente);
+                    }
+                    else
+                    {
+                        rpta = NCliente.Editar(Convert.ToInt32(txtIdCliente.Text), txtNombre.Text.Trim().ToUpper(), DateTime.MinValue, tipoDoc, txtDocumento.Text.Trim(), txtDireccion.Text, "", "", tipoCliente);
+                    }
                     this.txtIdCliente.Text = rpta;
                     this.txtNombre.ReadOnly = true;
                     this.txtDireccion.ReadOnly = true;
@@ -2197,8 +2356,24 @@ frmReservar.f1.txtNombre.Text.ToUpper().Trim(), frmReservar.f1.txtCel.Text.Trim(
         private void btnGuardar_Click(object sender, EventArgs e)
         {
 
-            GuardarCliente();
-
+            //GuardarCliente();
+           string rpta= NTipoCliente.GuardarCliente(lblTotal.Text, lblMontoAdelanto.Text, lblBanderaComprobante.Text, txtDocumento.Text, cbTipoCliente,
+                isNuevo, txtNombre.Text, txtDireccion.Text, txtIdCliente.Text);
+            if (isNuevo &&  rpta !=null)
+            {
+                this.txtIdCliente.Text = rpta;
+                this.txtNombre.ReadOnly = true;
+                this.txtDireccion.ReadOnly = true;
+                this.btnGuardar.Enabled = false;
+                this.btnNuevo.Enabled = false;
+            }else if(rpta == "OK")
+            {
+                this.txtNombre.ReadOnly = true;
+                this.txtDireccion.ReadOnly = true;
+                this.btnGuardar.Enabled = false;
+                this.btnNuevo.Enabled = false;
+            }
+           
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -2344,6 +2519,25 @@ frmReservar.f1.txtNombre.Text.ToUpper().Trim(), frmReservar.f1.txtCel.Text.Trim(
         private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)
         {
 
+        }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            if(txtIdCliente.Text != "")
+            {
+                txtDocumento.ReadOnly = false;
+                txtNombre.ReadOnly = false;
+                txtDireccion.ReadOnly = false;
+               // cbTipoCliente.Enabled = true;
+                isNuevo = false;
+                btnGuardar.Enabled = true;
+                if(lblClase.Text == "C")
+                {
+                    cbTipoCliente.Enabled = true;
+                }
+               
+              
+            }
         }
 
         private void verFormaPago()

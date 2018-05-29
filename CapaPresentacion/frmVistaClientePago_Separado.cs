@@ -41,7 +41,7 @@ namespace CapaPresentacion
 
         private void Mostrar()
         {
-            this.dataListado.DataSource = NCliente.Mostrar();
+            this.dataListado.DataSource = NCliente.mostrarClienteVenta1();
             this.ocultarColumnas();
             lblTotal.Text = "Total de Registros: " + Convert.ToString(dataListado.Rows.Count);
 
@@ -57,14 +57,14 @@ namespace CapaPresentacion
 
         private void BuscarDni()
         {
-            this.dataListado.DataSource = NCliente.BuscarDni(this.txtBuscar.Text.Trim());
+            this.dataListado.DataSource = NCliente.BuscarDni_1(this.txtBuscar.Text.Trim());
             this.ocultarColumnas();
             this.lblTotal.Text = "Total de Registros: " + Convert.ToString(dataListado.Rows.Count);
         }
 
         private void Buscar()
         {
-            this.dataListado.DataSource = NCliente.Buscar(this.txtBuscar.Text.Trim());
+            this.dataListado.DataSource = NCliente.BuscarCliente_1(this.txtBuscar.Text.Trim());
             this.ocultarColumnas();
             this.lblTotal.Text = "Total de Registros: " + Convert.ToString(dataListado.Rows.Count);
         }
@@ -72,6 +72,7 @@ namespace CapaPresentacion
         private void frmVistaClientePago_Separado_Load(object sender, EventArgs e)
         {
             this.Mostrar();
+            this.txtBuscar.Select();
         }
 
         private void txtBuscar_TextChanged(object sender, EventArgs e)
@@ -88,12 +89,37 @@ namespace CapaPresentacion
 
         private void dataListado_DoubleClick(object sender, EventArgs e)
         {
+            
+        }
+
+        private void dataListado_Click(object sender, EventArgs e)
+        {
             frmPagarSeparada.f1.txtIdCliente.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["Codigo"].Value);
             frmPagarSeparada.f1.txtNombre.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["Cliente"].Value);
             frmPagarSeparada.f1.txtDocumento.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["Nro_Doc"].Value);
             frmPagarSeparada.f1.txtDireccion.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["DIreccion"].Value);
-            this.Close();
+            if (Convert.ToString(this.dataListado.CurrentRow.Cells["Clase"].Value) == "C")
+            {
+                string idTipoCliente;
+                idTipoCliente = Convert.ToString(this.dataListado.CurrentRow.Cells["idTipoCliente"].Value);
+                if (idTipoCliente == "" || idTipoCliente == null)
+                {
+                    frmPagarSeparada.f1.cbTipoCliente.SelectedIndex = -1;
+                }
+                else
+                {
+                    frmPagarSeparada.f1.cbTipoCliente.SelectedValue = idTipoCliente;
+                    //frmPagar.f1.cbTipoCliente.Enabled = true;
+                }
+            }
+            else
+            {
+                // frmPagar.f1.cbTipoCliente.Enabled = false;
+                frmPagarSeparada.f1.cbTipoCliente.SelectedIndex = -1;
+            }
+            frmPagarSeparada.f1.btnEditar.Enabled = true;
             frmPagarSeparada.f1.dataListadoProducto.Select();
+            this.Close();
         }
     }
 }

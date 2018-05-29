@@ -2126,3 +2126,4 @@ D:\SIS_RESTAURANTE\SISTEMAVENTAS_CIERRES\CapaPresentacion\obj\Debug\CapaPresenta
 D:\SIS_RESTAURANTE\SISTEMAVENTAS_CIERRES\CapaPresentacion\obj\Debug\CapaPresentacion.dll
 D:\SIS_RESTAURANTE\SISTEMAVENTAS_CIERRES\CapaPresentacion\obj\Debug\CapaPresentacion.pdb
 D:\SIS_RESTAURANTE\SISTEMAVENTAS_CIERRES\CapaPresentacion\obj\Debug\CapaPresentacion.frmTipoCliente.resources
+D:\SIS_RESTAURANTE\SISTEMAVENTAS_CIERRES\CapaPresentacion\obj\Debug\CapaPresentacion.frmPruebaRedondeo.resources

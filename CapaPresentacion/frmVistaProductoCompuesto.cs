@@ -103,5 +103,17 @@ namespace CapaPresentacion
             frmProducto.f1.txtCantidad.Focus();
             this.Hide();
         }
+
+        private void rbNombre_CheckedChanged(object sender, EventArgs e)
+        {
+            txtBuscar.Clear();
+            txtBuscar.Select();
+        }
+
+        private void rbCategoria_CheckedChanged(object sender, EventArgs e)
+        {
+            txtBuscar.Clear();
+            txtBuscar.Select();
+        }
     }
 }

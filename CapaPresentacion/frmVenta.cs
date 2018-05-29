@@ -898,6 +898,18 @@ namespace CapaPresentacion
                                                     int idProducto_Com = Convert.ToInt32(dtDetalleProducto.Rows[j][0].ToString());
                                                     int cantRequerida = Convert.ToInt32(dtDetalleProducto.Rows[j][1].ToString());
                                                     rpta = NProducto.EditarStock(idProducto_Com, cantRequerida * cantPedido);
+
+                                                    DataTable dtRecetaC = NReceta.Mostrar(Convert.ToInt32(idProducto_Com));
+                                                    if(dtRecetaC.Rows.Count > 0)
+                                                    {
+                                                        int cantInsumo = Convert.ToInt32(dataListadoDetalle.Rows[i].Cells["Cant"].Value.ToString());
+                                                        decimal cantTotal;
+                                                        for (int k = 0; k < dtRecetaC.Rows.Count; k++)
+                                                        {
+                                                            cantTotal = cantInsumo * Convert.ToDecimal(dtRecetaC.Rows[k][3].ToString());
+                                                            rpta = NInsumo.EditarStock(Convert.ToInt32(dtRecetaC.Rows[k][0].ToString()), cantTotal);
+                                                        }
+                                                    }
                                                 }
 
                                             }
@@ -906,6 +918,21 @@ namespace CapaPresentacion
 
                                             //  }
                                         }
+
+                                        DataTable dtReceta = NReceta.Mostrar(Convert.ToInt32(dataListadoDetalle.Rows[i].Cells["Cod"].Value.ToString()));
+
+                                        if (dtReceta.Rows.Count > 0)
+                                        {
+                                            int cantInsumo = Convert.ToInt32(dataListadoDetalle.Rows[i].Cells["Cant"].Value.ToString());
+                                            decimal cantTotal;
+                                            for (int k = 0; k < dtReceta.Rows.Count; k++)
+                                            {
+                                                cantTotal = cantInsumo * Convert.ToDecimal(dtReceta.Rows[k][3].ToString());
+                                                rpta = NInsumo.EditarStock(Convert.ToInt32(dtReceta.Rows[k][0].ToString()), cantTotal);
+                                            }
+
+                                        }
+
                                         if (dataListadoDetalle.Rows[i].Cells["Imprimir"].Value.ToString() == "Cocina")
                                         {
                                             string producto = dataListadoDetalle.Rows[i].Cells["Descripcion"].Value.ToString();
@@ -921,20 +948,6 @@ namespace CapaPresentacion
                                             string nota = dataListadoDetalle.Rows[i].Cells["Nota"].Value.ToString();
                                             string tipo1 = dataListadoDetalle.Rows[i].Cells["Tipo"].Value.ToString();
                                             dataBar.Rows.Add(producto, cantidad1, nota, tipo1);
-                                        }
-
-                                        DataTable dtReceta = NReceta.Mostrar(Convert.ToInt32(dataListadoDetalle.Rows[i].Cells["Cod"].Value.ToString()));
-
-                                        if (dtReceta.Rows.Count > 0)
-                                        {
-                                            int cantInsumo = Convert.ToInt32(dataListadoDetalle.Rows[i].Cells["Cant"].Value.ToString());
-                                            decimal cantTotal;
-                                            for (int k = 0; k < dtReceta.Rows.Count; k++)
-                                            {
-                                                cantTotal = cantInsumo * Convert.ToDecimal(dtReceta.Rows[k][3].ToString());
-                                                rpta = NInsumo.EditarStock(Convert.ToInt32(dtReceta.Rows[k][0].ToString()), cantTotal);
-                                            }
-
                                         }
 
 
@@ -999,8 +1012,19 @@ namespace CapaPresentacion
                                         {
                                             int idProducto_Com = Convert.ToInt32(dtDetalleProducto.Rows[j][0].ToString());
                                             int cantRequerida = Convert.ToInt32(dtDetalleProducto.Rows[j][1].ToString());
-
                                             rpta = NProducto.EditarStock(idProducto_Com, cantRequerida * cantPedido);
+
+                                            DataTable dtRecetaC = NReceta.Mostrar(Convert.ToInt32(idProducto_Com));
+                                            if (dtRecetaC.Rows.Count > 0)
+                                            {
+                                                int cantInsumo = Convert.ToInt32(dataListadoDetalle.Rows[i].Cells["Cant"].Value.ToString());
+                                                decimal cantTotal;
+                                                for (int k = 0; k < dtRecetaC.Rows.Count; k++)
+                                                {
+                                                    cantTotal = cantInsumo * Convert.ToDecimal(dtRecetaC.Rows[k][3].ToString());
+                                                    rpta = NInsumo.EditarStock(Convert.ToInt32(dtRecetaC.Rows[k][0].ToString()), cantTotal);
+                                                }
+                                            }
                                         }
 
                                     }
@@ -1544,6 +1568,30 @@ namespace CapaPresentacion
                                     int cantRequerida = Convert.ToInt32(dtDetalleProducto.Rows[j][1].ToString());
 
                                     NProducto.EditarStock(idProducto_Com, cantRequerida * cantPedido);
+                                    DataTable dtRecetaC = NReceta.Mostrar(Convert.ToInt32(idProducto_Com));
+                                    if (dtRecetaC.Rows.Count > 0)
+                                    {
+                                        int cantInsumo = Convert.ToInt32(dataListadoDetalle.Rows[i].Cells["Cant"].Value.ToString());
+                                        decimal cantTotal;
+                                        for (int k = 0; k < dtRecetaC.Rows.Count; k++)
+                                        {
+                                            cantTotal = cantInsumo * Convert.ToDecimal(dtRecetaC.Rows[k][3].ToString());
+                                            NInsumo.EditarStock(Convert.ToInt32(dtRecetaC.Rows[k][0].ToString()), cantTotal);
+                                        }
+                                    }
+                                }
+
+                            }
+                            DataTable dtReceta = NReceta.Mostrar(Convert.ToInt32(dataListadoDetalle.Rows[i].Cells["Cod"].Value.ToString()));
+
+                            if (dtReceta.Rows.Count > 0)
+                            {
+                                int cantInsumo = Convert.ToInt32(dataListadoDetalle.Rows[i].Cells["Cant"].Value.ToString());
+                                decimal cantTotal;
+                                for (int k = 0; k < dtReceta.Rows.Count; k++)
+                                {
+                                    cantTotal = cantInsumo * Convert.ToDecimal(dtReceta.Rows[k][3].ToString());
+                                  NInsumo.EditarStock(Convert.ToInt32(dtReceta.Rows[k][0].ToString()), cantTotal);
                                 }
 
                             }
@@ -1600,6 +1648,30 @@ namespace CapaPresentacion
                                             int cantRequerida = Convert.ToInt32(dtDetalleProducto.Rows[j][1].ToString());
 
                                             rpta = NProducto.EditarStock(idProducto_Com, cantRequerida * cantPedido);
+                                            DataTable dtRecetaC = NReceta.Mostrar(Convert.ToInt32(idProducto_Com));
+                                            if (dtRecetaC.Rows.Count > 0)
+                                            {
+                                                int cantInsumo = Convert.ToInt32(dataListadoDetalle.Rows[i].Cells["Cant"].Value.ToString());
+                                                decimal cantTotal;
+                                                for (int k = 0; k < dtRecetaC.Rows.Count; k++)
+                                                {
+                                                    cantTotal = cantInsumo * Convert.ToDecimal(dtRecetaC.Rows[k][3].ToString());
+                                                    NInsumo.EditarStock(Convert.ToInt32(dtRecetaC.Rows[k][0].ToString()), cantTotal);
+                                                }
+                                            }
+                                        }
+
+                                    }
+                                    DataTable dtReceta = NReceta.Mostrar(Convert.ToInt32(dataListadoDetalle.Rows[p].Cells["Cod"].Value.ToString()));
+
+                                    if (dtReceta.Rows.Count > 0)
+                                    {
+                                        int cantInsumo = Convert.ToInt32(dataListadoDetalle.Rows[p].Cells["Cant"].Value.ToString());
+                                        decimal cantTotal;
+                                        for (int k = 0; k < dtReceta.Rows.Count; k++)
+                                        {
+                                            cantTotal = cantInsumo * Convert.ToDecimal(dtReceta.Rows[k][3].ToString());
+                                           NInsumo.EditarStock(Convert.ToInt32(dtReceta.Rows[k][0].ToString()), cantTotal);
                                         }
 
                                     }
@@ -1698,16 +1770,21 @@ namespace CapaPresentacion
 
             frmPagar form = new frmPagar();
             // form.lblSubTotal.Text = this.txtSubTotal.Text.Trim();
-            form.lblTotal.Text = this.txtTotalPagado.Text.Trim();
+            decimal total = Convert.ToDecimal(this.txtTotalPagado.Text.Trim());
+            decimal totalRed = NRedondeo.redondearParcial(total);
+            //form.lblTotal.Text = this.txtTotalPagado.Text.Trim();
+            form.lblTotal.Text = totalRed.ToString();
             form.lblIdVenta.Text = this.lblIdVenta.Text;
             form.lblIdMesa.Text = this.lblIdMesa.Text;
             form.lblDescuento.Text = this.txtDescuento.Text;
             form.lblIdTrabajador.Text = idMesero;
             form.lblIdUsuario.Text = idMesero;
             decimal subtotal1 = 00.00m;
-            subtotal1 = ((Convert.ToDecimal(this.txtSubTotal.Text) - Convert.ToDecimal(this.txtDescuento.Text)) / 1.18m);
+            //subtotal1 = ((Convert.ToDecimal(this.txtSubTotal.Text) - Convert.ToDecimal(this.txtDescuento.Text)) / 1.18m);
+             subtotal1 = ((totalRed - Convert.ToDecimal(this.txtDescuento.Text)) / 1.18m);
             form.lblSubTotal.Text = string.Format(" {0:#,##0.00}", Convert.ToDouble(subtotal1));
-            decimal igvC = (Convert.ToDecimal(this.txtTotalPagado.Text) - subtotal1);
+           // decimal igvC = (Convert.ToDecimal(this.txtTotalPagado.Text) - subtotal1);
+            decimal igvC = (totalRed - subtotal1);
             form.lblIgv.Text = string.Format(" {0:#,##0.00}", Convert.ToDouble(igvC));
             form.lblBanderaCobro.Text = "0";
             form.ShowDialog();
@@ -2443,6 +2520,18 @@ namespace CapaPresentacion
                                     int cantRequerida = Convert.ToInt32(dtDetalleProducto.Rows[j][1].ToString());
 
                                     rpta = NProducto.EditarStock(idProducto_Com, ((cantRequerida * Convert.ToInt32(dtDetalleVenta.Rows[i][2].ToString()) * -1)));
+
+                                    DataTable dtRecetaC = NReceta.Mostrar(Convert.ToInt32(idProducto_Com));
+                                    if (dtRecetaC.Rows.Count > 0)
+                                    {
+                                        int cantInsumo = Convert.ToInt32(dataListadoDetalle.Rows[i].Cells["Cant"].Value.ToString());
+                                        decimal cantTotal;
+                                        for (int k = 0; k < dtRecetaC.Rows.Count; k++)
+                                        {
+                                            cantTotal = cantInsumo * Convert.ToDecimal(dtRecetaC.Rows[k][3].ToString());
+                                            rpta = NInsumo.EditarStock(Convert.ToInt32(dtRecetaC.Rows[k][0].ToString()), cantTotal * -1);
+                                        }
+                                    }
                                 }
                             }
 

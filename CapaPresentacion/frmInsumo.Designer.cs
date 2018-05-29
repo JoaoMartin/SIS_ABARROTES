@@ -61,6 +61,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.errorIcono = new System.Windows.Forms.ErrorProvider(this.components);
             this.ttMensaje = new System.Windows.Forms.ToolTip(this.components);
+            this.txtStockActual = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
             this.tabControl2.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -72,7 +74,7 @@
             // btnCancelar
             // 
             this.btnCancelar.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnCancelar.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancelar.Font = new System.Drawing.Font("Roboto Black", 9.230769F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancelar.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnCancelar.Image = global::CapaPresentacion.Properties.Resources.cancel2;
             this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -88,7 +90,7 @@
             // btnEditar
             // 
             this.btnEditar.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnEditar.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEditar.Font = new System.Drawing.Font("Roboto Black", 9.230769F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEditar.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnEditar.Image = global::CapaPresentacion.Properties.Resources.edit4;
             this.btnEditar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -104,7 +106,7 @@
             // btnGuardar
             // 
             this.btnGuardar.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnGuardar.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGuardar.Font = new System.Drawing.Font("Roboto Black", 9.230769F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGuardar.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnGuardar.Image = global::CapaPresentacion.Properties.Resources.save2;
             this.btnGuardar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -120,7 +122,7 @@
             // btnEliminar
             // 
             this.btnEliminar.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnEliminar.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEliminar.Font = new System.Drawing.Font("Roboto Black", 9.230769F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEliminar.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnEliminar.Image = global::CapaPresentacion.Properties.Resources.trash;
             this.btnEliminar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -136,7 +138,7 @@
             // btnImprimir
             // 
             this.btnImprimir.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnImprimir.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnImprimir.Font = new System.Drawing.Font("Roboto Black", 9.230769F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnImprimir.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnImprimir.Image = global::CapaPresentacion.Properties.Resources.print4;
             this.btnImprimir.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -152,7 +154,7 @@
             // btnNuevo
             // 
             this.btnNuevo.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnNuevo.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNuevo.Font = new System.Drawing.Font("Roboto Black", 9.230769F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNuevo.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnNuevo.Image = global::CapaPresentacion.Properties.Resources.new41;
             this.btnNuevo.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -239,7 +241,7 @@
             this.cbEliminar.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbEliminar.Location = new System.Drawing.Point(6, 113);
             this.cbEliminar.Name = "cbEliminar";
-            this.cbEliminar.Size = new System.Drawing.Size(87, 24);
+            this.cbEliminar.Size = new System.Drawing.Size(84, 24);
             this.cbEliminar.TabIndex = 10;
             this.cbEliminar.Text = "Eliminar";
             this.cbEliminar.UseVisualStyleBackColor = true;
@@ -273,6 +275,8 @@
             // tabPage3
             // 
             this.tabPage3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.tabPage3.Controls.Add(this.txtStockActual);
+            this.tabPage3.Controls.Add(this.label15);
             this.tabPage3.Controls.Add(this.txtCosto);
             this.tabPage3.Controls.Add(this.label2);
             this.tabPage3.Controls.Add(this.txtDescripcion);
@@ -285,6 +289,7 @@
             this.tabPage3.Controls.Add(this.txtIdInsumo);
             this.tabPage3.Controls.Add(this.txtNombre);
             this.tabPage3.Controls.Add(this.label4);
+            this.tabPage3.Font = new System.Drawing.Font("Roboto", 11.07692F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabPage3.Location = new System.Drawing.Point(4, 27);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
@@ -296,31 +301,31 @@
             // txtCosto
             // 
             this.txtCosto.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtCosto.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCosto.Font = new System.Drawing.Font("Roboto", 11.07692F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCosto.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.txtCosto.Location = new System.Drawing.Point(188, 353);
+            this.txtCosto.Location = new System.Drawing.Point(187, 335);
             this.txtCosto.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtCosto.Name = "txtCosto";
-            this.txtCosto.Size = new System.Drawing.Size(100, 30);
+            this.txtCosto.Size = new System.Drawing.Size(100, 31);
             this.txtCosto.TabIndex = 4;
             this.txtCosto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCosto_KeyPress_1);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(43, 353);
+            this.label2.Font = new System.Drawing.Font("Roboto", 9.230769F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(121, 345);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(48, 20);
+            this.label2.Size = new System.Drawing.Size(50, 20);
             this.label2.TabIndex = 65;
             this.label2.Text = "Costo";
             // 
             // txtDescripcion
             // 
             this.txtDescripcion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtDescripcion.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDescripcion.Font = new System.Drawing.Font("Roboto", 11.07692F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDescripcion.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.txtDescripcion.Location = new System.Drawing.Point(188, 246);
+            this.txtDescripcion.Location = new System.Drawing.Point(187, 228);
             this.txtDescripcion.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtDescripcion.Multiline = true;
             this.txtDescripcion.Name = "txtDescripcion";
@@ -330,90 +335,91 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(62, 250);
+            this.label6.Font = new System.Drawing.Font("Roboto", 9.230769F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(80, 294);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(88, 20);
+            this.label6.Size = new System.Drawing.Size(91, 20);
             this.label6.TabIndex = 64;
             this.label6.Text = "Descripción";
             // 
             // txtStockMinimo
             // 
             this.txtStockMinimo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtStockMinimo.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtStockMinimo.Font = new System.Drawing.Font("Roboto", 11.07692F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtStockMinimo.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.txtStockMinimo.Location = new System.Drawing.Point(187, 398);
+            this.txtStockMinimo.Location = new System.Drawing.Point(399, 385);
             this.txtStockMinimo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtStockMinimo.Name = "txtStockMinimo";
-            this.txtStockMinimo.Size = new System.Drawing.Size(100, 30);
-            this.txtStockMinimo.TabIndex = 5;
+            this.txtStockMinimo.Size = new System.Drawing.Size(100, 31);
+            this.txtStockMinimo.TabIndex = 6;
             this.txtStockMinimo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtStockMinimo_KeyPress);
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(43, 408);
+            this.label10.Font = new System.Drawing.Font("Roboto", 9.230769F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(290, 397);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(102, 20);
+            this.label10.Size = new System.Drawing.Size(104, 20);
             this.label10.TabIndex = 59;
             this.label10.Text = "Stock Mínimo";
             // 
             // cbUnidad
             // 
             this.cbUnidad.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbUnidad.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbUnidad.Font = new System.Drawing.Font("Roboto", 11.07692F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbUnidad.FormattingEnabled = true;
-            this.cbUnidad.Location = new System.Drawing.Point(187, 170);
+            this.cbUnidad.Location = new System.Drawing.Point(186, 152);
             this.cbUnidad.Name = "cbUnidad";
-            this.cbUnidad.Size = new System.Drawing.Size(446, 28);
+            this.cbUnidad.Size = new System.Drawing.Size(446, 32);
             this.cbUnidad.TabIndex = 3;
             // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(98, 178);
+            this.label13.Font = new System.Drawing.Font("Roboto", 9.230769F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(107, 162);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(55, 20);
+            this.label13.Size = new System.Drawing.Size(58, 20);
             this.label13.TabIndex = 32;
             this.label13.Text = "Unidad";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(101, 132);
+            this.label3.Font = new System.Drawing.Font("Roboto", 9.230769F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(107, 114);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(55, 20);
+            this.label3.Size = new System.Drawing.Size(59, 20);
             this.label3.TabIndex = 0;
             this.label3.Text = "Código";
             // 
             // txtIdInsumo
             // 
             this.txtIdInsumo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtIdInsumo.Location = new System.Drawing.Point(188, 128);
+            this.txtIdInsumo.Font = new System.Drawing.Font("Roboto", 11.07692F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtIdInsumo.Location = new System.Drawing.Point(187, 110);
             this.txtIdInsumo.Name = "txtIdInsumo";
             this.txtIdInsumo.ReadOnly = true;
-            this.txtIdInsumo.Size = new System.Drawing.Size(112, 25);
+            this.txtIdInsumo.Size = new System.Drawing.Size(112, 31);
             this.txtIdInsumo.TabIndex = 30;
             // 
             // txtNombre
             // 
             this.txtNombre.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtNombre.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNombre.Location = new System.Drawing.Point(188, 209);
+            this.txtNombre.Font = new System.Drawing.Font("Roboto", 11.07692F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNombre.Location = new System.Drawing.Point(187, 191);
             this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(446, 30);
+            this.txtNombre.Size = new System.Drawing.Size(446, 31);
             this.txtNombre.TabIndex = 2;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(85, 219);
+            this.label4.Font = new System.Drawing.Font("Roboto", 9.230769F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(107, 201);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(62, 20);
+            this.label4.Size = new System.Drawing.Size(64, 20);
             this.label4.TabIndex = 20;
             this.label4.Text = "Nombre";
             // 
@@ -436,6 +442,28 @@
             // ttMensaje
             // 
             this.ttMensaje.IsBalloon = true;
+            // 
+            // txtStockActual
+            // 
+            this.txtStockActual.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtStockActual.Font = new System.Drawing.Font("Roboto", 11.07692F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtStockActual.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.txtStockActual.Location = new System.Drawing.Point(186, 387);
+            this.txtStockActual.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtStockActual.MaxLength = 11;
+            this.txtStockActual.Name = "txtStockActual";
+            this.txtStockActual.Size = new System.Drawing.Size(98, 31);
+            this.txtStockActual.TabIndex = 5;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Roboto", 9.230769F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(75, 397);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(96, 20);
+            this.label15.TabIndex = 67;
+            this.label15.Text = "Stock Actual";
             // 
             // frmInsumo
             // 
@@ -508,5 +536,7 @@
         private System.Windows.Forms.TextBox txtCosto;
         private System.Windows.Forms.Label label2;
         public System.Windows.Forms.DataGridView dataListado;
+        private System.Windows.Forms.TextBox txtStockActual;
+        private System.Windows.Forms.Label label15;
     }
 }

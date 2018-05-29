@@ -30,6 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCambioComprobante));
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.cbTipoCliente = new System.Windows.Forms.ComboBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.btnEditar = new System.Windows.Forms.Button();
             this.btnNuevo = new System.Windows.Forms.Button();
             this.txtIdCliente = new System.Windows.Forms.TextBox();
             this.btnGuardarCliente = new System.Windows.Forms.Button();
@@ -45,6 +48,7 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.dataDetalle = new System.Windows.Forms.DataGridView();
+            this.lblClase = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataDetalle)).BeginInit();
             this.SuspendLayout();
@@ -52,6 +56,9 @@
             // groupBox2
             // 
             this.groupBox2.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.groupBox2.Controls.Add(this.cbTipoCliente);
+            this.groupBox2.Controls.Add(this.label16);
+            this.groupBox2.Controls.Add(this.btnEditar);
             this.groupBox2.Controls.Add(this.btnNuevo);
             this.groupBox2.Controls.Add(this.txtIdCliente);
             this.groupBox2.Controls.Add(this.btnGuardarCliente);
@@ -64,10 +71,46 @@
             this.groupBox2.Controls.Add(this.label11);
             this.groupBox2.Location = new System.Drawing.Point(12, 69);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(561, 270);
+            this.groupBox2.Size = new System.Drawing.Size(561, 286);
             this.groupBox2.TabIndex = 128;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Cliente";
+            // 
+            // cbTipoCliente
+            // 
+            this.cbTipoCliente.Font = new System.Drawing.Font("Roboto", 14.15385F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbTipoCliente.FormattingEnabled = true;
+            this.cbTipoCliente.Location = new System.Drawing.Point(111, 67);
+            this.cbTipoCliente.Name = "cbTipoCliente";
+            this.cbTipoCliente.Size = new System.Drawing.Size(397, 38);
+            this.cbTipoCliente.TabIndex = 196;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Roboto", 9.230769F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(13, 85);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(72, 20);
+            this.label16.TabIndex = 195;
+            this.label16.Text = "T. Cliente";
+            // 
+            // btnEditar
+            // 
+            this.btnEditar.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnEditar.Enabled = false;
+            this.btnEditar.Font = new System.Drawing.Font("Roboto", 9.846154F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEditar.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnEditar.Image = global::CapaPresentacion.Properties.Resources.edit4;
+            this.btnEditar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnEditar.Location = new System.Drawing.Point(301, 200);
+            this.btnEditar.Name = "btnEditar";
+            this.btnEditar.Size = new System.Drawing.Size(100, 80);
+            this.btnEditar.TabIndex = 194;
+            this.btnEditar.Text = "&Editar";
+            this.btnEditar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnEditar.UseVisualStyleBackColor = false;
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
             // btnNuevo
             // 
@@ -76,7 +119,7 @@
             this.btnNuevo.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnNuevo.Image = global::CapaPresentacion.Properties.Resources.new4;
             this.btnNuevo.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnNuevo.Location = new System.Drawing.Point(80, 158);
+            this.btnNuevo.Location = new System.Drawing.Point(194, 200);
             this.btnNuevo.Name = "btnNuevo";
             this.btnNuevo.Size = new System.Drawing.Size(101, 78);
             this.btnNuevo.TabIndex = 33;
@@ -88,10 +131,10 @@
             // txtIdCliente
             // 
             this.txtIdCliente.Font = new System.Drawing.Font("Roboto", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtIdCliente.Location = new System.Drawing.Point(80, 24);
+            this.txtIdCliente.Location = new System.Drawing.Point(112, 24);
             this.txtIdCliente.Name = "txtIdCliente";
             this.txtIdCliente.ReadOnly = true;
-            this.txtIdCliente.Size = new System.Drawing.Size(61, 38);
+            this.txtIdCliente.Size = new System.Drawing.Size(61, 37);
             this.txtIdCliente.TabIndex = 32;
             // 
             // btnGuardarCliente
@@ -102,7 +145,7 @@
             this.btnGuardarCliente.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnGuardarCliente.Image = global::CapaPresentacion.Properties.Resources.save2;
             this.btnGuardarCliente.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnGuardarCliente.Location = new System.Drawing.Point(187, 158);
+            this.btnGuardarCliente.Location = new System.Drawing.Point(407, 202);
             this.btnGuardarCliente.Name = "btnGuardarCliente";
             this.btnGuardarCliente.Size = new System.Drawing.Size(101, 78);
             this.btnGuardarCliente.TabIndex = 31;
@@ -128,54 +171,56 @@
             // txtDireccion
             // 
             this.txtDireccion.Font = new System.Drawing.Font("Roboto", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDireccion.Location = new System.Drawing.Point(80, 114);
+            this.txtDireccion.Location = new System.Drawing.Point(112, 155);
             this.txtDireccion.Name = "txtDireccion";
             this.txtDireccion.ReadOnly = true;
-            this.txtDireccion.Size = new System.Drawing.Size(428, 38);
+            this.txtDireccion.Size = new System.Drawing.Size(396, 37);
             this.txtDireccion.TabIndex = 5;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(6, 133);
+            this.label9.Font = new System.Drawing.Font("Roboto", 9.230769F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(21, 174);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(68, 19);
+            this.label9.Size = new System.Drawing.Size(74, 20);
             this.label9.TabIndex = 4;
             this.label9.Text = "Dirección";
             // 
             // txtNombre
             // 
             this.txtNombre.Font = new System.Drawing.Font("Roboto", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNombre.Location = new System.Drawing.Point(80, 68);
+            this.txtNombre.Location = new System.Drawing.Point(112, 109);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.ReadOnly = true;
-            this.txtNombre.Size = new System.Drawing.Size(428, 38);
+            this.txtNombre.Size = new System.Drawing.Size(396, 37);
             this.txtNombre.TabIndex = 3;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(15, 87);
+            this.label10.Font = new System.Drawing.Font("Roboto", 9.230769F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(30, 128);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(59, 19);
+            this.label10.Size = new System.Drawing.Size(64, 20);
             this.label10.TabIndex = 2;
             this.label10.Text = "Nombre";
             // 
             // txtDocumento
             // 
             this.txtDocumento.Font = new System.Drawing.Font("Roboto", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDocumento.Location = new System.Drawing.Point(147, 24);
+            this.txtDocumento.Location = new System.Drawing.Point(179, 24);
             this.txtDocumento.Name = "txtDocumento";
-            this.txtDocumento.Size = new System.Drawing.Size(361, 38);
+            this.txtDocumento.Size = new System.Drawing.Size(329, 37);
             this.txtDocumento.TabIndex = 1;
             this.txtDocumento.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDocumento_KeyPress);
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(9, 43);
+            this.label11.Location = new System.Drawing.Point(24, 43);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(65, 19);
+            this.label11.Size = new System.Drawing.Size(61, 18);
             this.label11.TabIndex = 0;
             this.label11.Text = "RUC/DNI";
             // 
@@ -186,11 +231,12 @@
             this.rbBoleta.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbBoleta.Location = new System.Drawing.Point(22, 31);
             this.rbBoleta.Name = "rbBoleta";
-            this.rbBoleta.Size = new System.Drawing.Size(85, 24);
+            this.rbBoleta.Size = new System.Drawing.Size(82, 24);
             this.rbBoleta.TabIndex = 129;
             this.rbBoleta.TabStop = true;
             this.rbBoleta.Text = "BOLETA";
             this.rbBoleta.UseVisualStyleBackColor = true;
+            this.rbBoleta.CheckedChanged += new System.EventHandler(this.rbBoleta_CheckedChanged);
             // 
             // rbFactura
             // 
@@ -198,10 +244,11 @@
             this.rbFactura.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbFactura.Location = new System.Drawing.Point(132, 31);
             this.rbFactura.Name = "rbFactura";
-            this.rbFactura.Size = new System.Drawing.Size(97, 24);
+            this.rbFactura.Size = new System.Drawing.Size(94, 24);
             this.rbFactura.TabIndex = 130;
             this.rbFactura.Text = "FACTURA";
             this.rbFactura.UseVisualStyleBackColor = true;
+            this.rbFactura.CheckedChanged += new System.EventHandler(this.rbFactura_CheckedChanged);
             // 
             // btnCancelar
             // 
@@ -253,12 +300,24 @@
             this.dataDetalle.TabIndex = 133;
             this.dataDetalle.Visible = false;
             // 
+            // lblClase
+            // 
+            this.lblClase.AutoSize = true;
+            this.lblClase.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblClase.Location = new System.Drawing.Point(338, 164);
+            this.lblClase.Name = "lblClase";
+            this.lblClase.Size = new System.Drawing.Size(26, 29);
+            this.lblClase.TabIndex = 195;
+            this.lblClase.Text = "1";
+            this.lblClase.Visible = false;
+            // 
             // frmCambioComprobante
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(703, 356);
+            this.Controls.Add(this.lblClase);
             this.Controls.Add(this.dataDetalle);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnCancelar);
@@ -272,6 +331,7 @@
             this.Name = "frmCambioComprobante";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = ".:: CAMBIO DE COMPROBANTE ::.";
+            this.Load += new System.EventHandler(this.frmCambioComprobante_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataDetalle)).EndInit();
@@ -298,5 +358,9 @@
         public System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridView dataDetalle;
+        public System.Windows.Forms.ComboBox cbTipoCliente;
+        private System.Windows.Forms.Label label16;
+        public System.Windows.Forms.Button btnEditar;
+        public System.Windows.Forms.Label lblClase;
     }
 }

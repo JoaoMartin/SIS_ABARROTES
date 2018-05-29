@@ -42,7 +42,7 @@ namespace CapaPresentacion
 
         private void Mostrar()
         {
-            this.dataListado.DataSource = NCliente.Mostrar();
+            this.dataListado.DataSource = NCliente.mostrarClienteVenta1();
             this.ocultarColumnas();
             lblTotal.Text = "Total de Registros: " + Convert.ToString(dataListado.Rows.Count);
 
@@ -58,14 +58,14 @@ namespace CapaPresentacion
 
         private void BuscarDni()
         {
-            this.dataListado.DataSource = NCliente.BuscarDni(this.txtBuscar.Text.Trim());
+            this.dataListado.DataSource = NCliente.BuscarDni_1(this.txtBuscar.Text.Trim());
             this.ocultarColumnas();
             this.lblTotal.Text = "Total de Registros: " + Convert.ToString(dataListado.Rows.Count);
         }
 
         private void Buscar()
         {
-            this.dataListado.DataSource = NCliente.Buscar(this.txtBuscar.Text.Trim());
+            this.dataListado.DataSource = NCliente.BuscarCliente_1(this.txtBuscar.Text.Trim());
             this.ocultarColumnas();
             this.lblTotal.Text = "Total de Registros: " + Convert.ToString(dataListado.Rows.Count);
         }
@@ -93,6 +93,27 @@ namespace CapaPresentacion
             frmPagarDividida.f1.txtNombre.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["Cliente"].Value);
             frmPagarDividida.f1.txtDocumento.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["Nro_Doc"].Value);
             frmPagarDividida.f1.txtDireccion.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["DIreccion"].Value);
+            if (Convert.ToString(this.dataListado.CurrentRow.Cells["Clase"].Value) == "C")
+            {
+                string idTipoCliente;
+                idTipoCliente = Convert.ToString(this.dataListado.CurrentRow.Cells["idTipoCliente"].Value);
+                if (idTipoCliente == "" || idTipoCliente == null)
+                {
+                    frmPagarDividida.f1.cbTipoCliente.SelectedIndex = -1;
+                }
+                else
+                {
+                    frmPagarDividida.f1.cbTipoCliente.SelectedValue = idTipoCliente;
+                    //frmPagar.f1.cbTipoCliente.Enabled = true;
+                }
+            }
+            else
+            {
+                // frmPagar.f1.cbTipoCliente.Enabled = false;
+                frmPagarDividida.f1.cbTipoCliente.SelectedIndex = -1;
+            }
+            frmPagarDividida.f1.btnEditar.Enabled = true;
+            frmPagarDividida.f1.dataListadoProducto.Select();
             this.Close();
         }
     }

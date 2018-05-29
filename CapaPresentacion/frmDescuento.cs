@@ -60,6 +60,24 @@ namespace CapaPresentacion
             }
         }
 
+
+        private void MostrarDescuentoTipoCliente()
+        {
+            this.dataListado.DataSource = NDescuento.MostrarDescuentoTipoCliente();
+
+            lblTotal.Text = "Total de Registros: " + Convert.ToString(dataListado.Rows.Count);
+
+            if (this.dataListado.Rows.Count == 0)
+            {
+                this.dataListado.Visible = false;
+            }
+            else
+            {
+                this.dataListado.Visible = true;
+                // this.ocultarColumnas();
+            }
+        }
+
         private void MostrarDescuentoProducto()
         {
             this.dataListado.DataSource = NDescuento.MostrarDescuentoProducto();
@@ -169,11 +187,17 @@ namespace CapaPresentacion
                             rbTodos.Checked = true;
                             MostrarDescuentoProducto();
                         }
+                        else if (tipo == "T")
+                        {
+                            rbTipoCliente.Checked = true;
+                            MostrarDescuentoTipoCliente();
+                        }
+                       
 
                     }
                     else
                     {
-                        rpta = NDescuento.Editar(Convert.ToInt32(this.txtIdDescuento.Text), Convert.ToInt32(cbProducto.SelectedValue), Convert.ToDecimal(this.txtPorcentaje.Text.Trim()), "A");
+                        rpta = NDescuento.Editar(Convert.ToInt32(this.txtIdDescuento.Text), Convert.ToInt32(cbProducto.SelectedValue), Convert.ToDecimal(this.txtPorcentaje.Text.Trim()), "A", tipo);
 
                         if (rbCategoria.Checked == true)
                         {
@@ -182,6 +206,10 @@ namespace CapaPresentacion
                         else if (rbTodos.Checked == true)
                         {
                             MostrarDescuentoProducto();
+                        }
+                        else if (rbTipoCliente.Checked == true)
+                        {
+                            MostrarDescuentoTipoCliente();
                         }
                         this.dataListado.ClearSelection();
                     }
@@ -313,6 +341,15 @@ namespace CapaPresentacion
             cbProducto.SelectedIndex = -1;
         }
 
+
+        private void cargarTipoCliente()
+        {
+            cbProducto.DataSource = NTipoCliente.Mostrar();
+            cbProducto.ValueMember = "Codigo";
+            cbProducto.DisplayMember = "TipoCliente";
+            cbProducto.SelectedIndex = -1;
+        }
+
         private void cbAplicar_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cbAplicar.SelectedIndex == 1)
@@ -327,6 +364,13 @@ namespace CapaPresentacion
                 cargarProducto();
 
             }
+
+            else if (cbAplicar.SelectedIndex == 2)
+            {
+                tipo = "T";
+                cargarTipoCliente();
+
+            }
         }
 
         private void rbCategoria_CheckedChanged(object sender, EventArgs e)
@@ -335,14 +379,18 @@ namespace CapaPresentacion
             {
                 this.MostrarDescuentoCategoria();
                 ocultarColumnas();
-
             }
             else if (rbTodos.Checked == true)
             {
                 this.MostrarDescuentoProducto();
                 ocultarColumnas();
-
             }
+            else if (rbTipoCliente.Checked == true)
+            {
+                this.MostrarDescuentoTipoCliente();
+                ocultarColumnas();
+            }
+
             this.btnEditar.Enabled = false;
             this.btnDesactivar.Enabled = false;
             this.btnCancelar.Enabled = false;
@@ -376,6 +424,12 @@ namespace CapaPresentacion
             {
                 cbAplicar.SelectedIndex = 0;
                 cargarProducto();
+                cbProducto.SelectedValue = idCategoria;
+            }
+            else if (tipo == "T")
+            {
+                cbAplicar.SelectedIndex = 2;
+                cargarTipoCliente();
                 cbProducto.SelectedValue = idCategoria;
             }
 
@@ -421,6 +475,12 @@ namespace CapaPresentacion
                 this.MostrarDescuentoProducto();
                 ocultarColumnas();
             }
+            else if (rbTipoCliente.Checked == true)
+            {
+                this.MostrarDescuentoTipoCliente();
+                ocultarColumnas();
+            }
+
             this.btnEditar.Enabled = false;
             this.btnDesactivar.Enabled = false;
             this.btnCancelar.Enabled = false;
@@ -431,7 +491,7 @@ namespace CapaPresentacion
             if (this.btnDesactivar.Text == "Desactivar")
             {
                 string rpta;
-                rpta = NDescuento.Editar(Convert.ToInt32(this.txtIdDescuento.Text), Convert.ToInt32(cbProducto.SelectedValue), Convert.ToDecimal(this.txtPorcentaje.Text.Trim()), "I");
+                rpta = NDescuento.Editar(Convert.ToInt32(this.txtIdDescuento.Text), Convert.ToInt32(cbProducto.SelectedValue), Convert.ToDecimal(this.txtPorcentaje.Text.Trim()), "I",tipo);
                 if (rpta == "OK")
                 {
                     MessageBox.Show("Se desactivó el descuento");
@@ -450,13 +510,21 @@ namespace CapaPresentacion
                         Habilitar(false);
                         this.dataListado.ClearSelection();
                     }
+                    else if (tipo == "T")
+                    {
+                        dataListado.ClearSelection();
+                        MostrarDescuentoTipoCliente();
+                        Habilitar(false);
+                        this.dataListado.ClearSelection();
+                    }
                 }
+                Botones();
 
             }
             else
             {
                 string rpta;
-                rpta = NDescuento.Editar(Convert.ToInt32(this.txtIdDescuento.Text), Convert.ToInt32(cbProducto.SelectedValue), Convert.ToDecimal(this.txtPorcentaje.Text.Trim()), "A");
+                rpta = NDescuento.Editar(Convert.ToInt32(this.txtIdDescuento.Text), Convert.ToInt32(cbProducto.SelectedValue), Convert.ToDecimal(this.txtPorcentaje.Text.Trim()), "A",tipo);
                 if (rpta == "OK")
                 {
                     MessageBox.Show("Se activó el descuento");
@@ -474,7 +542,15 @@ namespace CapaPresentacion
                         Habilitar(false);
                         this.dataListado.ClearSelection();
                     }
+                    else if (tipo == "T")
+                    {
+                        dataListado.ClearSelection();
+                        MostrarDescuentoTipoCliente();
+                        Habilitar(false);
+                        this.dataListado.ClearSelection();
+                    }
                 }
+                Botones();
             }
         }
 
@@ -559,6 +635,29 @@ namespace CapaPresentacion
                 DataGridViewCheckBoxCell cbEliminar = (DataGridViewCheckBoxCell)dataListado.Rows[e.RowIndex].Cells["Eliminar"];
                 cbEliminar.Value = !Convert.ToBoolean(cbEliminar.Value);
             }
+        }
+
+        private void rbTipoCliente_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbCategoria.Checked == true)
+            {
+                this.MostrarDescuentoCategoria();
+                ocultarColumnas();
+            }
+            else if (rbTodos.Checked == true)
+            {
+                this.MostrarDescuentoProducto();
+                ocultarColumnas();
+            }
+            else if (rbTipoCliente.Checked == true)
+            {
+                this.MostrarDescuentoTipoCliente();
+                ocultarColumnas();
+            }
+
+            this.btnEditar.Enabled = false;
+            this.btnDesactivar.Enabled = false;
+            this.btnCancelar.Enabled = false;
         }
     }
 }

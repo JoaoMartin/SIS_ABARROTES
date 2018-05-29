@@ -209,8 +209,8 @@ namespace CapaNegocios
 
             }*/
           
-        // ticket.ImprimirTicket("Microsoft XPS Document Writer");
-            ticket.ImprimirTicket("CAJA");
+        ticket.ImprimirTicket("Microsoft XPS Document Writer");
+           // ticket.ImprimirTicket("CAJA");
             //  ticket.ImprimirTicket("EPSON TM-U220 Receipt");//Nombre de la impresora ticketera
         }
 

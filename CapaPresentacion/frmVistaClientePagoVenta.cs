@@ -42,7 +42,7 @@ namespace CapaPresentacion
 
         private void Mostrar()
         {
-            this.dataListado.DataSource = NCliente.Mostrar();
+            this.dataListado.DataSource = NCliente.mostrarClienteVenta1();
             this.ocultarColumnas();
             lblTotal.Text = "Total de Registros: " + Convert.ToString(dataListado.Rows.Count);
 
@@ -59,56 +59,25 @@ namespace CapaPresentacion
         private void frmVistaClientePagoVenta_Load(object sender, EventArgs e)
         {
             this.Mostrar();
+            this.txtBuscar.Select();
         }
 
         private void dataListado_DoubleClick(object sender, EventArgs e)
         {
-            if(lblBandera.Text == "0")
-            {
-                frmPagar.f1.txtIdCliente.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["Codigo"].Value);
-                frmPagar.f1.txtNombre.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["Cliente"].Value);
-                frmPagar.f1.txtDocumento.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["Nro_Doc"].Value);
-                frmPagar.f1.txtDireccion.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["DIreccion"].Value);
-                frmPagar.f1.dataListadoProducto.Select();
-                this.Close();
-            }else if(lblBandera.Text == "1")
-            {
-                frmDelivery.f1.txtIdCliente.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["Codigo"].Value);
-                frmDelivery.f1.txtNombre.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["Cliente"].Value);
-                frmDelivery.f1.txtDocumento.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["Nro_Doc"].Value);
-                frmDelivery.f1.txtDireccion.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["DIreccion"].Value);
-                frmDelivery.f1.txtTelefono.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["Telefono"].Value);
-                this.Hide();
-            }
-            else if (lblBandera.Text == "2")
-            {
-                frmCambioComprobante.f1.txtIdCliente.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["Codigo"].Value);
-                frmCambioComprobante.f1.txtNombre.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["Cliente"].Value);
-                frmCambioComprobante.f1.txtDocumento.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["Nro_Doc"].Value);
-                frmCambioComprobante.f1.txtDireccion.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["DIreccion"].Value);
-                this.Hide();
-            }
-            else if (lblBandera.Text == "3")
-            {
-                fmComprobanteManual.f1.txtIdCliente.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["Codigo"].Value);
-                fmComprobanteManual.f1.txtNombre.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["Cliente"].Value);
-                fmComprobanteManual.f1.txtDocumento.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["Nro_Doc"].Value);
-                fmComprobanteManual.f1.txtDireccion.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["DIreccion"].Value);
-                this.Hide();
-            }
+           
 
         }
 
         private void BuscarDni()
         {
-            this.dataListado.DataSource = NCliente.BuscarDni(this.txtBuscar.Text.Trim());
+            this.dataListado.DataSource = NCliente.BuscarDni_1(this.txtBuscar.Text.Trim());
             this.ocultarColumnas();
             this.lblTotal.Text = "Total de Registros: " + Convert.ToString(dataListado.Rows.Count);
         }
 
         private void Buscar()
         {
-            this.dataListado.DataSource = NCliente.Buscar(this.txtBuscar.Text.Trim());
+            this.dataListado.DataSource = NCliente.BuscarCliente_1(this.txtBuscar.Text.Trim());
             this.ocultarColumnas();
             this.lblTotal.Text = "Total de Registros: " + Convert.ToString(dataListado.Rows.Count);
         }
@@ -123,6 +92,113 @@ namespace CapaPresentacion
             {
                 this.Buscar();
             }
+        }
+
+        private void dataListado_Click(object sender, EventArgs e)
+        {
+            if (lblBandera.Text == "0")
+            {
+                frmPagar.f1.txtIdCliente.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["Codigo"].Value);
+                frmPagar.f1.txtNombre.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["Cliente"].Value);
+                frmPagar.f1.txtDocumento.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["Nro_Doc"].Value);
+                frmPagar.f1.txtDireccion.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["DIreccion"].Value);
+              
+                if (Convert.ToString(this.dataListado.CurrentRow.Cells["Clase"].Value) == "C")
+                {
+                    string idTipoCliente;
+                    idTipoCliente = Convert.ToString(this.dataListado.CurrentRow.Cells["idTipoCliente"].Value);
+                    if (idTipoCliente == "" || idTipoCliente == null)
+                    {
+                        frmPagar.f1.cbTipoCliente.SelectedIndex = -1;
+                    }
+                    else
+                    {
+                        frmPagar.f1.cbTipoCliente.SelectedValue = idTipoCliente;
+                        //frmPagar.f1.cbTipoCliente.Enabled = true;
+                    }
+                }
+                else
+                {
+                   // frmPagar.f1.cbTipoCliente.Enabled = false;
+                    frmPagar.f1.cbTipoCliente.SelectedIndex = -1;
+                }
+                frmPagar.f1.btnEditar.Enabled = true;
+                frmPagar.f1.dataListadoProducto.Select();
+                this.Close();
+            }
+            else if (lblBandera.Text == "1")
+            {
+                frmDelivery.f1.txtIdCliente.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["Codigo"].Value);
+                frmDelivery.f1.txtNombre.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["Cliente"].Value);
+                frmDelivery.f1.txtDocumento.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["Nro_Doc"].Value);
+                frmDelivery.f1.txtDireccion.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["DIreccion"].Value);
+                frmDelivery.f1.txtTelefono.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["Telefono"].Value);
+
+                frmDelivery.f1.btnEditar.Enabled = true;
+                this.Close();
+            }
+            else if (lblBandera.Text == "2")
+            {
+                frmCambioComprobante.f1.txtIdCliente.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["Codigo"].Value);
+                frmCambioComprobante.f1.txtNombre.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["Cliente"].Value);
+                frmCambioComprobante.f1.txtDocumento.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["Nro_Doc"].Value);
+                frmCambioComprobante.f1.txtDireccion.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["DIreccion"].Value);
+                if (Convert.ToString(this.dataListado.CurrentRow.Cells["Clase"].Value) == "C")
+                {
+                    string idTipoCliente;
+                    idTipoCliente = Convert.ToString(this.dataListado.CurrentRow.Cells["idTipoCliente"].Value);
+                    if (idTipoCliente == "" || idTipoCliente == null)
+                    {
+                        frmCambioComprobante.f1.cbTipoCliente.SelectedIndex = -1;
+                    }
+                    else
+                    {
+                        frmCambioComprobante.f1.cbTipoCliente.SelectedValue = idTipoCliente;
+                      //  frmCambioComprobante.f1.cbTipoCliente.Enabled = true;
+                    }
+                }
+                else
+                {
+                   // frmCambioComprobante.f1.cbTipoCliente.Enabled = false;
+                    frmCambioComprobante.f1.cbTipoCliente.SelectedIndex = -1;
+                }
+                frmCambioComprobante.f1.btnEditar.Enabled = true;
+                this.Close();
+            }
+            else if (lblBandera.Text == "3")
+            {
+                fmComprobanteManual.f1.txtIdCliente.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["Codigo"].Value);
+                fmComprobanteManual.f1.txtNombre.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["Cliente"].Value);
+                fmComprobanteManual.f1.txtDocumento.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["Nro_Doc"].Value);
+                fmComprobanteManual.f1.txtDireccion.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["DIreccion"].Value);
+                if (Convert.ToString(this.dataListado.CurrentRow.Cells["Clase"].Value) == "C")
+                {
+                    string idTipoCliente;
+                    idTipoCliente = Convert.ToString(this.dataListado.CurrentRow.Cells["idTipoCliente"].Value);
+                    if (idTipoCliente == "" || idTipoCliente == null)
+                    {
+                        fmComprobanteManual.f1.cbTipoCliente.SelectedIndex = -1;
+                    }
+                    else
+                    {
+                        fmComprobanteManual.f1.cbTipoCliente.SelectedValue = idTipoCliente;
+                        //fmComprobanteManual.f1.cbTipoCliente.Enabled = true;
+                    }
+                }
+                else
+                {
+                    //fmComprobanteManual.f1.cbTipoCliente.Enabled = false;
+                    fmComprobanteManual.f1.cbTipoCliente.SelectedIndex = -1;
+                }
+                fmComprobanteManual.f1.btnEditar.Enabled = true;
+                this.Close();
+                
+            }
+        }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }

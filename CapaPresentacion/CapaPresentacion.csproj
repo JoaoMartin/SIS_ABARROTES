@@ -378,6 +378,12 @@
     <Compile Include="frmProveedorRapido.Designer.cs">
       <DependentUpon>frmProveedorRapido.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmPruebaRedondeo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPruebaRedondeo.Designer.cs">
+      <DependentUpon>frmPruebaRedondeo.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmRCliente.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1128,6 +1134,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmProveedorRapido.resx">
       <DependentUpon>frmProveedorRapido.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPruebaRedondeo.resx">
+      <DependentUpon>frmPruebaRedondeo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmRCliente.resx">
       <DependentUpon>frmRCliente.cs</DependentUpon>

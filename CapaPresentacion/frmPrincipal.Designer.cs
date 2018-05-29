@@ -71,6 +71,7 @@
             this.mnuProveedor = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuSalones = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuTermino = new System.Windows.Forms.ToolStripMenuItem();
+            this.tipoClienteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuTipoTrabajador = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuTrabajador = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuUnidadMedida = new System.Windows.Forms.ToolStripMenuItem();
@@ -110,7 +111,7 @@
             this.lblMontoCorteCaja = new System.Windows.Forms.Label();
             this.lblFechaCorteCaja = new System.Windows.Forms.Label();
             this.lblApellidos = new System.Windows.Forms.Label();
-            this.tipoClienteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuCobroDelivery = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -338,7 +339,8 @@
             this.mnuDescuento,
             this.mnuPuntoVenta,
             this.mnuPorCobrar,
-            this.mnuDelivery});
+            this.mnuDelivery,
+            this.mnuCobroDelivery});
             this.mnuVentas.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mnuVentas.ForeColor = System.Drawing.Color.Black;
             this.mnuVentas.Image = ((System.Drawing.Image)(resources.GetObject("mnuVentas.Image")));
@@ -533,6 +535,13 @@
             this.mnuTermino.Size = new System.Drawing.Size(208, 26);
             this.mnuTermino.Text = "Término";
             this.mnuTermino.Click += new System.EventHandler(this.mnuTermino_Click);
+            // 
+            // tipoClienteToolStripMenuItem
+            // 
+            this.tipoClienteToolStripMenuItem.Name = "tipoClienteToolStripMenuItem";
+            this.tipoClienteToolStripMenuItem.Size = new System.Drawing.Size(208, 26);
+            this.tipoClienteToolStripMenuItem.Text = "Tipo Cliente";
+            this.tipoClienteToolStripMenuItem.Click += new System.EventHandler(this.tipoClienteToolStripMenuItem_Click);
             // 
             // mnuTipoTrabajador
             // 
@@ -876,12 +885,12 @@
             this.lblApellidos.Text = "1";
             this.lblApellidos.Visible = false;
             // 
-            // tipoClienteToolStripMenuItem
+            // mnuCobroDelivery
             // 
-            this.tipoClienteToolStripMenuItem.Name = "tipoClienteToolStripMenuItem";
-            this.tipoClienteToolStripMenuItem.Size = new System.Drawing.Size(208, 26);
-            this.tipoClienteToolStripMenuItem.Text = "Tipo Cliente";
-            this.tipoClienteToolStripMenuItem.Click += new System.EventHandler(this.tipoClienteToolStripMenuItem_Click);
+            this.mnuCobroDelivery.Name = "mnuCobroDelivery";
+            this.mnuCobroDelivery.Size = new System.Drawing.Size(212, 26);
+            this.mnuCobroDelivery.Text = "Cobro Delivery";
+            this.mnuCobroDelivery.Click += new System.EventHandler(this.mnuCobroDelivery_Click);
             // 
             // frmPrincipal
             // 
@@ -1012,6 +1021,7 @@
         private System.Windows.Forms.ToolStripMenuItem porTipoComprobanteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mnuDelivery;
         private System.Windows.Forms.ToolStripMenuItem tipoClienteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mnuCobroDelivery;
     }
 }
 

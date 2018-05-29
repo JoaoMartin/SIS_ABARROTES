@@ -51,8 +51,8 @@ namespace CapaPresentacion
             this.dataListado.Columns[7].Visible = false;
             this.dataListado.Columns[8].Visible = false;
             this.dataListado.Columns[9].Visible = false;
-            this.dataListado.Columns[10].Visible = false;
-            this.dataListado.Columns[12].Visible = false;
+            //this.dataListado.Columns[10].Visible = false;
+            //this.dataListado.Columns[12].Visible = false;
             // DataGridView1.Columns(1).Width = 150
 
             this.dataListado.Columns[2].Width = 345;

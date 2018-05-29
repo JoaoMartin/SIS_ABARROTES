@@ -13,6 +13,8 @@ namespace CapaPresentacion
 {
     public partial class frmCambioComprobante : Form
     {
+        private bool isNuevo;
+        private string banderaComprobante;
         public static frmCambioComprobante f1;
         public frmCambioComprobante()
         {
@@ -32,56 +34,55 @@ namespace CapaPresentacion
             form.ShowDialog();
         }
 
+        private void cargarTipoCliente()
+        {
+            cbTipoCliente.DataSource = NTipoCliente.Mostrar();
+            cbTipoCliente.ValueMember = "Codigo";
+            cbTipoCliente.DisplayMember = "TipoCliente";
+            cbTipoCliente.SelectedIndex = -1;
+            //lblPrueba.Text = cbCategoria.SelectedValue.ToString();
+
+        }
+
         private void btnNuevo_Click(object sender, EventArgs e)
         {
-            this.btnGuardarCliente.Enabled = true;
-            this.txtNombre.ReadOnly = false;
-            this.txtDireccion.ReadOnly = false;
-            this.txtNombre.Text = string.Empty;
-            this.txtDireccion.Text = string.Empty;
-            this.txtDocumento.Text = string.Empty;
-            this.txtIdCliente.Text = string.Empty;
-            this.txtDocumento.Focus();
+          
+               
+                this.btnGuardarCliente.Enabled = true;
+                this.txtNombre.ReadOnly = false;
+                this.txtDireccion.ReadOnly = false;
+                this.cbTipoCliente.Enabled = true;
+                this.txtNombre.Text = string.Empty;
+                this.txtDireccion.Text = string.Empty;
+                this.txtDocumento.Text = string.Empty;
+                this.txtIdCliente.Text = string.Empty;
+                this.cbTipoCliente.Enabled = true;
+                this.txtDocumento.Focus();
+                btnEditar.Enabled = false;
+                isNuevo = true;
+           
         }
 
         private void btnGuardarCliente_Click(object sender, EventArgs e)
         {
-            string rpta = "";
-            if (this.txtDocumento.Text.Length == 11)
+            string rpta = NTipoCliente.GuardarCliente(frmMostrarVentas.f1.lblTotalVenta.Text, "00.00", banderaComprobante, txtDocumento.Text, cbTipoCliente, isNuevo, txtNombre.Text,
+                txtDireccion.Text, txtIdCliente.Text);
+            if (isNuevo && rpta != null)
             {
-                if (this.txtNombre.Text.Trim() == "" || this.txtDireccion.Text.Trim() == "" )
-                {
-                    MessageBox.Show("Complete el nombre, dirección ");
-                }
-                else
-                {
-                    rpta = NCliente.InsertarVenta(this.txtNombre.Text.Trim().ToUpper(), DateTime.MinValue, "RUC", this.txtDocumento.Text, this.txtDireccion.Text.Trim(), "", "");
-                    this.txtIdCliente.Text = rpta;
-                    this.txtNombre.ReadOnly = true;
-                    this.txtDireccion.ReadOnly = true;
-                    this.btnGuardarCliente.Enabled = false;
-                }
-
+                this.txtIdCliente.Text = rpta;
+                this.txtNombre.ReadOnly = true;
+                this.txtDireccion.ReadOnly = true;
+                this.btnGuardarCliente.Enabled = false;
+                this.btnNuevo.Enabled = false;
+                cbTipoCliente.Enabled = false;
             }
-            else if (this.txtDocumento.Text.Length == 8)
+            else if (rpta == "OK")
             {
-                if (this.txtNombre.Text.Trim() == "" || this.txtDireccion.Text.Trim() == "" )
-                {
-                    MessageBox.Show("Complete el nombre, dirección y telefono");
-                }
-                else
-                {
-                    rpta = NCliente.InsertarVenta(this.txtNombre.Text.Trim().ToUpper(), DateTime.MinValue, "DNI", this.txtDocumento.Text, this.txtDireccion.Text.Trim(), "", "");
-                    this.txtIdCliente.Text = rpta;
-                    this.txtNombre.ReadOnly = true;
-                    this.txtDireccion.ReadOnly = true;
-                    this.btnGuardarCliente.Enabled = false;
-                }
-
-            }
-            else
-            {
-                MessageBox.Show("Ingrese un nro de Documento válido");
+                this.txtNombre.ReadOnly = true;
+                this.txtDireccion.ReadOnly = true;
+                this.btnGuardarCliente.Enabled = false;
+                this.btnNuevo.Enabled = false;
+                cbTipoCliente.Enabled = false;
             }
         }
 
@@ -101,6 +102,27 @@ namespace CapaPresentacion
                     this.txtNombre.Text = dtClienteVenta.Rows[0][1].ToString();
                     this.txtDocumento.Text = dtClienteVenta.Rows[0][2].ToString();
                     this.txtDireccion.Text = dtClienteVenta.Rows[0][3].ToString();
+                    this.lblClase.Text = dtClienteVenta.Rows[0][7].ToString();
+                    if (lblClase.Text == "C")
+                    {
+                        string idTipoCliente;
+                        idTipoCliente = dtClienteVenta.Rows[0][6].ToString();
+                        if (idTipoCliente == "" || idTipoCliente == null)
+                        {
+                            cbTipoCliente.SelectedIndex = -1;
+                        }
+                        else
+                        {
+                            cbTipoCliente.SelectedValue = idTipoCliente;
+                            cbTipoCliente.Enabled = true;
+                        }
+                    }
+                    else
+                    {
+                        cbTipoCliente.Enabled = false;
+                        cbTipoCliente.SelectedIndex = -1;
+                    }
+                    btnEditar.Enabled = true;
                 }
             }
         }
@@ -343,6 +365,40 @@ namespace CapaPresentacion
             }catch(Exception ex)
             {
                 MessageBox.Show("No se completó la operación");
+            }
+        }
+
+        private void rbFactura_CheckedChanged(object sender, EventArgs e)
+        {
+            banderaComprobante = "2";
+        }
+
+        private void rbBoleta_CheckedChanged(object sender, EventArgs e)
+        {
+            banderaComprobante = "1";
+        }
+
+        private void frmCambioComprobante_Load(object sender, EventArgs e)
+        {
+            banderaComprobante = "1";
+            cargarTipoCliente();
+        }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            if (txtIdCliente.Text != "")
+            {
+                txtDocumento.ReadOnly = false;
+                txtNombre.ReadOnly = false;
+                txtDireccion.ReadOnly = false;
+                // cbTipoCliente.Enabled = true;
+                isNuevo = false;
+                btnGuardarCliente.Enabled = true;
+                if (lblClase.Text == "C")
+                {
+                    cbTipoCliente.Enabled = true;
+                }
+
             }
         }
     }

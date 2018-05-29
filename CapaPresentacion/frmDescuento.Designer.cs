@@ -56,6 +56,7 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnNuevo = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
+            this.rbTipoCliente = new System.Windows.Forms.RadioButton();
             this.tbInfo.SuspendLayout();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataListado)).BeginInit();
@@ -126,6 +127,7 @@
             // 
             this.tabPage2.BackColor = System.Drawing.Color.White;
             this.tabPage2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.tabPage2.Controls.Add(this.rbTipoCliente);
             this.tabPage2.Controls.Add(this.rbTodos);
             this.tabPage2.Controls.Add(this.rbCategoria);
             this.tabPage2.Controls.Add(this.dataListado);
@@ -145,7 +147,7 @@
             this.rbTodos.Location = new System.Drawing.Point(191, 19);
             this.rbTodos.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.rbTodos.Name = "rbTodos";
-            this.rbTodos.Size = new System.Drawing.Size(98, 24);
+            this.rbTodos.Size = new System.Drawing.Size(95, 24);
             this.rbTodos.TabIndex = 14;
             this.rbTodos.TabStop = true;
             this.rbTodos.Text = "Productos";
@@ -159,7 +161,7 @@
             this.rbCategoria.Location = new System.Drawing.Point(18, 19);
             this.rbCategoria.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.rbCategoria.Name = "rbCategoria";
-            this.rbCategoria.Size = new System.Drawing.Size(94, 24);
+            this.rbCategoria.Size = new System.Drawing.Size(91, 24);
             this.rbCategoria.TabIndex = 13;
             this.rbCategoria.TabStop = true;
             this.rbCategoria.Text = "Categoría";
@@ -209,7 +211,7 @@
             this.cbEliminar.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.cbEliminar.Location = new System.Drawing.Point(18, 65);
             this.cbEliminar.Name = "cbEliminar";
-            this.cbEliminar.Size = new System.Drawing.Size(86, 24);
+            this.cbEliminar.Size = new System.Drawing.Size(83, 24);
             this.cbEliminar.TabIndex = 5;
             this.cbEliminar.Text = "Eliminar";
             this.cbEliminar.UseVisualStyleBackColor = true;
@@ -318,7 +320,8 @@
             this.cbAplicar.FormattingEnabled = true;
             this.cbAplicar.Items.AddRange(new object[] {
             "PRODUCTO Y/O PLATO",
-            "CATEGORIA"});
+            "CATEGORIA",
+            "TIPO CLIENTE"});
             this.cbAplicar.Location = new System.Drawing.Point(179, 131);
             this.cbAplicar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cbAplicar.Name = "cbAplicar";
@@ -421,9 +424,23 @@
             this.label3.Location = new System.Drawing.Point(333, 6);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(120, 25);
+            this.label3.Size = new System.Drawing.Size(112, 24);
             this.label3.TabIndex = 61;
             this.label3.Text = "DESCUENTO";
+            // 
+            // rbTipoCliente
+            // 
+            this.rbTipoCliente.AutoSize = true;
+            this.rbTipoCliente.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbTipoCliente.Location = new System.Drawing.Point(376, 19);
+            this.rbTipoCliente.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.rbTipoCliente.Name = "rbTipoCliente";
+            this.rbTipoCliente.Size = new System.Drawing.Size(107, 24);
+            this.rbTipoCliente.TabIndex = 15;
+            this.rbTipoCliente.TabStop = true;
+            this.rbTipoCliente.Text = "Tipo Cliente";
+            this.rbTipoCliente.UseVisualStyleBackColor = true;
+            this.rbTipoCliente.CheckedChanged += new System.EventHandler(this.rbTipoCliente_CheckedChanged);
             // 
             // frmDescuento
             // 
@@ -490,5 +507,6 @@
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnNuevo;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.RadioButton rbTipoCliente;
     }
 }

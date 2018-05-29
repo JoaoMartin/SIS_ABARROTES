@@ -236,6 +236,7 @@ namespace CapaPresentacion
             this.lblComprobante.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["Comprobante"].Value);
             this.lblFechaGene.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["Fecha"].Value);
             this.lblIdVenta.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["Cod"].Value);
+            this.lblIdVenta1.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["Cod"].Value);
             this.lblDcto.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["Dcto"].Value);
             this.lblIgv.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["IGV"].Value);
             this.lblTotalVenta.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["Monto"].Value);

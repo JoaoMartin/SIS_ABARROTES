@@ -19,10 +19,11 @@ namespace CapaDatos
         //public static string cn = @"Data Source =UCHPABAR\SQLUCHPA; Initial Catalog=db_PRUEBAUCHPA; Integrated Security=true";
         //  public static string cn = @"Data Source =192.168.1.199; Initial Catalog=SISVENTAS_CA; Integrated Security=true";
         // public static string cn = @"Data Source =EQUIPO; Initial Catalog=SISVENTAS_CA; Integrated Security=true";
-        // public static string cn = @"Data Source =192.168.1.121; Initial Catalog=SISVENTAS_CA; User ID=admin; Password=1234";
+        // public static string cn = @"Data Source =192.168.1.20; Initial Catalog=SISVENTAS_CA; User ID=admin; Password=1234";
     //  public static string cn = @"Data Source =EQUIPO\SQLEXPRESS; Initial Catalog=SISVENTAS_CA; User ID=admin; Password=1234";
-        public static string cn = @"Data Source =EQUIPO\SQLEXPRESS; Initial Catalog=BD_RESTAURANTE; User ID=admin; Password=1234";
+        //public static string cn = @"Data Source =EQUIPO\SQLEXPRESS; Initial Catalog=BD_RESTAURANTE; User ID=admin; Password=1234";
        // public static string cn = @"Data Source =EQUIPO\SQLEXPRESS; Initial Catalog=LALOSPAN_PRUEBA; User ID=admin; Password=1234";
+       public static string cn = @"Data Source =EQUIPO\SQLEXPRESS; Initial Catalog=BD_RESTAURANTE; User ID=admin; Password=1234";
 
 
     }

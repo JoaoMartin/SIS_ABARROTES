@@ -43,6 +43,9 @@
             this.label10 = new System.Windows.Forms.Label();
             this.txtVuelto = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnEditar = new System.Windows.Forms.Button();
+            this.cbTipoCliente = new System.Windows.Forms.ComboBox();
+            this.label16 = new System.Windows.Forms.Label();
             this.btnNuevo = new System.Windows.Forms.Button();
             this.txtIdCliente = new System.Windows.Forms.TextBox();
             this.btnGuardar = new System.Windows.Forms.Button();
@@ -105,6 +108,7 @@
             this.button2 = new System.Windows.Forms.Button();
             this.btnTicket = new System.Windows.Forms.Button();
             this.dataListadoProducto = new System.Windows.Forms.DataGridView();
+            this.lblClase = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -280,6 +284,10 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.groupBox1.Controls.Add(this.lblClase);
+            this.groupBox1.Controls.Add(this.btnEditar);
+            this.groupBox1.Controls.Add(this.cbTipoCliente);
+            this.groupBox1.Controls.Add(this.label16);
             this.groupBox1.Controls.Add(this.btnNuevo);
             this.groupBox1.Controls.Add(this.txtIdCliente);
             this.groupBox1.Controls.Add(this.btnGuardar);
@@ -299,6 +307,42 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Cliente";
             // 
+            // btnEditar
+            // 
+            this.btnEditar.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnEditar.Enabled = false;
+            this.btnEditar.Font = new System.Drawing.Font("Roboto", 9.846154F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEditar.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnEditar.Image = global::CapaPresentacion.Properties.Resources.edit4;
+            this.btnEditar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnEditar.Location = new System.Drawing.Point(275, 236);
+            this.btnEditar.Name = "btnEditar";
+            this.btnEditar.Size = new System.Drawing.Size(100, 80);
+            this.btnEditar.TabIndex = 197;
+            this.btnEditar.Text = "&Editar";
+            this.btnEditar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnEditar.UseVisualStyleBackColor = false;
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
+            // 
+            // cbTipoCliente
+            // 
+            this.cbTipoCliente.Font = new System.Drawing.Font("Roboto", 14.15385F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbTipoCliente.FormattingEnabled = true;
+            this.cbTipoCliente.Location = new System.Drawing.Point(92, 78);
+            this.cbTipoCliente.Name = "cbTipoCliente";
+            this.cbTipoCliente.Size = new System.Drawing.Size(396, 38);
+            this.cbTipoCliente.TabIndex = 196;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Roboto", 9.230769F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(9, 96);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(72, 20);
+            this.label16.TabIndex = 195;
+            this.label16.Text = "T. Cliente";
+            // 
             // btnNuevo
             // 
             this.btnNuevo.BackColor = System.Drawing.SystemColors.ButtonFace;
@@ -306,9 +350,9 @@
             this.btnNuevo.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnNuevo.Image = global::CapaPresentacion.Properties.Resources.new4;
             this.btnNuevo.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnNuevo.Location = new System.Drawing.Point(239, 202);
+            this.btnNuevo.Location = new System.Drawing.Point(168, 236);
             this.btnNuevo.Name = "btnNuevo";
-            this.btnNuevo.Size = new System.Drawing.Size(119, 80);
+            this.btnNuevo.Size = new System.Drawing.Size(101, 79);
             this.btnNuevo.TabIndex = 34;
             this.btnNuevo.Text = "&Nuevo";
             this.btnNuevo.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -318,7 +362,7 @@
             // txtIdCliente
             // 
             this.txtIdCliente.Font = new System.Drawing.Font("Roboto", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtIdCliente.Location = new System.Drawing.Point(92, 55);
+            this.txtIdCliente.Location = new System.Drawing.Point(92, 28);
             this.txtIdCliente.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtIdCliente.Name = "txtIdCliente";
             this.txtIdCliente.ReadOnly = true;
@@ -332,10 +376,10 @@
             this.btnGuardar.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnGuardar.Image = global::CapaPresentacion.Properties.Resources.save2;
             this.btnGuardar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnGuardar.Location = new System.Drawing.Point(376, 202);
+            this.btnGuardar.Location = new System.Drawing.Point(382, 236);
             this.btnGuardar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(119, 79);
+            this.btnGuardar.Size = new System.Drawing.Size(106, 79);
             this.btnGuardar.TabIndex = 31;
             this.btnGuardar.Text = "&Guardar";
             this.btnGuardar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -348,7 +392,7 @@
             this.btnBuscarProveedor.Font = new System.Drawing.Font("Segoe UI Black", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBuscarProveedor.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnBuscarProveedor.Image = global::CapaPresentacion.Properties.Resources.search5;
-            this.btnBuscarProveedor.Location = new System.Drawing.Point(500, 53);
+            this.btnBuscarProveedor.Location = new System.Drawing.Point(500, 26);
             this.btnBuscarProveedor.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnBuscarProveedor.Name = "btnBuscarProveedor";
             this.btnBuscarProveedor.Size = new System.Drawing.Size(42, 45);
@@ -360,7 +404,7 @@
             // txtDireccion
             // 
             this.txtDireccion.Font = new System.Drawing.Font("Roboto", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDireccion.Location = new System.Drawing.Point(92, 145);
+            this.txtDireccion.Location = new System.Drawing.Point(92, 176);
             this.txtDireccion.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtDireccion.Name = "txtDireccion";
             this.txtDireccion.ReadOnly = true;
@@ -370,7 +414,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(7, 167);
+            this.label9.Location = new System.Drawing.Point(7, 198);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(74, 20);
             this.label9.TabIndex = 4;
@@ -379,7 +423,7 @@
             // txtNombre
             // 
             this.txtNombre.Font = new System.Drawing.Font("Roboto", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNombre.Location = new System.Drawing.Point(92, 100);
+            this.txtNombre.Location = new System.Drawing.Point(92, 131);
             this.txtNombre.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.ReadOnly = true;
@@ -389,7 +433,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(7, 123);
+            this.label8.Location = new System.Drawing.Point(7, 154);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(64, 20);
             this.label8.TabIndex = 2;
@@ -398,7 +442,7 @@
             // txtDocumento
             // 
             this.txtDocumento.Font = new System.Drawing.Font("Roboto", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDocumento.Location = new System.Drawing.Point(183, 55);
+            this.txtDocumento.Location = new System.Drawing.Point(183, 28);
             this.txtDocumento.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtDocumento.Name = "txtDocumento";
             this.txtDocumento.Size = new System.Drawing.Size(305, 37);
@@ -408,7 +452,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(7, 71);
+            this.label7.Location = new System.Drawing.Point(7, 44);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(70, 20);
             this.label7.TabIndex = 0;
@@ -746,7 +790,7 @@
             // 
             this.btn6.Enabled = false;
             this.btn6.Font = new System.Drawing.Font("Roboto", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn6.Location = new System.Drawing.Point(586, 17);
+            this.btn6.Location = new System.Drawing.Point(590, 17);
             this.btn6.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btn6.Name = "btn6";
             this.btn6.Size = new System.Drawing.Size(110, 50);
@@ -1046,6 +1090,17 @@
             this.dataListadoProducto.TabIndex = 225;
             this.dataListadoProducto.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataListadoProducto_KeyDown);
             // 
+            // lblClase
+            // 
+            this.lblClase.AutoSize = true;
+            this.lblClase.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblClase.Location = new System.Drawing.Point(303, 149);
+            this.lblClase.Name = "lblClase";
+            this.lblClase.Size = new System.Drawing.Size(26, 29);
+            this.lblClase.TabIndex = 198;
+            this.lblClase.Text = "1";
+            this.lblClase.Visible = false;
+            // 
             // frmPagarSeparada
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -1212,5 +1267,9 @@
         public System.Windows.Forms.Label lblIdUsuario;
         private System.Windows.Forms.Button btnTicket;
         public System.Windows.Forms.DataGridView dataListadoProducto;
+        public System.Windows.Forms.ComboBox cbTipoCliente;
+        private System.Windows.Forms.Label label16;
+        public System.Windows.Forms.Button btnEditar;
+        public System.Windows.Forms.Label lblClase;
     }
 }
