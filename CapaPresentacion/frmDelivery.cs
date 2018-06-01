@@ -1419,12 +1419,15 @@ namespace CapaPresentacion
                        this.txtTelefono.Text.Trim(), null);
                         this.txtIdCliente.Text = rpta;
                         btnEditar.Enabled = true;
+                        txtEfectivo.Focus();
                     }
                     else
                     {
                         rpta = NCliente.EditarDelivery(Convert.ToInt32(txtIdCliente.Text), txtNombre.Text.ToUpper(), "RUC", txtDocumento.Text, txtDireccion.Text,
                             "", txtTelefono.Text);
                         btnEditar.Enabled = false;
+                        isNuevo = true;
+                        txtEfectivo.Focus();
                     }
 
 
@@ -1432,6 +1435,7 @@ namespace CapaPresentacion
                     this.txtDireccion.ReadOnly = true;
                     this.txtTelefono.ReadOnly = true;
                     this.btnGuardarCliente.Enabled = false;
+                    txtEfectivo.Focus();
                 }
 
             }
@@ -1449,12 +1453,14 @@ namespace CapaPresentacion
                         this.txtTelefono.Text.Trim(), null);
                         this.txtIdCliente.Text = rpta;
                         btnEditar.Enabled = true;
+
                     }
                     else
                     {
                         rpta = NCliente.EditarDelivery(Convert.ToInt32(txtIdCliente.Text), txtNombre.Text.ToUpper(),"RUC", txtDocumento.Text, txtDireccion.Text,
                            "", txtTelefono.Text);
                         btnEditar.Enabled = false;
+                        isNuevo = true;
                     }
 
 
@@ -1462,6 +1468,7 @@ namespace CapaPresentacion
                     this.txtDireccion.ReadOnly = true;
                     this.txtTelefono.ReadOnly = true;
                     this.btnGuardarCliente.Enabled = false;
+                    txtEfectivo.Focus();
                 }
 
             }
@@ -1488,6 +1495,7 @@ namespace CapaPresentacion
                     this.txtDocumento.Text = dtClienteVenta.Rows[0][2].ToString();
                     this.txtDireccion.Text = dtClienteVenta.Rows[0][3].ToString();
                     this.txtTelefono.Text = dtClienteVenta.Rows[0][4].ToString();
+                    this.btnEditar.Enabled = true;
                 }
             }
         }
@@ -1574,8 +1582,7 @@ namespace CapaPresentacion
         {
             mostrarTotales();
         }
-
-        private void btnPedido_Click(object sender, EventArgs e)
+        private void Pedir()
         {
             if (this.dataListadoDetalle.Rows.Count == 0)
             {
@@ -1617,7 +1624,7 @@ namespace CapaPresentacion
                             rpta = NVenta.InsertarPedidoDelivery(Convert.ToInt32(txtIdCliente.Text), null, DateTime.Now, "Pedido Delivery", "EFECTIVO", Convert.ToDecimal(this.txtDescuento.Text),
                                 Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text), "", 1, tipoCompr, Convert.ToDecimal(this.txtVuelto.Text), "P", dtDetalle, Convert.ToDecimal(this.txtTotalPagado.Text),
                                 Convert.ToDecimal(this.txtEfectivo.Text.Trim()), this.lblMesero.Text, Convert.ToDecimal(this.txtDescuento.Text),
-                                dtDetalleMenu, DateTime.Now, 00.00m, Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text), "", "", "", "");
+                                dtDetalleMenu, DateTime.Now, 00.00m, Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text), "", "", "", "", "");
                             if (rpta != "")
                             {
 
@@ -1644,7 +1651,7 @@ namespace CapaPresentacion
                                                 for (int k = 0; k < dtRecetaC.Rows.Count; k++)
                                                 {
                                                     cantTotal = cantInsumo * Convert.ToDecimal(dtRecetaC.Rows[k][3].ToString());
-                                                    rpta = NInsumo.EditarStock(Convert.ToInt32(dtRecetaC.Rows[k][0].ToString()), cantTotal );
+                                                    rpta = NInsumo.EditarStock(Convert.ToInt32(dtRecetaC.Rows[k][0].ToString()), cantTotal);
                                                 }
                                             }
                                         }
@@ -1720,6 +1727,11 @@ namespace CapaPresentacion
             }
         }
 
+        private void btnPedido_Click(object sender, EventArgs e)
+        {
+            Pedir();
+        }
+
         private void frmDelivery_KeyPress(object sender, KeyPressEventArgs e)
         {
 
@@ -1741,8 +1753,17 @@ namespace CapaPresentacion
 
                 btnGuardarCliente.Enabled = true;
                 txtTelefono.ReadOnly = false;
+                isNuevo = false;
             }
 
+        }
+
+        private void txtEfectivo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((int)e.KeyChar == (int)Keys.Enter)
+            {
+                Pedir();
+            }
         }
 
         private void frmDelivery_FormClosed(object sender, FormClosedEventArgs e)

@@ -12,7 +12,8 @@ namespace CapaNegocios
     public class NCaja_A
     {
         public static string Insertar(int idUsuario, string nombre, DateTime fecha, decimal monto, string estado, int nroCaja, decimal ventaTarjeta,  decimal montoEgreso, decimal montoOtros,
-            decimal ventaEfectivo, decimal montoInicial, DateTime? fechaApertura)
+            decimal ventaEfectivo, decimal montoInicial, DateTime? fechaApertura, decimal montoDejado, decimal montoDeposito, decimal montoConteo,decimal ventaCredito,
+            decimal ventaCortesia, decimal ventaConsumoTr)
         {
             DCaja_A Obj = new DCaja_A();
             Obj.IdUsuario = idUsuario;
@@ -27,6 +28,12 @@ namespace CapaNegocios
             Obj.VentaEfectivo = ventaEfectivo;
             Obj.MontoInicial = montoInicial;
             Obj.FechaApertura = fechaApertura;
+            Obj.MontoDejado = montoDejado;
+            Obj.MontoDeposito = montoDeposito;
+            Obj.MontoConteo = montoConteo;
+            Obj.VentaCredito = ventaCredito;
+            Obj.VentaCortesia = ventaCortesia;
+            Obj.VentaConsumoTr = ventaConsumoTr;
             return Obj.Insertar(Obj);
         }
 

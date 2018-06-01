@@ -77,6 +77,22 @@ namespace CapaPresentacion
                 // this.ocultarColumnas();
             }
         }
+        private void MostrarDescuentoTipoTrabajador()
+        {
+            this.dataListado.DataSource = NDescuento.MostrarDescuentoTipoTrabajador();
+
+            lblTotal.Text = "Total de Registros: " + Convert.ToString(dataListado.Rows.Count);
+
+            if (this.dataListado.Rows.Count == 0)
+            {
+                this.dataListado.Visible = false;
+            }
+            else
+            {
+                this.dataListado.Visible = true;
+                // this.ocultarColumnas();
+            }
+        }
 
         private void MostrarDescuentoProducto()
         {
@@ -161,7 +177,7 @@ namespace CapaPresentacion
             }
             else if (this.cbProducto.SelectedIndex == -1)
             {
-                MessageBox.Show("Seleccione el producto o categoria");
+                MessageBox.Show("Seleccione el producto, categoria, tipo cliente o tipo trabajador");
             }
             else if (this.txtPorcentaje.Text.Trim() == "")
             {
@@ -192,7 +208,12 @@ namespace CapaPresentacion
                             rbTipoCliente.Checked = true;
                             MostrarDescuentoTipoCliente();
                         }
-                       
+                        else if (tipo == "E")
+                        {
+                            rbTipoTrabajador.Checked = true;
+                            MostrarDescuentoTipoTrabajador();
+                        }
+
 
                     }
                     else
@@ -210,6 +231,9 @@ namespace CapaPresentacion
                         else if (rbTipoCliente.Checked == true)
                         {
                             MostrarDescuentoTipoCliente();
+                        }else if(rbTipoTrabajador.Checked == true)
+                        {
+                            MostrarDescuentoTipoTrabajador();
                         }
                         this.dataListado.ClearSelection();
                     }
@@ -349,6 +373,14 @@ namespace CapaPresentacion
             cbProducto.DisplayMember = "TipoCliente";
             cbProducto.SelectedIndex = -1;
         }
+        private void cargarTipoTrabajador()
+        {
+            cbProducto.DataSource = NTipoTrabajador.Mostrar();
+            cbProducto.ValueMember = "Codigo";
+            cbProducto.DisplayMember = "Tipo";
+            cbProducto.SelectedIndex = -1;
+        }
+
 
         private void cbAplicar_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -367,8 +399,14 @@ namespace CapaPresentacion
 
             else if (cbAplicar.SelectedIndex == 2)
             {
-                tipo = "T";
+                tipo = "T";//TIPO CLIENTE
                 cargarTipoCliente();
+
+            }
+            else if (cbAplicar.SelectedIndex == 3)
+            {
+                tipo = "E";//EMPLEADO O TIPO TRABAJADOR
+                cargarTipoTrabajador();
 
             }
         }
@@ -388,6 +426,11 @@ namespace CapaPresentacion
             else if (rbTipoCliente.Checked == true)
             {
                 this.MostrarDescuentoTipoCliente();
+                ocultarColumnas();
+            }
+            else if (rbTipoTrabajador.Checked == true)
+            {
+                this.MostrarDescuentoTipoTrabajador();
                 ocultarColumnas();
             }
 
@@ -478,6 +521,11 @@ namespace CapaPresentacion
             else if (rbTipoCliente.Checked == true)
             {
                 this.MostrarDescuentoTipoCliente();
+                ocultarColumnas();
+            }
+            else if (rbTipoTrabajador.Checked == true)
+            {
+                this.MostrarDescuentoTipoTrabajador();
                 ocultarColumnas();
             }
 
@@ -652,6 +700,39 @@ namespace CapaPresentacion
             else if (rbTipoCliente.Checked == true)
             {
                 this.MostrarDescuentoTipoCliente();
+                ocultarColumnas();
+            }
+            else if (rbTipoTrabajador.Checked == true)
+            {
+                this.MostrarDescuentoTipoTrabajador();
+                ocultarColumnas();
+            }
+
+            this.btnEditar.Enabled = false;
+            this.btnDesactivar.Enabled = false;
+            this.btnCancelar.Enabled = false;
+        }
+
+        private void rbTipoTrabajador_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbCategoria.Checked == true)
+            {
+                this.MostrarDescuentoCategoria();
+                ocultarColumnas();
+            }
+            else if (rbTodos.Checked == true)
+            {
+                this.MostrarDescuentoProducto();
+                ocultarColumnas();
+            }
+            else if (rbTipoCliente.Checked == true)
+            {
+                this.MostrarDescuentoTipoCliente();
+                ocultarColumnas();
+            }
+            else if (rbTipoTrabajador.Checked == true)
+            {
+                this.MostrarDescuentoTipoTrabajador();
                 ocultarColumnas();
             }
 

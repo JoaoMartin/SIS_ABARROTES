@@ -75,6 +75,6 @@ D:\SIS_PANADERIAS\DLALO\SISTEMAVENTAS_CIERRES\CapaDatos\obj\Debug\CapaDatos.dll
 D:\SIS_PANADERIAS\DLALO\SISTEMAVENTAS_CIERRES\CapaDatos\obj\Debug\CapaDatos.pdb
 D:\SIS_RESTAURANTE\SISTEMAVENTAS_CIERRES\CapaDatos\bin\Debug\CapaDatos.dll
 D:\SIS_RESTAURANTE\SISTEMAVENTAS_CIERRES\CapaDatos\bin\Debug\CapaDatos.pdb
-D:\SIS_RESTAURANTE\SISTEMAVENTAS_CIERRES\CapaDatos\obj\Debug\CapaDatos.csprojResolveAssemblyReference.cache
 D:\SIS_RESTAURANTE\SISTEMAVENTAS_CIERRES\CapaDatos\obj\Debug\CapaDatos.dll
 D:\SIS_RESTAURANTE\SISTEMAVENTAS_CIERRES\CapaDatos\obj\Debug\CapaDatos.pdb
+D:\SIS_RESTAURANTE\SISTEMAVENTAS_CIERRES\CapaDatos\obj\Debug\CapaDatos.csprojResolveAssemblyReference.cache

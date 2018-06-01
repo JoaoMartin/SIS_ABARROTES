@@ -17,8 +17,8 @@ namespace SisVentas_Res
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmLogin());
-           // Application.Run(new frmPruebaRedondeo());
+          Application.Run(new frmLogin());
+          //Application.Run(new frmDescuentoTrabajador());
         }
     }
 }

@@ -196,7 +196,7 @@ namespace CapaPresentacion
                                                          */
                     rpta = NVenta.InsertarPedidoSeparado(null, Convert.ToInt32(this.lblIdMesa.Text), DateTime.Now, "Pedido DV", "",
                     Convert.ToDecimal(this.lblDescuento.Text), Convert.ToInt32(this.lblIdUsuario.Text), "CD", 1, frmVenta.f1.dtDetalle,
-                    frmVenta.f1.dtDetalleMenu, DateTime.Now, 00.00m, Convert.ToInt32(this.lblIdUsuario.Text), "", "", "", "");
+                    frmVenta.f1.dtDetalleMenu, DateTime.Now, 00.00m, Convert.ToInt32(this.lblIdUsuario.Text), "", "", "", "","");
                     if (rpta != "")
                     {
                         for (int i = 0; i < frmVenta.f1.dataListadoDetalle.Rows.Count; i++)

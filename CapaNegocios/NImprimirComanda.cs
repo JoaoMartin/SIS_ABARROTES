@@ -119,8 +119,8 @@ namespace CapaNegocios
             ticket.TextoDerecha("Adelanto: " + adelanto +".00");
             ticket.TextoDerecha("Saldo: " + saldo);
             ticket.CortaTicket1();
-             ticket.ImprimirTicket("CAJA");//Nombre de la impresora ticketera
-            //  ticket.ImprimirTicket("EPSON TM-U220 Receipt");
+             //ticket.ImprimirTicket("CAJA");//Nombre de la impresora ticketera
+             ticket.ImprimirTicket("EPSON TM-U220 Receipt");
             // ticket.ImprimirTicket("COCINA_LALOS");//Nombre de la impresora ticketera
             //ticket.ImprimirTicket("Microsoft XPS Document Writer");
         }

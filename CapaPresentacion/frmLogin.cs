@@ -76,7 +76,7 @@ namespace CapaPresentacion
                         frm.lblIdUsuario.Text = datos.Rows[0][0].ToString();
                         frm.lblUsuario.Text = datos.Rows[0][1].ToString();
                         frm.lblAcceso.Text = datos.Rows[0][2].ToString();
-                        frm.lblApellidos.Text = datos.Rows[0][3].ToString();
+                       // frm.lblApellidos.Text = datos.Rows[0][3].ToString();
                         frm.lblPass.Text = this.txtPass.Text;
                         frm.lblUsuarioSis.Text = this.txtUsuario.Text.Trim();
                         frm.Show();
@@ -91,7 +91,7 @@ namespace CapaPresentacion
                         frm.lblIdUsuario.Text = datos.Rows[0][0].ToString();
                         frm.lblUsuario.Text = datos.Rows[0][1].ToString();
                         frm.lblAcceso.Text = datos.Rows[0][2].ToString();
-                       frm.lblApellidos.Text = datos.Rows[0][3].ToString();
+                      // frm.lblApellidos.Text = datos.Rows[0][3].ToString();
                         frm.lblMontoApertura.Text = dtMonto.Rows[0]["monto"].ToString();
                         frm.lblFechaApertura.Text = dtMonto.Rows[0]["fecha"].ToString();
                         frm.lblPass.Text = this.txtPass.Text;

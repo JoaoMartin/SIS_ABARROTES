@@ -164,7 +164,7 @@ namespace CapaDatos
                 SqlParameter ParOrden = new SqlParameter();
                 ParOrden.ParameterName = "@orden";
                 ParOrden.SqlDbType = SqlDbType.Int;
-                ParOrden.Value = Categoria.Orden; ;
+                ParOrden.Value = Categoria.Orden; 
                 sqlCmd.Parameters.Add(ParOrden);
 
                 rpta = sqlCmd.ExecuteNonQuery() == 1 ? "OK" : "No se ingresó el Registro";

@@ -918,5 +918,34 @@ namespace CapaDatos
             return dtResultado;
         }
 
+        public DataTable consultaComprobanteCredito(int idVenta)
+        {
+            DataTable dtResultado = new DataTable("Comprobante");
+            SqlConnection sqlCon = new SqlConnection();
+            try
+            {
+                sqlCon.ConnectionString = Conexion.cn;
+                SqlCommand sqlCmd = new SqlCommand();
+                sqlCmd.Connection = sqlCon;
+                sqlCmd.CommandText = "sp_consultaComprobanteCredito";
+                sqlCmd.CommandType = CommandType.StoredProcedure;
+
+                SqlParameter ParIdVenta = new SqlParameter();
+                ParIdVenta.ParameterName = "@idVenta";
+                ParIdVenta.SqlDbType = SqlDbType.Int;
+                ParIdVenta.Value = idVenta;
+                sqlCmd.Parameters.Add(ParIdVenta);
+
+                SqlDataAdapter sqlDat = new SqlDataAdapter(sqlCmd);
+                sqlDat.Fill(dtResultado);
+            }
+            catch (Exception ex)
+            {
+                dtResultado = null;
+            }
+
+            return dtResultado;
+        }
+
     }
 }

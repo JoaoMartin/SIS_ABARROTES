@@ -116,7 +116,7 @@
             this.cbEliminar.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.cbEliminar.Location = new System.Drawing.Point(16, 119);
             this.cbEliminar.Name = "cbEliminar";
-            this.cbEliminar.Size = new System.Drawing.Size(79, 23);
+            this.cbEliminar.Size = new System.Drawing.Size(88, 22);
             this.cbEliminar.TabIndex = 5;
             this.cbEliminar.Text = "Eliminar";
             this.cbEliminar.UseVisualStyleBackColor = true;
@@ -143,7 +143,7 @@
             // 
             this.tbInfo.Controls.Add(this.tabPage2);
             this.tbInfo.Controls.Add(this.tabPage3);
-            this.tbInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbInfo.Font = new System.Drawing.Font("Roboto", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbInfo.Location = new System.Drawing.Point(12, 39);
             this.tbInfo.Name = "tbInfo";
             this.tbInfo.SelectedIndex = 0;
@@ -158,10 +158,10 @@
             this.tabPage2.Controls.Add(this.dataListado);
             this.tabPage2.Controls.Add(this.lblTotal);
             this.tabPage2.Controls.Add(this.cbEliminar);
-            this.tabPage2.Location = new System.Drawing.Point(4, 25);
+            this.tabPage2.Location = new System.Drawing.Point(4, 27);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(697, 479);
+            this.tabPage2.Size = new System.Drawing.Size(697, 477);
             this.tabPage2.TabIndex = 0;
             this.tabPage2.Text = "Listado General";
             // 
@@ -277,7 +277,7 @@
             // btnCancelar
             // 
             this.btnCancelar.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancelar.Font = new System.Drawing.Font("Roboto", 9.230769F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancelar.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnCancelar.Image = global::CapaPresentacion.Properties.Resources.cancel2;
             this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -293,7 +293,7 @@
             // btnEditar
             // 
             this.btnEditar.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnEditar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEditar.Font = new System.Drawing.Font("Roboto", 9.230769F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEditar.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnEditar.Image = global::CapaPresentacion.Properties.Resources.edit4;
             this.btnEditar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -309,7 +309,7 @@
             // btnGuardar
             // 
             this.btnGuardar.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnGuardar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGuardar.Font = new System.Drawing.Font("Roboto", 9.230769F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGuardar.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnGuardar.Image = global::CapaPresentacion.Properties.Resources.save2;
             this.btnGuardar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -325,7 +325,7 @@
             // btnNuevo
             // 
             this.btnNuevo.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnNuevo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNuevo.Font = new System.Drawing.Font("Roboto", 9.230769F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNuevo.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnNuevo.Image = global::CapaPresentacion.Properties.Resources.new41;
             this.btnNuevo.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -342,7 +342,7 @@
             // 
             this.btnEliminar.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.btnEliminar.Enabled = false;
-            this.btnEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEliminar.Font = new System.Drawing.Font("Roboto", 9.230769F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEliminar.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnEliminar.Image = global::CapaPresentacion.Properties.Resources.trash;
             this.btnEliminar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;

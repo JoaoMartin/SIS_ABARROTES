@@ -411,7 +411,8 @@ namespace CapaPresentacion
 
                                 }
 
-                                rpta = NVenta.EditarVentaCancelada(Convert.ToInt32(this.lblIdVenta.Text), Convert.ToDecimal("00.00"), formaPago,"", Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text));
+                                rpta = NVenta.EditarVentaCancelada(Convert.ToInt32(this.lblIdVenta.Text), Convert.ToDecimal("00.00"), formaPago,"",
+                                    Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text), idCliente,lblClase.Text);
                                 if (rpta == "OK")
                                 {
                                     string formaPago = "";
@@ -548,7 +549,8 @@ namespace CapaPresentacion
                                     }
 
                                     //   rpta1= NFactura.Insertar(1, Convert.ToDecimal(this.lblIgv.Text), DateTime.Now, Convert.ToInt32(this.lblIdVenta.Text),"EMITIDA", Convert.ToInt32(this.lblIdMesa.Text));
-                                    rpta = NVenta.EditarVentaCancelada(Convert.ToInt32(this.lblIdVenta.Text), Convert.ToDecimal("00.00"), formaPago,"", Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text));
+                                    rpta = NVenta.EditarVentaCancelada(Convert.ToInt32(this.lblIdVenta.Text), Convert.ToDecimal("00.00"), formaPago,"", 
+                                        Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text),idCliente,lblClase.Text);
                                     if (rpta == "OK")
                                     {
                                         string formaPago = "";
@@ -679,7 +681,7 @@ namespace CapaPresentacion
                                                                             Convert.ToInt32(txtNroCompr.Text.Trim()), Convert.ToDecimal(this.lblIgv.Text), "EMITIDA",
                                                                             Convert.ToDecimal(this.lblTotal.Text), pagoEfectivo, pagoTarjeta,
                                                                             00.00m, frmVenta.f1.dtDetalle, vuelto, frmVenta.f1.dtDetalleMenu,
-                                                                            DateTime.Now, 00.00m, Convert.ToInt32(this.lblIdUsuario.Text), "", "", "","");
+                                                                            DateTime.Now, 00.00m, Convert.ToInt32(this.lblIdUsuario.Text), "", "", "","",lblClase.Text);
                                 if (rpta != "")
                                 {
                                     for (int p = 0; p < frmVenta.f1.dataListadoDetalle.Rows.Count; p++)
@@ -753,7 +755,8 @@ namespace CapaPresentacion
                                                                             Convert.ToDecimal(this.lblIgv.Text),
                                                                             "EMITIDA", Convert.ToDecimal(this.lblTotal.Text), pagoEfectivo, 
                                                                             pagoTarjeta, 00.00m, frmVenta.f1.dtDetalle, vuelto, 
-                                                                            frmVenta.f1.dtDetalleMenu, DateTime.Now, 00.00m, Convert.ToInt32(this.lblIdUsuario.Text),"","","","");
+                                                                            frmVenta.f1.dtDetalleMenu, DateTime.Now, 00.00m, Convert.ToInt32(this.lblIdUsuario.Text),"","","","",
+                                                                            lblClase.Text);
                                     if (rpta != "")
                                     {
                                         if (insertarCaja() == true)

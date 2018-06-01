@@ -56,9 +56,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.dtFecha = new System.Windows.Forms.DateTimePicker();
             this.txtIdArticulo = new System.Windows.Forms.TextBox();
-            this.btnGuardar = new System.Windows.Forms.Button();
-            this.btnCancelar = new System.Windows.Forms.Button();
-            this.btnNuevo = new System.Windows.Forms.Button();
             this.lblBander = new System.Windows.Forms.Label();
             this.lblPosic = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -71,6 +68,9 @@
             this.ttMensaje = new System.Windows.Forms.ToolTip(this.components);
             this.txtTotalPagado = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
+            this.btnGuardar = new System.Windows.Forms.Button();
+            this.btnCancelar = new System.Windows.Forms.Button();
+            this.btnNuevo = new System.Windows.Forms.Button();
             this.groupBox4.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataListadoDetalle)).BeginInit();
@@ -420,6 +420,136 @@
             this.txtIdArticulo.TabIndex = 40;
             this.txtIdArticulo.Visible = false;
             // 
+            // lblBander
+            // 
+            this.lblBander.AutoSize = true;
+            this.lblBander.Location = new System.Drawing.Point(183, 28);
+            this.lblBander.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblBander.Name = "lblBander";
+            this.lblBander.Size = new System.Drawing.Size(17, 20);
+            this.lblBander.TabIndex = 41;
+            this.lblBander.Text = "0";
+            this.lblBander.Visible = false;
+            // 
+            // lblPosic
+            // 
+            this.lblPosic.AutoSize = true;
+            this.lblPosic.Location = new System.Drawing.Point(206, 28);
+            this.lblPosic.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblPosic.Name = "lblPosic";
+            this.lblPosic.Size = new System.Drawing.Size(17, 20);
+            this.lblPosic.TabIndex = 42;
+            this.lblPosic.Text = "0";
+            this.lblPosic.Visible = false;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.BackColor = System.Drawing.Color.White;
+            this.groupBox2.Controls.Add(this.dataListadoDetalle);
+            this.groupBox2.Location = new System.Drawing.Point(13, 297);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.groupBox2.Size = new System.Drawing.Size(1102, 287);
+            this.groupBox2.TabIndex = 43;
+            this.groupBox2.TabStop = false;
+            // 
+            // dataListadoDetalle
+            // 
+            this.dataListadoDetalle.AllowUserToAddRows = false;
+            this.dataListadoDetalle.AllowUserToDeleteRows = false;
+            this.dataListadoDetalle.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataListadoDetalle.Location = new System.Drawing.Point(-13, 21);
+            this.dataListadoDetalle.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.dataListadoDetalle.Name = "dataListadoDetalle";
+            this.dataListadoDetalle.ReadOnly = true;
+            this.dataListadoDetalle.RowTemplate.Height = 24;
+            this.dataListadoDetalle.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataListadoDetalle.Size = new System.Drawing.Size(1073, 252);
+            this.dataListadoDetalle.TabIndex = 31;
+            this.dataListadoDetalle.DoubleClick += new System.EventHandler(this.dataListadoDetalle_DoubleClick);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox1.Controls.Add(this.label19);
+            this.groupBox1.Controls.Add(this.cbCaja);
+            this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Controls.Add(this.cbAlmacen);
+            this.groupBox1.Controls.Add(this.cbTipoIngreso);
+            this.groupBox1.Controls.Add(this.label9);
+            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.dtFecha);
+            this.groupBox1.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Location = new System.Drawing.Point(18, 61);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.groupBox1.Size = new System.Drawing.Size(1097, 106);
+            this.groupBox1.TabIndex = 38;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Datos Nota de Ingreso";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.Location = new System.Drawing.Point(981, 39);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(99, 20);
+            this.label19.TabIndex = 40;
+            this.label19.Text = "Origen DInero";
+            // 
+            // cbCaja
+            // 
+            this.cbCaja.AutoSize = true;
+            this.cbCaja.Location = new System.Drawing.Point(985, 67);
+            this.cbCaja.Name = "cbCaja";
+            this.cbCaja.Size = new System.Drawing.Size(58, 24);
+            this.cbCaja.TabIndex = 41;
+            this.cbCaja.Text = "Caja";
+            this.cbCaja.UseVisualStyleBackColor = true;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Roboto", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.Navy;
+            this.label3.Location = new System.Drawing.Point(471, 8);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(161, 24);
+            this.label3.TabIndex = 37;
+            this.label3.Text = "NOTA DE INGRESO";
+            // 
+            // errorIcono
+            // 
+            this.errorIcono.ContainerControl = this;
+            // 
+            // ttMensaje
+            // 
+            this.ttMensaje.IsBalloon = true;
+            // 
+            // txtTotalPagado
+            // 
+            this.txtTotalPagado.Font = new System.Drawing.Font("Roboto", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTotalPagado.Location = new System.Drawing.Point(928, 576);
+            this.txtTotalPagado.Name = "txtTotalPagado";
+            this.txtTotalPagado.ReadOnly = true;
+            this.txtTotalPagado.Size = new System.Drawing.Size(145, 31);
+            this.txtTotalPagado.TabIndex = 52;
+            this.txtTotalPagado.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(785, 587);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(117, 20);
+            this.label15.TabIndex = 51;
+            this.label15.Text = "TOTAL PAGADO";
+            // 
             // btnGuardar
             // 
             this.btnGuardar.BackColor = System.Drawing.SystemColors.ButtonFace;
@@ -470,136 +600,6 @@
             this.btnNuevo.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnNuevo.UseVisualStyleBackColor = false;
             this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
-            // 
-            // lblBander
-            // 
-            this.lblBander.AutoSize = true;
-            this.lblBander.Location = new System.Drawing.Point(183, 28);
-            this.lblBander.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblBander.Name = "lblBander";
-            this.lblBander.Size = new System.Drawing.Size(17, 20);
-            this.lblBander.TabIndex = 41;
-            this.lblBander.Text = "0";
-            this.lblBander.Visible = false;
-            // 
-            // lblPosic
-            // 
-            this.lblPosic.AutoSize = true;
-            this.lblPosic.Location = new System.Drawing.Point(206, 28);
-            this.lblPosic.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblPosic.Name = "lblPosic";
-            this.lblPosic.Size = new System.Drawing.Size(17, 20);
-            this.lblPosic.TabIndex = 42;
-            this.lblPosic.Text = "0";
-            this.lblPosic.Visible = false;
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.BackColor = System.Drawing.Color.White;
-            this.groupBox2.Controls.Add(this.dataListadoDetalle);
-            this.groupBox2.Location = new System.Drawing.Point(13, 297);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.groupBox2.Size = new System.Drawing.Size(1102, 287);
-            this.groupBox2.TabIndex = 43;
-            this.groupBox2.TabStop = false;
-            // 
-            // dataListadoDetalle
-            // 
-            this.dataListadoDetalle.AllowUserToAddRows = false;
-            this.dataListadoDetalle.AllowUserToDeleteRows = false;
-            this.dataListadoDetalle.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataListadoDetalle.Location = new System.Drawing.Point(21, 21);
-            this.dataListadoDetalle.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.dataListadoDetalle.Name = "dataListadoDetalle";
-            this.dataListadoDetalle.ReadOnly = true;
-            this.dataListadoDetalle.RowTemplate.Height = 24;
-            this.dataListadoDetalle.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataListadoDetalle.Size = new System.Drawing.Size(1073, 252);
-            this.dataListadoDetalle.TabIndex = 31;
-            this.dataListadoDetalle.DoubleClick += new System.EventHandler(this.dataListadoDetalle_DoubleClick);
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.BackColor = System.Drawing.Color.Transparent;
-            this.groupBox1.Controls.Add(this.label19);
-            this.groupBox1.Controls.Add(this.cbCaja);
-            this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.cbAlmacen);
-            this.groupBox1.Controls.Add(this.cbTipoIngreso);
-            this.groupBox1.Controls.Add(this.label9);
-            this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.dtFecha);
-            this.groupBox1.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(18, 61);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.groupBox1.Size = new System.Drawing.Size(1097, 106);
-            this.groupBox1.TabIndex = 38;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Datos Nota de Ingreso";
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(981, 39);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(99, 20);
-            this.label19.TabIndex = 40;
-            this.label19.Text = "Origen DInero";
-            // 
-            // cbCaja
-            // 
-            this.cbCaja.AutoSize = true;
-            this.cbCaja.Location = new System.Drawing.Point(985, 67);
-            this.cbCaja.Name = "cbCaja";
-            this.cbCaja.Size = new System.Drawing.Size(61, 24);
-            this.cbCaja.TabIndex = 41;
-            this.cbCaja.Text = "Caja";
-            this.cbCaja.UseVisualStyleBackColor = true;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Roboto", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.Navy;
-            this.label3.Location = new System.Drawing.Point(471, 8);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(174, 25);
-            this.label3.TabIndex = 37;
-            this.label3.Text = "NOTA DE INGRESO";
-            // 
-            // errorIcono
-            // 
-            this.errorIcono.ContainerControl = this;
-            // 
-            // ttMensaje
-            // 
-            this.ttMensaje.IsBalloon = true;
-            // 
-            // txtTotalPagado
-            // 
-            this.txtTotalPagado.Font = new System.Drawing.Font("Roboto", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTotalPagado.Location = new System.Drawing.Point(953, 576);
-            this.txtTotalPagado.Name = "txtTotalPagado";
-            this.txtTotalPagado.ReadOnly = true;
-            this.txtTotalPagado.Size = new System.Drawing.Size(145, 31);
-            this.txtTotalPagado.TabIndex = 52;
-            this.txtTotalPagado.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(817, 591);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(117, 20);
-            this.label15.TabIndex = 51;
-            this.label15.Text = "TOTAL PAGADO";
             // 
             // frmIngresoAlmacen
             // 

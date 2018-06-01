@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAdelanto.cs" />
     <Compile Include="Conexion.cs" />
     <Compile Include="DBackup.cs" />
     <Compile Include="DBoleta.cs" />
@@ -50,6 +51,7 @@
     <Compile Include="DComprobante.cs" />
     <Compile Include="DComprobanteAnulado.cs" />
     <Compile Include="DDescuento.cs" />
+    <Compile Include="DDescuentoTrabajador.cs" />
     <Compile Include="DDetalleCaja.cs" />
     <Compile Include="DDetalleCompra.cs" />
     <Compile Include="DDetalleMovimientoAlmacen.cs" />
@@ -64,6 +66,8 @@
     <Compile Include="DModulo.cs" />
     <Compile Include="DMovimientoAlmacen.cs" />
     <Compile Include="DNivel.cs" />
+    <Compile Include="DPagoTrabajador.cs" />
+    <Compile Include="DPersona.cs" />
     <Compile Include="DProducto.cs" />
     <Compile Include="DProveedor.cs" />
     <Compile Include="DReceta.cs" />
@@ -79,6 +83,7 @@
     <Compile Include="DVenta.cs" />
     <Compile Include="DAlmacen.cs" />
     <Compile Include="DDelivery.cs" />
+    <Compile Include="DCredito.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

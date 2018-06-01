@@ -346,8 +346,8 @@ namespace CapaPresentacion
                 this.dataListado.ClearSelection();
             }else
             {
-                NImprimir_Comprobante.imprimirComRepetido(this.lblNumero.Text, this.lblComprobante.Text, cliente, direccion, nroDoc, salon, mesa, dataDetalle, totalDcto.ToString(), this.lblDcto.Text,
-            subTotal.ToString(), this.lblIgv.Text, this.lblTotalVenta.Text, efectivo1.ToString(),
+                NImprimir_Comprobante.imprimirComRepetido(this.lblNumero.Text, this.lblComprobante.Text, cliente, direccion, nroDoc, salon, mesa, dataDetalle, totalDcto.ToString(),
+                    this.lblDcto.Text,subTotal.ToString(), this.lblIgv.Text, this.lblTotalVenta.Text, efectivo1.ToString(),
             this.lblTarjeta.Text, this.lblForma.Text, "Detallado", this.lblRedondeo.Text, tel, lblVuelto.Text, lblFechaGene.Text,
             frmPrincipal.f1.lblUsuario.Text + frmPrincipal.f1.lblApellidos.Text, NAliento.MensajeAliento());
                 this.dataListado.ClearSelection();

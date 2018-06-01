@@ -34,6 +34,7 @@
             this.btnEliminar = new System.Windows.Forms.Button();
             this.tbInfo = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.rbTipoCliente = new System.Windows.Forms.RadioButton();
             this.rbTodos = new System.Windows.Forms.RadioButton();
             this.rbCategoria = new System.Windows.Forms.RadioButton();
             this.dataListado = new System.Windows.Forms.DataGridView();
@@ -56,7 +57,7 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnNuevo = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.rbTipoCliente = new System.Windows.Forms.RadioButton();
+            this.rbTipoTrabajador = new System.Windows.Forms.RadioButton();
             this.tbInfo.SuspendLayout();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataListado)).BeginInit();
@@ -127,6 +128,7 @@
             // 
             this.tabPage2.BackColor = System.Drawing.Color.White;
             this.tabPage2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.tabPage2.Controls.Add(this.rbTipoTrabajador);
             this.tabPage2.Controls.Add(this.rbTipoCliente);
             this.tabPage2.Controls.Add(this.rbTodos);
             this.tabPage2.Controls.Add(this.rbCategoria);
@@ -139,6 +141,20 @@
             this.tabPage2.Size = new System.Drawing.Size(765, 506);
             this.tabPage2.TabIndex = 0;
             this.tabPage2.Text = "Listado General";
+            // 
+            // rbTipoCliente
+            // 
+            this.rbTipoCliente.AutoSize = true;
+            this.rbTipoCliente.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbTipoCliente.Location = new System.Drawing.Point(376, 19);
+            this.rbTipoCliente.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.rbTipoCliente.Name = "rbTipoCliente";
+            this.rbTipoCliente.Size = new System.Drawing.Size(107, 24);
+            this.rbTipoCliente.TabIndex = 15;
+            this.rbTipoCliente.TabStop = true;
+            this.rbTipoCliente.Text = "Tipo Cliente";
+            this.rbTipoCliente.UseVisualStyleBackColor = true;
+            this.rbTipoCliente.CheckedChanged += new System.EventHandler(this.rbTipoCliente_CheckedChanged);
             // 
             // rbTodos
             // 
@@ -251,12 +267,12 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(7, 205);
+            this.label10.Location = new System.Drawing.Point(86, 206);
             this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(149, 20);
+            this.label10.Size = new System.Drawing.Size(68, 20);
             this.label10.TabIndex = 20;
-            this.label10.Text = "Producto o Categoria";
+            this.label10.Text = "Aplicar a";
             // 
             // txtPorcentaje
             // 
@@ -306,12 +322,12 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(88, 139);
+            this.label7.Location = new System.Drawing.Point(69, 139);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(68, 20);
+            this.label7.Size = new System.Drawing.Size(87, 20);
             this.label7.TabIndex = 11;
-            this.label7.Text = "Aplicar a";
+            this.label7.Text = "Forma Dcto";
             // 
             // cbAplicar
             // 
@@ -321,7 +337,8 @@
             this.cbAplicar.Items.AddRange(new object[] {
             "PRODUCTO Y/O PLATO",
             "CATEGORIA",
-            "TIPO CLIENTE"});
+            "TIPO CLIENTE",
+            "TIPO TRABAJADOR"});
             this.cbAplicar.Location = new System.Drawing.Point(179, 131);
             this.cbAplicar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cbAplicar.Name = "cbAplicar";
@@ -428,19 +445,19 @@
             this.label3.TabIndex = 61;
             this.label3.Text = "DESCUENTO";
             // 
-            // rbTipoCliente
+            // rbTipoTrabajador
             // 
-            this.rbTipoCliente.AutoSize = true;
-            this.rbTipoCliente.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbTipoCliente.Location = new System.Drawing.Point(376, 19);
-            this.rbTipoCliente.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.rbTipoCliente.Name = "rbTipoCliente";
-            this.rbTipoCliente.Size = new System.Drawing.Size(107, 24);
-            this.rbTipoCliente.TabIndex = 15;
-            this.rbTipoCliente.TabStop = true;
-            this.rbTipoCliente.Text = "Tipo Cliente";
-            this.rbTipoCliente.UseVisualStyleBackColor = true;
-            this.rbTipoCliente.CheckedChanged += new System.EventHandler(this.rbTipoCliente_CheckedChanged);
+            this.rbTipoTrabajador.AutoSize = true;
+            this.rbTipoTrabajador.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbTipoTrabajador.Location = new System.Drawing.Point(527, 19);
+            this.rbTipoTrabajador.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.rbTipoTrabajador.Name = "rbTipoTrabajador";
+            this.rbTipoTrabajador.Size = new System.Drawing.Size(130, 24);
+            this.rbTipoTrabajador.TabIndex = 16;
+            this.rbTipoTrabajador.TabStop = true;
+            this.rbTipoTrabajador.Text = "Tipo Trabajador";
+            this.rbTipoTrabajador.UseVisualStyleBackColor = true;
+            this.rbTipoTrabajador.CheckedChanged += new System.EventHandler(this.rbTipoTrabajador_CheckedChanged);
             // 
             // frmDescuento
             // 
@@ -508,5 +525,6 @@
         private System.Windows.Forms.Button btnNuevo;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.RadioButton rbTipoCliente;
+        private System.Windows.Forms.RadioButton rbTipoTrabajador;
     }
 }

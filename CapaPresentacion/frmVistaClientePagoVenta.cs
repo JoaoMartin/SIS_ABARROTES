@@ -102,25 +102,62 @@ namespace CapaPresentacion
                 frmPagar.f1.txtNombre.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["Cliente"].Value);
                 frmPagar.f1.txtDocumento.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["Nro_Doc"].Value);
                 frmPagar.f1.txtDireccion.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["DIreccion"].Value);
-              
+                frmPagar.f1.lblClase.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["Clase"].Value);
                 if (Convert.ToString(this.dataListado.CurrentRow.Cells["Clase"].Value) == "C")
                 {
                     string idTipoCliente;
                     idTipoCliente = Convert.ToString(this.dataListado.CurrentRow.Cells["idTipoCliente"].Value);
                     if (idTipoCliente == "" || idTipoCliente == null)
                     {
+                       
+                        idTipoCliente = Convert.ToString(this.dataListado.CurrentRow.Cells["idTipoCliente"].Value);
+                        decimal subtotal = Convert.ToDecimal(frmPagar.f1.lblSubTotal.Text);
+                        decimal igv = Convert.ToDecimal(frmPagar.f1.lblIgv.Text);
+                        decimal montoAd = Convert.ToDecimal(frmPagar.f1.lblMontoAdelanto.Text);
+                        decimal dctoI = Convert.ToDecimal(frmPagar.f1.lblDescuento.Text);
+                        decimal dctoG = Convert.ToDecimal(frmPagar.f1.lblDctoGeneral.Text);
+                        NDescuento.DescuentoClientes(idTipoCliente, subtotal, igv, montoAd, dctoI, dctoG, frmPagar.f1.lblDctoGeneral, frmPagar.f1.lblSubTotal,
+                            frmPagar.f1.lblIgv, frmPagar.f1.lblTotal, "C");
+                        frmPagar.f1.mostrarTotales();
                         frmPagar.f1.cbTipoCliente.SelectedIndex = -1;
+                        frmPagar.f1.cbTipoCliente.Enabled = false;
+                        frmPagar.f1.cbPaga.Visible = false;
+                        frmPagar.f1.cbPaga.Checked = false;
                     }
                     else
                     {
+                        idTipoCliente = Convert.ToString(this.dataListado.CurrentRow.Cells["idTipoCliente"].Value);
                         frmPagar.f1.cbTipoCliente.SelectedValue = idTipoCliente;
+                        decimal subtotal = Convert.ToDecimal(frmPagar.f1.lblSubTotal.Text);
+                        decimal igv = Convert.ToDecimal(frmPagar.f1.lblIgv.Text);
+                        decimal montoAd = Convert.ToDecimal(frmPagar.f1.lblMontoAdelanto.Text);
+                        decimal dctoI = Convert.ToDecimal(frmPagar.f1.lblDescuento.Text);
+                        decimal dctoG = Convert.ToDecimal(frmPagar.f1.lblDctoGeneral.Text);
+                        NDescuento.DescuentoClientes(idTipoCliente, subtotal, igv, montoAd, dctoI, dctoG, frmPagar.f1.lblDctoGeneral, frmPagar.f1.lblSubTotal,
+                            frmPagar.f1.lblIgv, frmPagar.f1.lblTotal,"C");
+                        frmPagar.f1.cbPaga.Checked = false;
+                        frmPagar.f1.cbPaga.Visible = false;
+                        frmPagar.f1.mostrarTotales();
                         //frmPagar.f1.cbTipoCliente.Enabled = true;
                     }
                 }
-                else
+                else if (Convert.ToString(this.dataListado.CurrentRow.Cells["Clase"].Value) == "T")
                 {
-                   // frmPagar.f1.cbTipoCliente.Enabled = false;
+                    // frmPagar.f1.cbTipoCliente.Enabled = false;
+                    string idTipoCliente;
+                    idTipoCliente = Convert.ToString(this.dataListado.CurrentRow.Cells["idTipoTrabajador"].Value);
+                    decimal subtotal = Convert.ToDecimal(frmPagar.f1.lblSubTotal.Text);
+                    decimal igv = Convert.ToDecimal(frmPagar.f1.lblIgv.Text);
+                    decimal montoAd = Convert.ToDecimal(frmPagar.f1.lblMontoAdelanto.Text);
+                    decimal dctoI = Convert.ToDecimal(frmPagar.f1.lblDescuento.Text);
+                    decimal dctoG = Convert.ToDecimal(frmPagar.f1.lblDctoGeneral.Text);
+                    NDescuento.DescuentoClientes(idTipoCliente, subtotal, igv, montoAd, dctoI, dctoG, frmPagar.f1.lblDctoGeneral, frmPagar.f1.lblSubTotal,
+                        frmPagar.f1.lblIgv, frmPagar.f1.lblTotal, "T");
+                    frmPagar.f1.mostrarTotales();
                     frmPagar.f1.cbTipoCliente.SelectedIndex = -1;
+                    frmPagar.f1.cbTipoCliente.Enabled = false;
+                    frmPagar.f1.cbPaga.Visible = true;
+                    frmPagar.f1.cbPaga.Checked = true;
                 }
                 frmPagar.f1.btnEditar.Enabled = true;
                 frmPagar.f1.dataListadoProducto.Select();
@@ -143,6 +180,7 @@ namespace CapaPresentacion
                 frmCambioComprobante.f1.txtNombre.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["Cliente"].Value);
                 frmCambioComprobante.f1.txtDocumento.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["Nro_Doc"].Value);
                 frmCambioComprobante.f1.txtDireccion.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["DIreccion"].Value);
+                frmCambioComprobante.f1.lblClase.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["Clase"].Value);
                 if (Convert.ToString(this.dataListado.CurrentRow.Cells["Clase"].Value) == "C")
                 {
                     string idTipoCliente;
@@ -171,6 +209,7 @@ namespace CapaPresentacion
                 fmComprobanteManual.f1.txtNombre.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["Cliente"].Value);
                 fmComprobanteManual.f1.txtDocumento.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["Nro_Doc"].Value);
                 fmComprobanteManual.f1.txtDireccion.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["DIreccion"].Value);
+                fmComprobanteManual.f1.lblClase.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["Clase"].Value);
                 if (Convert.ToString(this.dataListado.CurrentRow.Cells["Clase"].Value) == "C")
                 {
                     string idTipoCliente;
@@ -193,6 +232,36 @@ namespace CapaPresentacion
                 fmComprobanteManual.f1.btnEditar.Enabled = true;
                 this.Close();
                 
+            }
+            else if (lblBandera.Text == "4")
+            {
+                frmConfirmarCredito.f1.txtIdCliente.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["Codigo"].Value);
+                frmConfirmarCredito.f1.txtNombre.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["Cliente"].Value);
+                frmConfirmarCredito.f1.txtDocumento.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["Nro_Doc"].Value);
+                frmConfirmarCredito.f1.txtDireccion.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["DIreccion"].Value);
+                frmConfirmarCredito.f1.lblClase.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["Clase"].Value);
+                if (Convert.ToString(this.dataListado.CurrentRow.Cells["Clase"].Value) == "C")
+                {
+                    string idTipoCliente;
+                    idTipoCliente = Convert.ToString(this.dataListado.CurrentRow.Cells["idTipoCliente"].Value);
+                    if (idTipoCliente == "" || idTipoCliente == null)
+                    {
+                        frmConfirmarCredito.f1.cbTipoCliente.SelectedIndex = -1;
+                    }
+                    else
+                    {
+                        frmConfirmarCredito.f1.cbTipoCliente.SelectedValue = idTipoCliente;
+                        //frmPagar.f1.cbTipoCliente.Enabled = true;
+                    }
+                }
+                else
+                {
+                    // frmPagar.f1.cbTipoCliente.Enabled = false;
+                    frmConfirmarCredito.f1.cbTipoCliente.SelectedIndex = -1;
+                }
+                frmConfirmarCredito.f1.btnEditar.Enabled = true;
+               
+                this.Close();
             }
         }
 

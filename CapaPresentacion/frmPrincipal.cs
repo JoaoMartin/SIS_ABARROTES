@@ -945,7 +945,8 @@ namespace CapaPresentacion
             }else
             {
                 frm.lblfechaApert.Text = this.lblFechaCorteCaja.Text;
-                frm.lblMontoInicial.Text = this.lblMontoCorteCaja.Text;
+                //frm.lblMontoInicial.Text = this.lblMontoCorteCaja.Text;
+                frm.lblMontoInicial.Text = this.lblMontoApertura.Text;
             }
             
             frm.lblidUsuario.Text = this.lblIdUsuario.Text;
@@ -1066,6 +1067,43 @@ namespace CapaPresentacion
             frm.MdiParent = this;
             frm.Show();
             frm.dataListado.ClearSelection();
+        }
+
+        private void creditosPendientesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmCreditosPendientes frm = new frmCreditosPendientes();
+            frm.MdiParent = this;
+            frm.Show();
+            frm.dataListado.ClearSelection();
+        }
+
+        private void descuentosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmDescuentoTrabajador frm = new frmDescuentoTrabajador();
+            frm.MdiParent = this;
+            frm.Show();
+            
+        }
+
+        private void adelantoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmAdelanto frm = new frmAdelanto();
+            frm.MdiParent = this;
+            frm.Show();
+        }
+
+        private void pagosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmPagoTrabajador frm = new frmPagoTrabajador();
+            frm.MdiParent = this;
+            frm.Show();
+        }
+
+        private void porFormaDePagoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmVentaFormaPago frm = new frmVentaFormaPago();
+            frm.MdiParent = this;
+            frm.Show();
         }
     }
 }

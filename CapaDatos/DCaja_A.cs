@@ -23,6 +23,13 @@ namespace CapaDatos
         private decimal _VentaEfectivo;
         private decimal _MontoInicial;
         private DateTime? _FechaApertura;
+        private decimal _MontoDejado;
+        private decimal _MontoDeposito;
+        private decimal _MontoConteo;
+        private decimal _VentaCredito;
+        private decimal _VentaCortesia;
+        private decimal _VentaConsumoTr;
+
         public int IdCaja
         {
             get
@@ -192,10 +199,89 @@ namespace CapaDatos
             }
         }
 
+        public decimal MontoDejado
+        {
+            get
+            {
+                return _MontoDejado;
+            }
+
+            set
+            {
+                _MontoDejado = value;
+            }
+        }
+
+        public decimal MontoDeposito
+        {
+            get
+            {
+                return _MontoDeposito;
+            }
+
+            set
+            {
+                _MontoDeposito = value;
+            }
+        }
+
+        public decimal MontoConteo
+        {
+            get
+            {
+                return _MontoConteo;
+            }
+
+            set
+            {
+                _MontoConteo = value;
+            }
+        }
+
+        public decimal VentaCredito
+        {
+            get
+            {
+                return _VentaCredito;
+            }
+
+            set
+            {
+                _VentaCredito = value;
+            }
+        }
+
+        public decimal VentaCortesia
+        {
+            get
+            {
+                return _VentaCortesia;
+            }
+
+            set
+            {
+                _VentaCortesia = value;
+            }
+        }
+
+        public decimal VentaConsumoTr
+        {
+            get
+            {
+                return _VentaConsumoTr;
+            }
+
+            set
+            {
+                _VentaConsumoTr = value;
+            }
+        }
+
         public DCaja_A() { }
 
         public DCaja_A(int idCaja, int idUsuario, string nombre, DateTime fecha, decimal monto, string estado, int nroCaja, decimal ventaTarjeta, decimal montoEgreso, decimal montoOtros,
-            decimal ventaEfectivo, decimal montoInicial, DateTime fechaApertura)
+            decimal ventaEfectivo, decimal montoInicial, DateTime fechaApertura, decimal montoDejado, decimal montoDeposito, decimal montoConteo, decimal ventaCredito, 
+            decimal ventaCortesia, decimal ventaConsumoTr)
         {
             this.IdCaja = idCaja;
             this.IdUsuario = idUsuario;
@@ -210,6 +296,12 @@ namespace CapaDatos
             this.VentaEfectivo = ventaEfectivo;
             this.MontoInicial = montoInicial;
             this.FechaApertura = fechaApertura;
+            this.MontoDejado = montoDejado;
+            this.MontoDeposito = montoDeposito;
+            this.MontoConteo = montoConteo;
+            this.VentaCredito = ventaCredito;
+            this.VentaCortesia = ventaCortesia;
+            this.VentaConsumoTr = ventaConsumoTr;
         }
 
         public string Insertar(DCaja_A Caja)
@@ -317,6 +409,54 @@ namespace CapaDatos
                 ParFechaApertura.SqlDbType = SqlDbType.DateTime;
                 ParFechaApertura.Value = Caja.FechaApertura;
                 sqlCmd.Parameters.Add(ParFechaApertura);
+
+                SqlParameter ParMontoDejado = new SqlParameter();
+                ParMontoDejado.ParameterName = "@montoDejado";
+                ParMontoDejado.SqlDbType = SqlDbType.Decimal;
+                ParMontoDejado.Precision = 9;
+                ParMontoDejado.Size = 2;
+                ParMontoDejado.Value = Caja.MontoDejado;
+                sqlCmd.Parameters.Add(ParMontoDejado);
+
+                SqlParameter ParMontoDeposito = new SqlParameter();
+                ParMontoDeposito.ParameterName = "@montoDeposito";
+                ParMontoDeposito.SqlDbType = SqlDbType.Decimal;
+                ParMontoDeposito.Precision = 9;
+                ParMontoDeposito.Size = 2;
+                ParMontoDeposito.Value = Caja.MontoDeposito;
+                sqlCmd.Parameters.Add(ParMontoDeposito);
+
+                SqlParameter ParConteo = new SqlParameter();
+                ParConteo.ParameterName = "@montoConteo";
+                ParConteo.SqlDbType = SqlDbType.Decimal;
+                ParConteo.Precision = 9;
+                ParConteo.Size = 2;
+                ParConteo.Value = Caja.MontoConteo;
+                sqlCmd.Parameters.Add(ParConteo);
+
+                SqlParameter ParVentaCredito = new SqlParameter();
+                ParVentaCredito.ParameterName = "@ventaCredito";
+                ParVentaCredito.SqlDbType = SqlDbType.Decimal;
+                ParVentaCredito.Precision = 9;
+                ParVentaCredito.Size = 2;
+                ParVentaCredito.Value = Caja.VentaCredito;
+                sqlCmd.Parameters.Add(ParVentaCredito);
+
+                SqlParameter ParVentaCortesia = new SqlParameter();
+                ParVentaCortesia.ParameterName = "@ventaCortesia";
+                ParVentaCortesia.SqlDbType = SqlDbType.Decimal;
+                ParVentaCortesia.Precision = 9;
+                ParVentaCortesia.Size = 2;
+                ParVentaCortesia.Value = Caja.VentaCortesia;
+                sqlCmd.Parameters.Add(ParVentaCortesia);
+
+                SqlParameter ParConsumoTr = new SqlParameter();
+                ParConsumoTr.ParameterName = "@ventaConsumoT";
+                ParConsumoTr.SqlDbType = SqlDbType.Decimal;
+                ParConsumoTr.Precision = 9;
+                ParConsumoTr.Size = 2;
+                ParConsumoTr.Value = Caja.VentaConsumoTr;
+                sqlCmd.Parameters.Add(ParConsumoTr);
 
 
                 rpta = sqlCmd.ExecuteNonQuery() >= 1 ? "OK" : "No se ingresó el Registro";

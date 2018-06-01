@@ -127,6 +127,35 @@ namespace CapaPresentacion
                 vuelto1 = "00.00";
                 formaPago1 = "MIXTO";
             }
+            else if (rbCreditoEmitido.Checked == true)
+            {
+                efectivo1 = "00.00";
+                tarjeta1 = "00.00";
+                vuelto1 = "00.00";
+                formaPago1 = "CREDITO_E";
+            }
+            else if (rbCredioNEm.Checked == true)
+            {
+                efectivo1 = "00.00";
+                tarjeta1 = "00.00";
+                vuelto1 = "00.00";
+                formaPago1 = "CREDITO_NE";
+            }
+            else if (rbCortesia.Checked == true)
+            {
+                efectivo1 = "00.00";
+                tarjeta1 = "00.00";
+                vuelto1 = "00.00";
+                formaPago1 = "CORTESIA";
+            }
+            else if (rbConsumoT.Checked == true)
+            {
+                efectivo1 = "00.00";
+                tarjeta1 = "00.00";
+                vuelto1 = "00.00";
+                formaPago1 = "CONSUMO_TRABAJADOR";
+
+            }
             if (rbDetallado.Checked)
             {
                 modoProd = "Detallado";
@@ -415,6 +444,43 @@ namespace CapaPresentacion
                 {
                     rptaCaja = NCaja.Insertar(Convert.ToInt32(this.lblIdUsuario.Text), "1", "Ingreso", Convert.ToDecimal(this.txtEfectivo.Text), "VENTA", "EFECTIVO");
                     rptaCaja = NCaja.Insertar(Convert.ToInt32(this.lblIdUsuario.Text), "1", "Ingreso", Convert.ToDecimal(this.txtTarjeta.Text), "VENTA", "TARJETA");
+                    if (rptaCaja == "OK")
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                else if (rbCreditoEmitido.Checked == true || rbCredioNEm.Checked == true)
+                {
+                    rptaCaja = NCaja.Insertar(Convert.ToInt32(this.lblIdUsuario.Text), "1", "Ingreso", Convert.ToDecimal(this.lblTotal.Text), "VENTA", "CREDITO");
+                    if (rptaCaja == "OK")
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+
+                else if (rbCortesia.Checked == true)
+                {
+                    rptaCaja = NCaja.Insertar(Convert.ToInt32(this.lblIdUsuario.Text), "1", "Ingreso", Convert.ToDecimal(this.lblTotal.Text), "VENTA", "CORTESIA");
+                    if (rptaCaja == "OK")
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                else if (rbConsumoT.Checked == true)
+                {
+                    rptaCaja = NCaja.Insertar(Convert.ToInt32(this.lblIdUsuario.Text), "1", "Ingreso", Convert.ToDecimal(this.lblTotal.Text), "VENTA", "CONSUMO_TRABAJADOR");
                     if (rptaCaja == "OK")
                     {
                         return true;
@@ -767,17 +833,67 @@ namespace CapaPresentacion
         {
             if (e.KeyValue == (char)Keys.Enter)
             {
-                if (this.lblBanderaCobro.Text == "0")
+                decimal total = Convert.ToDecimal(lblTotal.Text) + Convert.ToDecimal(lblMontoAdelanto.Text);
+                if (lblBanderaCobro.Text == "1")
                 {
-                    Cobrar();
+                    CobrarAdelanto();
                 }
-                else if (this.lblBanderaCobro.Text == "3")
+                else if (lblBanderaCobro.Text == "3")
                 {
+
                     CobrarReserva();
                 }
                 else
                 {
-                    CobrarAdelanto();
+                    if (lblBanderaComprobante.Text == "1")
+                    {
+                        if (total > 700 && (txtIdCliente.Text.Length == 0 || txtDocumento.Text.Length == 0 || txtNombre.Text.Length == 0 || txtDireccion.Text.Length == 0))
+                        {
+                            MessageBox.Show("El monto supera los 700 soles, complete todos los datos del cliente");
+                            return;
+                        }
+                        else
+                        {
+                            if ((rbCredioNEm.Checked == true || rbCortesia.Checked == true || rbCreditoEmitido.Checked == true) && txtIdCliente.Text == string.Empty)
+                            {
+                                MessageBox.Show("Seleccione o ingrese un nuevo cliente");
+                                return;
+                            }
+                            else
+                            {
+                                Cobrar();
+                            }
+
+                        }
+                    }
+                    else if (lblBanderaComprobante.Text == "0")
+                    {
+                        if ((rbCredioNEm.Checked == true || rbCortesia.Checked == true || rbCreditoEmitido.Checked == true) && txtIdCliente.Text == string.Empty)
+                        {
+                            MessageBox.Show("Seleccione o ingrese un nuevo cliente");
+                            return;
+                        }
+                        else
+                        {
+                            Cobrar();
+                        }
+
+                    }
+                    else if (lblBanderaComprobante.Text == "2")
+                    {
+                        if ((rbCredioNEm.Checked == true || rbCortesia.Checked == true || rbCreditoEmitido.Checked == true) && txtIdCliente.Text == string.Empty)
+                        {
+                            MessageBox.Show("Seleccione o ingrese un nuevo cliente");
+                            return;
+                        }
+                        else
+                        {
+                            Cobrar();
+                        }
+
+                    }
+
+
                 }
 
 
@@ -1216,7 +1332,7 @@ namespace CapaPresentacion
                                     rpta = NVenta.InsertarPedidoPagadoR(idCliente, Convert.ToInt32(this.lblIdMesa.Text), DateTime.Now, "RESERVADA", formaPago, Convert.ToDecimal(this.lblDctoGeneral.Text),
 Convert.ToInt32(this.lblIdUsuario.Text), "CU", 1, frmVenta.f1.dtDetalle, frmVenta.f1.dtDetalleMenu, Convert.ToDateTime(this.lblFechaEntrega.Text),
 Convert.ToDecimal(txtEfectivo.Text), Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text), this.lblObs.Text, frmReservar.f1.txtMotivo.Text.Trim(),
-frmReservar.f1.txtNombre.Text.ToUpper().Trim(), frmReservar.f1.txtCel.Text.Trim());
+frmReservar.f1.txtNombre.Text.ToUpper().Trim(), frmReservar.f1.txtCel.Text.Trim(),lblClase.Text);
                                     if (rpta != "")
                                     {
                                         for (int p = 0; p < frmVenta.f1.dataListadoDetalle.Rows.Count; p++)
@@ -1304,7 +1420,7 @@ frmReservar.f1.txtNombre.Text.ToUpper().Trim(), frmReservar.f1.txtCel.Text.Trim(
                                             Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text), "CU", 1, frmVenta.f1.dtDetalle, frmVenta.f1.dtDetalleMenu, Convert.ToDateTime(this.lblFechaEntrega.Text),
                                             Convert.ToDecimal(txtEfectivo.Text), Convert.ToInt32(this.lblIdUsuario.Text), this.lblObs.Text,
                                             frmReservar.f1.txtMotivo.Text.Trim(),
-frmReservar.f1.txtNombre.Text.ToUpper().Trim(), frmReservar.f1.txtCel.Text.Trim());
+frmReservar.f1.txtNombre.Text.ToUpper().Trim(), frmReservar.f1.txtCel.Text.Trim(),lblClase.Text);
                                         if (rpta != "")
                                         {
                                             if (insertarCaja() == true)
@@ -1414,6 +1530,7 @@ frmReservar.f1.txtNombre.Text.ToUpper().Trim(), frmReservar.f1.txtCel.Text.Trim(
                         {
                             string rpta = "";
                             string rpta1 = "";
+                            string estadoVenta = "";
 
                             if (verMontosPago() == true)
                             {
@@ -1471,7 +1588,7 @@ frmReservar.f1.txtNombre.Text.ToUpper().Trim(), frmReservar.f1.txtCel.Text.Trim(
                                                             for (int k = 0; k < dtRecetaC.Rows.Count; k++)
                                                             {
                                                                 cantTotal = cantInsumo * Convert.ToDecimal(dtRecetaC.Rows[k][3].ToString());
-                                                                NInsumo.EditarStock(Convert.ToInt32(dtRecetaC.Rows[k][0].ToString()), cantTotal );
+                                                                NInsumo.EditarStock(Convert.ToInt32(dtRecetaC.Rows[k][0].ToString()), cantTotal);
                                                             }
                                                         }
                                                     }
@@ -1497,7 +1614,7 @@ frmReservar.f1.txtNombre.Text.ToUpper().Trim(), frmReservar.f1.txtCel.Text.Trim(
                                     }
 
                                     rpta = NVenta.EditarVentaCancelada(Convert.ToInt32(this.lblIdVenta.Text), Convert.ToDecimal(this.lblDctoGeneral.Text), formaPago, "",
-                                        Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text));
+                                        Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text), idCliente,lblClase.Text);
                                     if (rpta == "OK")
                                     {
                                         string formaPago = "";
@@ -1520,6 +1637,34 @@ frmReservar.f1.txtNombre.Text.ToUpper().Trim(), frmReservar.f1.txtCel.Text.Trim(
                                             pagoEfectivo = Convert.ToDecimal(this.txtEfectivo.Text);
                                             pagoTarjeta = Convert.ToDecimal(this.txtTarjeta.Text);
                                         }
+                                        else if (rbCreditoEmitido.Checked == true)
+                                        {
+                                            formaPago = "CREDITO_E";
+                                            estadoVenta = "CREDITO-PENDIENTE_E";
+                                            pagoEfectivo = 00.00m;
+                                            pagoTarjeta = 00.00m;
+                                        }
+                                        else if ( rbCredioNEm.Checked == true)
+                                        {
+                                            formaPago = "CREDITO_NE";
+                                            estadoVenta = "CREDITO-PENDIENTE_NE";
+                                            pagoEfectivo = 00.00m;
+                                            pagoTarjeta = 00.00m;
+                                        }
+                                        else if (rbCortesia.Checked == true)
+                                        {
+                                            formaPago = "CORTESIA";
+                                            estadoVenta = "CORTESIA";
+                                            pagoEfectivo = 00.00m;
+                                            pagoTarjeta = 00.00m;
+                                        }
+                                        else if (rbConsumoT.Checked == true)
+                                        {
+                                            formaPago = "CONSUMO_TRABAJADOR";
+                                            estadoVenta = "PENDIENTE";
+                                            pagoEfectivo = 00.00m;
+                                            pagoTarjeta = 00.00m;
+                                        }
 
                                         string tipoCompr = "";
                                         if (this.lblBanderaComprobante.Text == "0")
@@ -1535,13 +1680,28 @@ frmReservar.f1.txtNombre.Text.ToUpper().Trim(), frmReservar.f1.txtCel.Text.Trim(
                                             tipoCompr = "FACTURA";
                                         }
 
-                                        rpta1 = NComprobante.Insertar(tipoCompr, 1, Convert.ToDecimal(this.lblIgv.Text), DateTime.Now, Convert.ToInt32(this.lblIdVenta.Text), "EMITIDA", idCliente,
-                                                        Convert.ToDecimal(this.lblTotal.Text), pagoEfectivo, pagoTarjeta, 00.00m, formaPago, vuelto);
+                                        if (rbEfectivo.Checked == true || rbTarjeta.Checked == true || rbMixto.Checked == true )
+                                        {
+                                            rpta1 = NComprobante.Insertar(tipoCompr, 1, Convert.ToDecimal(this.lblIgv.Text), DateTime.Now, Convert.ToInt32(this.lblIdVenta.Text),
+                                       "EMITIDA", idCliente, Convert.ToDecimal(this.lblTotal.Text), pagoEfectivo, pagoTarjeta, 00.00m, formaPago, vuelto);
+                                        }
+                                        else if (rbCreditoEmitido.Checked == true)
+                                        {
+                                            NVenta.EditarEstadoVentaCredito_Cortesia(estadoVenta, Convert.ToInt32(lblIdVenta.Text));
+                                            rpta1 = NComprobante.Insertar(tipoCompr, 1, Convert.ToDecimal(this.lblIgv.Text), DateTime.Now, Convert.ToInt32(this.lblIdVenta.Text),
+                                      "EMITIDA", idCliente, Convert.ToDecimal(this.lblTotal.Text), pagoEfectivo, pagoTarjeta, 00.00m, formaPago, vuelto);
+                                        }
+                                        else if (rbCredioNEm.Checked == true || rbCortesia.Checked == true)
+                                        {
+                                            rpta1 = NVenta.EditarEstadoVentaCredito_Cortesia(estadoVenta, Convert.ToInt32(lblIdVenta.Text));
+                                        }
+
                                         if (rpta1 == "OK")
                                         {
                                             if (insertarCaja() == true)
                                             {
                                                 // MessageBox.Show("Se registró correctamente");
+                                                
                                                 NMesa.EditarEstadoMesa(Convert.ToInt32(this.lblIdMesa.Text), "Libre");
                                                 frmModuloSalon.f3.limpiarMesas();
                                                 frmModuloSalon.f3.mostrarSalones();
@@ -1561,16 +1721,30 @@ frmReservar.f1.txtNombre.Text.ToUpper().Trim(), frmReservar.f1.txtCel.Text.Trim(
                                                 }
                                                 if (count != frmVenta.f1.dtDetalleVenta.Rows.Count)
                                                 {
-                                                    NImprimir_Comprobante.imprimirCom(Convert.ToInt32(this.lblIdVenta.Text), tipoCompr, this.txtNombre.Text.Trim(), this.txtDireccion.Text.Trim(),
+                                                    if (rbEfectivo.Checked == true || rbTarjeta.Checked == true || rbMixto.Checked == true || rbCreditoEmitido.Checked == true || rbConsumoT.Checked ==true)
+                                                    {
+                                                        NImprimir_Comprobante.imprimirCom(Convert.ToInt32(this.lblIdVenta.Text), tipoCompr, this.txtNombre.Text.Trim(), this.txtDireccion.Text.Trim(),
                                                                             this.txtDocumento.Text.Trim(), frmVenta.f1.lblMesero.Text, frmVenta.f1.lblSalon.Text, frmVenta.f1.lblMesa.Text,
                                                                             frmVenta.f1.dataListadoDetalle, this.lblDescuento.Text, this.lblDctoGeneral.Text, this.lblSubTotal.Text,
-                                                                            this.lblIgv.Text, this.lblTotal.Text, efectivo1, vuelto1, tarjeta1, formaPago1, modoProd, "00.00", "", NAliento.MensajeAliento());
+                                                                            this.lblIgv.Text, this.lblTotal.Text, efectivo1, vuelto1, tarjeta1, formaPago1, modoProd, "00.00", "", 
+                                                                            NAliento.MensajeAliento());
+                                                    }
+
                                                 }
 
 
 
+                                                if (rbEfectivo.Checked == true || rbTarjeta.Checked == true || rbMixto.Checked == true ||  rbCreditoEmitido.Checked == true || rbConsumoT.Checked == true)
+                                                {
+                                                    this.Facturador(Convert.ToInt32(this.lblIdVenta.Text), frmVenta.f1.dtDetalleVenta);
+                                                }
 
-                                                this.Facturador(Convert.ToInt32(this.lblIdVenta.Text), frmVenta.f1.dtDetalleVenta);
+                                                if (cbPaga.Checked)
+                                                {
+                                                    NDescuentoTrabajador.Insertar(Convert.ToInt32(txtIdCliente.Text), Convert.ToDecimal(lblTotal.Text),
+                                                        "CONSUMO_", DateTime.Now, "PENDIENTE", lblIdVenta.Text);
+                                                }
+
                                                 lblIdVenta.Text = "";
                                                 this.Close();
                                                 frmVenta.f1.Close();
@@ -1637,7 +1811,7 @@ frmReservar.f1.txtNombre.Text.ToUpper().Trim(), frmReservar.f1.txtCel.Text.Trim(
                                                                 for (int k = 0; k < dtRecetaC.Rows.Count; k++)
                                                                 {
                                                                     cantTotal = cantInsumo * Convert.ToDecimal(dtRecetaC.Rows[k][3].ToString());
-                                                                   NInsumo.EditarStock(Convert.ToInt32(dtRecetaC.Rows[k][0].ToString()), cantTotal);
+                                                                    NInsumo.EditarStock(Convert.ToInt32(dtRecetaC.Rows[k][0].ToString()), cantTotal);
                                                                 }
                                                             }
                                                         }
@@ -1663,7 +1837,8 @@ frmReservar.f1.txtNombre.Text.ToUpper().Trim(), frmReservar.f1.txtCel.Text.Trim(
                                         }
 
                                         //   rpta1= NFactura.Insertar(1, Convert.ToDecimal(this.lblIgv.Text), DateTime.Now, Convert.ToInt32(this.lblIdVenta.Text),"EMITIDA", Convert.ToInt32(this.lblIdMesa.Text));
-                                        rpta = NVenta.EditarVentaCancelada(Convert.ToInt32(this.lblIdVenta.Text), Convert.ToDecimal(this.lblDctoGeneral.Text), formaPago, "", Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text));
+                                        rpta = NVenta.EditarVentaCancelada(Convert.ToInt32(this.lblIdVenta.Text), Convert.ToDecimal(this.lblDctoGeneral.Text), formaPago, "", 
+                                            Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text),idCliente,lblClase.Text);
                                         if (rpta == "OK")
                                         {
                                             string formaPago = "";
@@ -1686,8 +1861,50 @@ frmReservar.f1.txtNombre.Text.ToUpper().Trim(), frmReservar.f1.txtCel.Text.Trim(
                                                 pagoEfectivo = Convert.ToDecimal(this.txtEfectivo.Text);
                                                 pagoTarjeta = Convert.ToDecimal(this.txtTarjeta.Text);
                                             }
-                                            rpta1 = NComprobante.Insertar("FACTURA", 1, Convert.ToDecimal(this.lblIgv.Text), DateTime.Now, Convert.ToInt32(this.lblIdVenta.Text),
-                                                "EMITIDA", Convert.ToInt32(this.txtIdCliente.Text), Convert.ToDecimal(this.lblTotal.Text), pagoEfectivo, pagoTarjeta, 00.00m, formaPago, vuelto);
+                                            else if (rbCreditoEmitido.Checked == true)
+                                            {
+                                                formaPago = "CREDITO_E";
+                                                estadoVenta = "CREDITO-PENDIENTE_E";
+                                                pagoEfectivo = 00.00m;
+                                                pagoTarjeta = 00.00m;
+                                            }
+                                            else if (rbCredioNEm.Checked == true)
+                                            {
+                                                formaPago = "CREDITO_NE";
+                                                estadoVenta = "CREDITO-PENDIENTE_NE";
+                                                pagoEfectivo = 00.00m;
+                                                pagoTarjeta = 00.00m;
+                                            }
+                                            else if (rbCortesia.Checked == true)
+                                            {
+                                                formaPago = "CORTESIA";
+                                                estadoVenta = "CORTESIA";
+                                                pagoEfectivo = 00.00m;
+                                                pagoTarjeta = 00.00m;
+                                            }
+                                            else if (rbConsumoT.Checked == true)
+                                            {
+                                                formaPago = "CONSUMO_TRABAJADOR";
+                                                estadoVenta = "PENDIENTE";
+                                                pagoEfectivo = 00.00m;
+                                                pagoTarjeta = 00.00m;
+                                            }
+                                            if (rbEfectivo.Checked == true || rbTarjeta.Checked == true || rbMixto.Checked == true )
+                                            {
+                                                rpta1 = NComprobante.Insertar("FACTURA", 1, Convert.ToDecimal(this.lblIgv.Text), DateTime.Now, Convert.ToInt32(this.lblIdVenta.Text),
+                                           "EMITIDA", Convert.ToInt32(this.txtIdCliente.Text), Convert.ToDecimal(this.lblTotal.Text), pagoEfectivo, pagoTarjeta, 00.00m, formaPago, vuelto);
+                                            }
+                                            else if (rbCreditoEmitido.Checked == true)
+                                            {
+                                                NVenta.EditarEstadoVentaCredito_Cortesia(estadoVenta, Convert.ToInt32(lblIdVenta.Text));
+                                                rpta1 = NComprobante.Insertar("FACTURA", 1, Convert.ToDecimal(this.lblIgv.Text), DateTime.Now, Convert.ToInt32(this.lblIdVenta.Text),
+                                          "EMITIDA", idCliente, Convert.ToDecimal(this.lblTotal.Text), pagoEfectivo, pagoTarjeta, 00.00m, formaPago, vuelto);
+                                            }
+                                            else if (rbCredioNEm.Checked == true || rbCortesia.Checked == true)
+                                            {
+                                                rpta1 = NVenta.EditarEstadoVentaCredito_Cortesia(estadoVenta, Convert.ToInt32(lblIdVenta.Text));
+                                            }
+
                                             if (rpta1 == "OK")
                                             {
                                                 if (insertarCaja() == true)
@@ -1713,16 +1930,31 @@ frmReservar.f1.txtNombre.Text.ToUpper().Trim(), frmReservar.f1.txtCel.Text.Trim(
                                                     }
                                                     if (count != frmVenta.f1.dtDetalleVenta.Rows.Count)
                                                     {
-                                                        NImprimir_Comprobante.imprimirCom(Convert.ToInt32(this.lblIdVenta.Text), "FACTURA", this.txtNombre.Text.Trim(), this.txtDireccion.Text.Trim(),
-                                                                          this.txtDocumento.Text.Trim(), frmVenta.f1.lblMesero.Text, frmVenta.f1.lblSalon.Text, frmVenta.f1.lblMesa.Text,
-                                                                          frmVenta.f1.dataListadoDetalle, this.lblDescuento.Text, this.lblDctoGeneral.Text, this.lblSubTotal.Text,
-                                                                          this.lblIgv.Text, this.lblTotal.Text, efectivo1, vuelto1, tarjeta1, formaPago1, modoProd, "00.00", "", NAliento.MensajeAliento());
+                                                        if (rbEfectivo.Checked == true || rbTarjeta.Checked == true || rbMixto.Checked == true || rbCreditoEmitido.Checked == true || rbConsumoT.Checked == true)
+                                                        {
+                                                            NImprimir_Comprobante.imprimirCom(Convert.ToInt32(this.lblIdVenta.Text), "FACTURA", this.txtNombre.Text.Trim(), this.txtDireccion.Text.Trim(),
+                                                              this.txtDocumento.Text.Trim(), frmVenta.f1.lblMesero.Text, frmVenta.f1.lblSalon.Text, frmVenta.f1.lblMesa.Text,
+                                                              frmVenta.f1.dataListadoDetalle, this.lblDescuento.Text, this.lblDctoGeneral.Text, this.lblSubTotal.Text,
+                                                              this.lblIgv.Text, this.lblTotal.Text, efectivo1, vuelto1, tarjeta1, formaPago1, modoProd, "00.00", "", 
+                                                              NAliento.MensajeAliento());
+                                                        }
+
                                                     }
 
 
 
                                                     //this.imprimir(Convert.ToInt32(this.lblIdVenta.Text));
-                                                    this.Facturador(Convert.ToInt32(this.lblIdVenta.Text), frmVenta.f1.dtDetalleVenta);
+                                                    if (rbEfectivo.Checked == true || rbTarjeta.Checked == true || rbMixto.Checked == true || rbCreditoEmitido.Checked == true || rbConsumoT.Checked == true)
+                                                    {
+                                                        this.Facturador(Convert.ToInt32(this.lblIdVenta.Text), frmVenta.f1.dtDetalleVenta);
+                                                    }
+
+                                                    if (cbPaga.Checked)
+                                                    {
+                                                        NDescuentoTrabajador.Insertar(Convert.ToInt32(txtIdCliente.Text), Convert.ToDecimal(lblTotal.Text),
+                                                            "CONSUMO_", DateTime.Now, "PENDIENTE", lblIdVenta.Text);
+                                                    }
+
                                                     lblIdVenta.Text = "";
                                                     this.Close();
                                                     frmVenta.f1.Close();
@@ -1804,6 +2036,34 @@ frmReservar.f1.txtNombre.Text.ToUpper().Trim(), frmReservar.f1.txtCel.Text.Trim(
                                     pagoEfectivo = Convert.ToDecimal(this.txtEfectivo.Text);
                                     pagoTarjeta = Convert.ToDecimal(this.txtTarjeta.Text);
                                 }
+                                else if (rbCreditoEmitido.Checked == true)
+                                {
+                                    formaPago = "CREDITO_E";
+                                    estadoVenta = "CREDITO-PENDIENTE_E";
+                                    pagoEfectivo = 00.00m;
+                                    pagoTarjeta = 00.00m;
+                                }
+                                else if (rbCredioNEm.Checked == true)
+                                {
+                                    formaPago = "CREDITO_NE";
+                                    estadoVenta = "CREDITO-PENDIENTE_NE";
+                                    pagoEfectivo = 00.00m;
+                                    pagoTarjeta = 00.00m;
+                                }
+                                else if (rbCortesia.Checked == true)
+                                {
+                                    formaPago = "CORTESIA";
+                                    estadoVenta = "CORTESIA";
+                                    pagoEfectivo = 00.00m;
+                                    pagoTarjeta = 00.00m;
+                                }
+                                else if (rbConsumoT.Checked == true)
+                                {
+                                    formaPago = "CONSUMO_TRABAJADOR";
+                                    estadoVenta = "PENDIENTE";
+                                    pagoEfectivo = 00.00m;
+                                    pagoTarjeta = 00.00m;
+                                }
                                 this.verFormaPago();
                                 if (this.lblBanderaComprobante.Text == "0" || this.lblBanderaComprobante.Text == "1")
                                 {
@@ -1820,12 +2080,22 @@ frmReservar.f1.txtNombre.Text.ToUpper().Trim(), frmReservar.f1.txtCel.Text.Trim(
 
                                     if (lblFechaEntrega.Text == "1")
                                     {
-                                        rpta = NVenta.InsertarPedidoPagado(idCliente, Convert.ToInt32(this.lblIdMesa.Text), DateTime.Now, estadoVenta, formaPago, Convert.ToDecimal(this.lblDctoGeneral.Text)
-                                                                              , Convert.ToInt32(this.lblIdUsuario.Text), "CU", 1, tipoCompr, 1, Convert.ToDecimal(this.lblIgv.Text), "EMITIDA",
-                                                                              Convert.ToDecimal(this.lblTotal.Text), pagoEfectivo, pagoTarjeta,
-                                                                              00.00m, frmVenta.f1.dtDetalle, vuelto, frmVenta.f1.dtDetalleMenu,
-                                                                              Convert.ToDateTime(fechaEntrega), Convert.ToDecimal(lblTotal.Text), Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text),
-                                                                              this.lblObs.Text, "", "", "");
+                                        if(rbEfectivo.Checked == true|| rbTarjeta.Checked == true || rbMixto.Checked == true || rbCreditoEmitido.Checked == true || rbConsumoT.Checked == true)
+                                        {
+                                            rpta = NVenta.InsertarPedidoPagado(idCliente, Convert.ToInt32(this.lblIdMesa.Text), DateTime.Now, estadoVenta, formaPago, Convert.ToDecimal(this.lblDctoGeneral.Text)
+                                                                             , Convert.ToInt32(this.lblIdUsuario.Text), "CU",1, tipoCompr, 1, Convert.ToDecimal(this.lblIgv.Text), "EMITIDA",
+                                                                             Convert.ToDecimal(this.lblTotal.Text), pagoEfectivo, pagoTarjeta,
+                                                                             00.00m, frmVenta.f1.dtDetalle, vuelto, frmVenta.f1.dtDetalleMenu,
+                                                                             Convert.ToDateTime(fechaEntrega), Convert.ToDecimal(lblTotal.Text), Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text),
+                                                                             this.lblObs.Text, "", "", "",lblClase.Text);
+                                        }else
+                                        {
+                                            rpta = NVenta.InsertarPedidoPagadoCredCor(idCliente, Convert.ToInt32(this.lblIdMesa.Text), DateTime.Now, estadoVenta, formaPago, Convert.ToDecimal(this.lblDctoGeneral.Text)
+                                                                             , Convert.ToInt32(this.lblIdUsuario.Text), "CU", 1, frmVenta.f1.dtDetalle, frmVenta.f1.dtDetalleMenu,
+                                                                             Convert.ToDateTime(fechaEntrega), Convert.ToDecimal(lblTotal.Text), Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text),
+                                                                             this.lblObs.Text, "", "", "",lblClase.Text);
+                                        }
+                                       
                                     }
                                     else
                                     {
@@ -1835,7 +2105,7 @@ frmReservar.f1.txtNombre.Text.ToUpper().Trim(), frmReservar.f1.txtCel.Text.Trim(
                                                                               00.00m, frmVenta.f1.dtDetalle, vuelto, frmVenta.f1.dtDetalleMenu,
                                                                               Convert.ToDateTime(fechaEntrega), Convert.ToDecimal(lblTotal.Text), Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text),
                                                                               this.lblObs.Text, frmReservar.f1.txtMotivo.Text.Trim(), frmReservar.f1.txtNombre.Text.Trim(),
-                                                                              frmReservar.f1.txtCel.Text.Trim());
+                                                                              frmReservar.f1.txtCel.Text.Trim(),lblClase.Text);
                                     }
 
                                     if (rpta != "")
@@ -1854,9 +2124,6 @@ frmReservar.f1.txtNombre.Text.ToUpper().Trim(), frmReservar.f1.txtCel.Text.Trim(
                                                     int cantRequerida = Convert.ToInt32(dtDetalleProducto.Rows[j][1].ToString());
 
                                                     NProducto.EditarStock(idProducto_Com, cantRequerida * cantPedido);
-
-                                                  
-
                                                     DataTable dtRecetaC = NReceta.Mostrar(Convert.ToInt32(idProducto_Com));
                                                     if (dtRecetaC.Rows.Count > 0)
                                                     {
@@ -1909,22 +2176,37 @@ frmReservar.f1.txtNombre.Text.ToUpper().Trim(), frmReservar.f1.txtCel.Text.Trim(
                                             }
                                             if (count != frmVenta.f1.dtDetalle.Rows.Count)
                                             {
-                                                NImprimir_Comprobante.imprimirCom(Convert.ToInt32(rpta), tipoCompr, this.txtNombre.Text.Trim(), this.txtDireccion.Text.Trim(),
-                                                                    this.txtDocumento.Text.Trim(), frmVenta.f1.lblMesero.Text, frmVenta.f1.lblSalon.Text, frmVenta.f1.lblMesa.Text,
-                                                                    frmVenta.f1.dataListadoDetalle, this.lblDescuento.Text, this.lblDctoGeneral.Text, this.lblSubTotal.Text,
-                                                                    this.lblIgv.Text, this.lblTotal.Text, efectivo1, vuelto1, tarjeta1, formaPago1, modoProd, "00.00", "", NAliento.MensajeAliento());
+                                                if (rbEfectivo.Checked == true || rbTarjeta.Checked == true || rbMixto.Checked == true || rbCreditoEmitido.Checked == true || rbConsumoT.Checked == true)
+                                                {
+                                                    NImprimir_Comprobante.imprimirCom(Convert.ToInt32(rpta), tipoCompr, this.txtNombre.Text.Trim(), this.txtDireccion.Text.Trim(),
+                                                                   this.txtDocumento.Text.Trim(), frmVenta.f1.lblMesero.Text, frmVenta.f1.lblSalon.Text, frmVenta.f1.lblMesa.Text,
+                                                                   frmVenta.f1.dataListadoDetalle, this.lblDescuento.Text, this.lblDctoGeneral.Text, this.lblSubTotal.Text,
+                                                                   this.lblIgv.Text, this.lblTotal.Text, efectivo1, vuelto1, tarjeta1, formaPago1, modoProd, "00.00", "",
+                                                                   NAliento.MensajeAliento());
+                                                }
+                                                   
                                             }
 
 
                                             if (this.lblFechaEntrega.Text != "1")
                                             {
+
                                                 NImprimirComanda.imprimirReserva(frmVenta.f1.dataListadoDetalle, lblFechaEntrega.Text, lblObs.Text, rpta, lblTotal.Text,
                                                     "00", "00.00", frmPrincipal.f1.lblUsuario.Text + " " + frmPrincipal.f1.lblApellidos.Text, frmReservar.f1.txtNombre.Text.Trim(),
                                                 frmReservar.f1.txtCel.Text.Trim(), frmReservar.f1.txtMotivo.Text.Trim());
                                             }
 
                                             //this.imprimir(Convert.ToInt32(rpta));
-                                            this.Facturador(Convert.ToInt32(rpta), frmVenta.f1.dtDetalle);
+                                            if (rbEfectivo.Checked == true || rbTarjeta.Checked == true || rbMixto.Checked == true || rbCreditoEmitido.Checked == true || rbConsumoT.Checked == true)
+                                            {
+                                                this.Facturador(Convert.ToInt32(rpta), frmVenta.f1.dtDetalle);
+                                            }
+
+                                            if (cbPaga.Checked)
+                                            {
+                                                NDescuentoTrabajador.Insertar(Convert.ToInt32(txtIdCliente.Text), Convert.ToDecimal(lblTotal.Text),
+                                                    "CONSUMO_", DateTime.Now, "PENDIENTE", lblIdVenta.Text);
+                                            }
                                             lblIdVenta.Text = "";
                                             this.Close();
                                             frmVenta.f1.Close();
@@ -1949,12 +2231,22 @@ frmReservar.f1.txtNombre.Text.ToUpper().Trim(), frmReservar.f1.txtCel.Text.Trim(
                                         string rpta = "";
                                         if (lblFechaEntrega.Text == "1")
                                         {
-                                            rpta = NVenta.InsertarPedidoPagado(idCliente, Convert.ToInt32(this.lblIdMesa.Text), DateTime.Now, estadoVenta, formaPago, Convert.ToDecimal(this.lblDctoGeneral.Text)
+                                            if (rbEfectivo.Checked == true || rbTarjeta.Checked == true || rbMixto.Checked == true || rbCreditoEmitido.Checked == true || rbConsumoT.Checked == true)
+                                            {
+                                                rpta = NVenta.InsertarPedidoPagado(idCliente, Convert.ToInt32(this.lblIdMesa.Text), DateTime.Now, estadoVenta, formaPago, Convert.ToDecimal(this.lblDctoGeneral.Text)
                                                                              , Convert.ToInt32(this.lblIdUsuario.Text), "CU", 1, "FACTURA", 1, Convert.ToDecimal(this.lblIgv.Text),
                                                                              "EMITIDA", Convert.ToDecimal(this.lblTotal.Text), pagoEfectivo,
                                                                              pagoTarjeta, 00.00m, frmVenta.f1.dtDetalle, vuelto,
                                                                              frmVenta.f1.dtDetalleMenu, Convert.ToDateTime(fechaEntrega), Convert.ToDecimal(lblTotal.Text),
-                                                                             Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text), this.lblObs.Text, "", "", "");
+                                                                             Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text), this.lblObs.Text, "", "", "",lblClase.Text);
+                                            }else
+                                            {
+                                                rpta = NVenta.InsertarPedidoPagadoCredCor(idCliente, Convert.ToInt32(this.lblIdMesa.Text), DateTime.Now, estadoVenta, formaPago, Convert.ToDecimal(this.lblDctoGeneral.Text)
+                                                                          , Convert.ToInt32(this.lblIdUsuario.Text), "CU", 1, frmVenta.f1.dtDetalle, frmVenta.f1.dtDetalleMenu,
+                                                                          Convert.ToDateTime(fechaEntrega), Convert.ToDecimal(lblTotal.Text), Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text),
+                                                                          this.lblObs.Text, "", "", "",lblClase.Text);
+                                            }
+                                                
                                         }
                                         else
                                         {
@@ -1964,7 +2256,7 @@ frmReservar.f1.txtNombre.Text.ToUpper().Trim(), frmReservar.f1.txtCel.Text.Trim(
                                                                              pagoTarjeta, 00.00m, frmVenta.f1.dtDetalle, vuelto,
                                                                              frmVenta.f1.dtDetalleMenu, Convert.ToDateTime(fechaEntrega), Convert.ToDecimal(lblTotal.Text),
                                                                              Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text), this.lblObs.Text, frmReservar.f1.txtMotivo.Text.Trim(), frmReservar.f1.txtNombre.Text.Trim(),
-                                                                              frmReservar.f1.txtCel.Text.Trim());
+                                                                              frmReservar.f1.txtCel.Text.Trim(),lblClase.Text);
                                         }
                                         if (rpta != "")
                                         {
@@ -1991,10 +2283,16 @@ frmReservar.f1.txtNombre.Text.ToUpper().Trim(), frmReservar.f1.txtCel.Text.Trim(
                                                 }
                                                 if (count != frmVenta.f1.dtDetalle.Rows.Count)
                                                 {
-                                                    NImprimir_Comprobante.imprimirCom(Convert.ToInt32(rpta), "FACTURA", this.txtNombre.Text.Trim(), this.txtDireccion.Text.Trim(),
-                                                                            this.txtDocumento.Text.Trim(), frmVenta.f1.lblMesero.Text, frmVenta.f1.lblSalon.Text, frmVenta.f1.lblMesa.Text,
-                                                                            frmVenta.f1.dataListadoDetalle, this.lblDescuento.Text, this.lblDctoGeneral.Text, this.lblSubTotal.Text,
-                                                                            this.lblIgv.Text, this.lblTotal.Text, efectivo1, vuelto1, tarjeta1, formaPago1, modoProd, "00.00", "", NAliento.MensajeAliento());
+                                                    if (rbEfectivo.Checked == true || rbTarjeta.Checked == true || rbMixto.Checked == true || rbCreditoEmitido.Checked == true || rbConsumoT.Checked == true)
+                                                    {
+                                                        NImprimir_Comprobante.imprimirCom(Convert.ToInt32(rpta), "FACTURA", this.txtNombre.Text.Trim(), this.txtDireccion.Text.Trim(),
+                                                                       this.txtDocumento.Text.Trim(), frmVenta.f1.lblMesero.Text, frmVenta.f1.lblSalon.Text, frmVenta.f1.lblMesa.Text,
+                                                                       frmVenta.f1.dataListadoDetalle, this.lblDescuento.Text, this.lblDctoGeneral.Text, this.lblSubTotal.Text,
+                                                                       this.lblIgv.Text, this.lblTotal.Text, efectivo1, vuelto1, tarjeta1, formaPago1, modoProd, "00.00", "",
+                                                                       NAliento.MensajeAliento());
+                                                    }
+
+                                               
                                                 }
 
 
@@ -2004,7 +2302,17 @@ frmReservar.f1.txtNombre.Text.ToUpper().Trim(), frmReservar.f1.txtCel.Text.Trim(
                                                         lblTotal.Text, "00", "00.00", frmPrincipal.f1.lblUsuario.Text + " " + frmPrincipal.f1.lblApellidos.Text, frmReservar.f1.txtNombre.Text.Trim(),
                                                 frmReservar.f1.txtCel.Text.Trim(), frmReservar.f1.txtMotivo.Text.Trim());
                                                 }
-                                                this.Facturador(Convert.ToInt32(rpta), frmVenta.f1.dtDetalle);
+
+                                                if (rbEfectivo.Checked == true || rbTarjeta.Checked == true || rbMixto.Checked == true || rbCreditoEmitido.Checked == true || rbConsumoT.Checked == true)
+                                                {
+                                                    this.Facturador(Convert.ToInt32(rpta), frmVenta.f1.dtDetalle);
+                                                }
+
+                                                if (cbPaga.Checked)
+                                                {
+                                                    NDescuentoTrabajador.Insertar(Convert.ToInt32(txtIdCliente.Text), Convert.ToDecimal(lblTotal.Text),
+                                                        "CONSUMO_", DateTime.Now, "PENDIENTE", lblIdVenta.Text);
+                                                }
                                                 lblIdVenta.Text = "";
                                                 this.Close();
                                                 frmVenta.f1.Close();
@@ -2063,16 +2371,43 @@ frmReservar.f1.txtNombre.Text.ToUpper().Trim(), frmReservar.f1.txtCel.Text.Trim(
                     }
                     else
                     {
-                        Cobrar();
+                        if((rbCredioNEm.Checked == true || rbCortesia.Checked == true || rbCreditoEmitido.Checked == true) && txtIdCliente.Text == string.Empty)
+                        {
+                            MessageBox.Show("Seleccione o ingrese un nuevo cliente");
+                            return;
+                        }
+                        else
+                        {
+                            Cobrar();
+                        }
+                        
                     }
                 }
                 else if (lblBanderaComprobante.Text == "0")
                 {
-                    Cobrar();
+                    if ((rbCredioNEm.Checked == true || rbCortesia.Checked == true || rbCreditoEmitido.Checked==true) && txtIdCliente.Text == string.Empty)
+                    {
+                        MessageBox.Show("Seleccione o ingrese un nuevo cliente");
+                        return;
+                    }
+                    else
+                    {
+                        Cobrar();
+                    }
+
                 }
                 else if (lblBanderaComprobante.Text == "2")
                 {
-                    Cobrar();
+                    if ((rbCredioNEm.Checked == true || rbCortesia.Checked == true || rbCreditoEmitido.Checked == true) && txtIdCliente.Text == string.Empty)
+                    {
+                        MessageBox.Show("Seleccione o ingrese un nuevo cliente");
+                        return;
+                    }
+                    else
+                    {
+                        Cobrar();
+                    }
+
                 }
 
 
@@ -2157,7 +2492,7 @@ frmReservar.f1.txtNombre.Text.ToUpper().Trim(), frmReservar.f1.txtCel.Text.Trim(
                     this.txtDocumento.Text = dtClienteVenta.Rows[0][2].ToString();
                     this.txtDireccion.Text = dtClienteVenta.Rows[0][3].ToString();
                     this.lblClase.Text = dtClienteVenta.Rows[0][7].ToString();
-                    if(lblClase.Text == "C")
+                    if (lblClase.Text == "C")
                     {
                         string idTipoCliente;
                         idTipoCliente = dtClienteVenta.Rows[0][6].ToString();
@@ -2168,16 +2503,27 @@ frmReservar.f1.txtNombre.Text.ToUpper().Trim(), frmReservar.f1.txtCel.Text.Trim(
                         else
                         {
                             cbTipoCliente.SelectedValue = idTipoCliente;
-                            cbTipoCliente.Enabled = true;
+                            //cbTipoCliente.Enabled = true;
                         }
 
                         NDescuento.DescuentoClientes(idTipoCliente, Convert.ToDecimal(lblSubTotal.Text), Convert.ToDecimal(lblIgv.Text), Convert.ToDecimal(lblMontoAdelanto.Text),
-                            Convert.ToDecimal(lblDescuento.Text), Convert.ToDecimal(lblDctoGeneral.Text), lblDctoGeneral, lblSubTotal, lblIgv, lblTotal);
+                            Convert.ToDecimal(lblDescuento.Text), Convert.ToDecimal(lblDctoGeneral.Text), lblDctoGeneral, lblSubTotal, lblIgv, lblTotal,"C");
+                        cbPaga.Visible = false;
+                        cbPaga.Checked = false;
                         mostrarTotales();
-                    }else
+                    }
+                    else if (lblClase.Text == "T")
                     {
+                        string idTipoCliente;
+                        idTipoCliente = dtClienteVenta.Rows[0][8].ToString();
+
+                        NDescuento.DescuentoClientes(idTipoCliente, Convert.ToDecimal(lblSubTotal.Text), Convert.ToDecimal(lblIgv.Text), Convert.ToDecimal(lblMontoAdelanto.Text),
+                            Convert.ToDecimal(lblDescuento.Text), Convert.ToDecimal(lblDctoGeneral.Text), lblDctoGeneral, lblSubTotal, lblIgv, lblTotal,"T");
+                        mostrarTotales();
                         cbTipoCliente.Enabled = false;
                         cbTipoCliente.SelectedIndex = -1;
+                        cbPaga.Visible = true;
+                        cbPaga.Checked = true;
                     }
                     btnEditar.Enabled = true;
                 }
@@ -2254,7 +2600,7 @@ frmReservar.f1.txtNombre.Text.ToUpper().Trim(), frmReservar.f1.txtCel.Text.Trim(
 
                     }
 
-                    if(cbTipoCliente.SelectedIndex == -1)
+                    if (cbTipoCliente.SelectedIndex == -1)
                     {
                         tipoCliente = null;
                     }
@@ -2265,11 +2611,12 @@ frmReservar.f1.txtNombre.Text.ToUpper().Trim(), frmReservar.f1.txtCel.Text.Trim(
                     if (isNuevo)
                     {
                         rpta = NCliente.InsertarVenta(txtNombre.Text.Trim().ToUpper(), DateTime.MinValue, tipoDoc, txtDocumento.Text.Trim(), txtDireccion.Text, "", "", tipoCliente);
-                    }else
+                    }
+                    else
                     {
                         rpta = NCliente.Editar(Convert.ToInt32(txtIdCliente.Text), txtNombre.Text.Trim().ToUpper(), DateTime.MinValue, tipoDoc, txtDocumento.Text.Trim(), txtDireccion.Text, "", "", tipoCliente);
                     }
-                   
+
                 }
                 else if (monto > 700)
                 {
@@ -2357,23 +2704,24 @@ frmReservar.f1.txtNombre.Text.ToUpper().Trim(), frmReservar.f1.txtCel.Text.Trim(
         {
 
             //GuardarCliente();
-           string rpta= NTipoCliente.GuardarCliente(lblTotal.Text, lblMontoAdelanto.Text, lblBanderaComprobante.Text, txtDocumento.Text, cbTipoCliente,
-                isNuevo, txtNombre.Text, txtDireccion.Text, txtIdCliente.Text);
-            if (isNuevo &&  rpta !=null)
+            string rpta = NTipoCliente.GuardarCliente(lblTotal.Text, lblMontoAdelanto.Text, lblBanderaComprobante.Text, txtDocumento.Text, cbTipoCliente,
+                 isNuevo, txtNombre.Text, txtDireccion.Text, txtIdCliente.Text);
+            if (isNuevo && rpta != null)
             {
                 this.txtIdCliente.Text = rpta;
                 this.txtNombre.ReadOnly = true;
                 this.txtDireccion.ReadOnly = true;
                 this.btnGuardar.Enabled = false;
                 this.btnNuevo.Enabled = false;
-            }else if(rpta == "OK")
+            }
+            else if (rpta == "OK")
             {
                 this.txtNombre.ReadOnly = true;
                 this.txtDireccion.ReadOnly = true;
                 this.btnGuardar.Enabled = false;
                 this.btnNuevo.Enabled = false;
             }
-           
+
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -2494,17 +2842,67 @@ frmReservar.f1.txtNombre.Text.ToUpper().Trim(), frmReservar.f1.txtCel.Text.Trim(
         {
             if (e.KeyValue == (char)Keys.Enter)
             {
+                decimal total = Convert.ToDecimal(lblTotal.Text) + Convert.ToDecimal(lblMontoAdelanto.Text);
                 if (lblBanderaCobro.Text == "1")
                 {
                     CobrarAdelanto();
                 }
                 else if (lblBanderaCobro.Text == "3")
                 {
+
                     CobrarReserva();
                 }
                 else
                 {
-                    Cobrar();
+                    if (lblBanderaComprobante.Text == "1")
+                    {
+                        if (total > 700 && (txtIdCliente.Text.Length == 0 || txtDocumento.Text.Length == 0 || txtNombre.Text.Length == 0 || txtDireccion.Text.Length == 0))
+                        {
+                            MessageBox.Show("El monto supera los 700 soles, complete todos los datos del cliente");
+                            return;
+                        }
+                        else
+                        {
+                            if ((rbCredioNEm.Checked == true || rbCortesia.Checked == true || rbCreditoEmitido.Checked == true) && txtIdCliente.Text == string.Empty)
+                            {
+                                MessageBox.Show("Seleccione o ingrese un nuevo cliente");
+                                return;
+                            }
+                            else
+                            {
+                                Cobrar();
+                            }
+
+                        }
+                    }
+                    else if (lblBanderaComprobante.Text == "0")
+                    {
+                        if ((rbCredioNEm.Checked == true || rbCortesia.Checked == true || rbCreditoEmitido.Checked == true) && txtIdCliente.Text == string.Empty)
+                        {
+                            MessageBox.Show("Seleccione o ingrese un nuevo cliente");
+                            return;
+                        }
+                        else
+                        {
+                            Cobrar();
+                        }
+
+                    }
+                    else if (lblBanderaComprobante.Text == "2")
+                    {
+                        if ((rbCredioNEm.Checked == true || rbCortesia.Checked == true || rbCreditoEmitido.Checked == true) && txtIdCliente.Text == string.Empty)
+                        {
+                            MessageBox.Show("Seleccione o ingrese un nuevo cliente");
+                            return;
+                        }
+                        else
+                        {
+                            Cobrar();
+                        }
+
+                    }
+
+
                 }
 
 
@@ -2523,21 +2921,98 @@ frmReservar.f1.txtNombre.Text.ToUpper().Trim(), frmReservar.f1.txtCel.Text.Trim(
 
         private void btnEditar_Click(object sender, EventArgs e)
         {
-            if(txtIdCliente.Text != "")
+            if (txtIdCliente.Text != "")
             {
                 txtDocumento.ReadOnly = false;
                 txtNombre.ReadOnly = false;
                 txtDireccion.ReadOnly = false;
-               // cbTipoCliente.Enabled = true;
+                // cbTipoCliente.Enabled = true;
                 isNuevo = false;
                 btnGuardar.Enabled = true;
-                if(lblClase.Text == "C")
+                if (lblClase.Text == "C")
                 {
                     cbTipoCliente.Enabled = true;
                 }
-               
-              
+
+
             }
+        }
+
+        private void rbCreditoEmitido_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbCreditoEmitido.Checked == true)
+            {
+                this.txtTarjeta.ReadOnly = true;
+                this.txtEfectivo.ReadOnly = true;
+                this.txtVuelto.ReadOnly = true;
+                mostrarTotales();
+                btnTicket.Enabled = true;
+                btnBoleta.Enabled = true;
+                btnFactura.Enabled = true;
+                lblBanderaComprobante.Text = "0";
+                this.dataListadoProducto.Select();
+            }
+        }
+
+        private void rbCredioNEm_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbCredioNEm.Checked == true)
+            {
+                this.txtTarjeta.ReadOnly = true;
+                this.txtEfectivo.ReadOnly = true;
+                this.txtVuelto.ReadOnly = true;
+                txtTarjeta.Clear();
+                txtEfectivo.Clear();
+                txtVuelto.Clear();
+                btnTicket.Enabled = false;
+                btnBoleta.Enabled = false;
+                btnFactura.Enabled = false;
+                lblBanderaComprobante.Text = "0";
+                this.dataListadoProducto.Select();
+            }
+        }
+
+        private void rbCortesia_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbCortesia.Checked == true)
+            {
+                this.txtTarjeta.ReadOnly = true;
+                this.txtEfectivo.ReadOnly = true;
+                this.txtVuelto.ReadOnly = true;
+                txtTarjeta.Clear();
+                txtEfectivo.Clear();
+                txtVuelto.Clear();
+                btnTicket.Enabled = false;
+                btnBoleta.Enabled = false;
+                btnFactura.Enabled = false;
+                lblBanderaComprobante.Text = "0";
+                this.dataListadoProducto.Select();
+            }
+        }
+
+        private void cbPaga_CheckedChanged(object sender, EventArgs e)
+        {
+            if(cbPaga.Checked == true)
+            {
+                groupBox3.Enabled = false;
+                rbConsumoT.Checked = true;
+                txtEfectivo.ReadOnly = true;
+                txtEfectivo.Clear();
+                txtTarjeta.Clear();
+                txtVuelto.Clear();
+            }else
+            {
+                groupBox3.Enabled = true;
+                rbEfectivo.Checked = true;
+                txtEfectivo.Clear();
+                txtTarjeta.Clear();
+                txtEfectivo.ReadOnly = false;
+            }
+        }
+
+        private void rbConsumoT_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
 
         private void verFormaPago()
@@ -2554,6 +3029,23 @@ frmReservar.f1.txtNombre.Text.ToUpper().Trim(), frmReservar.f1.txtCel.Text.Trim(
             {
                 formaPago = rbMixto.Text;
             }
+            else if (rbCreditoEmitido.Checked == true)
+            {
+                formaPago = "CREDITO_E";
+            }
+            else if (rbCredioNEm.Checked == true)
+            {
+                formaPago = "CREDITO_NE";
+            }
+            else if (rbCreditoEmitido.Checked == true || rbCredioNEm.Checked == true)
+            {
+                formaPago = "CORTESIA";
+            }
+            else if (rbConsumoT.Checked == true)
+            {
+                formaPago = "CONSUMO_TRABAJADOR";
+          
+            }
 
         }
 
@@ -2566,6 +3058,9 @@ frmReservar.f1.txtNombre.Text.ToUpper().Trim(), frmReservar.f1.txtCel.Text.Trim(
                 this.txtVuelto.ReadOnly = true;
                 this.txtEfectivo.Focus();
                 mostrarTotales();
+                btnTicket.Enabled = true;
+                btnBoleta.Enabled = true;
+                btnFactura.Enabled = true;
                 this.dataListadoProducto.Select();
             }
         }
@@ -2578,6 +3073,9 @@ frmReservar.f1.txtNombre.Text.ToUpper().Trim(), frmReservar.f1.txtCel.Text.Trim(
                 this.txtEfectivo.ReadOnly = true;
                 this.txtVuelto.ReadOnly = true;
                 mostrarTotales();
+                btnTicket.Enabled = true;
+                btnBoleta.Enabled = true;
+                btnFactura.Enabled = true;
                 this.dataListadoProducto.Select();
             }
         }
@@ -2597,6 +3095,9 @@ frmReservar.f1.txtNombre.Text.ToUpper().Trim(), frmReservar.f1.txtCel.Text.Trim(
                 this.txtEfectivo.Focus();
                 this.txtTarjeta.Text = "";
                 mostrarTotales();
+                btnTicket.Enabled = true;
+                btnBoleta.Enabled = true;
+                btnFactura.Enabled = true;
                 this.dataListadoProducto.Select();
             }
         }

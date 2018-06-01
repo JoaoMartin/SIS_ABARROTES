@@ -73,7 +73,7 @@
             this.rbTodos.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbTodos.Location = new System.Drawing.Point(505, 40);
             this.rbTodos.Name = "rbTodos";
-            this.rbTodos.Size = new System.Drawing.Size(126, 24);
+            this.rbTodos.Size = new System.Drawing.Size(123, 24);
             this.rbTodos.TabIndex = 4;
             this.rbTodos.TabStop = true;
             this.rbTodos.Text = "Mostrar Todos";
@@ -85,7 +85,7 @@
             this.rbTipoDoc.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbTipoDoc.Location = new System.Drawing.Point(282, 40);
             this.rbTipoDoc.Name = "rbTipoDoc";
-            this.rbTipoDoc.Size = new System.Drawing.Size(101, 24);
+            this.rbTipoDoc.Size = new System.Drawing.Size(98, 24);
             this.rbTipoDoc.TabIndex = 3;
             this.rbTipoDoc.Text = "DNI o RUC";
             this.rbTipoDoc.UseVisualStyleBackColor = true;
@@ -96,7 +96,7 @@
             this.rbNombre.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbNombre.Location = new System.Drawing.Point(30, 43);
             this.rbNombre.Name = "rbNombre";
-            this.rbNombre.Size = new System.Drawing.Size(187, 24);
+            this.rbNombre.Size = new System.Drawing.Size(184, 24);
             this.rbNombre.TabIndex = 2;
             this.rbNombre.Text = "Nombre o Razón Social";
             this.rbNombre.UseVisualStyleBackColor = true;
@@ -107,7 +107,7 @@
             this.txtBuscar.Location = new System.Drawing.Point(30, 74);
             this.txtBuscar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtBuscar.Name = "txtBuscar";
-            this.txtBuscar.Size = new System.Drawing.Size(601, 30);
+            this.txtBuscar.Size = new System.Drawing.Size(601, 29);
             this.txtBuscar.TabIndex = 1;
             this.txtBuscar.TextChanged += new System.EventHandler(this.txtBuscar_TextChanged);
             // 
@@ -127,6 +127,7 @@
             this.dataListado.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataListado.Size = new System.Drawing.Size(881, 422);
             this.dataListado.TabIndex = 13;
+            this.dataListado.Click += new System.EventHandler(this.dataListado_Click);
             this.dataListado.DoubleClick += new System.EventHandler(this.dataListado_DoubleClick);
             // 
             // frmVistaClientePago_Dividido

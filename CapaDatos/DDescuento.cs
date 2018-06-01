@@ -262,6 +262,30 @@ namespace CapaDatos
             return dtResultado;
         }
 
+        public DataTable MostrarDescuentoTipoTrabajador()
+        {
+            DataTable dtResultado = new DataTable("Descuento");
+            SqlConnection sqlCon = new SqlConnection();
+
+            try
+            {
+                sqlCon.ConnectionString = Conexion.cn;
+                SqlCommand sqlCmd = new SqlCommand();
+                sqlCmd.Connection = sqlCon;
+                sqlCmd.CommandText = "sp_mostrarDescuentoTipoTrabajador";
+                sqlCmd.CommandType = CommandType.StoredProcedure;
+
+                SqlDataAdapter sqlDat = new SqlDataAdapter(sqlCmd);
+                sqlDat.Fill(dtResultado);
+            }
+            catch (Exception ex)
+            {
+                dtResultado = null;
+            }
+
+            return dtResultado;
+        }
+
         public DataTable MostrarDescuentoProducto()
         {
             DataTable dtResultado = new DataTable("Descuento");

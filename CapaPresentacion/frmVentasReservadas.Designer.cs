@@ -72,16 +72,16 @@
             this.label1.ForeColor = System.Drawing.Color.Navy;
             this.label1.Location = new System.Drawing.Point(653, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(143, 39);
+            this.label1.Size = new System.Drawing.Size(165, 39);
             this.label1.TabIndex = 10;
-            this.label1.Text = "PEDIDOS";
+            this.label1.Text = "RESERVAS";
             // 
             // lblIdUsuario
             // 
             this.lblIdUsuario.AutoSize = true;
             this.lblIdUsuario.Location = new System.Drawing.Point(901, 67);
             this.lblIdUsuario.Name = "lblIdUsuario";
-            this.lblIdUsuario.Size = new System.Drawing.Size(17, 19);
+            this.lblIdUsuario.Size = new System.Drawing.Size(15, 18);
             this.lblIdUsuario.TabIndex = 19;
             this.lblIdUsuario.Text = "0";
             this.lblIdUsuario.Visible = false;
@@ -91,7 +91,7 @@
             this.txtBuscar.Font = new System.Drawing.Font("Roboto", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBuscar.Location = new System.Drawing.Point(24, 67);
             this.txtBuscar.Name = "txtBuscar";
-            this.txtBuscar.Size = new System.Drawing.Size(646, 38);
+            this.txtBuscar.Size = new System.Drawing.Size(646, 37);
             this.txtBuscar.TabIndex = 20;
             this.txtBuscar.TextChanged += new System.EventHandler(this.txtBuscar_TextChanged);
             // 
@@ -128,7 +128,7 @@
             this.lblEstado.AutoSize = true;
             this.lblEstado.Location = new System.Drawing.Point(991, 39);
             this.lblEstado.Name = "lblEstado";
-            this.lblEstado.Size = new System.Drawing.Size(17, 19);
+            this.lblEstado.Size = new System.Drawing.Size(15, 18);
             this.lblEstado.TabIndex = 24;
             this.lblEstado.Text = "0";
             this.lblEstado.Visible = false;
@@ -138,7 +138,7 @@
             this.lblIdVenta.AutoSize = true;
             this.lblIdVenta.Location = new System.Drawing.Point(1155, 39);
             this.lblIdVenta.Name = "lblIdVenta";
-            this.lblIdVenta.Size = new System.Drawing.Size(17, 19);
+            this.lblIdVenta.Size = new System.Drawing.Size(15, 18);
             this.lblIdVenta.TabIndex = 25;
             this.lblIdVenta.Text = "0";
             this.lblIdVenta.Visible = false;
@@ -163,7 +163,7 @@
             this.lblAdelanto.AutoSize = true;
             this.lblAdelanto.Location = new System.Drawing.Point(1370, 55);
             this.lblAdelanto.Name = "lblAdelanto";
-            this.lblAdelanto.Size = new System.Drawing.Size(17, 19);
+            this.lblAdelanto.Size = new System.Drawing.Size(15, 18);
             this.lblAdelanto.TabIndex = 72;
             this.lblAdelanto.Text = "0";
             this.lblAdelanto.Visible = false;
@@ -202,7 +202,7 @@
             this.rbNombre.Checked = true;
             this.rbNombre.Location = new System.Drawing.Point(24, 37);
             this.rbNombre.Name = "rbNombre";
-            this.rbNombre.Size = new System.Drawing.Size(77, 24);
+            this.rbNombre.Size = new System.Drawing.Size(74, 24);
             this.rbNombre.TabIndex = 8;
             this.rbNombre.TabStop = true;
             this.rbNombre.Text = "Cliente";
@@ -214,7 +214,7 @@
             this.rbCodigo.AutoSize = true;
             this.rbCodigo.Location = new System.Drawing.Point(167, 37);
             this.rbCodigo.Name = "rbCodigo";
-            this.rbCodigo.Size = new System.Drawing.Size(76, 24);
+            this.rbCodigo.Size = new System.Drawing.Size(73, 24);
             this.rbCodigo.TabIndex = 9;
             this.rbCodigo.Text = "Código";
             this.rbCodigo.UseVisualStyleBackColor = true;
@@ -225,7 +225,7 @@
             this.lblSaldo.AutoSize = true;
             this.lblSaldo.Location = new System.Drawing.Point(930, 141);
             this.lblSaldo.Name = "lblSaldo";
-            this.lblSaldo.Size = new System.Drawing.Size(17, 19);
+            this.lblSaldo.Size = new System.Drawing.Size(15, 18);
             this.lblSaldo.TabIndex = 75;
             this.lblSaldo.Text = "0";
             this.lblSaldo.Visible = false;
@@ -235,7 +235,7 @@
             this.lblTotalReserva.AutoSize = true;
             this.lblTotalReserva.Location = new System.Drawing.Point(1379, 92);
             this.lblTotalReserva.Name = "lblTotalReserva";
-            this.lblTotalReserva.Size = new System.Drawing.Size(17, 19);
+            this.lblTotalReserva.Size = new System.Drawing.Size(15, 18);
             this.lblTotalReserva.TabIndex = 76;
             this.lblTotalReserva.Text = "0";
             this.lblTotalReserva.Visible = false;

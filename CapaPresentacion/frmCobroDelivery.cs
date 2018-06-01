@@ -155,7 +155,7 @@ namespace CapaPresentacion
             this.lblNroDoc.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["Doc"].Value);
             this.lblRepartidos.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["repartidor"].Value);
             this.lblDctoInd.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["dctoInd"].Value);
-            this.lblTelefono.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["telCliente"].Value);
+            this.lblTelefono.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["telefono"].Value);
 
             if (lblEstado.Text == "Pedido Delivery")
             {
@@ -178,7 +178,7 @@ namespace CapaPresentacion
                 decimal vuelto = Convert.ToDecimal(this.lblVuelto.Text);
                 if(vuelto > 0)
                 {
-                    rpta = NCaja.Insertar(Convert.ToInt32(this.lblIdUsuario.Text),"1", "EGRESO", vuelto, "Vuelto Delivery", "EFECTIVO");
+                    rpta = NCaja.Insertar(Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text),"1", "EGRESO", vuelto, "Vuelto Delivery", "EFECTIVO");
                     if(rpta == "OK")
                     {
                         decimal total = Convert.ToDecimal(this.lblTotal.Text);
@@ -244,10 +244,10 @@ namespace CapaPresentacion
             try
             {
                 string rpta = "";
-                rpta = NCaja.Insertar(Convert.ToInt32(this.lblIdUsuario.Text), "1", "INGRESO", Convert.ToDecimal(this.lblTotal.Text), "Ingreso Delivery", "EFECTIVO");
+                rpta = NCaja.Insertar(Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text), "1", "INGRESO", Convert.ToDecimal(this.lblTotal.Text), "Ingreso Delivery", "EFECTIVO");
                 if (rpta == "OK")
                 {
-                    rpta = NCaja.Insertar(Convert.ToInt32(this.lblIdUsuario.Text), "1", "INGRESO", Convert.ToDecimal(this.lblVuelto.Text), "Ingreso Vuelto", "EFECTIVO");
+                    rpta = NCaja.Insertar(Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text), "1", "INGRESO", Convert.ToDecimal(this.lblVuelto.Text), "Ingreso Vuelto", "EFECTIVO");
                     if(rpta == "OK")
                     {
                         rpta = NDelivery.Editar(Convert.ToInt32(this.lblIdVenta.Text), "PAGADA");

@@ -83,5 +83,9 @@ namespace CapaNegocios
             ticket.ImprimirTicket("Microsoft XPS Document Writer");
             // ticket.ImprimirTicket("Microsoft XPS Document Writer");//Nombre de la impresora ticketera
         }
+
+
+
+
     }
 }

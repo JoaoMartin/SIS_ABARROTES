@@ -11,7 +11,7 @@ namespace CapaNegocios
 {
     public class NCliente
     {
-        public static string Insertar(string nombre, DateTime fechaNac, string tipoDoc, string nroDoc, string direccion, string email, string telefono,int? idTipoCliente)
+        public static string Insertar(string nombre, DateTime fechaNac, string tipoDoc, string nroDoc, string direccion, string email, string telefono,int? idTipoCliente, string clase)
         {
             DCliente Obj = new DCliente();
             Obj.Nombre = nombre;
@@ -22,6 +22,7 @@ namespace CapaNegocios
             Obj.Email = email;
             Obj.Telefono = telefono;
             Obj.IdTipoCliente = idTipoCliente;
+            Obj.Clase = clase;
             return Obj.Insertar(Obj);
         }
 
@@ -118,6 +119,12 @@ namespace CapaNegocios
             Obj.Telefono = telefono;
             Obj.IdTipoCliente = idTipoCliente;
             return Obj.InsertarVenta(Obj);
+        }
+
+        public static DataTable consultaClienteCredito(string tipoCliente, int idVenta)
+        {
+            DCliente Obj = new DCliente();
+            return Obj.ConsultaClienteCredito(tipoCliente,idVenta);
         }
     }
 }

@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="NAdelanto.cs" />
     <Compile Include="NAliento.cs" />
     <Compile Include="NAlmacen.cs" />
     <Compile Include="NBackup.cs" />
@@ -53,8 +54,10 @@
     <Compile Include="NCliente.cs" />
     <Compile Include="NComprobante.cs" />
     <Compile Include="NComprobanteAnulado.cs" />
+    <Compile Include="NCredito.cs" />
     <Compile Include="NDelivery.cs" />
     <Compile Include="NDescuento.cs" />
+    <Compile Include="NDescuentoTrabajador.cs" />
     <Compile Include="NDetalleCaja.cs" />
     <Compile Include="NDetalleVenta.cs" />
     <Compile Include="NFacturador.cs" />
@@ -62,6 +65,7 @@
     <Compile Include="NImprimirComanda.cs" />
     <Compile Include="NImprimirComandaBar.cs" />
     <Compile Include="NImprimirPreCuenta.cs" />
+    <Compile Include="NImprimirRecibos.cs" />
     <Compile Include="NImprimir_Comprobante.cs" />
     <Compile Include="NCompra.cs" />
     <Compile Include="NInsumo.cs" />
@@ -70,6 +74,8 @@
     <Compile Include="NModulo.cs" />
     <Compile Include="NMovimientoAlmacen.cs" />
     <Compile Include="NNivel.cs" />
+    <Compile Include="NPagoTrabajador.cs" />
+    <Compile Include="NPersona.cs" />
     <Compile Include="NProducto.cs" />
     <Compile Include="NProveedor.cs" />
     <Compile Include="NReceta.cs" />

@@ -60,7 +60,7 @@ namespace CapaPresentacion
             this.txtTelefono.ReadOnly = !valor;
             this.txtEmail.ReadOnly = !valor;
             this.errorIcono.Clear();
-          //  this.cbTipoDoc.SelectedIndex = -1;
+            //  this.cbTipoDoc.SelectedIndex = -1;
         }
 
         //Habilitar Botones
@@ -109,7 +109,7 @@ namespace CapaPresentacion
         private void Mostrar()
         {
             this.dataListado.DataSource = NCliente.Mostrar();
-            
+
             lblTotal.Text = "Total de Registros: " + Convert.ToString(dataListado.Rows.Count);
 
             if (this.dataListado.Rows.Count == 0)
@@ -159,7 +159,7 @@ namespace CapaPresentacion
                 }
                 else
                 {
-                    if(this.txtFechaNac.Text == "")
+                    if (this.txtFechaNac.Text == "")
                     {
                         fecNac = DateTime.MinValue;
                     }
@@ -167,7 +167,7 @@ namespace CapaPresentacion
                     {
                         fecNac = Convert.ToDateTime(this.txtFechaNac.Text);
                     }
-                    if(this.cbTipoDoc.SelectedIndex == -1)
+                    if (this.cbTipoDoc.SelectedIndex == -1)
                     {
                         tipoDoc = "";
                     }
@@ -176,15 +176,16 @@ namespace CapaPresentacion
                         tipoDoc = this.cbTipoDoc.SelectedItem.ToString();
                     }
 
-                    if(cbTipoCliente.SelectedIndex == -1)
+                    if (cbTipoCliente.SelectedIndex == -1)
                     {
-                       idTipoCliente = null;
-                    }else
+                        idTipoCliente = null;
+                    }
+                    else
                     {
                         idTipoCliente = Convert.ToInt32(cbTipoCliente.SelectedValue.ToString());
                     }
 
-                    if(cbTipoDoc.SelectedIndex == 0 && txtNumDoc.Text.Trim().Length !=8)
+                    if (cbTipoDoc.SelectedIndex == 0 && txtNumDoc.Text.Trim().Length != 8)
                     {
                         MessageBox.Show("Ingrese un número de documento válido");
                         return;
@@ -203,13 +204,18 @@ namespace CapaPresentacion
 
                     if (this.IsNuevo)
                     {
-                        rpta = NCliente.Insertar(this.txtNombre.Text.Trim().ToUpper(), fecNac, tipoDoc,
-                                                 this.txtNumDoc.Text.Trim(), this.txtDireccion.Text.Trim(), this.txtEmail.Text.Trim(), this.txtTelefono.Text.Trim(),idTipoCliente);
+                        /*rpta = NCliente.Insertar(this.txtNombre.Text.Trim().ToUpper(), fecNac, tipoDoc,
+                                                 this.txtNumDoc.Text.Trim(), this.txtDireccion.Text.Trim(), this.txtEmail.Text.Trim(), this.txtTelefono.Text.Trim(),idTipoCliente,"C");*/
+                        rpta = NPersona.Insertar(this.txtNombre.Text.Trim().ToUpper(), fecNac, tipoDoc, this.txtNumDoc.Text.Trim(), this.txtDireccion.Text.Trim().ToUpper(),
+                            this.txtEmail.Text.Trim(), this.txtTelefono.Text.Trim(), idTipoCliente, "C", "", "", 00.00m, DateTime.MinValue, "A", null);
                     }
                     else
                     {
-                        rpta = NCliente.Editar(Convert.ToInt32(this.txtIdCliente.Text), this.txtNombre.Text.Trim().ToUpper(), fecNac, 
-                            tipoDoc,this.txtNumDoc.Text.Trim(), this.txtDireccion.Text.Trim(), this.txtEmail.Text.Trim(), this.txtTelefono.Text.Trim(),idTipoCliente);
+                        /*
+                        rpta = NCliente.Editar(Convert.ToInt32(this.txtIdCliente.Text), this.txtNombre.Text.Trim().ToUpper(), fecNac,
+                            tipoDoc, this.txtNumDoc.Text.Trim(), this.txtDireccion.Text.Trim(), this.txtEmail.Text.Trim(), this.txtTelefono.Text.Trim(), idTipoCliente);*/
+                        rpta = NPersona.Editar(Convert.ToInt32(this.txtIdCliente.Text),this.txtNombre.Text.Trim().ToUpper(), fecNac, tipoDoc, this.txtNumDoc.Text.Trim(), this.txtDireccion.Text.Trim().ToUpper(),
+                       this.txtEmail.Text.Trim(), this.txtTelefono.Text.Trim(), idTipoCliente, "C", "", "", 00.00m, DateTime.MinValue, "A", null);
                     }
 
                     if (rpta.Equals("OK"))
@@ -246,7 +252,7 @@ namespace CapaPresentacion
 
         private void pbFecha_Click(object sender, EventArgs e)
         {
-            if(mcFecha.Visible == true)
+            if (mcFecha.Visible == true)
             {
                 mcFecha.Visible = false;
             }
@@ -305,15 +311,15 @@ namespace CapaPresentacion
 
         private void txtBuscar_TextChanged(object sender, EventArgs e)
         {
-            if(this.rbTipoDoc.Checked == true)
+            if (this.rbTipoDoc.Checked == true)
             {
                 this.BuscarDni();
             }
-            else if(this.rbNombre.Checked == true || this.rbTodos.Checked == true)
+            else if (this.rbNombre.Checked == true || this.rbTodos.Checked == true)
             {
                 this.Buscar();
             }
-            else if (this.rbTipoDoc.Checked == true)
+            else if (this.rbTipoCliente.Checked == true)
             {
                 this.BuscarTipoCliente();
             }
@@ -330,7 +336,7 @@ namespace CapaPresentacion
             string idTipoCliente;
             if (this.IsNuevo)
             {
-                this.Habilitar(false);               
+                this.Habilitar(false);
                 this.btnGuardar.Enabled = false;
             }
             this.btnEditar.Enabled = true;
@@ -341,7 +347,7 @@ namespace CapaPresentacion
             this.txtNombre.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["Cliente"].Value);
             fechaNacimiento = Convert.ToString(this.dataListado.CurrentRow.Cells["Fecha_Nac"].Value);
             fechaNac = Convert.ToDateTime(fechaNacimiento);
-            if(fechaNacimiento == "01/01/0001 12:00:00 a. m.")
+            if (fechaNacimiento == "01/01/0001 12:00:00 a. m.")
             {
                 this.txtFechaNac.Text = "";
             }
@@ -350,19 +356,20 @@ namespace CapaPresentacion
                 this.txtFechaNac.Text = fechaNac.ToShortDateString();
             }
             idTipoCliente = Convert.ToString(this.dataListado.CurrentRow.Cells["idTipoCliente"].Value);
-            if(idTipoCliente =="" || idTipoCliente == null)
+            if (idTipoCliente == "" || idTipoCliente == null)
             {
                 cbTipoCliente.SelectedIndex = -1;
-            }else
+            }
+            else
             {
                 cbTipoCliente.SelectedValue = idTipoCliente;
             }
 
-            if(Convert.ToString(this.dataListado.CurrentRow.Cells["Tipo_Doc"].Value) == "DNI")
+            if (Convert.ToString(this.dataListado.CurrentRow.Cells["Tipo_Doc"].Value) == "DNI")
             {
                 this.cbTipoDoc.SelectedIndex = 0;
             }
-            else if(Convert.ToString(this.dataListado.CurrentRow.Cells["Tipo_Doc"].Value) == "RUC")
+            else if (Convert.ToString(this.dataListado.CurrentRow.Cells["Tipo_Doc"].Value) == "RUC")
             {
                 this.cbTipoDoc.SelectedIndex = 1;
             }
@@ -370,7 +377,7 @@ namespace CapaPresentacion
             {
                 this.cbTipoDoc.SelectedIndex = 2;
             }
-       
+
             this.txtNumDoc.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["Nro_Doc"].Value);
             this.txtDireccion.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["Direccion"].Value);
             this.txtEmail.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["Email"].Value);
@@ -411,12 +418,12 @@ namespace CapaPresentacion
 
         private void dataListado_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-           
+
         }
 
         private void rbTodos_CheckedChanged(object sender, EventArgs e)
         {
-            if(this.rbTodos.Checked == true)
+            if (this.rbTodos.Checked == true)
             {
                 this.Mostrar();
                 this.txtBuscar.Text = string.Empty;
@@ -432,7 +439,7 @@ namespace CapaPresentacion
 
         private void frmCliente_FormClosed(object sender, FormClosedEventArgs e)
         {
-            
+
         }
 
         private void rbTipoDoc_CheckedChanged(object sender, EventArgs e)

@@ -127,6 +127,14 @@ namespace CapaNegocios
              
                 }
             }
+            else if (modoProducto == "Detallado_Cr")
+            {
+                foreach (DataGridViewRow fila in dgGeneral.Rows)//dgvLista es el nombre del datagridview
+                {
+                    ticket.AgregaArticulo(Convert.ToInt32(fila.Cells[2].Value.ToString()), fila.Cells[1].Value.ToString(), Convert.ToDecimal(fila.Cells[5].Value.ToString()));
+
+                }
+            }
             else if (modoProducto == "Por Consumos")
             {
                 ticket.AgregaArticulo(1, "POR CONSUMO", Convert.ToDecimal(total));

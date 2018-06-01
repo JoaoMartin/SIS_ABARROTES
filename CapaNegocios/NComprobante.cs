@@ -84,5 +84,11 @@ namespace CapaNegocios
             DComprobante Obj = new DComprobante();
             return Obj.mostrarComprobantesAnulados(fechaInicio, fechaFin);
         }
+
+        public static DataTable consultaComprobanteCredito(int idVenta)
+        {
+            DComprobante Obj = new DComprobante();
+            return Obj.consultaComprobanteCredito(idVenta);
+        }
     }
 }

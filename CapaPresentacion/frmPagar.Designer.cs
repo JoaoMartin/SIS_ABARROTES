@@ -52,21 +52,22 @@
             this.lblSubTotal = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cbPaga = new System.Windows.Forms.CheckBox();
             this.btnEditar = new System.Windows.Forms.Button();
             this.cbTipoCliente = new System.Windows.Forms.ComboBox();
             this.label16 = new System.Windows.Forms.Label();
             this.btnNuevo = new System.Windows.Forms.Button();
             this.txtIdCliente = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.btnBuscarProveedor = new System.Windows.Forms.Button();
             this.txtDireccion = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.txtDocumento = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
             this.txtVuelto = new System.Windows.Forms.TextBox();
             this.lblVuelto = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -87,6 +88,10 @@
             this.lblDctoGeneral = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.rbConsumoT = new System.Windows.Forms.RadioButton();
+            this.rbCortesia = new System.Windows.Forms.RadioButton();
+            this.rbCredioNEm = new System.Windows.Forms.RadioButton();
+            this.rbCreditoEmitido = new System.Windows.Forms.RadioButton();
             this.rbMixto = new System.Windows.Forms.RadioButton();
             this.rbTarjeta = new System.Windows.Forms.RadioButton();
             this.rbEfectivo = new System.Windows.Forms.RadioButton();
@@ -384,17 +389,16 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.groupBox1.Controls.Add(this.cbPaga);
             this.groupBox1.Controls.Add(this.btnEditar);
             this.groupBox1.Controls.Add(this.cbTipoCliente);
             this.groupBox1.Controls.Add(this.label16);
             this.groupBox1.Controls.Add(this.btnNuevo);
             this.groupBox1.Controls.Add(this.txtIdCliente);
-            this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.btnGuardar);
             this.groupBox1.Controls.Add(this.btnBuscarProveedor);
             this.groupBox1.Controls.Add(this.txtDireccion);
             this.groupBox1.Controls.Add(this.label9);
-            this.groupBox1.Controls.Add(this.label15);
             this.groupBox1.Controls.Add(this.txtNombre);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.txtDocumento);
@@ -405,6 +409,19 @@
             this.groupBox1.TabIndex = 105;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Cliente";
+            // 
+            // cbPaga
+            // 
+            this.cbPaga.AutoSize = true;
+            this.cbPaga.Font = new System.Drawing.Font("Roboto", 9.846154F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbPaga.Location = new System.Drawing.Point(99, 233);
+            this.cbPaga.Name = "cbPaga";
+            this.cbPaga.Size = new System.Drawing.Size(99, 27);
+            this.cbPaga.TabIndex = 194;
+            this.cbPaga.Text = "CREDITO";
+            this.cbPaga.UseVisualStyleBackColor = true;
+            this.cbPaga.Visible = false;
+            this.cbPaga.CheckedChanged += new System.EventHandler(this.cbPaga_CheckedChanged);
             // 
             // btnEditar
             // 
@@ -467,17 +484,6 @@
             this.txtIdCliente.Size = new System.Drawing.Size(61, 38);
             this.txtIdCliente.TabIndex = 32;
             // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(27, 279);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(52, 29);
-            this.label10.TabIndex = 190;
-            this.label10.Text = "IGV";
-            this.label10.Visible = false;
-            // 
             // btnGuardar
             // 
             this.btnGuardar.BackColor = System.Drawing.SystemColors.ButtonFace;
@@ -528,17 +534,6 @@
             this.label9.TabIndex = 4;
             this.label9.Text = "Dirección";
             // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(564, -3);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(26, 29);
-            this.label15.TabIndex = 185;
-            this.label15.Text = "1";
-            this.label15.Visible = false;
-            // 
             // txtNombre
             // 
             this.txtNombre.Font = new System.Drawing.Font("Roboto", 14.15385F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -577,6 +572,28 @@
             this.label7.TabIndex = 0;
             this.label7.Text = "RUC/DNI";
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(59, 695);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(52, 29);
+            this.label10.TabIndex = 190;
+            this.label10.Text = "IGV";
+            this.label10.Visible = false;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(781, 507);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(26, 29);
+            this.label15.TabIndex = 185;
+            this.label15.Text = "1";
+            this.label15.Visible = false;
+            // 
             // txtVuelto
             // 
             this.txtVuelto.Font = new System.Drawing.Font("Microsoft Sans Serif", 28.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -612,10 +629,10 @@
             // 
             this.rbDetallado.AutoSize = true;
             this.rbDetallado.Checked = true;
-            this.rbDetallado.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbDetallado.Font = new System.Drawing.Font("Roboto", 12.30769F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbDetallado.Location = new System.Drawing.Point(6, 44);
             this.rbDetallado.Name = "rbDetallado";
-            this.rbDetallado.Size = new System.Drawing.Size(134, 33);
+            this.rbDetallado.Size = new System.Drawing.Size(115, 30);
             this.rbDetallado.TabIndex = 1;
             this.rbDetallado.TabStop = true;
             this.rbDetallado.Text = "Detallado";
@@ -625,10 +642,10 @@
             // rbConsumo
             // 
             this.rbConsumo.AutoSize = true;
-            this.rbConsumo.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbConsumo.Font = new System.Drawing.Font("Roboto", 12.30769F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbConsumo.Location = new System.Drawing.Point(210, 44);
             this.rbConsumo.Name = "rbConsumo";
-            this.rbConsumo.Size = new System.Drawing.Size(178, 33);
+            this.rbConsumo.Size = new System.Drawing.Size(150, 30);
             this.rbConsumo.TabIndex = 0;
             this.rbConsumo.Text = "Por Consumo";
             this.rbConsumo.UseVisualStyleBackColor = true;
@@ -786,6 +803,10 @@
             // groupBox3
             // 
             this.groupBox3.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.groupBox3.Controls.Add(this.rbConsumoT);
+            this.groupBox3.Controls.Add(this.rbCortesia);
+            this.groupBox3.Controls.Add(this.rbCredioNEm);
+            this.groupBox3.Controls.Add(this.rbCreditoEmitido);
             this.groupBox3.Controls.Add(this.rbMixto);
             this.groupBox3.Controls.Add(this.rbTarjeta);
             this.groupBox3.Controls.Add(this.rbEfectivo);
@@ -796,11 +817,60 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Forma de Pago";
             // 
+            // rbConsumoT
+            // 
+            this.rbConsumoT.AutoSize = true;
+            this.rbConsumoT.Font = new System.Drawing.Font("Roboto", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbConsumoT.Location = new System.Drawing.Point(333, 76);
+            this.rbConsumoT.Name = "rbConsumoT";
+            this.rbConsumoT.Size = new System.Drawing.Size(142, 22);
+            this.rbConsumoT.TabIndex = 6;
+            this.rbConsumoT.Text = "ConsumoTrabajador";
+            this.rbConsumoT.UseVisualStyleBackColor = true;
+            this.rbConsumoT.Visible = false;
+            this.rbConsumoT.CheckedChanged += new System.EventHandler(this.rbConsumoT_CheckedChanged);
+            // 
+            // rbCortesia
+            // 
+            this.rbCortesia.AutoSize = true;
+            this.rbCortesia.Font = new System.Drawing.Font("Roboto", 11.07692F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbCortesia.Location = new System.Drawing.Point(488, 71);
+            this.rbCortesia.Name = "rbCortesia";
+            this.rbCortesia.Size = new System.Drawing.Size(96, 28);
+            this.rbCortesia.TabIndex = 5;
+            this.rbCortesia.Text = "Cortesía";
+            this.rbCortesia.UseVisualStyleBackColor = true;
+            this.rbCortesia.CheckedChanged += new System.EventHandler(this.rbCortesia_CheckedChanged);
+            // 
+            // rbCredioNEm
+            // 
+            this.rbCredioNEm.AutoSize = true;
+            this.rbCredioNEm.Font = new System.Drawing.Font("Roboto", 11.07692F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbCredioNEm.Location = new System.Drawing.Point(488, 37);
+            this.rbCredioNEm.Name = "rbCredioNEm";
+            this.rbCredioNEm.Size = new System.Drawing.Size(83, 28);
+            this.rbCredioNEm.TabIndex = 4;
+            this.rbCredioNEm.Text = "Cr.NoE";
+            this.rbCredioNEm.UseVisualStyleBackColor = true;
+            this.rbCredioNEm.CheckedChanged += new System.EventHandler(this.rbCredioNEm_CheckedChanged);
+            // 
+            // rbCreditoEmitido
+            // 
+            this.rbCreditoEmitido.AutoSize = true;
+            this.rbCreditoEmitido.Font = new System.Drawing.Font("Roboto", 11.07692F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbCreditoEmitido.Location = new System.Drawing.Point(244, 71);
+            this.rbCreditoEmitido.Name = "rbCreditoEmitido";
+            this.rbCreditoEmitido.Size = new System.Drawing.Size(60, 28);
+            this.rbCreditoEmitido.TabIndex = 3;
+            this.rbCreditoEmitido.Text = "Cr.E";
+            this.rbCreditoEmitido.UseVisualStyleBackColor = true;
+            this.rbCreditoEmitido.CheckedChanged += new System.EventHandler(this.rbCreditoEmitido_CheckedChanged);
+            // 
             // rbMixto
             // 
             this.rbMixto.AutoSize = true;
             this.rbMixto.Font = new System.Drawing.Font("Roboto", 11.07692F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbMixto.Location = new System.Drawing.Point(351, 53);
+            this.rbMixto.Location = new System.Drawing.Point(244, 37);
             this.rbMixto.Name = "rbMixto";
             this.rbMixto.Size = new System.Drawing.Size(74, 28);
             this.rbMixto.TabIndex = 2;
@@ -812,7 +882,7 @@
             // 
             this.rbTarjeta.AutoSize = true;
             this.rbTarjeta.Font = new System.Drawing.Font("Roboto", 11.07692F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbTarjeta.Location = new System.Drawing.Point(163, 53);
+            this.rbTarjeta.Location = new System.Drawing.Point(16, 77);
             this.rbTarjeta.Name = "rbTarjeta";
             this.rbTarjeta.Size = new System.Drawing.Size(84, 28);
             this.rbTarjeta.TabIndex = 1;
@@ -825,7 +895,7 @@
             this.rbEfectivo.AutoSize = true;
             this.rbEfectivo.Checked = true;
             this.rbEfectivo.Font = new System.Drawing.Font("Roboto", 11.07692F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbEfectivo.Location = new System.Drawing.Point(5, 53);
+            this.rbEfectivo.Location = new System.Drawing.Point(15, 37);
             this.rbEfectivo.Name = "rbEfectivo";
             this.rbEfectivo.Size = new System.Drawing.Size(93, 28);
             this.rbEfectivo.TabIndex = 0;
@@ -848,7 +918,7 @@
             // 
             this.lblIdUsuario.AutoSize = true;
             this.lblIdUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblIdUsuario.Location = new System.Drawing.Point(756, 514);
+            this.lblIdUsuario.Location = new System.Drawing.Point(781, 567);
             this.lblIdUsuario.Name = "lblIdUsuario";
             this.lblIdUsuario.Size = new System.Drawing.Size(26, 29);
             this.lblIdUsuario.TabIndex = 173;
@@ -1057,24 +1127,24 @@
             // 
             this.rbRecojo.AutoSize = true;
             this.rbRecojo.Checked = true;
-            this.rbRecojo.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbRecojo.Location = new System.Drawing.Point(15, 24);
+            this.rbRecojo.Font = new System.Drawing.Font("Roboto", 12.30769F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbRecojo.Location = new System.Drawing.Point(15, 51);
             this.rbRecojo.Name = "rbRecojo";
-            this.rbRecojo.Size = new System.Drawing.Size(116, 33);
+            this.rbRecojo.Size = new System.Drawing.Size(99, 30);
             this.rbRecojo.TabIndex = 1;
             this.rbRecojo.TabStop = true;
-            this.rbRecojo.Text = "Recoge";
+            this.rbRecojo.Text = "Atiende";
             this.rbRecojo.UseVisualStyleBackColor = true;
             // 
             // rbNoRecoge
             // 
             this.rbNoRecoge.AutoSize = true;
-            this.rbNoRecoge.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbNoRecoge.Location = new System.Drawing.Point(13, 96);
+            this.rbNoRecoge.Font = new System.Drawing.Font("Roboto", 12.30769F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbNoRecoge.Location = new System.Drawing.Point(13, 118);
             this.rbNoRecoge.Name = "rbNoRecoge";
-            this.rbNoRecoge.Size = new System.Drawing.Size(154, 33);
+            this.rbNoRecoge.Size = new System.Drawing.Size(129, 30);
             this.rbNoRecoge.TabIndex = 0;
-            this.rbNoRecoge.Text = "No Recoge";
+            this.rbNoRecoge.Text = "No Atiende";
             this.rbNoRecoge.UseVisualStyleBackColor = true;
             // 
             // dataDetalleReserva
@@ -1159,11 +1229,13 @@
             this.Controls.Add(this.lblAdelanto);
             this.Controls.Add(this.lblTotalReal);
             this.Controls.Add(this.lblMontoAdelanto);
+            this.Controls.Add(this.label10);
             this.Controls.Add(this.dataDetalleReserva);
             this.Controls.Add(this.gbRecoge);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.lblFechaEntrega);
             this.Controls.Add(this.lblObs);
+            this.Controls.Add(this.label15);
             this.Controls.Add(this.lblBanderaCobro);
             this.Controls.Add(this.btnTicket);
             this.Controls.Add(this.button22);
@@ -1335,5 +1407,10 @@
         public System.Windows.Forms.Label lblClase;
         public System.Windows.Forms.ComboBox cbTipoCliente;
         public System.Windows.Forms.Button btnEditar;
+        private System.Windows.Forms.RadioButton rbCortesia;
+        private System.Windows.Forms.RadioButton rbCredioNEm;
+        private System.Windows.Forms.RadioButton rbCreditoEmitido;
+        public System.Windows.Forms.CheckBox cbPaga;
+        private System.Windows.Forms.RadioButton rbConsumoT;
     }
 }

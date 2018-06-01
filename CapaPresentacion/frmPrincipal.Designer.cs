@@ -52,10 +52,12 @@
             this.mnuStock = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuVerVentas = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuVentas = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuCobroDelivery = new System.Windows.Forms.ToolStripMenuItem();
+            this.creditosPendientesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuDelivery = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuDescuento = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuPuntoVenta = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuPorCobrar = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuDelivery = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuMaestro = new System.Windows.Forms.ToolStripMenuItem();
             this.almacenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuGestionAlmacen = new System.Windows.Forms.ToolStripMenuItem();
@@ -75,6 +77,10 @@
             this.mnuTipoTrabajador = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuTrabajador = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuUnidadMedida = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuTrabajadorM = new System.Windows.Forms.ToolStripMenuItem();
+            this.adelantoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.descuentosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pagosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuReportes = new System.Windows.Forms.ToolStripMenuItem();
             this.reporteDeVentasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.porClienteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -111,7 +117,7 @@
             this.lblMontoCorteCaja = new System.Windows.Forms.Label();
             this.lblFechaCorteCaja = new System.Windows.Forms.Label();
             this.lblApellidos = new System.Windows.Forms.Label();
-            this.mnuCobroDelivery = new System.Windows.Forms.ToolStripMenuItem();
+            this.porFormaDePagoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -119,7 +125,7 @@
             // 
             // menuStrip
             // 
-            this.menuStrip.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.menuStrip.Font = new System.Drawing.Font("Roboto", 9.230769F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.menuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.almacénToolStripMenuItem,
@@ -128,6 +134,7 @@
             this.consultasToolStripMenuItem,
             this.mnuVentas,
             this.mnuMaestro,
+            this.mnuTrabajadorM,
             this.mnuReportes,
             this.utilitariosToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
@@ -145,7 +152,7 @@
             this.mnuVerMovAlmacen});
             this.almacénToolStripMenuItem.Image = global::CapaPresentacion.Properties.Resources.logistica_de_entrega;
             this.almacénToolStripMenuItem.Name = "almacénToolStripMenuItem";
-            this.almacénToolStripMenuItem.Size = new System.Drawing.Size(97, 24);
+            this.almacénToolStripMenuItem.Size = new System.Drawing.Size(101, 24);
             this.almacénToolStripMenuItem.Text = "Almacén";
             // 
             // mnuNotaIngreso
@@ -153,7 +160,7 @@
             this.mnuNotaIngreso.Enabled = false;
             this.mnuNotaIngreso.Image = global::CapaPresentacion.Properties.Resources.bandeja_de_entrada;
             this.mnuNotaIngreso.Name = "mnuNotaIngreso";
-            this.mnuNotaIngreso.Size = new System.Drawing.Size(192, 26);
+            this.mnuNotaIngreso.Size = new System.Drawing.Size(199, 26);
             this.mnuNotaIngreso.Text = "Nota de Ingreso";
             this.mnuNotaIngreso.Click += new System.EventHandler(this.ingresoToolStripMenuItem_Click);
             // 
@@ -162,7 +169,7 @@
             this.mnuNotaSalida.Enabled = false;
             this.mnuNotaSalida.Image = global::CapaPresentacion.Properties.Resources.bandeja_de_entrada__1_;
             this.mnuNotaSalida.Name = "mnuNotaSalida";
-            this.mnuNotaSalida.Size = new System.Drawing.Size(192, 26);
+            this.mnuNotaSalida.Size = new System.Drawing.Size(199, 26);
             this.mnuNotaSalida.Text = "Nota de Salida";
             this.mnuNotaSalida.Click += new System.EventHandler(this.salidaToolStripMenuItem_Click);
             // 
@@ -171,7 +178,7 @@
             this.mnuVerMovAlmacen.Enabled = false;
             this.mnuVerMovAlmacen.Image = global::CapaPresentacion.Properties.Resources.if_37_SEO_Report_1688840;
             this.mnuVerMovAlmacen.Name = "mnuVerMovAlmacen";
-            this.mnuVerMovAlmacen.Size = new System.Drawing.Size(192, 26);
+            this.mnuVerMovAlmacen.Size = new System.Drawing.Size(199, 26);
             this.mnuVerMovAlmacen.Text = "Ver Movimientos";
             this.mnuVerMovAlmacen.Click += new System.EventHandler(this.verMovimientosToolStripMenuItem_Click);
             // 
@@ -276,7 +283,7 @@
             this.mnuVerVentas});
             this.consultasToolStripMenuItem.Image = global::CapaPresentacion.Properties.Resources.search2;
             this.consultasToolStripMenuItem.Name = "consultasToolStripMenuItem";
-            this.consultasToolStripMenuItem.Size = new System.Drawing.Size(107, 24);
+            this.consultasToolStripMenuItem.Size = new System.Drawing.Size(111, 24);
             this.consultasToolStripMenuItem.Text = "Consultas";
             // 
             // mnuConsultaCierre
@@ -284,7 +291,7 @@
             this.mnuConsultaCierre.Enabled = false;
             this.mnuConsultaCierre.Image = global::CapaPresentacion.Properties.Resources.if_cash_register_63972;
             this.mnuConsultaCierre.Name = "mnuConsultaCierre";
-            this.mnuConsultaCierre.Size = new System.Drawing.Size(245, 26);
+            this.mnuConsultaCierre.Size = new System.Drawing.Size(255, 26);
             this.mnuConsultaCierre.Text = "Cierres de Caja";
             this.mnuConsultaCierre.Click += new System.EventHandler(this.mnuConsultaCierre_Click);
             // 
@@ -293,7 +300,7 @@
             this.mnuComprobantesAnulados.Enabled = false;
             this.mnuComprobantesAnulados.Image = global::CapaPresentacion.Properties.Resources.delete;
             this.mnuComprobantesAnulados.Name = "mnuComprobantesAnulados";
-            this.mnuComprobantesAnulados.Size = new System.Drawing.Size(245, 26);
+            this.mnuComprobantesAnulados.Size = new System.Drawing.Size(255, 26);
             this.mnuComprobantesAnulados.Text = "Comprobantes Anulados";
             this.mnuComprobantesAnulados.Click += new System.EventHandler(this.mnuComprobantesAnulados_Click);
             // 
@@ -302,7 +309,7 @@
             this.mnuConsultaCaja.Enabled = false;
             this.mnuConsultaCaja.Image = global::CapaPresentacion.Properties.Resources.if_custom_reports_63120;
             this.mnuConsultaCaja.Name = "mnuConsultaCaja";
-            this.mnuConsultaCaja.Size = new System.Drawing.Size(245, 26);
+            this.mnuConsultaCaja.Size = new System.Drawing.Size(255, 26);
             this.mnuConsultaCaja.Text = "Consulta de Caja";
             this.mnuConsultaCaja.Click += new System.EventHandler(this.consultaDeCajaToolStripMenuItem_Click);
             // 
@@ -311,7 +318,7 @@
             this.mnuCortes.Enabled = false;
             this.mnuCortes.Image = global::CapaPresentacion.Properties.Resources.eliminar;
             this.mnuCortes.Name = "mnuCortes";
-            this.mnuCortes.Size = new System.Drawing.Size(245, 26);
+            this.mnuCortes.Size = new System.Drawing.Size(255, 26);
             this.mnuCortes.Text = "Cortes Parciales";
             this.mnuCortes.Click += new System.EventHandler(this.cortesParcialesToolStripMenuItem_Click);
             // 
@@ -320,7 +327,7 @@
             this.mnuStock.Enabled = false;
             this.mnuStock.Image = global::CapaPresentacion.Properties.Resources.if_37_SEO_Report_1688840;
             this.mnuStock.Name = "mnuStock";
-            this.mnuStock.Size = new System.Drawing.Size(245, 26);
+            this.mnuStock.Size = new System.Drawing.Size(255, 26);
             this.mnuStock.Text = "Stock";
             this.mnuStock.Click += new System.EventHandler(this.mnuStock_Click_1);
             // 
@@ -329,31 +336,56 @@
             this.mnuVerVentas.Enabled = false;
             this.mnuVerVentas.Image = global::CapaPresentacion.Properties.Resources.cesta_de_la_compra;
             this.mnuVerVentas.Name = "mnuVerVentas";
-            this.mnuVerVentas.Size = new System.Drawing.Size(245, 26);
+            this.mnuVerVentas.Size = new System.Drawing.Size(255, 26);
             this.mnuVerVentas.Text = "Ventas";
             this.mnuVerVentas.Click += new System.EventHandler(this.ventasToolStripMenuItem_Click);
             // 
             // mnuVentas
             // 
             this.mnuVentas.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuCobroDelivery,
+            this.creditosPendientesToolStripMenuItem,
+            this.mnuDelivery,
             this.mnuDescuento,
             this.mnuPuntoVenta,
-            this.mnuPorCobrar,
-            this.mnuDelivery,
-            this.mnuCobroDelivery});
-            this.mnuVentas.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mnuPorCobrar});
+            this.mnuVentas.Font = new System.Drawing.Font("Roboto", 9.230769F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mnuVentas.ForeColor = System.Drawing.Color.Black;
             this.mnuVentas.Image = ((System.Drawing.Image)(resources.GetObject("mnuVentas.Image")));
             this.mnuVentas.Name = "mnuVentas";
-            this.mnuVentas.Size = new System.Drawing.Size(85, 24);
+            this.mnuVentas.Size = new System.Drawing.Size(88, 24);
             this.mnuVentas.Text = "Ventas";
+            // 
+            // mnuCobroDelivery
+            // 
+            this.mnuCobroDelivery.Image = global::CapaPresentacion.Properties.Resources.if_cashbox_45016;
+            this.mnuCobroDelivery.Name = "mnuCobroDelivery";
+            this.mnuCobroDelivery.Size = new System.Drawing.Size(223, 26);
+            this.mnuCobroDelivery.Text = "Cobro Delivery";
+            this.mnuCobroDelivery.Click += new System.EventHandler(this.mnuCobroDelivery_Click);
+            // 
+            // creditosPendientesToolStripMenuItem
+            // 
+            this.creditosPendientesToolStripMenuItem.Image = global::CapaPresentacion.Properties.Resources.icongo;
+            this.creditosPendientesToolStripMenuItem.Name = "creditosPendientesToolStripMenuItem";
+            this.creditosPendientesToolStripMenuItem.Size = new System.Drawing.Size(223, 26);
+            this.creditosPendientesToolStripMenuItem.Text = "Creditos Pendientes";
+            this.creditosPendientesToolStripMenuItem.Click += new System.EventHandler(this.creditosPendientesToolStripMenuItem_Click);
+            // 
+            // mnuDelivery
+            // 
+            this.mnuDelivery.Image = global::CapaPresentacion.Properties.Resources.cesta_de_la_compra;
+            this.mnuDelivery.Name = "mnuDelivery";
+            this.mnuDelivery.Size = new System.Drawing.Size(223, 26);
+            this.mnuDelivery.Text = "Delivery";
+            this.mnuDelivery.Click += new System.EventHandler(this.mnuDelivery_Click);
             // 
             // mnuDescuento
             // 
             this.mnuDescuento.Enabled = false;
             this.mnuDescuento.Image = global::CapaPresentacion.Properties.Resources.if_1_11_511563;
             this.mnuDescuento.Name = "mnuDescuento";
-            this.mnuDescuento.Size = new System.Drawing.Size(212, 26);
+            this.mnuDescuento.Size = new System.Drawing.Size(223, 26);
             this.mnuDescuento.Text = "Descuentos";
             this.mnuDescuento.Click += new System.EventHandler(this.mnuDescuento_Click);
             // 
@@ -362,7 +394,7 @@
             this.mnuPuntoVenta.Enabled = false;
             this.mnuPuntoVenta.Image = ((System.Drawing.Image)(resources.GetObject("mnuPuntoVenta.Image")));
             this.mnuPuntoVenta.Name = "mnuPuntoVenta";
-            this.mnuPuntoVenta.Size = new System.Drawing.Size(212, 26);
+            this.mnuPuntoVenta.Size = new System.Drawing.Size(223, 26);
             this.mnuPuntoVenta.Text = "Punto Venta";
             this.mnuPuntoVenta.Click += new System.EventHandler(this.puntoVentaToolStripMenuItem_Click);
             // 
@@ -371,16 +403,9 @@
             this.mnuPorCobrar.Enabled = false;
             this.mnuPorCobrar.Image = global::CapaPresentacion.Properties.Resources.if_Purse_6699531;
             this.mnuPorCobrar.Name = "mnuPorCobrar";
-            this.mnuPorCobrar.Size = new System.Drawing.Size(212, 26);
+            this.mnuPorCobrar.Size = new System.Drawing.Size(223, 26);
             this.mnuPorCobrar.Text = "Pedidos Pendientes";
             this.mnuPorCobrar.Click += new System.EventHandler(this.porCobrarToolStripMenuItem_Click);
-            // 
-            // mnuDelivery
-            // 
-            this.mnuDelivery.Name = "mnuDelivery";
-            this.mnuDelivery.Size = new System.Drawing.Size(212, 26);
-            this.mnuDelivery.Text = "Delivery";
-            this.mnuDelivery.Click += new System.EventHandler(this.mnuDelivery_Click);
             // 
             // mnuMaestro
             // 
@@ -570,6 +595,42 @@
             this.mnuUnidadMedida.Text = "Unidad Medida";
             this.mnuUnidadMedida.Click += new System.EventHandler(this.unidadMedidaToolStripMenuItem_Click);
             // 
+            // mnuTrabajadorM
+            // 
+            this.mnuTrabajadorM.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.adelantoToolStripMenuItem,
+            this.descuentosToolStripMenuItem,
+            this.pagosToolStripMenuItem});
+            this.mnuTrabajadorM.Font = new System.Drawing.Font("Roboto", 9.230769F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mnuTrabajadorM.Image = global::CapaPresentacion.Properties.Resources.usuario;
+            this.mnuTrabajadorM.Name = "mnuTrabajadorM";
+            this.mnuTrabajadorM.Size = new System.Drawing.Size(115, 24);
+            this.mnuTrabajadorM.Text = "Trabajador";
+            // 
+            // adelantoToolStripMenuItem
+            // 
+            this.adelantoToolStripMenuItem.Image = global::CapaPresentacion.Properties.Resources.icongo;
+            this.adelantoToolStripMenuItem.Name = "adelantoToolStripMenuItem";
+            this.adelantoToolStripMenuItem.Size = new System.Drawing.Size(165, 26);
+            this.adelantoToolStripMenuItem.Text = "Adelanto";
+            this.adelantoToolStripMenuItem.Click += new System.EventHandler(this.adelantoToolStripMenuItem_Click);
+            // 
+            // descuentosToolStripMenuItem
+            // 
+            this.descuentosToolStripMenuItem.Image = global::CapaPresentacion.Properties.Resources.if_Backspace_clean_clear_delete_remove_erase_1886483;
+            this.descuentosToolStripMenuItem.Name = "descuentosToolStripMenuItem";
+            this.descuentosToolStripMenuItem.Size = new System.Drawing.Size(165, 26);
+            this.descuentosToolStripMenuItem.Text = "Descuentos";
+            this.descuentosToolStripMenuItem.Click += new System.EventHandler(this.descuentosToolStripMenuItem_Click);
+            // 
+            // pagosToolStripMenuItem
+            // 
+            this.pagosToolStripMenuItem.Image = global::CapaPresentacion.Properties.Resources.if_cashbox_45016;
+            this.pagosToolStripMenuItem.Name = "pagosToolStripMenuItem";
+            this.pagosToolStripMenuItem.Size = new System.Drawing.Size(165, 26);
+            this.pagosToolStripMenuItem.Text = "Pagos";
+            this.pagosToolStripMenuItem.Click += new System.EventHandler(this.pagosToolStripMenuItem_Click);
+            // 
             // mnuReportes
             // 
             this.mnuReportes.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -589,6 +650,7 @@
             // 
             this.reporteDeVentasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.porClienteToolStripMenuItem,
+            this.porFormaDePagoToolStripMenuItem,
             this.porInsumoToolStripMenuItem,
             this.porProductoToolStripMenuItem,
             this.porTipoComprobanteToolStripMenuItem});
@@ -726,7 +788,7 @@
             this.statusStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel});
-            this.statusStrip.Location = new System.Drawing.Point(0, 839);
+            this.statusStrip.Location = new System.Drawing.Point(0, 935);
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.Padding = new System.Windows.Forms.Padding(1, 0, 21, 0);
             this.statusStrip.Size = new System.Drawing.Size(1848, 25);
@@ -742,9 +804,9 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(1137, 85);
+            this.label1.Location = new System.Drawing.Point(1137, 94);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(16, 18);
+            this.label1.Size = new System.Drawing.Size(17, 20);
             this.label1.TabIndex = 4;
             this.label1.Text = "1";
             this.label1.Visible = false;
@@ -752,9 +814,9 @@
             // lblIdUsuario
             // 
             this.lblIdUsuario.AutoSize = true;
-            this.lblIdUsuario.Location = new System.Drawing.Point(1040, 178);
+            this.lblIdUsuario.Location = new System.Drawing.Point(1040, 198);
             this.lblIdUsuario.Name = "lblIdUsuario";
-            this.lblIdUsuario.Size = new System.Drawing.Size(16, 18);
+            this.lblIdUsuario.Size = new System.Drawing.Size(17, 20);
             this.lblIdUsuario.TabIndex = 6;
             this.lblIdUsuario.Text = "1";
             this.lblIdUsuario.Visible = false;
@@ -762,9 +824,9 @@
             // lblUsuario
             // 
             this.lblUsuario.AutoSize = true;
-            this.lblUsuario.Location = new System.Drawing.Point(1165, 194);
+            this.lblUsuario.Location = new System.Drawing.Point(1165, 216);
             this.lblUsuario.Name = "lblUsuario";
-            this.lblUsuario.Size = new System.Drawing.Size(16, 18);
+            this.lblUsuario.Size = new System.Drawing.Size(17, 20);
             this.lblUsuario.TabIndex = 7;
             this.lblUsuario.Text = "1";
             this.lblUsuario.Visible = false;
@@ -772,9 +834,9 @@
             // lblPass
             // 
             this.lblPass.AutoSize = true;
-            this.lblPass.Location = new System.Drawing.Point(1248, 194);
+            this.lblPass.Location = new System.Drawing.Point(1248, 216);
             this.lblPass.Name = "lblPass";
-            this.lblPass.Size = new System.Drawing.Size(16, 18);
+            this.lblPass.Size = new System.Drawing.Size(17, 20);
             this.lblPass.TabIndex = 8;
             this.lblPass.Text = "1";
             this.lblPass.Visible = false;
@@ -782,9 +844,9 @@
             // lblAcceso
             // 
             this.lblAcceso.AutoSize = true;
-            this.lblAcceso.Location = new System.Drawing.Point(1027, 343);
+            this.lblAcceso.Location = new System.Drawing.Point(1027, 381);
             this.lblAcceso.Name = "lblAcceso";
-            this.lblAcceso.Size = new System.Drawing.Size(16, 18);
+            this.lblAcceso.Size = new System.Drawing.Size(17, 20);
             this.lblAcceso.TabIndex = 9;
             this.lblAcceso.Text = "1";
             this.lblAcceso.Visible = false;
@@ -792,9 +854,9 @@
             // lblEstadoCaja
             // 
             this.lblEstadoCaja.AutoSize = true;
-            this.lblEstadoCaja.Location = new System.Drawing.Point(823, 422);
+            this.lblEstadoCaja.Location = new System.Drawing.Point(823, 469);
             this.lblEstadoCaja.Name = "lblEstadoCaja";
-            this.lblEstadoCaja.Size = new System.Drawing.Size(16, 18);
+            this.lblEstadoCaja.Size = new System.Drawing.Size(17, 20);
             this.lblEstadoCaja.TabIndex = 10;
             this.lblEstadoCaja.Text = "1";
             this.lblEstadoCaja.Visible = false;
@@ -802,9 +864,9 @@
             // lblFechaCaja
             // 
             this.lblFechaCaja.AutoSize = true;
-            this.lblFechaCaja.Location = new System.Drawing.Point(991, 422);
+            this.lblFechaCaja.Location = new System.Drawing.Point(991, 469);
             this.lblFechaCaja.Name = "lblFechaCaja";
-            this.lblFechaCaja.Size = new System.Drawing.Size(16, 18);
+            this.lblFechaCaja.Size = new System.Drawing.Size(17, 20);
             this.lblFechaCaja.TabIndex = 11;
             this.lblFechaCaja.Text = "1";
             this.lblFechaCaja.Visible = false;
@@ -812,9 +874,9 @@
             // lblMontoApertura
             // 
             this.lblMontoApertura.AutoSize = true;
-            this.lblMontoApertura.Location = new System.Drawing.Point(903, 311);
+            this.lblMontoApertura.Location = new System.Drawing.Point(903, 346);
             this.lblMontoApertura.Name = "lblMontoApertura";
-            this.lblMontoApertura.Size = new System.Drawing.Size(16, 18);
+            this.lblMontoApertura.Size = new System.Drawing.Size(17, 20);
             this.lblMontoApertura.TabIndex = 13;
             this.lblMontoApertura.Text = "1";
             this.lblMontoApertura.Visible = false;
@@ -822,9 +884,9 @@
             // lblFechaApertura
             // 
             this.lblFechaApertura.AutoSize = true;
-            this.lblFechaApertura.Location = new System.Drawing.Point(919, 391);
+            this.lblFechaApertura.Location = new System.Drawing.Point(919, 434);
             this.lblFechaApertura.Name = "lblFechaApertura";
-            this.lblFechaApertura.Size = new System.Drawing.Size(16, 18);
+            this.lblFechaApertura.Size = new System.Drawing.Size(17, 20);
             this.lblFechaApertura.TabIndex = 14;
             this.lblFechaApertura.Text = "1";
             this.lblFechaApertura.Visible = false;
@@ -832,9 +894,9 @@
             // lblUsuarioSis
             // 
             this.lblUsuarioSis.AutoSize = true;
-            this.lblUsuarioSis.Location = new System.Drawing.Point(953, 474);
+            this.lblUsuarioSis.Location = new System.Drawing.Point(953, 527);
             this.lblUsuarioSis.Name = "lblUsuarioSis";
-            this.lblUsuarioSis.Size = new System.Drawing.Size(16, 18);
+            this.lblUsuarioSis.Size = new System.Drawing.Size(17, 20);
             this.lblUsuarioSis.TabIndex = 16;
             this.lblUsuarioSis.Text = "1";
             this.lblUsuarioSis.Visible = false;
@@ -848,9 +910,9 @@
             // lblEstadoTurno
             // 
             this.lblEstadoTurno.AutoSize = true;
-            this.lblEstadoTurno.Location = new System.Drawing.Point(1236, 391);
+            this.lblEstadoTurno.Location = new System.Drawing.Point(1236, 434);
             this.lblEstadoTurno.Name = "lblEstadoTurno";
-            this.lblEstadoTurno.Size = new System.Drawing.Size(16, 18);
+            this.lblEstadoTurno.Size = new System.Drawing.Size(17, 20);
             this.lblEstadoTurno.TabIndex = 18;
             this.lblEstadoTurno.Text = "1";
             this.lblEstadoTurno.Visible = false;
@@ -858,9 +920,9 @@
             // lblMontoCorteCaja
             // 
             this.lblMontoCorteCaja.AutoSize = true;
-            this.lblMontoCorteCaja.Location = new System.Drawing.Point(903, 557);
+            this.lblMontoCorteCaja.Location = new System.Drawing.Point(903, 619);
             this.lblMontoCorteCaja.Name = "lblMontoCorteCaja";
-            this.lblMontoCorteCaja.Size = new System.Drawing.Size(16, 18);
+            this.lblMontoCorteCaja.Size = new System.Drawing.Size(17, 20);
             this.lblMontoCorteCaja.TabIndex = 20;
             this.lblMontoCorteCaja.Text = "1";
             this.lblMontoCorteCaja.Visible = false;
@@ -868,9 +930,9 @@
             // lblFechaCorteCaja
             // 
             this.lblFechaCorteCaja.AutoSize = true;
-            this.lblFechaCorteCaja.Location = new System.Drawing.Point(991, 557);
+            this.lblFechaCorteCaja.Location = new System.Drawing.Point(991, 619);
             this.lblFechaCorteCaja.Name = "lblFechaCorteCaja";
-            this.lblFechaCorteCaja.Size = new System.Drawing.Size(16, 18);
+            this.lblFechaCorteCaja.Size = new System.Drawing.Size(17, 20);
             this.lblFechaCorteCaja.TabIndex = 21;
             this.lblFechaCorteCaja.Text = "1";
             this.lblFechaCorteCaja.Visible = false;
@@ -878,28 +940,28 @@
             // lblApellidos
             // 
             this.lblApellidos.AutoSize = true;
-            this.lblApellidos.Location = new System.Drawing.Point(916, 422);
+            this.lblApellidos.Location = new System.Drawing.Point(916, 469);
             this.lblApellidos.Name = "lblApellidos";
-            this.lblApellidos.Size = new System.Drawing.Size(16, 18);
+            this.lblApellidos.Size = new System.Drawing.Size(17, 20);
             this.lblApellidos.TabIndex = 23;
             this.lblApellidos.Text = "1";
             this.lblApellidos.Visible = false;
             // 
-            // mnuCobroDelivery
+            // porFormaDePagoToolStripMenuItem
             // 
-            this.mnuCobroDelivery.Name = "mnuCobroDelivery";
-            this.mnuCobroDelivery.Size = new System.Drawing.Size(212, 26);
-            this.mnuCobroDelivery.Text = "Cobro Delivery";
-            this.mnuCobroDelivery.Click += new System.EventHandler(this.mnuCobroDelivery_Click);
+            this.porFormaDePagoToolStripMenuItem.Name = "porFormaDePagoToolStripMenuItem";
+            this.porFormaDePagoToolStripMenuItem.Size = new System.Drawing.Size(233, 26);
+            this.porFormaDePagoToolStripMenuItem.Text = "Por Forma De Pago";
+            this.porFormaDePagoToolStripMenuItem.Click += new System.EventHandler(this.porFormaDePagoToolStripMenuItem_Click);
             // 
             // frmPrincipal
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImage = global::CapaPresentacion.Properties.Resources.back;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1848, 864);
+            this.ClientSize = new System.Drawing.Size(1848, 960);
             this.Controls.Add(this.lblApellidos);
             this.Controls.Add(this.lblFechaCorteCaja);
             this.Controls.Add(this.lblMontoCorteCaja);
@@ -917,11 +979,11 @@
             this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.toolStrip);
             this.Controls.Add(this.menuStrip);
-            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Font = new System.Drawing.Font("Roboto", 9.230769F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip;
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.MaximizeBox = false;
             this.Name = "frmPrincipal";
             this.Text = "..: JMFAC -SISTEMA DE PUNTO DE VENTA ::.";
@@ -1022,6 +1084,12 @@
         private System.Windows.Forms.ToolStripMenuItem mnuDelivery;
         private System.Windows.Forms.ToolStripMenuItem tipoClienteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mnuCobroDelivery;
+        private System.Windows.Forms.ToolStripMenuItem creditosPendientesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mnuTrabajadorM;
+        private System.Windows.Forms.ToolStripMenuItem descuentosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pagosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem adelantoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem porFormaDePagoToolStripMenuItem;
     }
 }
 

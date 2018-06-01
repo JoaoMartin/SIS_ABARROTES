@@ -996,7 +996,7 @@ namespace CapaPresentacion
                             //   Convert.ToDecimal(this.txtDescuento.Text), Convert.ToInt32(this.lblIdUsuario.Text), "", 1, dtDetalle);
                             rpta = NVenta.InsertarPedido(null, Convert.ToInt32(this.lblIdMesa.Text), DateTime.Now, "Pedido", "",
                                 Convert.ToDecimal(this.txtDescuento.Text), Convert.ToInt32(idMesero), "", 1, dtDetalle, dtDetalleMenu,
-                                DateTime.Now, 00.00m, Convert.ToInt32(this.idMesero), "", "", "", "");
+                                DateTime.Now, 00.00m, Convert.ToInt32(this.idMesero), "", "", "", "","");
                             if (rpta == "OK")
                             {
 
@@ -1544,7 +1544,7 @@ namespace CapaPresentacion
                 if (this.lblBanderaDatatable.Text == "0" && this.lblIdVenta.Text == "0")
                 {
                     rpta = NVenta.InsertarPedidoSeparado(null, Convert.ToInt32(this.lblIdMesa.Text), DateTime.Now, "Pedido CS", "", Convert.ToDecimal(this.txtDescuento.Text),
-                        Convert.ToInt32(idMesero), "CS", 1, dtDetalle, dtDetalleMenu, DateTime.Now, 00.00m, Convert.ToInt32(idMesero), "", "", "", "");
+                        Convert.ToInt32(idMesero), "CS", 1, dtDetalle, dtDetalleMenu, DateTime.Now, 00.00m, Convert.ToInt32(idMesero), "", "", "", "","");
 
                     this.lblIdVenta.Text = rpta;
                     this.lblBanderaDatatable.Text = "1";
@@ -1781,7 +1781,7 @@ namespace CapaPresentacion
             form.lblIdUsuario.Text = idMesero;
             decimal subtotal1 = 00.00m;
             //subtotal1 = ((Convert.ToDecimal(this.txtSubTotal.Text) - Convert.ToDecimal(this.txtDescuento.Text)) / 1.18m);
-             subtotal1 = ((totalRed - Convert.ToDecimal(this.txtDescuento.Text)) / 1.18m);
+             subtotal1 = ((totalRed) / 1.18m);
             form.lblSubTotal.Text = string.Format(" {0:#,##0.00}", Convert.ToDouble(subtotal1));
            // decimal igvC = (Convert.ToDecimal(this.txtTotalPagado.Text) - subtotal1);
             decimal igvC = (totalRed - subtotal1);

@@ -13,9 +13,11 @@ namespace CapaPresentacion
 {
     public partial class frmCierreCaja : Form
     {
+        public static frmCierreCaja f1;
         public frmCierreCaja()
         {
             InitializeComponent();
+            frmCierreCaja.f1 = this;
         }
 
         public void ingresosEfectivo()
@@ -40,9 +42,10 @@ namespace CapaPresentacion
             decimal totalParcial = 00.00m;
             decimal totalCaja = 00.00m;
             decimal egresos = 00.00m;
-
+            decimal montoDejado = 00.00m;
             decimal totalVenta = 00.00m;
             decimal montoApertura = 00.00m;
+            decimal montoDeposito = 00.00m;
 
             ventasEfectivo = Convert.ToDecimal(txtVentaEfectivo.Text);
             ventasTarjeta = Convert.ToDecimal(txtTarjeta.Text);
@@ -53,9 +56,13 @@ namespace CapaPresentacion
             totalCaja = totalParcial + montoApertura;
             totalVenta = ventasEfectivo + ventasTarjeta;
 
+            montoDejado = Convert.ToDecimal(txtMontoDejado.Text);
+            montoDeposito = totalCaja - montoDejado;
+            txtMontoConteo.Text = totalCaja.ToString();
             lblTotalParcial.Text = totalParcial.ToString();
             lblTotalCaja.Text = totalCaja.ToString();
             lblTotalVentas.Text = totalVenta.ToString();
+            txtMontoDeposito.Text = montoDeposito.ToString();
 
         }
 
@@ -177,6 +184,30 @@ namespace CapaPresentacion
             {
                 this.txtBolManual.Text = "00.00";
             }
+            if (dt.Rows[10][0].ToString() != "")
+            {
+                this.txtCredito.Text = dt.Rows[10][0].ToString();
+            }
+            else
+            {
+                this.txtCredito.Text = "00.00";
+            }
+            if (dt.Rows[11][0].ToString() != "")
+            {
+                this.txtConsumoTrab.Text = dt.Rows[11][0].ToString();
+            }
+            else
+            {
+                this.txtConsumoTrab.Text = "00.00";
+            }
+            if (dt.Rows[12][0].ToString() != "")
+            {
+                this.txtCortesia.Text = dt.Rows[12][0].ToString();
+            }
+            else
+            {
+                this.txtCortesia.Text = "00.00";
+            }
             //cuenta_usuario.idCliente(txtUsuario.Text, txtContraseña.Text);
             // dt.Rows[0]["Estado"].ToString();
             total();
@@ -190,15 +221,71 @@ namespace CapaPresentacion
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            this.Close();
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             string rpta = "";
+            decimal montoDejado = 00.00m, montoDeposito = 00.00m, montoConteo = 00.00m, ventaCredito = 00.00m, ventaCortesia = 00.00m, ventaConsumoTr = 00.00m;
+            if (txtMontoDejado.Text.Trim().Length == 0)
+            {
+                montoDejado = 00.00m;
+            }
+            else
+            {
+                montoDejado = Convert.ToDecimal(txtMontoDejado.Text.Trim());
+            }
+            if (txtMontoDeposito.Text.Trim().Length == 0)
+            {
+                montoDeposito = 00.00m;
+            }
+            else
+            {
+                montoDeposito = Convert.ToDecimal(txtMontoDeposito.Text.Trim());
+            }
+            if (txtMontoConteo.Text.Trim().Length == 0)
+            {
+                montoConteo = 00.00m;
+            }
+            else
+            {
+                montoConteo = Convert.ToDecimal(txtMontoConteo.Text.Trim());
+            }
+
+            if (txtCredito.Text.Trim().Length == 0)
+            {
+                ventaCredito = 00.00m;
+            }
+            else
+            {
+                ventaCredito = Convert.ToDecimal(txtCredito.Text.Trim());
+            }
+
+            if (txtCortesia.Text.Trim().Length == 0)
+            {
+                ventaCortesia = 00.00m;
+            }
+            else
+            {
+                ventaCortesia = Convert.ToDecimal(txtCortesia.Text.Trim());
+            }
+
+            if (txtConsumoTrab.Text.Trim().Length == 0)
+            {
+                ventaConsumoTr = 00.00m;
+            }
+            else
+            {
+                ventaConsumoTr = Convert.ToDecimal(txtConsumoTrab.Text.Trim());
+            }
+
+
+
             DateTime fechaApertura = Convert.ToDateTime(this.lblfechaApert.Text);
            rpta= NCaja_A.Insertar(Convert.ToInt32(this.lblidUsuario.Text),"Caja 1", DateTime.Now,Convert.ToDecimal(lblTotalCaja.Text), "Cerrada", 1,Convert.ToDecimal(txtTarjeta.Text),
-               Convert.ToDecimal(this.txtEgresos.Text),Convert.ToDecimal(txtOtrosIngresos.Text),Convert.ToDecimal(txtVentaEfectivo.Text),Convert.ToDecimal(lblMontoInicial.Text),fechaApertura);
+               Convert.ToDecimal(this.txtEgresos.Text),Convert.ToDecimal(txtOtrosIngresos.Text),Convert.ToDecimal(txtVentaEfectivo.Text),Convert.ToDecimal(lblMontoInicial.Text),
+               fechaApertura,montoDejado,montoDeposito,montoConteo,ventaCredito,ventaCortesia,ventaConsumoTr);
             if (rpta != "OK")
             {
                 int diezCen, veinteCen, cincuentaCen, unSol, dosSoles, cincoSoles, diezSoles, veinteSoles, cincuentaSoles, cienSoles, doscientosSoles;
@@ -305,7 +392,8 @@ namespace CapaPresentacion
                 {
                     MessageBox.Show("Se cerró la caja");
                     NImprimirCierreTurno.imprimirCaja(this.lblTrabajador.Text, lblfechaApert.Text, DateTime.Now,lblMontoInicial.Text,txtVentaEfectivo.Text,txtOtrosIngresos.Text,txtEgresos.Text,
-                        lblTotalCaja.Text,lblToVentas.Text,txtTarjeta.Text,txtTickets.Text,txtBoletas.Text,txtFacturas.Text,lblTotalParcial.Text);
+                        lblTotalCaja.Text,lblToVentas.Text,txtTarjeta.Text,txtTickets.Text,txtBoletas.Text,txtFacturas.Text,lblTotalParcial.Text,txtCredito.Text,txtCortesia.Text,
+                        txtConsumoTrab.Text);
                     Application.Exit();
                    
                 }else
@@ -629,6 +717,17 @@ namespace CapaPresentacion
         private void frmCierreCaja_FormClosed(object sender, FormClosedEventArgs e)
         {
          
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            frmConteoDinero frm = new frmConteoDinero();
+            frm.Show();
+        }
+
+        private void txtDiezSoles_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

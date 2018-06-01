@@ -11,7 +11,7 @@ namespace CapaNegocios
     public class NTrabajador
     {
         public static string Insertar(string nombre, string apellidos, string tipoDoc, string numDoc, string sexo, DateTime fechaNac, string direccion, string telefono,
-            string email, string estado,  int idTipoTrabajador,string usuario, string password)
+            string email, string estado,  int idTipoTrabajador,string usuario, string password, decimal sueldo, DateTime fechaIngreso)
         {
             DTrabajador Obj = new DTrabajador();
             Obj.Nombre = nombre;
@@ -27,11 +27,13 @@ namespace CapaNegocios
             Obj.IdTipoTrabajador = idTipoTrabajador;
             Obj.Usuario = usuario;
             Obj.Password = password;
+            Obj.Sueldo = sueldo;
+            Obj.FechaIngreso = fechaIngreso;
             return Obj.Insertar(Obj);
         }
 
         public static string Editar(int idTrabajador, string nombre, string apellidos, string tipoDoc, string numDoc, string sexo, DateTime fechaNac, string direccion, string telefono,
-            string email, string estado, int idTipoTrabajador, string usuario, string password)
+            string email, string estado, int idTipoTrabajador, string usuario, string password, decimal sueldo, DateTime fechaIngreso)
         {
             DTrabajador Obj = new DTrabajador();
             Obj.IdTrabajador = idTrabajador;
@@ -48,6 +50,8 @@ namespace CapaNegocios
             Obj.IdTipoTrabajador = idTipoTrabajador;
             Obj.Usuario = usuario;
             Obj.Password = password;
+            Obj.Sueldo = sueldo;
+            Obj.FechaIngreso = fechaIngreso;
             return Obj.Editar(Obj);
         }
 
@@ -61,6 +65,11 @@ namespace CapaNegocios
         public static DataTable Mostrar()
         {
             return new DTrabajador().Mostrar();
+        }
+
+        public static DataTable MostrarDesc()
+        {
+            return new DTrabajador().MostrarDesc();
         }
 
         public static DataTable MostrarMesero()
@@ -118,6 +127,12 @@ namespace CapaNegocios
             Obj.Usuario = usuario;
             Obj.Password = pass;
             return Obj.cambiarPass(Obj);
+        }
+
+        public static DataTable mostrarTrabajadorDni(string nroDoc)
+        {
+            DTrabajador Obj = new DTrabajador();
+            return Obj.MostrarTrabajadorDni(nroDoc);
         }
     }
 }

@@ -41,6 +41,10 @@ namespace CapaNegocios
         {
             return new DDescuento().MostrarDescuentoTipoCliente();
         }
+        public static DataTable MostrarDescuentoTipoTrabajador()
+        {
+            return new DDescuento().MostrarDescuentoTipoTrabajador();
+        }
 
         public static DataTable MostrarDescuentoProducto()
         {
@@ -55,9 +59,17 @@ namespace CapaNegocios
         }
 
         public static void DescuentoClientes(string idTipoCliente,decimal lblSubTotal, decimal lblIgv, decimal lblMontoAdelanto,decimal lblDescuento, decimal lblDctoGeneral,
-            Label txtDctoGral, Label txtSubTotal, Label txtIgv, Label txtTotal)
+            Label txtDctoGral, Label txtSubTotal, Label txtIgv, Label txtTotal,string clase)
         {
-            DataTable dtDescuentoCliente = NDescuento.MostrarDescuentoTipoCliente();
+            DataTable dtDescuentoCliente = new DataTable();
+            if (clase == "C")
+            {
+                dtDescuentoCliente = NDescuento.MostrarDescuentoTipoCliente();
+            }else
+            {
+                dtDescuentoCliente = NDescuento.MostrarDescuentoTipoTrabajador();
+            }
+              NDescuento.MostrarDescuentoTipoCliente();
             if (dtDescuentoCliente.Rows.Count > 0)
             {
                 for (int i = 0; i < dtDescuentoCliente.Rows.Count; i++)
@@ -73,8 +85,8 @@ namespace CapaNegocios
                         dctoGral = Convert.ToDecimal(lblDctoGeneral);
                         total = subtotal + igv + montoAdelanto + dctoInd + dctoGral;
                         dctoTC = Convert.ToDecimal(dtDescuentoCliente.Rows[i][2].ToString()) / 100;
-                        decimal totalRed = NRedondeo.redondearParcial(dctoTC * total);
-                        totalAD = total - (totalRed);
+                        decimal totalRed = NRedondeo.redondearParcial(dctoTC * (total-dctoInd));
+                        totalAD = total - (totalRed) - dctoInd;
                         
                         txtDctoGral.Text = string.Format(" {0:#,##0.00}", Convert.ToDouble(totalRed));
                         decimal totalSubTotalText = (totalAD) / 1.18m;
@@ -94,8 +106,8 @@ namespace CapaNegocios
                         dctoInd = Convert.ToDecimal(lblDescuento);
                         dctoGral = Convert.ToDecimal(lblDctoGeneral);
                         total = subtotal + igv + montoAdelanto + dctoInd + dctoGral;
-                        totalAD = total;
-                        txtDctoGral.Text = string.Format(" {0:#,##0.00}", Convert.ToDouble(dctoTC * total));
+                        totalAD = total - dctoInd;
+                        txtDctoGral.Text = string.Format(" {0:#,##0.00}", Convert.ToDouble(dctoTC * totalAD));
                         decimal totalSubTotalText = (totalAD) / 1.18m;
                         txtSubTotal.Text = string.Format(" {0:#,##0.00}", Convert.ToDouble(totalSubTotalText));
                         decimal totalIgvText = totalAD - totalSubTotalText;

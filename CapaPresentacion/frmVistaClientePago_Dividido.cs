@@ -89,6 +89,11 @@ namespace CapaPresentacion
 
         private void dataListado_DoubleClick(object sender, EventArgs e)
         {
+           
+        }
+
+        private void dataListado_Click(object sender, EventArgs e)
+        {
             frmPagarDividida.f1.txtIdCliente.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["Codigo"].Value);
             frmPagarDividida.f1.txtNombre.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["Cliente"].Value);
             frmPagarDividida.f1.txtDocumento.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["Nro_Doc"].Value);
@@ -99,18 +104,53 @@ namespace CapaPresentacion
                 idTipoCliente = Convert.ToString(this.dataListado.CurrentRow.Cells["idTipoCliente"].Value);
                 if (idTipoCliente == "" || idTipoCliente == null)
                 {
+                    idTipoCliente = Convert.ToString(this.dataListado.CurrentRow.Cells["idTipoCliente"].Value);
+                    decimal subtotal = Convert.ToDecimal(frmPagarDividida.f1.lblSubTotal.Text);
+                    decimal igv = Convert.ToDecimal(frmPagarDividida.f1.lblIgv.Text);
+                    decimal montoAd = 00.00m;
+                    decimal dctoI = Convert.ToDecimal(frmPagarDividida.f1.lblDescuento.Text);
+                    decimal dctoG = Convert.ToDecimal(frmPagarDividida.f1.lblDctoGeneral.Text);
+                    NDescuento.DescuentoClientes(idTipoCliente, subtotal, igv, montoAd, dctoI, dctoG, frmPagarDividida.f1.lblDctoGeneral, frmPagarDividida.f1.lblSubTotal,
+                        frmPagarDividida.f1.lblIgv, frmPagarDividida.f1.lblTotal, "T");
+                    frmPagarDividida.f1.mostrarTotales();
+                    // frmPagar.f1.cbTipoCliente.Enabled = false;
                     frmPagarDividida.f1.cbTipoCliente.SelectedIndex = -1;
+                    frmPagarDividida.f1.cbTipoCliente.Enabled = false;
+                    frmPagarDividida.f1.cbPaga.Visible = false;
+                    frmPagarDividida.f1.cbPaga.Checked = false;
                 }
                 else
                 {
                     frmPagarDividida.f1.cbTipoCliente.SelectedValue = idTipoCliente;
                     //frmPagar.f1.cbTipoCliente.Enabled = true;
+                    
+                    decimal subtotal = Convert.ToDecimal(frmPagarDividida.f1.lblSubTotal.Text);
+                    decimal igv = Convert.ToDecimal(frmPagarDividida.f1.lblIgv.Text);
+                    decimal montoAd = 00.00m;
+                    decimal dctoI = Convert.ToDecimal(frmPagarDividida.f1.lblDescuento.Text);
+                    decimal dctoG = Convert.ToDecimal(frmPagarDividida.f1.lblDctoGeneral.Text);
+                    NDescuento.DescuentoClientes(idTipoCliente, subtotal, igv, montoAd, dctoI, dctoG, frmPagarDividida.f1.lblDctoGeneral, frmPagarDividida.f1.lblSubTotal,
+                        frmPagarDividida.f1.lblIgv, frmPagarDividida.f1.lblTotal,"C");
+                    frmPagarDividida.f1.mostrarTotales();
                 }
             }
-            else
+            else if (Convert.ToString(this.dataListado.CurrentRow.Cells["Clase"].Value) == "T")
             {
+                string idTipoCliente;
+                idTipoCliente = Convert.ToString(this.dataListado.CurrentRow.Cells["idTipoTrabajador"].Value);
+                decimal subtotal = Convert.ToDecimal(frmPagarDividida.f1.lblSubTotal.Text);
+                decimal igv = Convert.ToDecimal(frmPagarDividida.f1.lblIgv.Text);
+                decimal montoAd = 00.00m;
+                decimal dctoI = Convert.ToDecimal(frmPagarDividida.f1.lblDescuento.Text);
+                decimal dctoG = Convert.ToDecimal(frmPagarDividida.f1.lblDctoGeneral.Text);
+                NDescuento.DescuentoClientes(idTipoCliente, subtotal, igv, montoAd, dctoI, dctoG, frmPagarDividida.f1.lblDctoGeneral, frmPagarDividida.f1.lblSubTotal,
+                    frmPagarDividida.f1.lblIgv, frmPagarDividida.f1.lblTotal, "T");
+                frmPagarDividida.f1.mostrarTotales();
                 // frmPagar.f1.cbTipoCliente.Enabled = false;
                 frmPagarDividida.f1.cbTipoCliente.SelectedIndex = -1;
+                frmPagarDividida.f1.cbTipoCliente.Enabled = false;
+                frmPagarDividida.f1.cbPaga.Visible = true;
+                frmPagarDividida.f1.cbPaga.Checked = true;
             }
             frmPagarDividida.f1.btnEditar.Enabled = true;
             frmPagarDividida.f1.dataListadoProducto.Select();

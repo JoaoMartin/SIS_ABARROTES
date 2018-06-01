@@ -25,6 +25,8 @@ namespace CapaDatos
         private string usuario;
         private string password;
         private string _TextoBuscar;
+        private decimal _Sueldo;
+        private DateTime _FechaIngreso;
 
         public int IdTrabajador
         {
@@ -221,10 +223,36 @@ namespace CapaDatos
             }
         }
 
+        public decimal Sueldo
+        {
+            get
+            {
+                return _Sueldo;
+            }
+
+            set
+            {
+                _Sueldo = value;
+            }
+        }
+
+        public DateTime FechaIngreso
+        {
+            get
+            {
+                return _FechaIngreso;
+            }
+
+            set
+            {
+                _FechaIngreso = value;
+            }
+        }
+
         public DTrabajador() { }
 
         public DTrabajador(int idTrabajador, string nombre, string apellidos, string tipoDoc, string numDoc, string sexo, DateTime fechaNac, string direccion, string telefono,
-            string email, string estado, int idTipoTrabajador, string usuario, string password, string textoBuscar)
+            string email, string estado, int idTipoTrabajador, string usuario, string password, string textoBuscar, decimal sueldo, DateTime fechaIngreso)
         {
             this.IdTrabajador = idTrabajador;
             this.Nombre = nombre;
@@ -241,6 +269,8 @@ namespace CapaDatos
             this.Usuario = usuario;
             this.Password = password;
             this.TextoBuscar = textoBuscar;
+            this.Sueldo = sueldo;
+            this.FechaIngreso = fechaIngreso;
         }
 
         public string Insertar(DTrabajador Trabajador)
@@ -352,7 +382,21 @@ namespace CapaDatos
                 ParPassword.Value = Trabajador.Password;
                 sqlCmd.Parameters.Add(ParPassword);
 
-                rpta = sqlCmd.ExecuteNonQuery() == 1 ? "OK" : "No se ingresó el Registro";
+                SqlParameter ParSueldo = new SqlParameter();
+                ParSueldo.ParameterName = "@sueldo";
+                ParSueldo.SqlDbType = SqlDbType.Decimal;
+                ParSueldo.Precision = 8;
+                ParSueldo.Scale = 2;
+                ParSueldo.Value = Trabajador.Sueldo;
+                sqlCmd.Parameters.Add(ParSueldo);
+
+                SqlParameter ParFechaIngreso = new SqlParameter();
+                ParFechaIngreso.ParameterName = "@fechaIngreso";
+                ParFechaIngreso.SqlDbType = SqlDbType.Date;
+                ParFechaIngreso.Value = Trabajador.FechaIngreso;
+                sqlCmd.Parameters.Add(ParFechaIngreso);
+
+                rpta = sqlCmd.ExecuteNonQuery() >= 1 ? "OK" : "No se ingresó el Registro";
             }
             catch (Exception ex)
             {
@@ -474,6 +518,20 @@ namespace CapaDatos
                 ParPassword.Value = Trabajador.Password;
                 sqlCmd.Parameters.Add(ParPassword);
 
+                SqlParameter ParSueldo = new SqlParameter();
+                ParSueldo.ParameterName = "@sueldo";
+                ParSueldo.SqlDbType = SqlDbType.Decimal;
+                ParSueldo.Precision = 8;
+                ParSueldo.Scale = 2;
+                ParSueldo.Value = Trabajador.Sueldo;
+                sqlCmd.Parameters.Add(ParSueldo);
+
+                SqlParameter ParFechaIngreso = new SqlParameter();
+                ParFechaIngreso.ParameterName = "@fechaIngreso";
+                ParFechaIngreso.SqlDbType = SqlDbType.Date;
+                ParFechaIngreso.Value = Trabajador.FechaIngreso;
+                sqlCmd.Parameters.Add(ParFechaIngreso);
+
                 rpta = sqlCmd.ExecuteNonQuery() == 1 ? "OK" : "No se editó el Registro";
             }
             catch (Exception ex)
@@ -531,6 +589,30 @@ namespace CapaDatos
                 SqlCommand sqlCmd = new SqlCommand();
                 sqlCmd.Connection = sqlCon;
                 sqlCmd.CommandText = "sp_mostrarTrabajador";
+                sqlCmd.CommandType = CommandType.StoredProcedure;
+
+                SqlDataAdapter sqlDat = new SqlDataAdapter(sqlCmd);
+                sqlDat.Fill(dtResultado);
+            }
+            catch (Exception ex)
+            {
+                dtResultado = null;
+            }
+
+            return dtResultado;
+        }
+
+        public DataTable MostrarDesc()
+        {
+            DataTable dtResultado = new DataTable("Trabajador");
+            SqlConnection sqlCon = new SqlConnection();
+
+            try
+            {
+                sqlCon.ConnectionString = Conexion.cn;
+                SqlCommand sqlCmd = new SqlCommand();
+                sqlCmd.Connection = sqlCon;
+                sqlCmd.CommandText = "sp_mostrarTrabajadorDescuento";
                 sqlCmd.CommandType = CommandType.StoredProcedure;
 
                 SqlDataAdapter sqlDat = new SqlDataAdapter(sqlCmd);
@@ -811,6 +893,37 @@ namespace CapaDatos
                 if (sqlCon.State == ConnectionState.Open) sqlCon.Close();
             }
             return rpta;
+        }
+
+        public DataTable MostrarTrabajadorDni(string nroDoc)
+        {
+            DataTable dtResultado = new DataTable("Trabajador");
+            SqlConnection sqlCon = new SqlConnection();
+
+            try
+            {
+                sqlCon.ConnectionString = Conexion.cn;
+                SqlCommand sqlCmd = new SqlCommand();
+                sqlCmd.Connection = sqlCon;
+                sqlCmd.CommandText = "sp_mostrarTrabajadorNroDoc";
+                sqlCmd.CommandType = CommandType.StoredProcedure;
+
+                SqlParameter ParNroDoc = new SqlParameter();
+                ParNroDoc.ParameterName = "@nroDoc";
+                ParNroDoc.SqlDbType = SqlDbType.VarChar;
+                ParNroDoc.Size = 11;
+                ParNroDoc.Value = nroDoc;
+                sqlCmd.Parameters.Add(ParNroDoc);
+
+                SqlDataAdapter sqlDat = new SqlDataAdapter(sqlCmd);
+                sqlDat.Fill(dtResultado);
+            }
+            catch (Exception ex)
+            {
+                dtResultado = null;
+            }
+
+            return dtResultado;
         }
     }
 }

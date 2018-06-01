@@ -28,6 +28,7 @@ namespace CapaDatos
         private string _Motivo;
         private string _Cliente;
         private string _Telefono;
+        private string _TipoCliente;
 
         public int IdVenta
         {
@@ -263,11 +264,24 @@ namespace CapaDatos
             }
         }
 
+        public string TipoCliente
+        {
+            get
+            {
+                return _TipoCliente;
+            }
+
+            set
+            {
+                _TipoCliente = value;
+            }
+        }
+
         public DVenta() { }
 
         public DVenta(int idVenta, int idCliente,  int idMesa, DateTime fecha, string estado, string formaPago, decimal descuento, int idTrabajador, 
             string modo, int nroCaja, DateTime fechaEntrega, decimal adelanto, int idTrabajador_Cobro, string obs, string textoBuscar,
-            string motivo, string cliente, string telefono)
+            string motivo, string cliente, string telefono, string tipoCliente)
         {
             this.IdVenta = idVenta;
             this.IdCliente = idCliente;
@@ -286,6 +300,7 @@ namespace CapaDatos
             this.TextoBuscar = textoBuscar;
             this.Motivo = motivo;
             this.Cliente = cliente;
+            this.TipoCliente = tipoCliente;
         }
 
         public string InsertarPedido(DVenta Venta, List<DDetalleVenta> DetalleVenta, List<DDetalleVentaMenu> DetalleVentaMenu)
@@ -419,6 +434,13 @@ namespace CapaDatos
                 ParTelefono.Value = Venta.Telefono;
                 sqlCmd.Parameters.Add(ParTelefono);
 
+                SqlParameter ParTipoCliente = new SqlParameter();
+                ParTipoCliente.ParameterName = "@tipoCliente";
+                ParTipoCliente.SqlDbType = SqlDbType.Char;
+                ParTipoCliente.Size = 1;
+                ParTipoCliente.Value = Venta.TipoCliente;
+                sqlCmd.Parameters.Add(ParTipoCliente);
+
 
                 rpta = sqlCmd.ExecuteNonQuery() >= 1 ? "OK" : "No se ingresó el Registro";
 
@@ -434,147 +456,6 @@ namespace CapaDatos
                         {
                             break;
                             
-                        }
-                    }
-                }
-
-                if (rpta.Equals("OK"))
-                {
-                    sqlTran.Commit();
-                }
-                else
-                {
-                    sqlTran.Rollback();
-                }
-            }
-            catch (Exception ex)
-            {
-                rpta = ex.Message;
-            }
-            finally
-            {
-                if (sqlCon.State == ConnectionState.Open) sqlCon.Close();
-            }
-            return rpta;
-        }
-
-        public string InsertarPedidoPrueba(DVenta Venta, List<DDetalleVenta> DetalleVenta, List<DDetalleVentaMenu> DetalleVentaMenu)
-        {
-            string rpta = "";
-            SqlConnection sqlCon = new SqlConnection();
-            try
-            {
-                sqlCon.ConnectionString = Conexion.cn;
-                sqlCon.Open();
-
-                SqlTransaction sqlTran = sqlCon.BeginTransaction();
-                //Comandos
-                SqlCommand sqlCmd = new SqlCommand();
-                sqlCmd.Connection = sqlCon;
-                sqlCmd.Transaction = sqlTran;
-
-                sqlCmd.CommandText = "sp_insertarVentaPedido";
-                sqlCmd.CommandType = CommandType.StoredProcedure;
-
-                SqlParameter ParIdVenta = new SqlParameter();
-                ParIdVenta.ParameterName = "@idVenta";
-                ParIdVenta.SqlDbType = SqlDbType.Int;
-                ParIdVenta.Direction = ParameterDirection.Output;
-                sqlCmd.Parameters.Add(ParIdVenta);
-
-                SqlParameter ParIdCliente = new SqlParameter();
-                ParIdCliente.ParameterName = "@idCliente";
-                ParIdCliente.SqlDbType = SqlDbType.Int;
-                ParIdCliente.Value = Venta.IdCliente;
-                sqlCmd.Parameters.Add(ParIdCliente);
-
-                SqlParameter ParIdMesa = new SqlParameter();
-                ParIdMesa.ParameterName = "@idMesa";
-                ParIdMesa.SqlDbType = SqlDbType.Int;
-                ParIdMesa.Value = Venta.IdMesa;
-                sqlCmd.Parameters.Add(ParIdMesa);
-
-                SqlParameter ParFechaIngreso = new SqlParameter();
-                ParFechaIngreso.ParameterName = "@fechaVenta";
-                ParFechaIngreso.SqlDbType = SqlDbType.DateTime;
-                ParFechaIngreso.Value = Venta.Fecha;
-                sqlCmd.Parameters.Add(ParFechaIngreso);
-
-                SqlParameter ParEstado = new SqlParameter();
-                ParEstado.ParameterName = "@estado";
-                ParEstado.SqlDbType = SqlDbType.VarChar;
-                ParEstado.Size = 20;
-                ParEstado.Value = Venta.Estado;
-                sqlCmd.Parameters.Add(ParEstado);
-
-                SqlParameter ParFormaPago = new SqlParameter();
-                ParFormaPago.ParameterName = "@formaPago";
-                ParFormaPago.SqlDbType = SqlDbType.VarChar;
-                ParFormaPago.Size = 30;
-                ParFormaPago.Value = Venta.FormaPago;
-                sqlCmd.Parameters.Add(ParFormaPago);
-
-                SqlParameter ParDescuento = new SqlParameter();
-                ParDescuento.ParameterName = "@descuento";
-                ParDescuento.SqlDbType = SqlDbType.Decimal;
-                ParDescuento.Precision = 8;
-                ParDescuento.Scale = 2;
-                ParDescuento.Value = Venta.Descuento;
-                sqlCmd.Parameters.Add(ParDescuento);
-
-                SqlParameter ParIdTrabajador = new SqlParameter();
-                ParIdTrabajador.ParameterName = "@idTrabajador";
-                ParIdTrabajador.SqlDbType = SqlDbType.Int;
-                ParIdTrabajador.Value = Venta.IdTrabajador;
-                sqlCmd.Parameters.Add(ParIdTrabajador);
-
-                SqlParameter ParModo = new SqlParameter();
-                ParModo.ParameterName = "@modo";
-                ParModo.SqlDbType = SqlDbType.VarChar;
-                ParModo.Size = 20;
-                ParModo.Value = Venta.Modo;
-                sqlCmd.Parameters.Add(ParModo);
-
-                SqlParameter ParNroCaja = new SqlParameter();
-                ParNroCaja.ParameterName = "@nroCaja";
-                ParNroCaja.SqlDbType = SqlDbType.Int;
-                ParNroCaja.Value = Venta.NroCaja;
-                sqlCmd.Parameters.Add(ParNroCaja);
-
-                SqlParameter ParFechaEntrega = new SqlParameter();
-                ParFechaEntrega.ParameterName = "@fechaEntrega";
-                ParFechaEntrega.SqlDbType = SqlDbType.DateTime;
-                ParFechaEntrega.Value = Venta.FechaEntrega;
-                sqlCmd.Parameters.Add(ParFechaEntrega);
-
-                SqlParameter ParAdelanto = new SqlParameter();
-                ParAdelanto.ParameterName = "@adelanto";
-                ParAdelanto.SqlDbType = SqlDbType.Decimal;
-                ParAdelanto.Precision = 8;
-                ParAdelanto.Scale = 2;
-                ParAdelanto.Value = Venta.Adelanto;
-                sqlCmd.Parameters.Add(ParAdelanto);
-
-                SqlParameter ParIdTrabajador_Cobro = new SqlParameter();
-                ParIdTrabajador_Cobro.ParameterName = "@idTrabajador_Cobro";
-                ParIdTrabajador_Cobro.SqlDbType = SqlDbType.Int;
-                ParIdTrabajador_Cobro.Value = Venta.IdTrabajador_Cobro;
-
-                sqlCmd.Parameters.Add(ParIdTrabajador_Cobro);
-                rpta = sqlCmd.ExecuteNonQuery() >= 1 ? "OK" : "No se ingresó el Registro";
-
-                if (rpta.Equals("OK"))
-                {
-                    this.IdVenta = Convert.ToInt32(sqlCmd.Parameters["@idVenta"].Value);
-                    foreach (DDetalleVenta det in DetalleVenta)
-                    {
-                        det.IdVenta = this.IdVenta;
-
-                        rpta = det.InsertarPrueba(det, ref sqlCon, ref sqlTran,DetalleVentaMenu);
-                        if (!rpta.Equals("OK"))
-                        {
-                            break;
-
                         }
                     }
                 }
@@ -729,6 +610,13 @@ namespace CapaDatos
                 ParTelefono.Size = 40;
                 ParTelefono.Value = Venta.Telefono;
                 sqlCmd.Parameters.Add(ParTelefono);
+
+                SqlParameter ParTipoCliente = new SqlParameter();
+                ParTipoCliente.ParameterName = "@tipoCliente";
+                ParTipoCliente.SqlDbType = SqlDbType.Char;
+                ParTipoCliente.Size = 1;
+                ParTipoCliente.Value = Venta.TipoCliente;
+                sqlCmd.Parameters.Add(ParTipoCliente);
 
                 rpta = sqlCmd.ExecuteNonQuery() >= 1 ? "OK" : "No se ingresó el Registro";
 
@@ -903,6 +791,13 @@ namespace CapaDatos
                 ParTelefono.Size = 40;
                 ParTelefono.Value = Venta.Telefono;
                 sqlCmd.Parameters.Add(ParTelefono);
+
+                SqlParameter ParTipoCliente = new SqlParameter();
+                ParTipoCliente.ParameterName = "@tipoCliente";
+                ParTipoCliente.SqlDbType = SqlDbType.Char;
+                ParTipoCliente.Size = 1;
+                ParTipoCliente.Value = Venta.TipoCliente;
+                sqlCmd.Parameters.Add(ParTipoCliente);
 
                 rpta = sqlCmd.ExecuteNonQuery() >= 1 ? "OK" : "No se ingresó el Registro";
 
@@ -1123,6 +1018,20 @@ namespace CapaDatos
                 ParIdTrabajador_Cobro.SqlDbType = SqlDbType.Int;
                 ParIdTrabajador_Cobro.Value = Venta.IdTrabajador_Cobro;
                 sqlCmd.Parameters.Add(ParIdTrabajador_Cobro);
+
+                SqlParameter ParIdCliente = new SqlParameter();
+                ParIdCliente.ParameterName = "@idCliente";
+                ParIdCliente.SqlDbType = SqlDbType.Int;
+                ParIdCliente.Value = Venta.IdCliente;
+                sqlCmd.Parameters.Add(ParIdCliente);
+
+                SqlParameter ParTipoCliente = new SqlParameter();
+                ParTipoCliente.ParameterName = "@tipoCliente";
+                ParTipoCliente.SqlDbType = SqlDbType.Char;
+                ParTipoCliente.Value = Venta.TipoCliente;
+                ParTipoCliente.Size = 1;
+                sqlCmd.Parameters.Add(ParTipoCliente);
+
 
                 rpta = sqlCmd.ExecuteNonQuery() >= 1 ? "OK" : "No se editó el Registro";
             }
@@ -1375,6 +1284,13 @@ namespace CapaDatos
                 ParTelefono.Size = 40;
                 ParTelefono.Value = Venta.Telefono;
                 sqlCmd.Parameters.Add(ParTelefono);
+
+                SqlParameter ParTipoCliente = new SqlParameter();
+                ParTipoCliente.ParameterName = "@tipoCliente";
+                ParTipoCliente.SqlDbType = SqlDbType.Char;
+                ParTipoCliente.Size = 1;
+                ParTipoCliente.Value = Venta.TipoCliente;
+                sqlCmd.Parameters.Add(ParTipoCliente);
 
                 rpta = sqlCmd.ExecuteNonQuery() >= 1 ? "OK" : "No se ingresó el Registro";
 
@@ -1976,6 +1892,13 @@ namespace CapaDatos
                 ParTelefono.Value = Venta.Telefono;
                 sqlCmd.Parameters.Add(ParTelefono);
 
+                SqlParameter ParTipoCliente = new SqlParameter();
+                ParTipoCliente.ParameterName = "@tipoCliente";
+                ParTipoCliente.SqlDbType = SqlDbType.Char;
+                ParTipoCliente.Size = 1;
+                ParTipoCliente.Value = Venta.TipoCliente;
+                sqlCmd.Parameters.Add(ParTipoCliente);
+
                 rpta = sqlCmd.ExecuteNonQuery() >= 1 ? "OK" : "No se ingresó el Registro";
 
                 if (rpta.Equals("OK"))
@@ -2149,6 +2072,12 @@ namespace CapaDatos
                 ParTelefono.Value = Venta.Telefono;
                 sqlCmd.Parameters.Add(ParTelefono);
 
+                SqlParameter ParTipoCliente = new SqlParameter();
+                ParTipoCliente.ParameterName = "@tipoCliente";
+                ParTipoCliente.SqlDbType = SqlDbType.Char;
+                ParTipoCliente.Size = 1;
+                ParTipoCliente.Value = Venta.TipoCliente;
+                sqlCmd.Parameters.Add(ParTipoCliente);
 
                 rpta = sqlCmd.ExecuteNonQuery() >= 1 ? "OK" : "No se ingresó el Registro";
 
@@ -2476,5 +2405,394 @@ namespace CapaDatos
             return dtResultado;
         }
 
+        public string EditarEstadoVentaCredito_Cortesia(string estado, int idVenta)
+        {
+            string rpta = "";
+            SqlConnection sqlCon = new SqlConnection();
+            try
+            {
+                sqlCon.ConnectionString = Conexion.cn;
+                sqlCon.Open();
+                //Comandos
+                SqlCommand sqlCmd = new SqlCommand();
+                sqlCmd.Connection = sqlCon;
+                sqlCmd.CommandText = "sp_editarEstadoVentaCredito_Cortesia";
+                sqlCmd.CommandType = CommandType.StoredProcedure;
+
+                SqlParameter ParEstado = new SqlParameter();
+                ParEstado.ParameterName = "@estVenta";
+                ParEstado.SqlDbType = SqlDbType.VarChar;
+                ParEstado.Size = 20;
+                ParEstado.Value = estado;
+                sqlCmd.Parameters.Add(ParEstado);
+
+                SqlParameter ParIdVenta = new SqlParameter();
+                ParIdVenta.ParameterName = "@idVenta";
+                ParIdVenta.SqlDbType = SqlDbType.Int;
+                ParIdVenta.Value = idVenta;
+                sqlCmd.Parameters.Add(ParIdVenta);
+
+
+                rpta = sqlCmd.ExecuteNonQuery() == 1 ? "OK" : "No se editó el Registro";
+            }
+            catch (Exception ex)
+            {
+                rpta = ex.Message;
+            }
+            finally
+            {
+                if (sqlCon.State == ConnectionState.Open) sqlCon.Close();
+            }
+            return rpta;
+        }
+
+        public string InsertarPedido_PagadoCreCort(DVenta Venta, List<DDetalleVenta> DetalleVenta, List<DDetalleVentaMenu> DetalleVentaMenu)
+        {
+            string rpta = "";
+           
+            SqlConnection sqlCon = new SqlConnection();
+            try
+            {
+                sqlCon.ConnectionString = Conexion.cn;
+                sqlCon.Open();
+
+                SqlTransaction sqlTran = sqlCon.BeginTransaction();
+                //Comandos
+                SqlCommand sqlCmd = new SqlCommand();
+                sqlCmd.Connection = sqlCon;
+                sqlCmd.Transaction = sqlTran;
+
+                sqlCmd.CommandText = "sp_insertarVentaPedido";
+                sqlCmd.CommandType = CommandType.StoredProcedure;
+
+                SqlParameter ParIdVenta = new SqlParameter();
+                ParIdVenta.ParameterName = "@idVenta";
+                ParIdVenta.SqlDbType = SqlDbType.Int;
+                ParIdVenta.Direction = ParameterDirection.Output;
+                sqlCmd.Parameters.Add(ParIdVenta);
+
+                SqlParameter ParIdCliente = new SqlParameter();
+                ParIdCliente.ParameterName = "@idCliente";
+                ParIdCliente.SqlDbType = SqlDbType.Int;
+                ParIdCliente.Value = Venta.IdCliente;
+                sqlCmd.Parameters.Add(ParIdCliente);
+
+                SqlParameter ParIdMesa = new SqlParameter();
+                ParIdMesa.ParameterName = "@idMesa";
+                ParIdMesa.SqlDbType = SqlDbType.Int;
+                ParIdMesa.Value = Venta.IdMesa;
+                sqlCmd.Parameters.Add(ParIdMesa);
+
+                SqlParameter ParFechaIngreso = new SqlParameter();
+                ParFechaIngreso.ParameterName = "@fechaVenta";
+                ParFechaIngreso.SqlDbType = SqlDbType.DateTime;
+                ParFechaIngreso.Value = Venta.Fecha;
+                sqlCmd.Parameters.Add(ParFechaIngreso);
+
+                SqlParameter ParEstado = new SqlParameter();
+                ParEstado.ParameterName = "@estado";
+                ParEstado.SqlDbType = SqlDbType.VarChar;
+                ParEstado.Size = 20;
+                ParEstado.Value = Venta.Estado;
+                sqlCmd.Parameters.Add(ParEstado);
+
+                SqlParameter ParFormaPago = new SqlParameter();
+                ParFormaPago.ParameterName = "@formaPago";
+                ParFormaPago.SqlDbType = SqlDbType.VarChar;
+                ParFormaPago.Size = 30;
+                ParFormaPago.Value = Venta.FormaPago;
+                sqlCmd.Parameters.Add(ParFormaPago);
+
+                SqlParameter ParDescuento = new SqlParameter();
+                ParDescuento.ParameterName = "@descuento";
+                ParDescuento.SqlDbType = SqlDbType.Decimal;
+                ParDescuento.Precision = 8;
+                ParDescuento.Scale = 2;
+                ParDescuento.Value = Venta.Descuento;
+                sqlCmd.Parameters.Add(ParDescuento);
+
+                SqlParameter ParIdTrabajador = new SqlParameter();
+                ParIdTrabajador.ParameterName = "@idTrabajador";
+                ParIdTrabajador.SqlDbType = SqlDbType.Int;
+                ParIdTrabajador.Value = Venta.IdTrabajador;
+                sqlCmd.Parameters.Add(ParIdTrabajador);
+
+                SqlParameter ParModo = new SqlParameter();
+                ParModo.ParameterName = "@modo";
+                ParModo.SqlDbType = SqlDbType.VarChar;
+                ParModo.Size = 20;
+                ParModo.Value = Venta.Modo;
+                sqlCmd.Parameters.Add(ParModo);
+
+                SqlParameter ParNroCaja = new SqlParameter();
+                ParNroCaja.ParameterName = "@nroCaja";
+                ParNroCaja.SqlDbType = SqlDbType.Int;
+                ParNroCaja.Value = Venta.NroCaja;
+                sqlCmd.Parameters.Add(ParNroCaja);
+
+                SqlParameter ParFechaEntrega = new SqlParameter();
+                ParFechaEntrega.ParameterName = "@fechaEntrega";
+                ParFechaEntrega.SqlDbType = SqlDbType.DateTime;
+                ParFechaEntrega.Value = Venta.FechaEntrega;
+                sqlCmd.Parameters.Add(ParFechaEntrega);
+
+                SqlParameter ParAdelanto = new SqlParameter();
+                ParAdelanto.ParameterName = "@adelanto";
+                ParAdelanto.SqlDbType = SqlDbType.Decimal;
+                ParAdelanto.Precision = 8;
+                ParAdelanto.Scale = 2;
+                ParAdelanto.Value = Venta.Adelanto;
+                sqlCmd.Parameters.Add(ParAdelanto);
+
+                SqlParameter ParIdTrabajador_Cobro = new SqlParameter();
+                ParIdTrabajador_Cobro.ParameterName = "@idTrabajador_Cobro";
+                ParIdTrabajador_Cobro.SqlDbType = SqlDbType.Int;
+                ParIdTrabajador_Cobro.Value = Venta.IdTrabajador_Cobro;
+                sqlCmd.Parameters.Add(ParIdTrabajador_Cobro);
+
+                SqlParameter ParObs = new SqlParameter();
+                ParObs.ParameterName = "@obs";
+                ParObs.SqlDbType = SqlDbType.VarChar;
+                ParObs.Size = 300;
+                ParObs.Value = Venta.Obs;
+                sqlCmd.Parameters.Add(ParObs);
+
+                SqlParameter ParMotivo = new SqlParameter();
+                ParMotivo.ParameterName = "@motivo";
+                ParMotivo.SqlDbType = SqlDbType.VarChar;
+                ParMotivo.Size = 50;
+                ParMotivo.Value = Venta.Motivo;
+                sqlCmd.Parameters.Add(ParMotivo);
+
+                SqlParameter ParCliente = new SqlParameter();
+                ParCliente.ParameterName = "@cliente";
+                ParCliente.SqlDbType = SqlDbType.VarChar;
+                ParCliente.Size = 60;
+                ParCliente.Value = Venta.Cliente;
+                sqlCmd.Parameters.Add(ParCliente);
+
+                SqlParameter ParTelefono = new SqlParameter();
+                ParTelefono.ParameterName = "@telefono";
+                ParTelefono.SqlDbType = SqlDbType.VarChar;
+                ParTelefono.Size = 40;
+                ParTelefono.Value = Venta.Telefono;
+                sqlCmd.Parameters.Add(ParTelefono);
+
+                SqlParameter ParTipoCliente = new SqlParameter();
+                ParTipoCliente.ParameterName = "@tipoCliente";
+                ParTipoCliente.SqlDbType = SqlDbType.Char;
+                ParTipoCliente.Size = 1;
+                ParTipoCliente.Value = Venta.TipoCliente;
+                sqlCmd.Parameters.Add(ParTipoCliente);
+
+                rpta = sqlCmd.ExecuteNonQuery() >= 1 ? "OK" : "No se ingresó el Registro";
+
+                if (rpta.Equals("OK"))
+                {
+                    this.IdVenta = Convert.ToInt32(sqlCmd.Parameters["@idVenta"].Value);
+                    foreach (DDetalleVenta det in DetalleVenta)
+                    {
+                        det.IdVenta = this.IdVenta;
+
+                        rpta = det.Insertar(det, ref sqlCon, ref sqlTran, DetalleVentaMenu);
+                        if (!rpta.Equals("OK"))
+                        {
+                            break;
+
+                        }
+                    }
+                }
+
+                if (rpta.Equals("OK"))
+                {
+                    sqlTran.Commit();
+                }
+                else
+                {
+                    sqlTran.Rollback();
+                }
+                rpta = Convert.ToString(this.IdVenta);
+            }
+            catch (Exception ex)
+            {
+                rpta = ex.Message;
+            }
+            finally
+            {
+                if (sqlCon.State == ConnectionState.Open) sqlCon.Close();
+            }
+            return rpta;
+        }
+
+        public DataTable mostrarCreditosPendientes()
+        {
+            DataTable dtResultado = new DataTable("Pedidos");
+            SqlConnection sqlCon = new SqlConnection();
+            try
+            {
+                sqlCon.ConnectionString = Conexion.cn;
+                SqlCommand sqlCmd = new SqlCommand();
+                sqlCmd.Connection = sqlCon;
+                sqlCmd.CommandText = "sp_mostrarCreditosPendientes";
+                sqlCmd.CommandType = CommandType.StoredProcedure;
+
+                SqlDataAdapter sqlDat = new SqlDataAdapter(sqlCmd);
+                sqlDat.Fill(dtResultado);
+            }
+            catch (Exception ex)
+            {
+                dtResultado = null;
+            }
+
+            return dtResultado;
+        }
+        public DataTable BuscarCreditosPendientes(DVenta Venta)
+        {
+            DataTable dtResultado = new DataTable("Venta");
+            SqlConnection sqlCon = new SqlConnection();
+
+            try
+            {
+                sqlCon.ConnectionString = Conexion.cn;
+                SqlCommand sqlCmd = new SqlCommand();
+                sqlCmd.Connection = sqlCon;
+                sqlCmd.CommandText = "sp_buscarCreditosPendientes";
+                sqlCmd.CommandType = CommandType.StoredProcedure;
+
+                SqlParameter ParTextoBuscar = new SqlParameter();
+                ParTextoBuscar.ParameterName = "@textoBuscar";
+                ParTextoBuscar.SqlDbType = SqlDbType.VarChar;
+                ParTextoBuscar.Size = 50;
+                ParTextoBuscar.Value = Venta.TextoBuscar;
+
+                sqlCmd.Parameters.Add(ParTextoBuscar);
+
+                SqlDataAdapter sqlDat = new SqlDataAdapter(sqlCmd);
+                sqlDat.Fill(dtResultado);
+            }
+            catch (Exception ex)
+            {
+                dtResultado = null;
+            }
+
+            return dtResultado;
+        }
+
+        public DataTable BuscarCreditosPendientesCliente(DVenta Venta)
+        {
+            DataTable dtResultado = new DataTable("Venta");
+            SqlConnection sqlCon = new SqlConnection();
+
+            try
+            {
+                sqlCon.ConnectionString = Conexion.cn;
+                SqlCommand sqlCmd = new SqlCommand();
+                sqlCmd.Connection = sqlCon;
+                sqlCmd.CommandText = "sp_buscarCreditosPendientes_Cliente";
+                sqlCmd.CommandType = CommandType.StoredProcedure;
+
+                SqlParameter ParTextoBuscar = new SqlParameter();
+                ParTextoBuscar.ParameterName = "@textoBuscar";
+                ParTextoBuscar.SqlDbType = SqlDbType.VarChar;
+                ParTextoBuscar.Size = 50;
+                ParTextoBuscar.Value = Venta.TextoBuscar;
+
+                sqlCmd.Parameters.Add(ParTextoBuscar);
+
+                SqlDataAdapter sqlDat = new SqlDataAdapter(sqlCmd);
+                sqlDat.Fill(dtResultado);
+            }
+            catch (Exception ex)
+            {
+                dtResultado = null;
+            }
+
+            return dtResultado;
+        }
+
+
+        public DataTable reporteVentasFecha_FormaPago(DateTime fechaInicio, DateTime fechaFin, string forma)
+        {
+            DataTable dtResultado = new DataTable("Venta");
+            SqlConnection sqlCon = new SqlConnection();
+            try
+            {
+                sqlCon.ConnectionString = Conexion.cn;
+                SqlCommand sqlCmd = new SqlCommand();
+                sqlCmd.Connection = sqlCon;
+                sqlCmd.CommandText = "sp_reporteTipoVenta";
+                sqlCmd.CommandType = CommandType.StoredProcedure;
+
+                SqlParameter ParFechaInicio = new SqlParameter();
+                ParFechaInicio.ParameterName = "@fechaInicio";
+                ParFechaInicio.SqlDbType = SqlDbType.DateTime;
+                ParFechaInicio.Value = fechaInicio;
+                sqlCmd.Parameters.Add(ParFechaInicio);
+
+                SqlParameter ParFechaFin = new SqlParameter();
+                ParFechaFin.ParameterName = "@fechaFin";
+                ParFechaFin.SqlDbType = SqlDbType.DateTime;
+                ParFechaFin.Value = fechaFin;
+                sqlCmd.Parameters.Add(ParFechaFin);
+
+                SqlParameter ParTipo = new SqlParameter();
+                ParTipo.ParameterName = "@forma";
+                ParTipo.SqlDbType = SqlDbType.VarChar;
+                ParTipo.Size = 20;
+                ParTipo.Value = forma;
+                sqlCmd.Parameters.Add(ParTipo);
+
+                SqlDataAdapter sqlDat = new SqlDataAdapter(sqlCmd);
+                sqlDat.Fill(dtResultado);
+            }
+            catch (Exception ex)
+            {
+                dtResultado = null;
+            }
+
+            return dtResultado;
+        }
+
+        public DataTable reporteVentasFecha_FormaPagTo(DateTime fechaInicio, DateTime fechaFin, string forma)
+        {
+            DataTable dtResultado = new DataTable("Venta");
+            SqlConnection sqlCon = new SqlConnection();
+            try
+            {
+                sqlCon.ConnectionString = Conexion.cn;
+                SqlCommand sqlCmd = new SqlCommand();
+                sqlCmd.Connection = sqlCon;
+                sqlCmd.CommandText = "sp_reporteTipoVentaTrabajador";
+                sqlCmd.CommandType = CommandType.StoredProcedure;
+
+                SqlParameter ParFechaInicio = new SqlParameter();
+                ParFechaInicio.ParameterName = "@fechaInicio";
+                ParFechaInicio.SqlDbType = SqlDbType.DateTime;
+                ParFechaInicio.Value = fechaInicio;
+                sqlCmd.Parameters.Add(ParFechaInicio);
+
+                SqlParameter ParFechaFin = new SqlParameter();
+                ParFechaFin.ParameterName = "@fechaFin";
+                ParFechaFin.SqlDbType = SqlDbType.DateTime;
+                ParFechaFin.Value = fechaFin;
+                sqlCmd.Parameters.Add(ParFechaFin);
+
+                SqlParameter ParTipo = new SqlParameter();
+                ParTipo.ParameterName = "@forma";
+                ParTipo.SqlDbType = SqlDbType.VarChar;
+                ParTipo.Size = 20;
+                ParTipo.Value = forma;
+                sqlCmd.Parameters.Add(ParTipo);
+
+                SqlDataAdapter sqlDat = new SqlDataAdapter(sqlCmd);
+                sqlDat.Fill(dtResultado);
+            }
+            catch (Exception ex)
+            {
+                dtResultado = null;
+            }
+
+            return dtResultado;
+        }
     }
 }

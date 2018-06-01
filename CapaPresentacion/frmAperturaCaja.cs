@@ -96,12 +96,10 @@ namespace CapaPresentacion
                     string rpta = "";
                     DateTime? fechaApertura = null;
                     rpta=NCaja_A.Insertar(Convert.ToInt32(this.lblIdUsuario.Text), "Caja 1", DateTime.Now, Convert.ToDecimal(this.txtMonto.Text.Trim()), "Abierta",1,00.00m,00-00m,
-                        00.00m,00.00m, Convert.ToDecimal(this.txtMonto.Text.Trim()),fechaApertura);
+                        00.00m,00.00m, Convert.ToDecimal(this.txtMonto.Text.Trim()),fechaApertura,00.00m,00.00m,00.00m,00.00m,00-00m,00.00m);
                     if(rpta != "No se ingresó el Registro")
                     {
-                        MessageBox.Show("Se aperturó la caja");
-                        // Application.Exit();
-                        this.Hide();
+                        this.Close();
                       
                     }else
                     {

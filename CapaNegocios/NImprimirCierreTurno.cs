@@ -11,7 +11,7 @@ namespace CapaNegocios
     public class NImprimirCierreTurno
     {
         public static void imprimirCom(string trabajador, string fechaApertura, DateTime fechaCierre, string montoApertura, string ventasEfectivo, string otrosIngresos,
-            string salidasDinero, string efectivoCaja, string nroVentas, string ventasTarjeta, string totalParcial)
+            string salidasDinero, string efectivoCaja, string nroVentas, string ventasTarjeta, string totalParcial, string ventaCredito, string ventaConsumoT,string ventaCortesia)
         {
            
             NTicket ticket = new NTicket();
@@ -47,20 +47,28 @@ namespace CapaNegocios
            
             ticket.TextoExtremos("En Efectivo: +", ventasEfectivo);
             ticket.TextoExtremos("Con Tarjeta: +", ventasTarjeta);
+            ticket.TextoExtremos("Credito: +", ventaCredito);
+            ticket.TextoExtremos("Cortesia: +", ventaCortesia);
+            ticket.TextoExtremos("Consumo Trab: +", ventaConsumoT);
             ticket.lineasAsteriscos();
             
             decimal ventasTarjetaD = Convert.ToDecimal(ventasTarjeta);
-            decimal total = ventasTarjetaD + ventasEfectivoD;
+            decimal ventaCreditoD = Convert.ToDecimal(ventaCredito);
+            decimal ventaCortesiaD = Convert.ToDecimal(ventaCortesia);
+            decimal ventaConsumoTD = Convert.ToDecimal(ventaConsumoT);
+            decimal total = ventasTarjetaD + ventasEfectivoD + ventaCreditoD + ventaCortesiaD + ventaConsumoTD;
+
             ticket.TextoExtremos("TotalVentas: ", total.ToString());
 
             ticket.CortaTicket1();
-            //ticket.ImprimirTicket("Microsoft XPS Document Writer");//Nombre de la impresora ticketera
-            ticket.ImprimirTicket("CAJA");
-          //  ticket.ImprimirTicket("COCINA_LALOS");//Nombre de la impresora ticketera
+            ticket.ImprimirTicket("Microsoft XPS Document Writer");//Nombre de la impresora ticketera
+           // ticket.ImprimirTicket("CAJA");
+          // ticket.ImprimirTicket("COCINA_LALOS");//Nombre de la impresora ticketera
         }
 
         public static void imprimirCaja(string trabajador, string fechaApertura, DateTime fechaCierre, string montoApertura, string ventasEfectivo, string otrosIngresos,
-            string salidasDinero, string efectivoCaja, string nroVentas, string ventasTarjeta,string nroTickets, string nroBoletas, string nroFacturas,string totalParcial)
+            string salidasDinero, string efectivoCaja, string nroVentas, string ventasTarjeta,string nroTickets, string nroBoletas, string nroFacturas,string totalParcial,
+            string ventaCredito, string ventaCortesia, string ventaConsumoTr)
         {
 
             NTicket ticket = new NTicket();
@@ -96,10 +104,16 @@ namespace CapaNegocios
 
             ticket.TextoExtremos("En Efectivo: +", ventasEfectivo);
             ticket.TextoExtremos("Con Tarjeta: +", ventasTarjeta);
+            ticket.TextoExtremos("Credito: +", ventaCredito);
+            ticket.TextoExtremos("Cortesia: +", ventaCortesia);
+            ticket.TextoExtremos("Consumo Tr: +", ventaConsumoTr);
             ticket.lineasAsteriscos();
 
             decimal ventasTarjetaD = Convert.ToDecimal(ventasTarjeta);
-            decimal total = ventasTarjetaD + ventasEfectivoD;
+            decimal ventaCreditoD = Convert.ToDecimal(ventaCredito);
+            decimal ventaCortesiaD = Convert.ToDecimal(ventaCortesia);
+            decimal ventaConsumoTD = Convert.ToDecimal(ventaConsumoTr);
+            decimal total = ventasTarjetaD + ventasEfectivoD + ventaCreditoD + ventaConsumoTD + ventaCortesiaD;
             ticket.TextoExtremos("TotalVentas: ", total.ToString());
 
             ticket.TextoCentro("COMPROBANTES");
@@ -109,8 +123,8 @@ namespace CapaNegocios
             ticket.TextoExtremos("Nro FACTURAS:", nroFacturas);
 
             ticket.CortaTicket1();
-             //ticket.ImprimirTicket("Microsoft XPS Document Writer");//Nombre de la impresora ticketera
-              ticket.ImprimirTicket("CAJA");
+             ticket.ImprimirTicket("Microsoft XPS Document Writer");//Nombre de la impresora ticketera
+              //ticket.ImprimirTicket("CAJA");
            // ticket.ImprimirTicket("COCINA_LALOS");//Nombre de la impresora ticketera
         }
     }

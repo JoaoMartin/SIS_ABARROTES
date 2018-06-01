@@ -43,6 +43,7 @@ namespace CapaPresentacion
             this.txtTelefono.Text = string.Empty;
             this.txtEmail.Text = string.Empty;
             this.txtIdTrabajador.Text = string.Empty;
+            this.txtSueldo.Text = string.Empty;
 
             this.pbFecha.Enabled = false;
             this.cbEliminar.Checked = false;
@@ -67,6 +68,8 @@ namespace CapaPresentacion
             this.rbMasculino.Enabled = valor;
             this.rbFemenino.Enabled = valor;
             this.errorIcono.Clear();
+            txtSueldo.ReadOnly = !valor;
+            dtFecha.Enabled = valor;
 
         }
 
@@ -96,19 +99,23 @@ namespace CapaPresentacion
         private void ocultarColumnas()
         {
             this.dataListado.Columns[0].Visible = false;
-            this.dataListado.Columns[4].Visible = false;
+            this.dataListado.Columns[1].Visible = false;
+            this.dataListado.Columns[5].Visible = false;
             this.dataListado.Columns[7].Visible = false;
+            this.dataListado.Columns[8].Visible = false;
             this.dataListado.Columns[10].Visible = false;
             this.dataListado.Columns[9].Visible = false;
+            this.dataListado.Columns[11].Visible = false;
             this.dataListado.Columns[12].Visible = false;
             this.dataListado.Columns[13].Visible = false;
             this.dataListado.Columns[14].Visible = false;
             //this.dataListado.Columns[4].Visible = false;
-
-            this.dataListado.Columns[1].Width = 80;
-            this.dataListado.Columns[2].Width = 170;
-            this.dataListado.Columns[3].Width = 170;
-            this.dataListado.Columns[8].Width = 300;
+            this.dataListado.Columns[2].Width = 320;
+            this.dataListado.Columns[3].Width = 100;
+            this.dataListado.Columns[4].Width = 100;
+            this.dataListado.Columns[6].Width = 220;
+            // this.dataListado.Columns[5].Width = 70;
+            // this.dataListado.Columns[8].Width = 300;
 
             this.dataListado.Columns[11].Width = 146;
             //this.dataListado.Columns[7].Width = 120;
@@ -188,7 +195,7 @@ namespace CapaPresentacion
             try
             {
                 string rpta = "";
-                string sexo = "";
+                
                 DateTime fecNac;
 
                 if (this.cbCargo.SelectedIndex == -1)
@@ -201,11 +208,6 @@ namespace CapaPresentacion
                     MensajeError("Ingrese el nombre del trabajador");
                     errorIcono.SetError(txtNombre, "Ingrese el nombre");
                 }
-                else if (this.txtApellidos.Text.Trim() == string.Empty)
-                {
-                    MensajeError("Ingrese los apellidos del trabajador");
-                    errorIcono.SetError(txtApellidos, "Ingrese el nombre");
-                }
                 else if (this.cbTipoDoc.SelectedIndex == -1)
                 {
                     MensajeError("Seleccione un tipo de documento");
@@ -215,11 +217,6 @@ namespace CapaPresentacion
                 {
                     MensajeError("Ingrese el número de documento");
                     errorIcono.SetError(txtNumDoc, "Ingrese el número de documento");
-                }
-                else if (this.rbMasculino.Checked == false && this.rbFemenino.Checked == false)
-                {
-                    MensajeError("Seleccione el sexo");
-                    errorIcono.SetError(rbMasculino, "Seleccionar");
                 }
                 else if (this.txtFechaNac.Text.Trim() == string.Empty)
                 {
@@ -236,6 +233,11 @@ namespace CapaPresentacion
                     MensajeError("Ingrese el telefono del trabajador");
                     errorIcono.SetError(txtTelefono, "Ingrese el telefono");
                 }
+                else if (this.txtSueldo.Text.Trim() == string.Empty)
+                {
+                    MensajeError("Ingrese el sueldo");
+                    errorIcono.SetError(txtSueldo, "Ingrese el telefono del trabajador");
+                }
                 else
                 {
                     if (this.txtFechaNac.Text == "")
@@ -246,25 +248,27 @@ namespace CapaPresentacion
                     {
                         fecNac = Convert.ToDateTime(this.txtFechaNac.Text);
                     }
-                    if (this.rbMasculino.Checked == true)
-                    {
-                        sexo = "M";
-                    }
-                    else
-                    {
-                        sexo = "F";
-                    }
+                  
                     if (this.IsNuevo)
                     {
-                        rpta = NTrabajador.Insertar(this.txtNombre.Text.Trim().ToUpper(), this.txtApellidos.Text.Trim().ToUpper(), this.cbTipoDoc.SelectedItem.ToString(),
+                        /*rpta = NTrabajador.Insertar(this.txtNombre.Text.Trim().ToUpper(), this.txtApellidos.Text.Trim().ToUpper(), this.cbTipoDoc.SelectedItem.ToString(),
                                                     this.txtNumDoc.Text.Trim(), sexo, fecNac, this.txtDireccion.Text.Trim(), this.txtTelefono.Text.Trim(), this.txtEmail.Text.Trim(),
-                                                    "A", Convert.ToInt32(this.cbCargo.SelectedValue.ToString()), this.txtUsuario.Text.Trim(), this.txtPass.Text.Trim());
+                                                    "A", Convert.ToInt32(this.cbCargo.SelectedValue.ToString()), this.txtUsuario.Text.Trim(), this.txtPass.Text.Trim(),
+                                                    Convert.ToDecimal(txtSueldo.Text.Trim()),dtFecha.Value);*/
+                        rpta = NPersona.Insertar(this.txtNombre.Text.Trim().ToUpper() + " " + this.txtApellidos.Text.Trim().ToUpper(), fecNac,cbTipoDoc.SelectedItem.ToString(),
+                            this.txtNumDoc.Text.Trim(),this.txtDireccion.Text.Trim().ToUpper(),this.txtEmail.Text.Trim(), this.txtTelefono.Text.Trim(), null, "T",txtUsuario.Text.Trim(),
+                            txtPass.Text, Convert.ToDecimal(txtSueldo.Text.Trim()),  dtFecha.Value, "A", Convert.ToInt32(this.cbCargo.SelectedValue.ToString()));
                     }
                     else
                     {
-                        rpta = NTrabajador.Editar(Convert.ToInt32(this.txtIdTrabajador.Text), this.txtNombre.Text.Trim().ToUpper(), this.txtApellidos.Text.Trim().ToUpper(), this.cbTipoDoc.SelectedItem.ToString(),
+                      /*  rpta = NTrabajador.Editar(Convert.ToInt32(this.txtIdTrabajador.Text), this.txtNombre.Text.Trim().ToUpper(), this.txtApellidos.Text.Trim().ToUpper(), this.cbTipoDoc.SelectedItem.ToString(),
                                                     this.txtNumDoc.Text.Trim(), sexo, fecNac, this.txtDireccion.Text.Trim(), this.txtTelefono.Text.Trim(), this.txtEmail.Text.Trim(),
-                                                    "A", Convert.ToInt32(this.cbCargo.SelectedValue.ToString()), this.txtUsuario.Text.Trim(), this.txtPass.Text.Trim());
+                                                    "A", Convert.ToInt32(this.cbCargo.SelectedValue.ToString()), this.txtUsuario.Text.Trim(), this.txtPass.Text.Trim(),
+                                                    Convert.ToDecimal(txtSueldo.Text.Trim()),dtFecha.Value);*/
+
+                        rpta = NPersona.Editar(Convert.ToInt32(this.txtIdTrabajador.Text),this.txtNombre.Text.Trim().ToUpper() + " " + this.txtApellidos.Text.Trim().ToUpper(), fecNac,
+                            cbTipoDoc.SelectedItem.ToString(),this.txtNumDoc.Text.Trim(), this.txtDireccion.Text.Trim().ToUpper(), this.txtEmail.Text.Trim(), this.txtTelefono.Text.Trim(),
+                            null, "T", txtUsuario.Text.Trim(),txtPass.Text, Convert.ToDecimal(txtSueldo.Text.Trim()), dtFecha.Value, "A", Convert.ToInt32(this.cbCargo.SelectedValue.ToString()));
                     }
 
                     if (rpta.Equals("OK"))
@@ -493,10 +497,12 @@ namespace CapaPresentacion
 
             this.txtIdTrabajador.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["Codigo"].Value);
             this.txtNombre.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["Nombre"].Value);
-            this.txtApellidos.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["Apellidos"].Value);
+            //this.txtApellidos.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["Apellidos"].Value);
             this.cbTipoDoc.SelectedItem = Convert.ToString(this.dataListado.CurrentRow.Cells["Tipo_Doc"].Value);
             this.txtNumDoc.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["Nro_Doc"].Value);
-            sexo = Convert.ToString(this.dataListado.CurrentRow.Cells["Sexo"].Value);
+            this.txtSueldo.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["Sueldo"].Value);
+            this.dtFecha.Value = Convert.ToDateTime(this.dataListado.CurrentRow.Cells["FechaIngreso"].Value);
+            //sexo = Convert.ToString(this.dataListado.CurrentRow.Cells["Sexo"].Value);
             if (sexo == "M")
             {
                 this.rbMasculino.Checked = true;
@@ -537,6 +543,8 @@ namespace CapaPresentacion
             {
                 this.Mostrar();
                 this.txtBuscar.Text = string.Empty;
+                txtBuscar.Clear();
+                txtBuscar.Select();
             }
         }
 
@@ -553,7 +561,62 @@ namespace CapaPresentacion
 
         private void frmTrabajador_FormClosed(object sender, FormClosedEventArgs e)
         {
-        } 
-            
+        }
+
+        private void txtSueldo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 8)
+            {
+                e.Handled = false;
+                return;
+            }
+            if (!(char.IsNumber(e.KeyChar)) && !(e.KeyChar == '.'))
+            {
+                e.Handled = true;
+                return;
+            }
+
+            bool IsDec = false;
+            int nroDec = 0;
+
+            for (int i = 0; i < txtSueldo.Text.Length; i++)
+            {
+                if (txtSueldo.Text[i] == '.')
+                    IsDec = true;
+
+                if (IsDec && nroDec++ >= 2)
+                {
+                    e.Handled = true;
+                    return;
+                }
+
+
+            }
+
+            if (e.KeyChar >= 48 && e.KeyChar <= 57)
+                e.Handled = false;
+            else if (e.KeyChar == 46)
+                e.Handled = (IsDec) ? true : false;
+            else
+                e.Handled = true;
+        }
+
+        private void rbNombre_CheckedChanged(object sender, EventArgs e)
+        {
+            txtBuscar.Clear();
+            txtBuscar.Select();
+        }
+
+        private void rbDni_CheckedChanged(object sender, EventArgs e)
+        {
+            txtBuscar.Clear();
+            txtBuscar.Select();
+        }
+
+        private void rbTipoTrabajador_CheckedChanged(object sender, EventArgs e)
+        {
+            txtBuscar.Clear();
+            txtBuscar.Select();
+        }
     }
 }

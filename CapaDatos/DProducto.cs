@@ -24,6 +24,7 @@ namespace CapaDatos
         private decimal _Costo;
         private int _IdUnidadMedida;
         private decimal _StockTienda;
+
         public int IdProducto
         {
             get

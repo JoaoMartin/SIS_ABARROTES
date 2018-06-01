@@ -60,6 +60,12 @@
     <Compile Include="fmComprobanteManual.Designer.cs">
       <DependentUpon>fmComprobanteManual.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmAdelanto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAdelanto.Designer.cs">
+      <DependentUpon>frmAdelanto.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmAlmacen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -120,11 +126,23 @@
     <Compile Include="frmCierreCaja.Designer.cs">
       <DependentUpon>frmCierreCaja.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmConfirmarCredito.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmConfirmarCredito.Designer.cs">
+      <DependentUpon>frmConfirmarCredito.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmConsultaCierreCaja.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmConsultaCierreCaja.Designer.cs">
       <DependentUpon>frmConsultaCierreCaja.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmConteoDinero.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmConteoDinero.Designer.cs">
+      <DependentUpon>frmConteoDinero.cs</DependentUpon>
     </Compile>
     <Compile Include="frmCorteParcial.cs">
       <SubType>Form</SubType>
@@ -150,6 +168,12 @@
     <Compile Include="frmControlCaja.Designer.cs">
       <DependentUpon>frmControlCaja.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmCreditosPendientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCreditosPendientes.Designer.cs">
+      <DependentUpon>frmCreditosPendientes.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmDelivery.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -173,6 +197,12 @@
     </Compile>
     <Compile Include="frmDescuentoTotal.Designer.cs">
       <DependentUpon>frmDescuentoTotal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDescuentoTrabajador.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDescuentoTrabajador.Designer.cs">
+      <DependentUpon>frmDescuentoTrabajador.cs</DependentUpon>
     </Compile>
     <Compile Include="frmDetalleCierreCaja.cs">
       <SubType>Form</SubType>
@@ -341,6 +371,12 @@
     </Compile>
     <Compile Include="frmPagarSeparada.Designer.cs">
       <DependentUpon>frmPagarSeparada.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmPagoTrabajador.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPagoTrabajador.Designer.cs">
+      <DependentUpon>frmPagoTrabajador.cs</DependentUpon>
     </Compile>
     <Compile Include="frmPlato.cs">
       <SubType>Form</SubType>
@@ -708,6 +744,12 @@
     <Compile Include="frmVenta.Designer.cs">
       <DependentUpon>frmVenta.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmVentaFormaPago.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmVentaFormaPago.Designer.cs">
+      <DependentUpon>frmVentaFormaPago.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmVentasReservadas.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -779,6 +821,12 @@
     </Compile>
     <Compile Include="frmVistaProveedorIngreso.Designer.cs">
       <DependentUpon>frmVistaProveedorIngreso.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmVistaTrabajador.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmVistaTrabajador.Designer.cs">
+      <DependentUpon>frmVistaTrabajador.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -976,6 +1024,9 @@
     <EmbeddedResource Include="fmComprobanteManual.resx">
       <DependentUpon>fmComprobanteManual.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmAdelanto.resx">
+      <DependentUpon>frmAdelanto.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmAlmacen.resx">
       <DependentUpon>frmAlmacen.cs</DependentUpon>
     </EmbeddedResource>
@@ -1006,8 +1057,14 @@
     <EmbeddedResource Include="frmCierreCaja.resx">
       <DependentUpon>frmCierreCaja.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmConfirmarCredito.resx">
+      <DependentUpon>frmConfirmarCredito.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmConsultaCierreCaja.resx">
       <DependentUpon>frmConsultaCierreCaja.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmConteoDinero.resx">
+      <DependentUpon>frmConteoDinero.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmCorteParcial.resx">
       <DependentUpon>frmCorteParcial.cs</DependentUpon>
@@ -1021,6 +1078,9 @@
     <EmbeddedResource Include="frmControlCaja.resx">
       <DependentUpon>frmControlCaja.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmCreditosPendientes.resx">
+      <DependentUpon>frmCreditosPendientes.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmDelivery.resx">
       <DependentUpon>frmDelivery.cs</DependentUpon>
     </EmbeddedResource>
@@ -1032,6 +1092,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmDescuentoTotal.resx">
       <DependentUpon>frmDescuentoTotal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDescuentoTrabajador.resx">
+      <DependentUpon>frmDescuentoTrabajador.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmDetalleCierreCaja.resx">
       <DependentUpon>frmDetalleCierreCaja.cs</DependentUpon>
@@ -1116,6 +1179,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmPagarSeparada.resx">
       <DependentUpon>frmPagarSeparada.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPagoTrabajador.resx">
+      <DependentUpon>frmPagoTrabajador.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmPlato.resx">
       <DependentUpon>frmPlato.cs</DependentUpon>
@@ -1300,6 +1366,9 @@
     <EmbeddedResource Include="frmVenta.resx">
       <DependentUpon>frmVenta.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmVentaFormaPago.resx">
+      <DependentUpon>frmVentaFormaPago.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmVentasReservadas.resx">
       <DependentUpon>frmVentasReservadas.cs</DependentUpon>
     </EmbeddedResource>
@@ -1335,6 +1404,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmVistaProveedorIngreso.resx">
       <DependentUpon>frmVistaProveedorIngreso.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmVistaTrabajador.resx">
+      <DependentUpon>frmVistaTrabajador.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

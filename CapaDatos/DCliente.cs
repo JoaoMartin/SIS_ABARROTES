@@ -20,6 +20,7 @@ namespace CapaDatos
         private string _Telefono;
         private string _TextoBuscar;
         private int? _IdTipoCliente;
+        private string _Clase;
 
         public int IdCliente
         {
@@ -151,10 +152,23 @@ namespace CapaDatos
             }
         }
 
+        public string Clase
+        {
+            get
+            {
+                return _Clase;
+            }
+
+            set
+            {
+                _Clase = value;
+            }
+        }
+
         public DCliente() { }
 
         public DCliente(int idCliente, string nombre, DateTime fechaNac, string tipoDoc, string nroDoc, string direccion, string email, string telefono, string textoBuscar,
-            int idTipoCliente)
+            int idTipoCliente, string clase)
         {
             this.IdCliente = idCliente;
             this.Nombre = nombre;
@@ -166,6 +180,7 @@ namespace CapaDatos
             this.Telefono = telefono;
             this.TextoBuscar = textoBuscar;
             this.IdTipoCliente = idTipoCliente;
+            this.Clase = clase;
         }
 
         public string Insertar(DCliente Cliente)
@@ -242,6 +257,14 @@ namespace CapaDatos
                 ParIdTipoCliente.Value = Cliente.IdTipoCliente;
                 sqlCmd.Parameters.Add(ParIdTipoCliente);
 
+                SqlParameter ParClase = new SqlParameter();
+                ParClase.ParameterName = "@clase";
+                ParClase.SqlDbType = SqlDbType.Char;
+                ParClase.Size = 1;
+                ParClase.Value = Cliente.Clase;
+                sqlCmd.Parameters.Add(ParClase);
+
+
                 rpta = sqlCmd.ExecuteNonQuery() == 1 ? "OK" : "No se ingresó el Registro";
             }
             catch (Exception ex)
@@ -270,7 +293,7 @@ namespace CapaDatos
                 sqlCmd.CommandType = CommandType.StoredProcedure;
 
                 SqlParameter ParIdCliente = new SqlParameter();
-                ParIdCliente.ParameterName = "@idCliente";
+                ParIdCliente.ParameterName = "@idPersona";
                 ParIdCliente.SqlDbType = SqlDbType.Int;
                 ParIdCliente.Value = Cliente.IdCliente;
                 sqlCmd.Parameters.Add(ParIdCliente);
@@ -533,7 +556,7 @@ namespace CapaDatos
                 sqlCmd.CommandType = CommandType.StoredProcedure;
 
                 SqlParameter ParIdCliente = new SqlParameter();
-                ParIdCliente.ParameterName = "@idCliente";
+                ParIdCliente.ParameterName = "@idPersona";
                 ParIdCliente.SqlDbType = SqlDbType.Int;
                 ParIdCliente.Direction = ParameterDirection.Output;
                 sqlCmd.Parameters.Add(ParIdCliente);
@@ -595,7 +618,7 @@ namespace CapaDatos
                 rpta = sqlCmd.ExecuteNonQuery() == 1 ? "OK" : "No se ingresó el Registro";
                 if(rpta == "OK")
                 {
-                    this.IdCliente = Convert.ToInt32(sqlCmd.Parameters["@idCliente"].Value);
+                    this.IdCliente = Convert.ToInt32(sqlCmd.Parameters["@idPersona"].Value);
                     rpta = IdCliente.ToString();
                 }
             }
@@ -689,7 +712,7 @@ namespace CapaDatos
                 sqlCmd.CommandType = CommandType.StoredProcedure;
 
                 SqlParameter ParIdCliente = new SqlParameter();
-                ParIdCliente.ParameterName = "@idCliente";
+                ParIdCliente.ParameterName = "@idPersona";
                 ParIdCliente.SqlDbType = SqlDbType.Int;
                 ParIdCliente.Value = Cliente.IdCliente;
                 sqlCmd.Parameters.Add(ParIdCliente);
@@ -748,6 +771,45 @@ namespace CapaDatos
                 if (sqlCon.State == ConnectionState.Open) sqlCon.Close();
             }
             return rpta;
+        }
+
+        public DataTable ConsultaClienteCredito(string tipoCliente, int idVenta)
+        {
+            DataTable dtResultado = new DataTable("Cliente");
+            SqlConnection sqlCon = new SqlConnection();
+
+            try
+            {
+                sqlCon.ConnectionString = Conexion.cn;
+                SqlCommand sqlCmd = new SqlCommand();
+                sqlCmd.Connection = sqlCon;
+                sqlCmd.CommandText = "sp_consultaClienteCredito";
+                sqlCmd.CommandType = CommandType.StoredProcedure;
+
+                SqlParameter ParTipoCliente = new SqlParameter();
+                ParTipoCliente.ParameterName = "@tipoCliente";
+                ParTipoCliente.SqlDbType = SqlDbType.Char;
+                ParTipoCliente.Size = 1;
+                ParTipoCliente.Value = tipoCliente;
+                sqlCmd.Parameters.Add(ParTipoCliente);
+
+                SqlParameter ParIdVenta = new SqlParameter();
+                ParIdVenta.ParameterName = "@idVenta";
+                ParIdVenta.SqlDbType = SqlDbType.Int;
+                ParIdVenta.Value = idVenta;
+                sqlCmd.Parameters.Add(ParIdVenta);
+
+               
+
+                SqlDataAdapter sqlDat = new SqlDataAdapter(sqlCmd);
+                sqlDat.Fill(dtResultado);
+            }
+            catch (Exception ex)
+            {
+                dtResultado = null;
+            }
+
+            return dtResultado;
         }
 
     }

@@ -1224,14 +1224,16 @@
             this.txtEfectivo.Name = "txtEfectivo";
             this.txtEfectivo.Size = new System.Drawing.Size(205, 37);
             this.txtEfectivo.TabIndex = 3;
+            this.txtEfectivo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtEfectivo_KeyPress);
             this.txtEfectivo.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtEfectivo_KeyUp);
             // 
             // rbFactura
             // 
             this.rbFactura.AutoSize = true;
+            this.rbFactura.Font = new System.Drawing.Font("Roboto", 9.230769F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbFactura.Location = new System.Drawing.Point(84, 33);
             this.rbFactura.Name = "rbFactura";
-            this.rbFactura.Size = new System.Drawing.Size(71, 22);
+            this.rbFactura.Size = new System.Drawing.Size(79, 24);
             this.rbFactura.TabIndex = 1;
             this.rbFactura.Text = "Factura";
             this.rbFactura.UseVisualStyleBackColor = true;
@@ -1240,9 +1242,10 @@
             // 
             this.rbBoleta.AutoSize = true;
             this.rbBoleta.Checked = true;
+            this.rbBoleta.Font = new System.Drawing.Font("Roboto", 9.230769F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbBoleta.Location = new System.Drawing.Point(7, 32);
             this.rbBoleta.Name = "rbBoleta";
-            this.rbBoleta.Size = new System.Drawing.Size(63, 22);
+            this.rbBoleta.Size = new System.Drawing.Size(71, 24);
             this.rbBoleta.TabIndex = 0;
             this.rbBoleta.TabStop = true;
             this.rbBoleta.Text = "Boleta";

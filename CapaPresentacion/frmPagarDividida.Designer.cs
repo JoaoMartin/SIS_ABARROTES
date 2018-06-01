@@ -38,6 +38,7 @@
             this.label10 = new System.Windows.Forms.Label();
             this.txtVuelto = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cbPaga = new System.Windows.Forms.CheckBox();
             this.btnEditar = new System.Windows.Forms.Button();
             this.cbTipoCliente = new System.Windows.Forms.ComboBox();
             this.label16 = new System.Windows.Forms.Label();
@@ -66,6 +67,7 @@
             this.txtTarjeta = new System.Windows.Forms.TextBox();
             this.txtEfectivo = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.rbConsumoT = new System.Windows.Forms.RadioButton();
             this.rbMixto = new System.Windows.Forms.RadioButton();
             this.rbTarjeta = new System.Windows.Forms.RadioButton();
             this.rbEfectivo = new System.Windows.Forms.RadioButton();
@@ -80,8 +82,11 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.rbCredioNEm = new System.Windows.Forms.RadioButton();
+            this.rbCortesia = new System.Windows.Forms.RadioButton();
             this.rbDetallado = new System.Windows.Forms.RadioButton();
             this.rbConsumo = new System.Windows.Forms.RadioButton();
+            this.rbCreditoEmitido = new System.Windows.Forms.RadioButton();
             this.label6 = new System.Windows.Forms.Label();
             this.lblSubTotal = new System.Windows.Forms.Label();
             this.lblIgv = new System.Windows.Forms.Label();
@@ -96,7 +101,7 @@
             this.lblBanderaTexto = new System.Windows.Forms.Label();
             this.lblBanderaComprobante = new System.Windows.Forms.Label();
             this.lblBanderaCuenta = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnCobrar = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblIdTrabajador = new System.Windows.Forms.Label();
@@ -132,7 +137,7 @@
             this.gbCuentas.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gbCuentas.Name = "gbCuentas";
             this.gbCuentas.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.gbCuentas.Size = new System.Drawing.Size(743, 92);
+            this.gbCuentas.Size = new System.Drawing.Size(728, 92);
             this.gbCuentas.TabIndex = 180;
             this.gbCuentas.TabStop = false;
             // 
@@ -243,6 +248,7 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.groupBox1.Controls.Add(this.cbPaga);
             this.groupBox1.Controls.Add(this.btnEditar);
             this.groupBox1.Controls.Add(this.cbTipoCliente);
             this.groupBox1.Controls.Add(this.label16);
@@ -266,6 +272,19 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Cliente";
             // 
+            // cbPaga
+            // 
+            this.cbPaga.AutoSize = true;
+            this.cbPaga.Font = new System.Drawing.Font("Roboto", 9.846154F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbPaga.Location = new System.Drawing.Point(92, 227);
+            this.cbPaga.Name = "cbPaga";
+            this.cbPaga.Size = new System.Drawing.Size(99, 27);
+            this.cbPaga.TabIndex = 228;
+            this.cbPaga.Text = "CREDITO";
+            this.cbPaga.UseVisualStyleBackColor = true;
+            this.cbPaga.Visible = false;
+            this.cbPaga.CheckedChanged += new System.EventHandler(this.cbPaga_CheckedChanged);
+            // 
             // btnEditar
             // 
             this.btnEditar.BackColor = System.Drawing.SystemColors.ButtonFace;
@@ -274,7 +293,7 @@
             this.btnEditar.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnEditar.Image = global::CapaPresentacion.Properties.Resources.edit4;
             this.btnEditar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnEditar.Location = new System.Drawing.Point(301, 239);
+            this.btnEditar.Location = new System.Drawing.Point(344, 234);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(100, 80);
             this.btnEditar.TabIndex = 195;
@@ -289,7 +308,7 @@
             this.cbTipoCliente.FormattingEnabled = true;
             this.cbTipoCliente.Location = new System.Drawing.Point(92, 75);
             this.cbTipoCliente.Name = "cbTipoCliente";
-            this.cbTipoCliente.Size = new System.Drawing.Size(412, 38);
+            this.cbTipoCliente.Size = new System.Drawing.Size(460, 38);
             this.cbTipoCliente.TabIndex = 194;
             // 
             // label16
@@ -309,7 +328,7 @@
             this.btnNuevo.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnNuevo.Image = global::CapaPresentacion.Properties.Resources.new4;
             this.btnNuevo.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnNuevo.Location = new System.Drawing.Point(193, 239);
+            this.btnNuevo.Location = new System.Drawing.Point(236, 234);
             this.btnNuevo.Name = "btnNuevo";
             this.btnNuevo.Size = new System.Drawing.Size(102, 80);
             this.btnNuevo.TabIndex = 34;
@@ -335,7 +354,7 @@
             this.btnGuardar.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnGuardar.Image = global::CapaPresentacion.Properties.Resources.save2;
             this.btnGuardar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnGuardar.Location = new System.Drawing.Point(407, 239);
+            this.btnGuardar.Location = new System.Drawing.Point(450, 234);
             this.btnGuardar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(97, 79);
@@ -367,7 +386,7 @@
             this.txtDireccion.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtDireccion.Name = "txtDireccion";
             this.txtDireccion.ReadOnly = true;
-            this.txtDireccion.Size = new System.Drawing.Size(412, 37);
+            this.txtDireccion.Size = new System.Drawing.Size(460, 37);
             this.txtDireccion.TabIndex = 5;
             // 
             // label9
@@ -387,7 +406,7 @@
             this.txtNombre.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.ReadOnly = true;
-            this.txtNombre.Size = new System.Drawing.Size(412, 37);
+            this.txtNombre.Size = new System.Drawing.Size(460, 37);
             this.txtNombre.TabIndex = 3;
             // 
             // label8
@@ -423,7 +442,7 @@
             // 
             this.button15.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.button15.Font = new System.Drawing.Font("Roboto", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button15.Location = new System.Drawing.Point(667, 347);
+            this.button15.Location = new System.Drawing.Point(652, 347);
             this.button15.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button15.Name = "button15";
             this.button15.Size = new System.Drawing.Size(88, 70);
@@ -436,7 +455,7 @@
             // 
             this.button14.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.button14.Font = new System.Drawing.Font("Roboto", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button14.Location = new System.Drawing.Point(473, 350);
+            this.button14.Location = new System.Drawing.Point(458, 350);
             this.button14.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button14.Name = "button14";
             this.button14.Size = new System.Drawing.Size(88, 70);
@@ -449,7 +468,7 @@
             // 
             this.button13.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.button13.Font = new System.Drawing.Font("Roboto", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button13.Location = new System.Drawing.Point(571, 347);
+            this.button13.Location = new System.Drawing.Point(556, 347);
             this.button13.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button13.Name = "button13";
             this.button13.Size = new System.Drawing.Size(88, 70);
@@ -462,7 +481,7 @@
             // 
             this.button12.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.button12.Font = new System.Drawing.Font("Roboto", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button12.Location = new System.Drawing.Point(667, 269);
+            this.button12.Location = new System.Drawing.Point(652, 269);
             this.button12.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button12.Name = "button12";
             this.button12.Size = new System.Drawing.Size(88, 70);
@@ -475,7 +494,7 @@
             // 
             this.button11.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.button11.Font = new System.Drawing.Font("Roboto", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button11.Location = new System.Drawing.Point(571, 269);
+            this.button11.Location = new System.Drawing.Point(556, 269);
             this.button11.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button11.Name = "button11";
             this.button11.Size = new System.Drawing.Size(88, 70);
@@ -488,7 +507,7 @@
             // 
             this.button10.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.button10.Font = new System.Drawing.Font("Roboto", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button10.Location = new System.Drawing.Point(473, 269);
+            this.button10.Location = new System.Drawing.Point(458, 269);
             this.button10.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button10.Name = "button10";
             this.button10.Size = new System.Drawing.Size(88, 70);
@@ -501,7 +520,7 @@
             // 
             this.button9.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.button9.Font = new System.Drawing.Font("Roboto", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button9.Location = new System.Drawing.Point(667, 191);
+            this.button9.Location = new System.Drawing.Point(652, 191);
             this.button9.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(88, 70);
@@ -514,7 +533,7 @@
             // 
             this.button8.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.button8.Font = new System.Drawing.Font("Roboto", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button8.Location = new System.Drawing.Point(571, 191);
+            this.button8.Location = new System.Drawing.Point(556, 191);
             this.button8.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(88, 70);
@@ -527,7 +546,7 @@
             // 
             this.button7.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.button7.Font = new System.Drawing.Font("Roboto", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button7.Location = new System.Drawing.Point(473, 191);
+            this.button7.Location = new System.Drawing.Point(458, 191);
             this.button7.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(88, 70);
@@ -540,7 +559,7 @@
             // 
             this.button6.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.button6.Font = new System.Drawing.Font("Roboto", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button6.Location = new System.Drawing.Point(667, 112);
+            this.button6.Location = new System.Drawing.Point(652, 112);
             this.button6.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(88, 70);
@@ -553,7 +572,7 @@
             // 
             this.button5.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.button5.Font = new System.Drawing.Font("Roboto", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button5.Location = new System.Drawing.Point(571, 112);
+            this.button5.Location = new System.Drawing.Point(556, 112);
             this.button5.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(88, 70);
@@ -566,7 +585,7 @@
             // 
             this.button4.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.button4.Font = new System.Drawing.Font("Roboto", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.Location = new System.Drawing.Point(473, 112);
+            this.button4.Location = new System.Drawing.Point(458, 112);
             this.button4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(88, 70);
@@ -600,20 +619,33 @@
             // groupBox3
             // 
             this.groupBox3.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.groupBox3.Controls.Add(this.rbConsumoT);
             this.groupBox3.Controls.Add(this.rbMixto);
             this.groupBox3.Controls.Add(this.rbTarjeta);
             this.groupBox3.Controls.Add(this.rbEfectivo);
-            this.groupBox3.Location = new System.Drawing.Point(775, 13);
+            this.groupBox3.Location = new System.Drawing.Point(746, 12);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(384, 100);
+            this.groupBox3.Size = new System.Drawing.Size(443, 93);
             this.groupBox3.TabIndex = 209;
             this.groupBox3.TabStop = false;
+            // 
+            // rbConsumoT
+            // 
+            this.rbConsumoT.AutoSize = true;
+            this.rbConsumoT.Font = new System.Drawing.Font("Roboto", 4.923077F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbConsumoT.Location = new System.Drawing.Point(233, 11);
+            this.rbConsumoT.Name = "rbConsumoT";
+            this.rbConsumoT.Size = new System.Drawing.Size(105, 15);
+            this.rbConsumoT.TabIndex = 229;
+            this.rbConsumoT.Text = "ConsumoTrabajador";
+            this.rbConsumoT.UseVisualStyleBackColor = true;
+            this.rbConsumoT.Visible = false;
             // 
             // rbMixto
             // 
             this.rbMixto.AutoSize = true;
             this.rbMixto.Font = new System.Drawing.Font("Roboto", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbMixto.Location = new System.Drawing.Point(245, 45);
+            this.rbMixto.Location = new System.Drawing.Point(171, 32);
             this.rbMixto.Name = "rbMixto";
             this.rbMixto.Size = new System.Drawing.Size(74, 28);
             this.rbMixto.TabIndex = 2;
@@ -625,7 +657,7 @@
             // 
             this.rbTarjeta.AutoSize = true;
             this.rbTarjeta.Font = new System.Drawing.Font("Roboto", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbTarjeta.Location = new System.Drawing.Point(138, 45);
+            this.rbTarjeta.Location = new System.Drawing.Point(316, 32);
             this.rbTarjeta.Name = "rbTarjeta";
             this.rbTarjeta.Size = new System.Drawing.Size(84, 28);
             this.rbTarjeta.TabIndex = 1;
@@ -638,7 +670,7 @@
             this.rbEfectivo.AutoSize = true;
             this.rbEfectivo.Checked = true;
             this.rbEfectivo.Font = new System.Drawing.Font("Roboto", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbEfectivo.Location = new System.Drawing.Point(28, 45);
+            this.rbEfectivo.Location = new System.Drawing.Point(11, 32);
             this.rbEfectivo.Name = "rbEfectivo";
             this.rbEfectivo.Size = new System.Drawing.Size(93, 28);
             this.rbEfectivo.TabIndex = 0;
@@ -652,7 +684,7 @@
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Roboto", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.ForeColor = System.Drawing.Color.Red;
-            this.label14.Location = new System.Drawing.Point(881, 735);
+            this.label14.Location = new System.Drawing.Point(885, 655);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(37, 30);
             this.label14.TabIndex = 208;
@@ -663,7 +695,7 @@
             this.lblDctoGeneral.AutoSize = true;
             this.lblDctoGeneral.Font = new System.Drawing.Font("Roboto", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDctoGeneral.ForeColor = System.Drawing.Color.Red;
-            this.lblDctoGeneral.Location = new System.Drawing.Point(921, 735);
+            this.lblDctoGeneral.Location = new System.Drawing.Point(925, 655);
             this.lblDctoGeneral.Name = "lblDctoGeneral";
             this.lblDctoGeneral.Size = new System.Drawing.Size(72, 30);
             this.lblDctoGeneral.TabIndex = 207;
@@ -673,7 +705,7 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Roboto", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(699, 738);
+            this.label13.Location = new System.Drawing.Point(703, 658);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(147, 30);
             this.label13.TabIndex = 206;
@@ -684,7 +716,7 @@
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Roboto", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.Color.Red;
-            this.label12.Location = new System.Drawing.Point(875, 691);
+            this.label12.Location = new System.Drawing.Point(879, 611);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(37, 30);
             this.label12.TabIndex = 205;
@@ -694,7 +726,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Roboto", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(735, 691);
+            this.label4.Location = new System.Drawing.Point(739, 611);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(126, 30);
             this.label4.TabIndex = 204;
@@ -705,7 +737,7 @@
             this.lblDescuento.AutoSize = true;
             this.lblDescuento.Font = new System.Drawing.Font("Roboto", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDescuento.ForeColor = System.Drawing.Color.Red;
-            this.lblDescuento.Location = new System.Drawing.Point(921, 691);
+            this.lblDescuento.Location = new System.Drawing.Point(925, 611);
             this.lblDescuento.Name = "lblDescuento";
             this.lblDescuento.Size = new System.Drawing.Size(72, 30);
             this.lblDescuento.TabIndex = 203;
@@ -717,7 +749,7 @@
             this.btnDescuentoTotal.Font = new System.Drawing.Font("Roboto", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDescuentoTotal.Image = global::CapaPresentacion.Properties.Resources.vale;
             this.btnDescuentoTotal.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnDescuentoTotal.Location = new System.Drawing.Point(1020, 607);
+            this.btnDescuentoTotal.Location = new System.Drawing.Point(1016, 527);
             this.btnDescuentoTotal.Name = "btnDescuentoTotal";
             this.btnDescuentoTotal.Size = new System.Drawing.Size(164, 120);
             this.btnDescuentoTotal.TabIndex = 202;
@@ -730,7 +762,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Roboto", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(870, 824);
+            this.label11.Location = new System.Drawing.Point(874, 744);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(37, 30);
             this.label11.TabIndex = 194;
@@ -740,7 +772,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Roboto", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(876, 775);
+            this.label5.Location = new System.Drawing.Point(880, 695);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(37, 30);
             this.label5.TabIndex = 193;
@@ -750,7 +782,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Roboto", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(876, 644);
+            this.label2.Location = new System.Drawing.Point(880, 564);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(37, 30);
             this.label2.TabIndex = 192;
@@ -759,15 +791,44 @@
             // groupBox2
             // 
             this.groupBox2.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.groupBox2.Controls.Add(this.rbCredioNEm);
+            this.groupBox2.Controls.Add(this.rbCortesia);
             this.groupBox2.Controls.Add(this.rbDetallado);
             this.groupBox2.Controls.Add(this.rbConsumo);
-            this.groupBox2.Location = new System.Drawing.Point(1018, 134);
+            this.groupBox2.Controls.Add(this.rbCreditoEmitido);
+            this.groupBox2.Location = new System.Drawing.Point(1010, 114);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBox2.Size = new System.Drawing.Size(193, 328);
+            this.groupBox2.Size = new System.Drawing.Size(179, 328);
             this.groupBox2.TabIndex = 189;
             this.groupBox2.TabStop = false;
+            // 
+            // rbCredioNEm
+            // 
+            this.rbCredioNEm.AutoSize = true;
+            this.rbCredioNEm.Font = new System.Drawing.Font("Roboto", 11.07692F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbCredioNEm.Location = new System.Drawing.Point(40, 279);
+            this.rbCredioNEm.Name = "rbCredioNEm";
+            this.rbCredioNEm.Size = new System.Drawing.Size(83, 28);
+            this.rbCredioNEm.TabIndex = 7;
+            this.rbCredioNEm.Text = "Cr.NoE";
+            this.rbCredioNEm.UseVisualStyleBackColor = true;
+            this.rbCredioNEm.Visible = false;
+            this.rbCredioNEm.CheckedChanged += new System.EventHandler(this.rbCredioNEm_CheckedChanged);
+            // 
+            // rbCortesia
+            // 
+            this.rbCortesia.AutoSize = true;
+            this.rbCortesia.Font = new System.Drawing.Font("Roboto", 11.07692F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbCortesia.Location = new System.Drawing.Point(40, 251);
+            this.rbCortesia.Name = "rbCortesia";
+            this.rbCortesia.Size = new System.Drawing.Size(96, 28);
+            this.rbCortesia.TabIndex = 8;
+            this.rbCortesia.Text = "Cortesía";
+            this.rbCortesia.UseVisualStyleBackColor = true;
+            this.rbCortesia.Visible = false;
+            this.rbCortesia.CheckedChanged += new System.EventHandler(this.rbCortesia_CheckedChanged);
             // 
             // rbDetallado
             // 
@@ -797,11 +858,24 @@
             this.rbConsumo.UseVisualStyleBackColor = true;
             this.rbConsumo.CheckedChanged += new System.EventHandler(this.rbConsumo_CheckedChanged);
             // 
+            // rbCreditoEmitido
+            // 
+            this.rbCreditoEmitido.AutoSize = true;
+            this.rbCreditoEmitido.Font = new System.Drawing.Font("Roboto", 11.07692F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbCreditoEmitido.Location = new System.Drawing.Point(36, 223);
+            this.rbCreditoEmitido.Name = "rbCreditoEmitido";
+            this.rbCreditoEmitido.Size = new System.Drawing.Size(60, 28);
+            this.rbCreditoEmitido.TabIndex = 6;
+            this.rbCreditoEmitido.Text = "Cr.E";
+            this.rbCreditoEmitido.UseVisualStyleBackColor = true;
+            this.rbCreditoEmitido.Visible = false;
+            this.rbCreditoEmitido.CheckedChanged += new System.EventHandler(this.rbCreditoEmitido_CheckedChanged);
+            // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Roboto", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(720, 644);
+            this.label6.Location = new System.Drawing.Point(724, 564);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(126, 30);
             this.label6.TabIndex = 188;
@@ -811,7 +885,7 @@
             // 
             this.lblSubTotal.AutoSize = true;
             this.lblSubTotal.Font = new System.Drawing.Font("Roboto", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSubTotal.Location = new System.Drawing.Point(921, 644);
+            this.lblSubTotal.Location = new System.Drawing.Point(925, 564);
             this.lblSubTotal.Name = "lblSubTotal";
             this.lblSubTotal.Size = new System.Drawing.Size(72, 30);
             this.lblSubTotal.TabIndex = 187;
@@ -821,7 +895,7 @@
             // 
             this.lblIgv.AutoSize = true;
             this.lblIgv.Font = new System.Drawing.Font("Roboto", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblIgv.Location = new System.Drawing.Point(921, 775);
+            this.lblIgv.Location = new System.Drawing.Point(925, 695);
             this.lblIgv.Name = "lblIgv";
             this.lblIgv.Size = new System.Drawing.Size(72, 30);
             this.lblIgv.TabIndex = 186;
@@ -831,7 +905,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Roboto", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(798, 775);
+            this.label3.Location = new System.Drawing.Point(802, 695);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(51, 30);
             this.label3.TabIndex = 185;
@@ -841,7 +915,7 @@
             // 
             this.lblTotal.AutoSize = true;
             this.lblTotal.Font = new System.Drawing.Font("Roboto", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotal.Location = new System.Drawing.Point(915, 824);
+            this.lblTotal.Location = new System.Drawing.Point(919, 744);
             this.lblTotal.Name = "lblTotal";
             this.lblTotal.Size = new System.Drawing.Size(72, 30);
             this.lblTotal.TabIndex = 184;
@@ -851,7 +925,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Roboto", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(766, 824);
+            this.label1.Location = new System.Drawing.Point(770, 744);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(81, 30);
             this.label1.TabIndex = 183;
@@ -861,10 +935,10 @@
             // 
             this.btnFactura.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(201)))), ((int)(((byte)(201)))));
             this.btnFactura.Font = new System.Drawing.Font("Roboto", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFactura.Location = new System.Drawing.Point(775, 451);
+            this.btnFactura.Location = new System.Drawing.Point(744, 397);
             this.btnFactura.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnFactura.Name = "btnFactura";
-            this.btnFactura.Size = new System.Drawing.Size(237, 150);
+            this.btnFactura.Size = new System.Drawing.Size(258, 136);
             this.btnFactura.TabIndex = 182;
             this.btnFactura.Text = "FACTURA";
             this.btnFactura.UseVisualStyleBackColor = false;
@@ -874,10 +948,10 @@
             // 
             this.btnBoleta.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(201)))), ((int)(((byte)(201)))));
             this.btnBoleta.Font = new System.Drawing.Font("Roboto", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBoleta.Location = new System.Drawing.Point(775, 287);
+            this.btnBoleta.Location = new System.Drawing.Point(746, 253);
             this.btnBoleta.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnBoleta.Name = "btnBoleta";
-            this.btnBoleta.Size = new System.Drawing.Size(237, 160);
+            this.btnBoleta.Size = new System.Drawing.Size(258, 136);
             this.btnBoleta.TabIndex = 181;
             this.btnBoleta.Text = "BOLETA";
             this.btnBoleta.UseVisualStyleBackColor = false;
@@ -948,22 +1022,22 @@
             this.lblBanderaCuenta.Text = "0";
             this.lblBanderaCuenta.Visible = false;
             // 
-            // button1
+            // btnCobrar
             // 
-            this.button1.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.button1.Enabled = false;
-            this.button1.Font = new System.Drawing.Font("Roboto", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Image = global::CapaPresentacion.Properties.Resources.if_cashbox_45016;
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button1.Location = new System.Drawing.Point(1020, 734);
-            this.button1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(164, 120);
-            this.button1.TabIndex = 190;
-            this.button1.Text = "COBRAR";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnCobrar.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnCobrar.Enabled = false;
+            this.btnCobrar.Font = new System.Drawing.Font("Roboto", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCobrar.Image = global::CapaPresentacion.Properties.Resources.if_cashbox_45016;
+            this.btnCobrar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnCobrar.Location = new System.Drawing.Point(1016, 654);
+            this.btnCobrar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnCobrar.Name = "btnCobrar";
+            this.btnCobrar.Size = new System.Drawing.Size(164, 120);
+            this.btnCobrar.TabIndex = 190;
+            this.btnCobrar.Text = "COBRAR";
+            this.btnCobrar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnCobrar.UseVisualStyleBackColor = false;
+            this.btnCobrar.Click += new System.EventHandler(this.button1_Click);
             // 
             // pictureBox2
             // 
@@ -1021,7 +1095,7 @@
             // 
             this.button22.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.button22.Font = new System.Drawing.Font("Roboto", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button22.Location = new System.Drawing.Point(12, 256);
+            this.button22.Location = new System.Drawing.Point(12, 225);
             this.button22.Name = "button22";
             this.button22.Size = new System.Drawing.Size(120, 94);
             this.button22.TabIndex = 218;
@@ -1033,7 +1107,7 @@
             // 
             this.button21.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.button21.Font = new System.Drawing.Font("Roboto", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button21.Location = new System.Drawing.Point(12, 368);
+            this.button21.Location = new System.Drawing.Point(12, 337);
             this.button21.Name = "button21";
             this.button21.Size = new System.Drawing.Size(120, 94);
             this.button21.TabIndex = 217;
@@ -1045,7 +1119,7 @@
             // 
             this.button20.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.button20.Font = new System.Drawing.Font("Roboto", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button20.Location = new System.Drawing.Point(12, 477);
+            this.button20.Location = new System.Drawing.Point(12, 446);
             this.button20.Name = "button20";
             this.button20.Size = new System.Drawing.Size(120, 94);
             this.button20.TabIndex = 216;
@@ -1057,7 +1131,7 @@
             // 
             this.button19.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.button19.Font = new System.Drawing.Font("Roboto", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button19.Location = new System.Drawing.Point(12, 587);
+            this.button19.Location = new System.Drawing.Point(12, 556);
             this.button19.Name = "button19";
             this.button19.Size = new System.Drawing.Size(120, 94);
             this.button19.TabIndex = 215;
@@ -1069,7 +1143,7 @@
             // 
             this.button2.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.button2.Font = new System.Drawing.Font("Roboto", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(12, 153);
+            this.button2.Location = new System.Drawing.Point(12, 122);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(120, 94);
             this.button2.TabIndex = 214;
@@ -1081,10 +1155,10 @@
             // 
             this.btnTicket.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(201)))), ((int)(((byte)(201)))));
             this.btnTicket.Font = new System.Drawing.Font("Roboto", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTicket.Location = new System.Drawing.Point(775, 117);
+            this.btnTicket.Location = new System.Drawing.Point(746, 112);
             this.btnTicket.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnTicket.Name = "btnTicket";
-            this.btnTicket.Size = new System.Drawing.Size(237, 160);
+            this.btnTicket.Size = new System.Drawing.Size(258, 136);
             this.btnTicket.TabIndex = 219;
             this.btnTicket.Text = "TICKET";
             this.btnTicket.UseVisualStyleBackColor = false;
@@ -1109,7 +1183,7 @@
             // 
             this.lblClase.AutoSize = true;
             this.lblClase.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblClase.Location = new System.Drawing.Point(596, 419);
+            this.lblClase.Location = new System.Drawing.Point(581, 419);
             this.lblClase.Name = "lblClase";
             this.lblClase.Size = new System.Drawing.Size(26, 29);
             this.lblClase.TabIndex = 227;
@@ -1121,7 +1195,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1218, 867);
+            this.ClientSize = new System.Drawing.Size(1218, 792);
             this.ControlBox = false;
             this.Controls.Add(this.lblClase);
             this.Controls.Add(this.dataListadoProducto);
@@ -1142,7 +1216,7 @@
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnCobrar);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.lblSubTotal);
@@ -1253,7 +1327,7 @@
         public System.Windows.Forms.Label label11;
         public System.Windows.Forms.Label label5;
         public System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnCobrar;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.RadioButton rbDetallado;
         private System.Windows.Forms.RadioButton rbConsumo;
@@ -1285,5 +1359,10 @@
         private System.Windows.Forms.Label label16;
         public System.Windows.Forms.Button btnEditar;
         public System.Windows.Forms.Label lblClase;
+        private System.Windows.Forms.RadioButton rbCortesia;
+        private System.Windows.Forms.RadioButton rbCredioNEm;
+        private System.Windows.Forms.RadioButton rbCreditoEmitido;
+        public System.Windows.Forms.CheckBox cbPaga;
+        private System.Windows.Forms.RadioButton rbConsumoT;
     }
 }
