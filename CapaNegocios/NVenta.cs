@@ -267,10 +267,11 @@ namespace CapaNegocios
         }
 
 
-        public static string EditarVentaD(int idVenta)
+        public static string EditarVentaD(int idVenta, string obs)
         {
             DVenta Obj = new DVenta();
             Obj.IdVenta = idVenta;
+            Obj.Obs = obs;
             return Obj.EditarVentaD(Obj);
         }
 
@@ -750,5 +751,30 @@ namespace CapaNegocios
             DVenta Obj = new DVenta();
             return Obj.reporteVentasFecha_FormaPagTo(fechaInicio, fechaFin, forma);
         }
+
+        public static DataTable mostrarReserva(int idVenta)
+        {
+            DVenta Obj = new DVenta();
+            return Obj.mostrarReserva(idVenta);
+        }
+
+        public static string EditarReserva(int idVenta, DateTime fecEntrega,string obs,string motivo, string cliente, string telefono)
+        {
+            DVenta Obj = new DVenta();
+            Obj.IdVenta = idVenta;
+            Obj.FechaEntrega = fecEntrega;
+            Obj.Obs = obs;
+            Obj.Motivo = motivo;
+            Obj.Cliente = cliente;
+            Obj.Telefono = telefono;
+            return Obj.EditarReserva(Obj);
+        }
+
+        public static DataTable reporteCantProductosVendidos(DateTime fechaInicio, DateTime fechaFin)
+        {
+            DVenta Obj = new DVenta();
+            return Obj.reporteCantProductosVendidos(fechaInicio, fechaFin);
+        }
+
     }
 }

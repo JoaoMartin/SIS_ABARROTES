@@ -103,13 +103,13 @@
             // 
             this.cbTraba.BackColor = System.Drawing.Color.White;
             this.cbTraba.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbTraba.Font = new System.Drawing.Font("Segoe UI", 11.07692F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbTraba.Font = new System.Drawing.Font("Roboto", 11.07692F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbTraba.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.cbTraba.FormattingEnabled = true;
             this.cbTraba.Location = new System.Drawing.Point(6, 42);
             this.cbTraba.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbTraba.Name = "cbTraba";
-            this.cbTraba.Size = new System.Drawing.Size(622, 33);
+            this.cbTraba.Size = new System.Drawing.Size(622, 32);
             this.cbTraba.TabIndex = 2;
             this.cbTraba.SelectedIndexChanged += new System.EventHandler(this.cbTraba_SelectedIndexChanged);
             // 
@@ -176,7 +176,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 27);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(781, 477);
+            this.tabPage3.Size = new System.Drawing.Size(698, 477);
             this.tabPage3.TabIndex = 1;
             this.tabPage3.Text = "Nuevo/Modificar";
             this.tabPage3.UseVisualStyleBackColor = true;

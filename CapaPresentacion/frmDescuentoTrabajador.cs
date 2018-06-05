@@ -114,7 +114,7 @@ namespace CapaPresentacion
                         }
                         else
                         {
-                            this.MensajeOK("Se actualizó correcatamente");
+                            this.MensajeOK("Se actualizó correctamente");
                             Mostrar();
                         }
                     }

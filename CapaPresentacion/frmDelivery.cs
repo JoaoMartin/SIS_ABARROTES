@@ -348,7 +348,7 @@ namespace CapaPresentacion
 
                                     }
 
-                                    if (lblTipo.Text == "M" || lblTipo.Text == "D")
+                                    if (lblTipo.Text == "Mdsfds" || lblTipo.Text == "Dsdfsdfsd")
                                     {
                                         for (int kl = 0; kl < dgvDetalleVentaMenu.Rows.Count; kl++)
                                         {
@@ -453,7 +453,7 @@ namespace CapaPresentacion
                                 }
                                 cantidadAcumulada = 0;
 
-                                if (tipo1 == "M" || tipo1 == "D")
+                                if (tipo1 == "Mdsfds" || tipo1 == "Dsdfdfsd")
                                 {
                                     int contador = 0;
 
@@ -544,7 +544,7 @@ namespace CapaPresentacion
                         }
                         cantidadAcumulada = 0;
 
-                        if (tipo1 == "M" || tipo1 == "D")
+                        if (tipo1 == "Msdfdsfsdf" || tipo1 == "Dsfsdfsd")
                         {
                             int contador = 0;
 

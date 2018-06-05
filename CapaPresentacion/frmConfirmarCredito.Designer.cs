@@ -81,24 +81,25 @@
             // 
             // txtDetalle
             // 
-            this.txtDetalle.Font = new System.Drawing.Font("Roboto", 9.846154F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDetalle.Font = new System.Drawing.Font("Roboto", 12.30769F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDetalle.Location = new System.Drawing.Point(113, 121);
             this.txtDetalle.Name = "txtDetalle";
-            this.txtDetalle.Size = new System.Drawing.Size(252, 29);
+            this.txtDetalle.Size = new System.Drawing.Size(252, 34);
             this.txtDetalle.TabIndex = 1;
             // 
             // cbFormaPago
             // 
-            this.cbFormaPago.Font = new System.Drawing.Font("Roboto", 11.07692F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbFormaPago.Font = new System.Drawing.Font("Roboto", 12.30769F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbFormaPago.FormattingEnabled = true;
             this.cbFormaPago.Items.AddRange(new object[] {
             "EFECTIVO",
+            "TARJETA",
             "TRANSFERENCIA",
             "DEPOSITO",
             "CHEQUE"});
             this.cbFormaPago.Location = new System.Drawing.Point(113, 83);
             this.cbFormaPago.Name = "cbFormaPago";
-            this.cbFormaPago.Size = new System.Drawing.Size(252, 32);
+            this.cbFormaPago.Size = new System.Drawing.Size(252, 34);
             this.cbFormaPago.TabIndex = 2;
             this.cbFormaPago.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 

@@ -8,7 +8,7 @@ namespace CapaDatos
 {
     public class Conexion
     {
-        //public static string cn =@"Data Source = EQUIPO\SQLEXPRESS; Initial Catalog=db_restaurante; Integrated Security=true";
+        //public static string cn =@"Data Source = EQUIPO\SQLEXPRESS; Initial Catalog=db_restaurante; Integrated Security=true"; 
         //public static string cn = @"Data Source = EQUIPO\SQLEXPRESS; Initial Catalog=db_restauranteBar; Integrated Security=true;
         //public static string cn = @"Data Source = EQUIPO\SQLEXPRESS; Initial Catalog=db_restauranteAlmacen; Integrated Security=true";
         //public static string cn = @"Data Source = UCHPABAR; Initial Catalog=db_restauranteAlmacen; Integrated Security=true";

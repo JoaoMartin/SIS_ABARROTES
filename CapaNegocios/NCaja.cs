@@ -27,5 +27,11 @@ namespace CapaNegocios
             DCaja Obj = new DCaja();
             return Obj.movimientoCaja(fechaInicio, fechaFin);
         }
+
+        public static DataTable reporteIngresosEgresos(DateTime fechaInicio, DateTime fechaFin)
+        {
+            DCaja Obj = new DCaja();
+            return Obj.reporteIngresosEgresos(fechaInicio, fechaFin);
+        }
     }
 }

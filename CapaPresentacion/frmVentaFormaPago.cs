@@ -13,9 +13,11 @@ namespace CapaPresentacion
 {
     public partial class frmVentaFormaPago : Form
     {
+        public static frmVentaFormaPago f1;
         public frmVentaFormaPago()
         {
             InitializeComponent();
+            frmVentaFormaPago.f1 = this;
         }
 
         private void frmVentaFormaPago_Load(object sender, EventArgs e)
@@ -133,6 +135,12 @@ namespace CapaPresentacion
                 groupBox1.Enabled = true;
                 this.lblBandera.Text = "1";
             }
+        }
+
+        private void btnImprimir_Click(object sender, EventArgs e)
+        {
+            frmRFormaVenta frm = new frmRFormaVenta();
+            frm.Show();
         }
     }
 }

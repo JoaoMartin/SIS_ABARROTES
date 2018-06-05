@@ -36,13 +36,14 @@ namespace CapaPresentacion
 
         private void ocultarColumnas()
         {
+            this.dataListado.Columns[6].Visible = false;
 
             // DataGridView1.Columns(1).Width = 150
             this.dataListado.Columns[0].Width = 60;
-            this.dataListado.Columns[1].Width = 180;
+            this.dataListado.Columns[1].Width = 190;
             this.dataListado.Columns[2].Width = 280;
             this.dataListado.Columns[3].Width = 100;
-            this.dataListado.Columns[4].Width = 100;
+            this.dataListado.Columns[4].Width = 120;
             this.dataListado.Columns[5].Width = 195;
 
 
@@ -50,7 +51,7 @@ namespace CapaPresentacion
             this.dataListado.ClearSelection();
             this.dataListado.ColumnHeadersDefaultCellStyle.Font = new Font(dataListado.ColumnHeadersDefaultCellStyle.Font, FontStyle.Bold);
             this.dataListado.AlternatingRowsDefaultCellStyle.BackColor = Color.Beige;
-            this.dataListado.Font = new Font("Roboto", 8);
+            this.dataListado.Font = new Font("Roboto", 9);
             this.dataListado.GridColor = SystemColors.ActiveBorder;
 
         }
@@ -81,6 +82,8 @@ namespace CapaPresentacion
             this.btnRecoger.Enabled = false;
             this.btnCobrar.Enabled = false;
             this.btnAnular.Enabled = false;
+            this.btnEditar.Enabled = false;
+           
         }
 
         private void txtBuscar_TextChanged(object sender, EventArgs e)
@@ -105,6 +108,7 @@ namespace CapaPresentacion
 
         private void dataListado_Click(object sender, EventArgs e)
         {
+            
             this.lblEstado.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["Estado"].Value);
             this.lblIdVenta.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["Codigo"].Value);
             this.lblTotal.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["Total"].Value);
@@ -132,7 +136,7 @@ namespace CapaPresentacion
             }
             btnRecoger.Enabled = true;
             btnCobrar.Enabled = true;
-            
+            btnEditar.Enabled = true;
 
         }
 
@@ -152,6 +156,11 @@ namespace CapaPresentacion
             frmAnularComprobante frm = new frmAnularComprobante();
             frm.lblBandera.Text = "5";
             frm.Show();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

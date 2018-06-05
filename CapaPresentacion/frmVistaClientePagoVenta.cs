@@ -151,9 +151,10 @@ namespace CapaPresentacion
                     decimal montoAd = Convert.ToDecimal(frmPagar.f1.lblMontoAdelanto.Text);
                     decimal dctoI = Convert.ToDecimal(frmPagar.f1.lblDescuento.Text);
                     decimal dctoG = Convert.ToDecimal(frmPagar.f1.lblDctoGeneral.Text);
-                    NDescuento.DescuentoClientes(idTipoCliente, subtotal, igv, montoAd, dctoI, dctoG, frmPagar.f1.lblDctoGeneral, frmPagar.f1.lblSubTotal,
+                    NDescuento.DescuentoClientes("0", subtotal, igv, montoAd, dctoI, dctoG, frmPagar.f1.lblDctoGeneral, frmPagar.f1.lblSubTotal,
                         frmPagar.f1.lblIgv, frmPagar.f1.lblTotal, "T");
                     frmPagar.f1.mostrarTotales();
+                    frmPagar.f1.lblIdTipoCliente.Text = idTipoCliente;
                     frmPagar.f1.cbTipoCliente.SelectedIndex = -1;
                     frmPagar.f1.cbTipoCliente.Enabled = false;
                     frmPagar.f1.cbPaga.Visible = true;

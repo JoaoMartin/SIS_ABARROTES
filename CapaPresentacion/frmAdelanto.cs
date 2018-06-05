@@ -110,7 +110,8 @@ namespace CapaPresentacion
                     {
                         if (this.IsNuevo)
                         {
-                            NImprimirRecibos.imprimirAdelanto(cbTrabajador.SelectedItem.ToString(), txtMonto.Text);
+                          
+                            NImprimirRecibos.imprimirAdelanto(cbTrabajador.Text, txtMonto.Text);
                             Mostrar();
                         }
                       

@@ -95,7 +95,7 @@ namespace CapaNegocios
                         txtIgv.Text = string.Format(" {0:#,##0.00}", Convert.ToDouble(totalIgvText));
                         decimal totalMonto = Convert.ToDecimal(txtIgv.Text) + Convert.ToDecimal(txtSubTotal.Text);
                         txtTotal.Text = string.Format(" {0:#,##0.00}", Convert.ToDouble(totalMonto));
-                        
+                        return;
 
                     }
                     else

@@ -114,7 +114,11 @@ namespace CapaPresentacion
                     if (cbFormaPago.SelectedIndex == 0 && cbCaja.Checked == true)
                     {
                         NCaja.Insertar(Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text), "1", "Ingreso", Convert.ToDecimal(lblMonto.Text), "VENTA", "EFECTIVO");
-                    }else
+                    }else if(cbFormaPago.SelectedIndex == 1)
+                    {
+                        NCaja.Insertar(Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text), "1", "Ingreso", Convert.ToDecimal(lblMonto.Text), "VENTA", "TARJETA");
+                    }
+                    else
                     {
                         NCaja.Insertar(Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text), "1", "Ingreso", Convert.ToDecimal(lblMonto.Text), "VENTA", "TRANSFERENCIA");
                     }

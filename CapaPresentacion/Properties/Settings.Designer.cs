@@ -33,5 +33,16 @@ namespace CapaPresentacion.Properties {
                 return ((string)(this["db_restauranteAlmacenConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=EQUIPO\\SQLEXPRESS;Initial Catalog=BD_RESTAURANTE;User ID=admin;Passwo" +
+            "rd=1234")]
+        public string BD_RESTAURANTEConnectionString {
+            get {
+                return ((string)(this["BD_RESTAURANTEConnectionString"]));
+            }
+        }
     }
 }

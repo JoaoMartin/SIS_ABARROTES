@@ -24,8 +24,22 @@ namespace CapaPresentacion
 
             try
             {
-                string fechaInicio = frmMostrarVentas.f1.dtpFechaInicio.Value.ToString("yyyy-MM-dd");
-                string fechaFin = frmMostrarVentas.f1.dtpFechaFin.Value.ToString("yyyy-MM-dd");
+                string bandera = frmMostrarVentas.f1.lblBandera.Text;
+                string fechaInicio = "";
+                string fechaFin = "";
+                DateTime fecIn;
+                if (bandera == "1")
+                {
+                    fechaInicio = frmMostrarVentas.f1.dtpFechaInicio.Value.ToString("yyyy-MM-dd" + " 00:00:00");
+                    fechaFin = frmMostrarVentas.f1.dtpFechaFin.Value.ToString("yyyy-MM-dd" + " 23:59:59");
+                }
+                else
+                {
+                    fecIn = Convert.ToDateTime(frmPrincipal.f1.lblFechaApertura.Text);
+                    fechaInicio = fecIn.ToString("yyyy-MM-dd HH:mm:ss");
+
+                    fechaFin = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                }
 
                 ReportDocument repdoc = new ReportDocument();
                // repdoc.Load(@"C:\Users\vioma\OneDrive\Documentos\Visual Studio 2017\Projects\SisVentas_ResAlm\CapaPresentacion\Reportes/RVentas.rpt");
@@ -36,14 +50,14 @@ namespace CapaPresentacion
                 ParameterValues pvs = new ParameterValues();
                 ParameterDiscreteValue pdv = new ParameterDiscreteValue();
 
-                pdv.Value = Convert.ToDateTime(fechaInicio + " 00:00:00");
+                pdv.Value = Convert.ToDateTime(fechaInicio);
                 pfds = repdoc.DataDefinition.ParameterFields;
                 pfd = pfds["@fechaInicio"];
                 pvs.Add(pdv);
                 pfd.ApplyCurrentValues(pvs);
 
 
-                pdv.Value = Convert.ToDateTime(fechaFin + " 23:59:59");
+                pdv.Value = Convert.ToDateTime(fechaFin);
                 pfds = repdoc.DataDefinition.ParameterFields;
                 pfd = pfds["@fechaFin"];
                 pvs.Add(pdv);
@@ -54,7 +68,7 @@ namespace CapaPresentacion
                 ConnectionInfo crConnectionInfo = new ConnectionInfo();
                 Tables CrTables;
                 crConnectionInfo.ServerName = @"EQUIPO\SQLEXPRESS";
-                crConnectionInfo.DatabaseName = "SISVENTAS_CA";
+                crConnectionInfo.DatabaseName = "BD_RESTAURANTE";
                 crConnectionInfo.UserID = "admin";
                 crConnectionInfo.Password = "1234";
                 /*

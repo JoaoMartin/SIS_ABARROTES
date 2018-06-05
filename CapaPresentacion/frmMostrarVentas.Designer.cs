@@ -69,6 +69,7 @@
             this.rbCategoria = new System.Windows.Forms.RadioButton();
             this.txtBuscar = new System.Windows.Forms.TextBox();
             this.lblIdVenta1 = new System.Windows.Forms.Label();
+            this.lblBandera = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataListado)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataDetalle)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -413,10 +414,10 @@
             // rbElegir
             // 
             this.rbElegir.AutoSize = true;
-            this.rbElegir.Font = new System.Drawing.Font("Roboto", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbElegir.Font = new System.Drawing.Font("Roboto", 9.230769F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbElegir.Location = new System.Drawing.Point(13, 139);
             this.rbElegir.Name = "rbElegir";
-            this.rbElegir.Size = new System.Drawing.Size(97, 22);
+            this.rbElegir.Size = new System.Drawing.Size(110, 24);
             this.rbElegir.TabIndex = 76;
             this.rbElegir.Text = "Elegir Fecha";
             this.rbElegir.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -427,10 +428,10 @@
             // 
             this.rbAperturaCaja.AutoSize = true;
             this.rbAperturaCaja.Checked = true;
-            this.rbAperturaCaja.Font = new System.Drawing.Font("Roboto", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbAperturaCaja.Font = new System.Drawing.Font("Roboto", 9.230769F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbAperturaCaja.Location = new System.Drawing.Point(13, 110);
             this.rbAperturaCaja.Name = "rbAperturaCaja";
-            this.rbAperturaCaja.Size = new System.Drawing.Size(105, 22);
+            this.rbAperturaCaja.Size = new System.Drawing.Size(118, 24);
             this.rbAperturaCaja.TabIndex = 75;
             this.rbAperturaCaja.TabStop = true;
             this.rbAperturaCaja.Text = "Apertura Caja";
@@ -567,12 +568,25 @@
             this.lblIdVenta1.TabIndex = 80;
             this.lblIdVenta1.Text = "00.00";
             // 
+            // lblBandera
+            // 
+            this.lblBandera.AutoSize = true;
+            this.lblBandera.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBandera.Location = new System.Drawing.Point(1019, 35);
+            this.lblBandera.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblBandera.Name = "lblBandera";
+            this.lblBandera.Size = new System.Drawing.Size(19, 20);
+            this.lblBandera.TabIndex = 81;
+            this.lblBandera.Text = "0";
+            this.lblBandera.Visible = false;
+            // 
             // frmMostrarVentas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1417, 716);
+            this.Controls.Add(this.lblBandera);
             this.Controls.Add(this.lblIdVenta1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.lblIdUsuario);
@@ -669,5 +683,6 @@
         private System.Windows.Forms.RadioButton rbCategoria;
         private System.Windows.Forms.TextBox txtBuscar;
         public System.Windows.Forms.Label lblIdVenta1;
+        public System.Windows.Forms.Label lblBandera;
     }
 }

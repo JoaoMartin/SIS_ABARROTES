@@ -181,8 +181,9 @@ namespace CapaPresentacion
 
             this.dataListado.ClearSelection();
             this.dataListado.ColumnHeadersDefaultCellStyle.Font = new Font(dataListado.ColumnHeadersDefaultCellStyle.Font, FontStyle.Bold);
-            this.dataListado.DefaultCellStyle.Font = new Font("Roboto", 8);
+            this.dataListado.DefaultCellStyle.Font = new Font("Roboto", 9);
             this.dataListado.RowsDefaultCellStyle.BackColor = Color.White;
+            this.dataListado.AlternatingRowsDefaultCellStyle.BackColor = Color.Beige;
             this.dataListado.GridColor = SystemColors.ActiveBorder;
 
         }

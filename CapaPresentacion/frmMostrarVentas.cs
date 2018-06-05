@@ -389,21 +389,26 @@ namespace CapaPresentacion
             if (rbAperturaCaja.Checked == true)
             {
                 groupBox1.Enabled = false;
+                this.lblBandera.Text = "0";
             }
-            else
+            else if (rbElegir.Checked == true)
             {
                 groupBox1.Enabled = true;
+                this.lblBandera.Text = "1";
             }
         }
 
         private void rbAperturaCaja_CheckedChanged(object sender, EventArgs e)
         {
-            if(rbAperturaCaja.Checked == true)
+            if (rbAperturaCaja.Checked == true)
             {
                 groupBox1.Enabled = false;
-            }else
+                this.lblBandera.Text = "0";
+            }
+            else if (rbElegir.Checked == true)
             {
                 groupBox1.Enabled = true;
+                this.lblBandera.Text = "1";
             }
         }
 

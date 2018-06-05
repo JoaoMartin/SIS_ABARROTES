@@ -49,16 +49,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="dsPrincipal.Designer.cs">
+    <Compile Include="dsPrinc.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>dsPrincipal.xsd</DependentUpon>
+      <DependentUpon>dsPrinc.xsd</DependentUpon>
     </Compile>
     <Compile Include="fmComprobanteManual.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="fmComprobanteManual.Designer.cs">
       <DependentUpon>fmComprobanteManual.cs</DependentUpon>
+    </Compile>
+    <Compile Include="fmrEditarReserva.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fmrEditarReserva.Designer.cs">
+      <DependentUpon>fmrEditarReserva.cs</DependentUpon>
     </Compile>
     <Compile Include="frmAdelanto.cs">
       <SubType>Form</SubType>
@@ -354,6 +360,12 @@
     <Compile Include="frmDescuentos.Designer.cs">
       <DependentUpon>frmDescuentos.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmObs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmObs.Designer.cs">
+      <DependentUpon>frmObs.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmPagar.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -420,6 +432,18 @@
     <Compile Include="frmPruebaRedondeo.Designer.cs">
       <DependentUpon>frmPruebaRedondeo.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmRAdelantos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRAdelantos.Designer.cs">
+      <DependentUpon>frmRAdelantos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmRCantidadProducto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRCantidadProducto.Designer.cs">
+      <DependentUpon>frmRCantidadProducto.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmRCliente.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -450,11 +474,29 @@
     <Compile Include="frmRConsultaCierre.Designer.cs">
       <DependentUpon>frmRConsultaCierre.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmRDctoTrabajador.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRDctoTrabajador.Designer.cs">
+      <DependentUpon>frmRDctoTrabajador.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmReceta.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmReceta.Designer.cs">
       <DependentUpon>frmReceta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmReporteAdelantos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReporteAdelantos.Designer.cs">
+      <DependentUpon>frmReporteAdelantos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmReporteCantidadProductosVenta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReporteCantidadProductosVenta.Designer.cs">
+      <DependentUpon>frmReporteCantidadProductosVenta.cs</DependentUpon>
     </Compile>
     <Compile Include="frmReporteComprasProducto.cs">
       <SubType>Form</SubType>
@@ -480,6 +522,12 @@
     <Compile Include="frmRComprobantesAnulados.Designer.cs">
       <DependentUpon>frmRComprobantesAnulados.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmReporteDctoTrabajador.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReporteDctoTrabajador.Designer.cs">
+      <DependentUpon>frmReporteDctoTrabajador.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmReporteDetalleVenta.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -492,6 +540,12 @@
     <Compile Include="frmMostrarVentas.Designer.cs">
       <DependentUpon>frmMostrarVentas.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmReporteIngresosEgresos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReporteIngresosEgresos.Designer.cs">
+      <DependentUpon>frmReporteIngresosEgresos.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmReporteMovAlmacenProducto.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -503,6 +557,12 @@
     </Compile>
     <Compile Include="frmReporteMovCaja..Designer.cs">
       <DependentUpon>frmReporteMovCaja..cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmReportePagoPorTrabajador.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReportePagoPorTrabajador.Designer.cs">
+      <DependentUpon>frmReportePagoPorTrabajador.cs</DependentUpon>
     </Compile>
     <Compile Include="frmReporteVentaCliente.cs">
       <SubType>Form</SubType>
@@ -539,6 +599,18 @@
     </Compile>
     <Compile Include="frmReservar.Designer.cs">
       <DependentUpon>frmReservar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmRFormaVenta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRFormaVenta.Designer.cs">
+      <DependentUpon>frmRFormaVenta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmRIngresosEgresos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRIngresosEgresos.Designer.cs">
+      <DependentUpon>frmRIngresosEgresos.cs</DependentUpon>
     </Compile>
     <Compile Include="frmRInsumo.cs">
       <SubType>Form</SubType>
@@ -587,6 +659,12 @@
     </Compile>
     <Compile Include="frmRMovimientoCaja.Designer.cs">
       <DependentUpon>frmRMovimientoCaja.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmRPagoTrabador.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRPagoTrabador.Designer.cs">
+      <DependentUpon>frmRPagoTrabador.cs</DependentUpon>
     </Compile>
     <Compile Include="frmRPlato.cs">
       <SubType>Form</SubType>
@@ -845,6 +923,12 @@
     <Compile Include="Prueba.Designer.cs">
       <DependentUpon>Prueba.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reportes\RAdelantoRemuneracion.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RAdelantoRemuneracion.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reportes\RCaja.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -879,6 +963,24 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RComprobantesAnulados.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reportes\RDescuentoTrabajador.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RDescuentoTrabajador.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reportes\RFormaVenta.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RFormaVenta.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reportes\RIngresosEgresos.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RIngresosEgresos.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reportes\RInsumos.cs">
@@ -929,6 +1031,18 @@
       <DependentUpon>RMovCaja.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reportes\RPagoPorTrabajador.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RPagoPorTrabajador.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reportes\RPagoTrabajador.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RPagoTrabajador.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reportes\RPlatos.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -940,6 +1054,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>RProductos.rpt</DependentUpon>
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reportes\RProductos1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RProductos.rpt</DependentUpon>
     </Compile>
     <Compile Include="Reportes\RProductosStock.cs">
       <AutoGen>True</AutoGen>
@@ -963,6 +1082,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RVentaCaja.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reportes\RVentaCantProducto.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RVentaCantProducto.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reportes\RVentaComprobante.cs">
@@ -1023,6 +1148,9 @@
   <ItemGroup>
     <EmbeddedResource Include="fmComprobanteManual.resx">
       <DependentUpon>fmComprobanteManual.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fmrEditarReserva.resx">
+      <DependentUpon>fmrEditarReserva.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmAdelanto.resx">
       <DependentUpon>frmAdelanto.cs</DependentUpon>
@@ -1171,6 +1299,9 @@
     <EmbeddedResource Include="frmDescuentos.resx">
       <DependentUpon>frmDescuentos.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmObs.resx">
+      <DependentUpon>frmObs.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmPagar.resx">
       <DependentUpon>frmPagar.cs</DependentUpon>
     </EmbeddedResource>
@@ -1204,6 +1335,12 @@
     <EmbeddedResource Include="frmPruebaRedondeo.resx">
       <DependentUpon>frmPruebaRedondeo.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmRAdelantos.resx">
+      <DependentUpon>frmRAdelantos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRCantidadProducto.resx">
+      <DependentUpon>frmRCantidadProducto.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmRCliente.resx">
       <DependentUpon>frmRCliente.cs</DependentUpon>
     </EmbeddedResource>
@@ -1222,8 +1359,17 @@
     <EmbeddedResource Include="frmRConsultaCierre.resx">
       <DependentUpon>frmRConsultaCierre.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmRDctoTrabajador.resx">
+      <DependentUpon>frmRDctoTrabajador.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmReceta.resx">
       <DependentUpon>frmReceta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmReporteAdelantos.resx">
+      <DependentUpon>frmReporteAdelantos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmReporteCantidadProductosVenta.resx">
+      <DependentUpon>frmReporteCantidadProductosVenta.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmReporteComprasProducto.resx">
       <DependentUpon>frmReporteComprasProducto.cs</DependentUpon>
@@ -1234,17 +1380,26 @@
     <EmbeddedResource Include="frmReporteComprasTrabajador.resx">
       <DependentUpon>frmReporteComprasTrabajador.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmReporteDctoTrabajador.resx">
+      <DependentUpon>frmReporteDctoTrabajador.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmReporteDetalleVenta.resx">
       <DependentUpon>frmReporteDetalleVenta.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMostrarVentas.resx">
       <DependentUpon>frmMostrarVentas.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmReporteIngresosEgresos.resx">
+      <DependentUpon>frmReporteIngresosEgresos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmReporteMovAlmacenProducto.resx">
       <DependentUpon>frmReporteMovAlmacenProducto.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmReporteMovCaja..resx">
       <DependentUpon>frmReporteMovCaja..cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmReportePagoPorTrabajador.resx">
+      <DependentUpon>frmReportePagoPorTrabajador.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmReporteVentaCliente.resx">
       <DependentUpon>frmReporteVentaCliente.cs</DependentUpon>
@@ -1263,6 +1418,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmReservar.resx">
       <DependentUpon>frmReservar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRFormaVenta.resx">
+      <DependentUpon>frmRFormaVenta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRIngresosEgresos.resx">
+      <DependentUpon>frmRIngresosEgresos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmRInsumo.resx">
       <DependentUpon>frmRInsumo.cs</DependentUpon>
@@ -1287,6 +1448,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmRMovimientoCaja.resx">
       <DependentUpon>frmRMovimientoCaja.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRPagoTrabador.resx">
+      <DependentUpon>frmRPagoTrabador.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmRPlato.resx">
       <DependentUpon>frmRPlato.cs</DependentUpon>
@@ -1416,6 +1580,10 @@
     <EmbeddedResource Include="Prueba.resx">
       <DependentUpon>Prueba.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\RAdelantoRemuneracion.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RAdelantoRemuneracion.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reportes\RCaja.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RCaja.cs</LastGenOutput>
@@ -1439,6 +1607,18 @@
     <EmbeddedResource Include="Reportes\RComprobantesAnulados.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RComprobantesAnulados.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\RDescuentoTrabajador.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RDescuentoTrabajador.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\RFormaVenta.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RFormaVenta.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\RIngresosEgresos.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RIngresosEgresos.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\RInsumos.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -1472,13 +1652,21 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RMovCaja.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\RPagoPorTrabajador.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPagoPorTrabajador.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\RPagoTrabajador.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPagoTrabajador.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reportes\RPlatos.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPlatos.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\RProductos.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>RProductos.cs</LastGenOutput>
+      <LastGenOutput>RProductos1.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\RProductosStock.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -1495,6 +1683,10 @@
     <EmbeddedResource Include="Reportes\RVentaCaja.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RVentaCaja.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\RVentaCantProducto.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RVentaCantProducto.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\RVentaComprobante.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -1533,16 +1725,16 @@
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="dsPrincipal.xsc">
-      <DependentUpon>dsPrincipal.xsd</DependentUpon>
+    <None Include="dsPrinc.xsc">
+      <DependentUpon>dsPrinc.xsd</DependentUpon>
     </None>
-    <None Include="dsPrincipal.xsd">
+    <None Include="dsPrinc.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>dsPrincipal.Designer.cs</LastGenOutput>
+      <LastGenOutput>dsPrinc.Designer.cs</LastGenOutput>
     </None>
-    <None Include="dsPrincipal.xss">
-      <DependentUpon>dsPrincipal.xsd</DependentUpon>
+    <None Include="dsPrinc.xss">
+      <DependentUpon>dsPrinc.xsd</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

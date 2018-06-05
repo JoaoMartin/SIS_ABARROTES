@@ -115,6 +115,9 @@
             this.btnTicket = new System.Windows.Forms.Button();
             this.dataListadoProducto = new System.Windows.Forms.DataGridView();
             this.lblClase = new System.Windows.Forms.Label();
+            this.lblIdTipoCliente = new System.Windows.Forms.Label();
+            this.lblObs = new System.Windows.Forms.Label();
+            this.btnNota = new System.Windows.Forms.Button();
             this.gbCuentas.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -746,12 +749,12 @@
             // btnDescuentoTotal
             // 
             this.btnDescuentoTotal.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnDescuentoTotal.Font = new System.Drawing.Font("Roboto", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDescuentoTotal.Font = new System.Drawing.Font("Roboto Black", 12.30769F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDescuentoTotal.Image = global::CapaPresentacion.Properties.Resources.vale;
             this.btnDescuentoTotal.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnDescuentoTotal.Location = new System.Drawing.Point(1016, 527);
+            this.btnDescuentoTotal.Location = new System.Drawing.Point(1016, 521);
             this.btnDescuentoTotal.Name = "btnDescuentoTotal";
-            this.btnDescuentoTotal.Size = new System.Drawing.Size(164, 120);
+            this.btnDescuentoTotal.Size = new System.Drawing.Size(138, 120);
             this.btnDescuentoTotal.TabIndex = 202;
             this.btnDescuentoTotal.Text = "DCTO GRAL";
             this.btnDescuentoTotal.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -800,7 +803,7 @@
             this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBox2.Size = new System.Drawing.Size(179, 328);
+            this.groupBox2.Size = new System.Drawing.Size(179, 257);
             this.groupBox2.TabIndex = 189;
             this.groupBox2.TabStop = false;
             // 
@@ -1026,13 +1029,13 @@
             // 
             this.btnCobrar.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.btnCobrar.Enabled = false;
-            this.btnCobrar.Font = new System.Drawing.Font("Roboto", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCobrar.Font = new System.Drawing.Font("Roboto Black", 12.30769F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCobrar.Image = global::CapaPresentacion.Properties.Resources.if_cashbox_45016;
             this.btnCobrar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnCobrar.Location = new System.Drawing.Point(1016, 654);
+            this.btnCobrar.Location = new System.Drawing.Point(1016, 655);
             this.btnCobrar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnCobrar.Name = "btnCobrar";
-            this.btnCobrar.Size = new System.Drawing.Size(164, 120);
+            this.btnCobrar.Size = new System.Drawing.Size(138, 107);
             this.btnCobrar.TabIndex = 190;
             this.btnCobrar.Text = "COBRAR";
             this.btnCobrar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -1170,7 +1173,7 @@
             this.dataListadoProducto.AllowUserToDeleteRows = false;
             this.dataListadoProducto.BackgroundColor = System.Drawing.Color.White;
             this.dataListadoProducto.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataListadoProducto.Location = new System.Drawing.Point(1113, 469);
+            this.dataListadoProducto.Location = new System.Drawing.Point(757, 432);
             this.dataListadoProducto.Name = "dataListadoProducto";
             this.dataListadoProducto.ReadOnly = true;
             this.dataListadoProducto.RowTemplate.Height = 24;
@@ -1190,6 +1193,44 @@
             this.lblClase.Text = "1";
             this.lblClase.Visible = false;
             // 
+            // lblIdTipoCliente
+            // 
+            this.lblIdTipoCliente.AutoSize = true;
+            this.lblIdTipoCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblIdTipoCliente.Location = new System.Drawing.Point(334, 315);
+            this.lblIdTipoCliente.Name = "lblIdTipoCliente";
+            this.lblIdTipoCliente.Size = new System.Drawing.Size(76, 29);
+            this.lblIdTipoCliente.TabIndex = 228;
+            this.lblIdTipoCliente.Text = "00.00";
+            this.lblIdTipoCliente.Visible = false;
+            // 
+            // lblObs
+            // 
+            this.lblObs.AutoSize = true;
+            this.lblObs.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblObs.Location = new System.Drawing.Point(38, 707);
+            this.lblObs.Name = "lblObs";
+            this.lblObs.Size = new System.Drawing.Size(52, 29);
+            this.lblObs.TabIndex = 229;
+            this.lblObs.Text = "IGV";
+            this.lblObs.Visible = false;
+            // 
+            // btnNota
+            // 
+            this.btnNota.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnNota.Font = new System.Drawing.Font("Roboto Black", 12.30769F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNota.Image = global::CapaPresentacion.Properties.Resources.nuevo2;
+            this.btnNota.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnNota.Location = new System.Drawing.Point(1016, 397);
+            this.btnNota.Name = "btnNota";
+            this.btnNota.Size = new System.Drawing.Size(138, 114);
+            this.btnNota.TabIndex = 230;
+            this.btnNota.Text = "NOTA";
+            this.btnNota.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnNota.UseVisualStyleBackColor = false;
+            this.btnNota.Visible = false;
+            this.btnNota.Click += new System.EventHandler(this.btnNota_Click);
+            // 
             // frmPagarDividida
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1197,8 +1238,10 @@
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1218, 792);
             this.ControlBox = false;
+            this.Controls.Add(this.btnNota);
+            this.Controls.Add(this.lblObs);
+            this.Controls.Add(this.lblIdTipoCliente);
             this.Controls.Add(this.lblClase);
-            this.Controls.Add(this.dataListadoProducto);
             this.Controls.Add(this.btnTicket);
             this.Controls.Add(this.button22);
             this.Controls.Add(this.button21);
@@ -1255,6 +1298,7 @@
             this.Controls.Add(this.lblIdMesa);
             this.Controls.Add(this.lblIdTrabajador);
             this.Controls.Add(this.lblRedondeo);
+            this.Controls.Add(this.dataListadoProducto);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "frmPagarDividida";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -1364,5 +1408,8 @@
         private System.Windows.Forms.RadioButton rbCreditoEmitido;
         public System.Windows.Forms.CheckBox cbPaga;
         private System.Windows.Forms.RadioButton rbConsumoT;
+        public System.Windows.Forms.Label lblIdTipoCliente;
+        public System.Windows.Forms.Label lblObs;
+        private System.Windows.Forms.Button btnNota;
     }
 }

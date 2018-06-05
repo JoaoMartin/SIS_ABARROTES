@@ -925,5 +925,47 @@ namespace CapaDatos
 
             return dtResultado;
         }
+
+        public DataTable reportePagoPorTrabajador(DTrabajador Trabajador, DateTime fechaInicio, DateTime fechaFin)
+        {
+            DataTable dtResultado = new DataTable("Trabajador");
+            SqlConnection sqlCon = new SqlConnection();
+
+            try
+            {
+                sqlCon.ConnectionString = Conexion.cn;
+                SqlCommand sqlCmd = new SqlCommand();
+                sqlCmd.Connection = sqlCon;
+                sqlCmd.CommandText = "sp_reportePagoPorTrabajador";
+                sqlCmd.CommandType = CommandType.StoredProcedure;
+
+                SqlParameter ParIdTrabajador = new SqlParameter();
+                ParIdTrabajador.ParameterName = "@idTrabajador";
+                ParIdTrabajador.SqlDbType = SqlDbType.Int;
+                ParIdTrabajador.Value = Trabajador.IdTrabajador;
+                sqlCmd.Parameters.Add(ParIdTrabajador);
+
+                SqlParameter ParFechaInicio = new SqlParameter();
+                ParFechaInicio.ParameterName = "@fechaInicio";
+                ParFechaInicio.SqlDbType = SqlDbType.DateTime;
+                ParFechaInicio.Value = fechaInicio;
+                sqlCmd.Parameters.Add(ParFechaInicio);
+
+                SqlParameter ParFechaFin = new SqlParameter();
+                ParFechaFin.ParameterName = "@fechaFin";
+                ParFechaFin.SqlDbType = SqlDbType.DateTime;
+                ParFechaFin.Value = fechaFin;
+                sqlCmd.Parameters.Add(ParFechaFin);
+
+                SqlDataAdapter sqlDat = new SqlDataAdapter(sqlCmd);
+                sqlDat.Fill(dtResultado);
+            }
+            catch (Exception ex)
+            {
+                dtResultado = null;
+            }
+
+            return dtResultado;
+        }
     }
 }

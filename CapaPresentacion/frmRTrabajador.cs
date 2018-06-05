@@ -49,7 +49,7 @@ namespace CapaPresentacion
                  */
                 repdoc.Load(@"D:\Reportes\RTrabajador.rpt");
                 crConnectionInfo.ServerName = @"EQUIPO\SQLEXPRESS";
-                crConnectionInfo.DatabaseName = "SISVENTAS_CA";
+                crConnectionInfo.DatabaseName = "BD_RESTAURANTE";
                 crConnectionInfo.UserID = "admin";
                 crConnectionInfo.Password = "1234";
                 CrTables = repdoc.Database.Tables;

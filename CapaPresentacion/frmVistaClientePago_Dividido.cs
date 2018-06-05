@@ -73,6 +73,7 @@ namespace CapaPresentacion
         private void frmVistaClientePago_Dividido_Load(object sender, EventArgs e)
         {
             this.Mostrar();
+            this.txtBuscar.Select();
         }
 
         private void txtBuscar_TextChanged(object sender, EventArgs e)
@@ -143,10 +144,11 @@ namespace CapaPresentacion
                 decimal montoAd = 00.00m;
                 decimal dctoI = Convert.ToDecimal(frmPagarDividida.f1.lblDescuento.Text);
                 decimal dctoG = Convert.ToDecimal(frmPagarDividida.f1.lblDctoGeneral.Text);
-                NDescuento.DescuentoClientes(idTipoCliente, subtotal, igv, montoAd, dctoI, dctoG, frmPagarDividida.f1.lblDctoGeneral, frmPagarDividida.f1.lblSubTotal,
+                NDescuento.DescuentoClientes("0", subtotal, igv, montoAd, dctoI, dctoG, frmPagarDividida.f1.lblDctoGeneral, frmPagarDividida.f1.lblSubTotal,
                     frmPagarDividida.f1.lblIgv, frmPagarDividida.f1.lblTotal, "T");
                 frmPagarDividida.f1.mostrarTotales();
                 // frmPagar.f1.cbTipoCliente.Enabled = false;
+                frmPagarDividida.f1.lblIdTipoCliente.Text = idTipoCliente;
                 frmPagarDividida.f1.cbTipoCliente.SelectedIndex = -1;
                 frmPagarDividida.f1.cbTipoCliente.Enabled = false;
                 frmPagarDividida.f1.cbPaga.Visible = true;

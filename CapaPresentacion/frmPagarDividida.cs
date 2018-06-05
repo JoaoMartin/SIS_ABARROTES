@@ -120,7 +120,7 @@ namespace CapaPresentacion
             {
                 formaPago = "CREDITO_NE";
             }
-            else if (rbCreditoEmitido.Checked == true || rbCredioNEm.Checked == true)
+            else if (rbCortesia.Checked == true)
             {
                 formaPago = "CORTESIA";
             }
@@ -833,7 +833,7 @@ namespace CapaPresentacion
 
                             if (rpta == "OK")
                             {
-                                NVenta.EditarVentaD(Convert.ToInt32(this.lblIdVenta.Text));
+                                NVenta.EditarVentaD(Convert.ToInt32(this.lblIdVenta.Text),lblObs.Text);
                                 if (insertarCaja() == true)
                                 {
                                     // MessageBox.Show("Se registró correctamente");
@@ -959,7 +959,7 @@ namespace CapaPresentacion
                                 {
                                     rpta = NComprobante.Insertar("FACTURA", 1, Convert.ToDecimal(this.lblIgv.Text), DateTime.Now, Convert.ToInt32(this.lblIdVenta.Text), "EMITIDA", idCliente,
                                                         Convert.ToDecimal(this.lblTotal.Text), efectivo, tarjeta, Convert.ToDecimal(this.lblRedondeo.Text), formaPago, vuelto);
-                                    NVenta.EditarVentaD(Convert.ToInt32(this.lblIdVenta.Text));
+                                    NVenta.EditarVentaD(Convert.ToInt32(this.lblIdVenta.Text),lblObs.Text);
                                 }
                                 else if (rbCreditoEmitido.Checked == true)
                                 {
@@ -1009,7 +1009,7 @@ namespace CapaPresentacion
                                     cbTipoCliente.SelectedIndex = -1;
                                     btnCobrar.Enabled = false;
                                     btnDescuentoTotal.Enabled = false;
-
+                                    lblObs.Text = "";
                                     if (btn1.Enabled == false && btn2.Enabled == false && btn3.Enabled == false && btn4.Enabled == false && btn5.Enabled == false && btn6.Enabled == false)
                                     {
                                         NMesa.EditarEstadoMesa(Convert.ToInt32(this.lblIdMesa.Text), "Libre");
@@ -1132,8 +1132,8 @@ namespace CapaPresentacion
                     {
                         string idTipoCliente;
                         idTipoCliente = dtClienteVenta.Rows[0][8].ToString();
-
-                        NDescuento.DescuentoClientes(idTipoCliente, Convert.ToDecimal(lblSubTotal.Text), Convert.ToDecimal(lblIgv.Text),00.00m,
+                        lblIdTipoCliente.Text = dtClienteVenta.Rows[0][8].ToString();
+                        NDescuento.DescuentoClientes("0", Convert.ToDecimal(lblSubTotal.Text), Convert.ToDecimal(lblIgv.Text),00.00m,
                             Convert.ToDecimal(lblDescuento.Text), Convert.ToDecimal(lblDctoGeneral.Text), lblDctoGeneral, lblSubTotal, lblIgv, lblTotal, "T");
                         mostrarTotales();
                         cbTipoCliente.Enabled = false;
@@ -1467,6 +1467,11 @@ namespace CapaPresentacion
                 txtEfectivo.Clear();
                 txtTarjeta.Clear();
                 txtVuelto.Clear();
+                string idTipoCliente;
+                idTipoCliente = "0";
+                NDescuento.DescuentoClientes(idTipoCliente, Convert.ToDecimal(lblSubTotal.Text), Convert.ToDecimal(lblIgv.Text), 00.00m,
+                    Convert.ToDecimal(lblDescuento.Text), Convert.ToDecimal(lblDctoGeneral.Text), lblDctoGeneral, lblSubTotal, lblIgv, lblTotal, "T");
+                mostrarTotales();
             }
             else
             {
@@ -1475,7 +1480,17 @@ namespace CapaPresentacion
                 txtEfectivo.Clear();
                 txtTarjeta.Clear();
                 txtEfectivo.ReadOnly = false;
+                NDescuento.DescuentoClientes(lblIdTipoCliente.Text, Convert.ToDecimal(lblSubTotal.Text), Convert.ToDecimal(lblIgv.Text),00.00m,
+                  Convert.ToDecimal(lblDescuento.Text), Convert.ToDecimal(lblDctoGeneral.Text), lblDctoGeneral, lblSubTotal, lblIgv, lblTotal, "T");
+                mostrarTotales();
             }
+        }
+
+        private void btnNota_Click(object sender, EventArgs e)
+        {
+            frmObs frm = new frmObs();
+            frm.lblBandera.Text = "2";
+            frm.ShowDialog();
         }
 
         public void mostrarTotales()

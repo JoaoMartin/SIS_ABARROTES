@@ -185,7 +185,7 @@ namespace CapaPresentacion
                 frm.ShowDialog();
             }else
             {
-                frmRInsumoStock frm = new frmRInsumoStock();
+                frmRInsumo frm = new frmRInsumo();
                 frm.ShowDialog();
             }
         }

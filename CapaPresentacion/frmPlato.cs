@@ -323,14 +323,14 @@ namespace CapaPresentacion
                             imprimir = this.cbImprimir.SelectedItem.ToString();
                         }
 
-                        if ( cbCategoria.Text == "MENU")
+                        if ( cbCategoria.Text == "MENUASDED")
                         {
                             tipo = "M";
                             idCategoria = Convert.ToInt32(this.cbCategoria.SelectedValue.ToString());
                             idUnidad = Convert.ToInt32(this.cbUnidad.SelectedValue.ToString());
                            
                         }
-                        else if(cbCategoria.Text == "DESAYUNO")
+                        else if(cbCategoria.Text == "DESAYUNODSFDS")
                         {
                             tipo = "D";
                             idCategoria = Convert.ToInt32(this.cbCategoria.SelectedValue.ToString());
@@ -345,7 +345,7 @@ namespace CapaPresentacion
 
                         if (this.IsNuevo)
                         {
-                            if (cbCategoria.Text == "MENU" || cbCategoria.Text == "DESAYUNO")
+                            if (cbCategoria.Text == "MENUSDSFD" || cbCategoria.Text == "DESAYUNOSDFDS")
                             {
                                 rpta = NProducto.InsertarProductoCompuesto(this.txtNombre.Text.Trim().ToUpper(), txtDescripcion.Text.Trim(), stock,
                                                   Convert.ToDecimal(this.txtPrecioVenta.Text.Trim()), tipo, "A", idCategoria, imprimir, 0, 00.00m, dtDetalle, idUnidad);
@@ -369,7 +369,7 @@ namespace CapaPresentacion
                         }
                         else
                         {
-                            if (cbCategoria.Text == "MENU" || cbCategoria.Text == "DESAYUNO")
+                            if (cbCategoria.Text == "MENUSDSADADSA" || cbCategoria.Text == "DESAYUNOCXASAD")
                             {
                                 int nroFilas = Convert.ToInt32(this.lblNroFilas.Text);
 
@@ -559,7 +559,7 @@ namespace CapaPresentacion
                     this.dataListadoDetalle.Columns[0].Visible = false;
                 }
 
-                if (lblTipo.Text == "M" || lblTipo.Text == "D")
+                if (lblTipo.Text == "MSA" || lblTipo.Text == "DSA")//MENU: DESAYUNO
                 {
                     gbMenu.Show();
                 }else
@@ -784,14 +784,14 @@ namespace CapaPresentacion
 
         private void cbCategoria_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(cbCategoria.Text == "MENU" )
+            if(cbCategoria.Text == "MENUESA" )//MENI
             {
                 gbMenu.Visible = true;
                 crearTabla();
                 txtPrecioVenta.Text = "11.00";
                 cbImprimir.SelectedIndex = 0;
 
-            }else if (cbCategoria.Text == "DESAYUNO")
+            }else if (cbCategoria.Text == "DESAYUNOSAEs")//DESAYUNOS
             {
                 gbMenu.Visible = true;
                 crearTabla();

@@ -45,7 +45,7 @@ namespace CapaPresentacion
                 ConnectionInfo crConnectionInfo = new ConnectionInfo();
                 Tables CrTables;
                 crConnectionInfo.ServerName = @"EQUIPO\SQLEXPRESS";
-                crConnectionInfo.DatabaseName = "SISVENTAS_CA";
+                crConnectionInfo.DatabaseName = "BD_RESTAURANTE";
                 crConnectionInfo.UserID = "admin";
                 crConnectionInfo.Password = "1234";
                 /*

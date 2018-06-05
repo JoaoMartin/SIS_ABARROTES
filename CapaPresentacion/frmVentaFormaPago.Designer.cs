@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmVentaFormaPago));
-            this.lblTotalCant = new System.Windows.Forms.Label();
             this.lblCant = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.lblBandera = new System.Windows.Forms.Label();
@@ -53,21 +52,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataListado)).BeginInit();
             this.SuspendLayout();
             // 
-            // lblTotalCant
-            // 
-            this.lblTotalCant.AutoSize = true;
-            this.lblTotalCant.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalCant.Location = new System.Drawing.Point(600, 599);
-            this.lblTotalCant.Name = "lblTotalCant";
-            this.lblTotalCant.Size = new System.Drawing.Size(18, 20);
-            this.lblTotalCant.TabIndex = 94;
-            this.lblTotalCant.Text = "0";
-            // 
             // lblCant
             // 
             this.lblCant.AutoSize = true;
             this.lblCant.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCant.Location = new System.Drawing.Point(1051, 601);
+            this.lblCant.Location = new System.Drawing.Point(997, 610);
             this.lblCant.Name = "lblCant";
             this.lblCant.Size = new System.Drawing.Size(18, 20);
             this.lblCant.TabIndex = 93;
@@ -76,7 +65,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(21, 601);
+            this.label5.Location = new System.Drawing.Point(855, 610);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(54, 20);
             this.label5.TabIndex = 92;
@@ -95,10 +84,10 @@
             // rbElegir
             // 
             this.rbElegir.AutoSize = true;
-            this.rbElegir.Font = new System.Drawing.Font("Roboto", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbElegir.Font = new System.Drawing.Font("Roboto", 9.230769F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbElegir.Location = new System.Drawing.Point(16, 148);
             this.rbElegir.Name = "rbElegir";
-            this.rbElegir.Size = new System.Drawing.Size(97, 22);
+            this.rbElegir.Size = new System.Drawing.Size(110, 24);
             this.rbElegir.TabIndex = 90;
             this.rbElegir.Text = "Elegir Fecha";
             this.rbElegir.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -109,10 +98,10 @@
             // 
             this.rbAperturaCaja.AutoSize = true;
             this.rbAperturaCaja.Checked = true;
-            this.rbAperturaCaja.Font = new System.Drawing.Font("Roboto", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbAperturaCaja.Font = new System.Drawing.Font("Roboto", 9.230769F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbAperturaCaja.Location = new System.Drawing.Point(16, 119);
             this.rbAperturaCaja.Name = "rbAperturaCaja";
-            this.rbAperturaCaja.Size = new System.Drawing.Size(105, 22);
+            this.rbAperturaCaja.Size = new System.Drawing.Size(118, 24);
             this.rbAperturaCaja.TabIndex = 89;
             this.rbAperturaCaja.TabStop = true;
             this.rbAperturaCaja.Text = "Apertura Caja";
@@ -216,16 +205,16 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(519, 123);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(152, 20);
+            this.label3.Size = new System.Drawing.Size(193, 20);
             this.label3.TabIndex = 84;
-            this.label3.Text = "Seleccione Producto";
+            this.label3.Text = "Seleccione Forma de Pago";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Navy;
-            this.label4.Location = new System.Drawing.Point(408, 22);
+            this.label4.Location = new System.Drawing.Point(371, 22);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(428, 28);
             this.label4.TabIndex = 83;
@@ -290,6 +279,7 @@
             this.btnImprimir.Text = "&Imprimir";
             this.btnImprimir.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnImprimir.UseVisualStyleBackColor = false;
+            this.btnImprimir.Click += new System.EventHandler(this.btnImprimir_Click);
             // 
             // frmVentaFormaPago
             // 
@@ -297,7 +287,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1209, 652);
-            this.Controls.Add(this.lblTotalCant);
             this.Controls.Add(this.lblCant);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.lblBandera);
@@ -331,13 +320,9 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Label lblTotalCant;
         private System.Windows.Forms.Label lblCant;
         private System.Windows.Forms.Label label5;
         public System.Windows.Forms.Label lblBandera;
-        private System.Windows.Forms.RadioButton rbElegir;
-        private System.Windows.Forms.RadioButton rbAperturaCaja;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label2;
@@ -352,5 +337,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btnImprimir;
         private System.Windows.Forms.DataGridView dataListado;
+        public System.Windows.Forms.RadioButton rbElegir;
+        public System.Windows.Forms.RadioButton rbAperturaCaja;
     }
 }

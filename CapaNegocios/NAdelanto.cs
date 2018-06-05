@@ -49,5 +49,9 @@ namespace CapaNegocios
             DAdelanto Obj = new DAdelanto();
             return Obj.EditarEstado(estado, idAdelanto);
         }
+        public static DataTable reporteAdelanto(DateTime fechaInicio, DateTime fechaFin, string estado, int idTrabajador)
+        {
+            return new DAdelanto().reporteAdelanto(fechaInicio, fechaFin, estado, idTrabajador);
+        }
     }
 }

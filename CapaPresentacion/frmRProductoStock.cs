@@ -42,9 +42,9 @@ namespace CapaPresentacion
                 //repdoc.Load(@"D:/credicon/jmsacrcc/jmsacrcc/Reportes/Imprimir_Cuotas.rpt");
                 //repdoc.Load(@"D:/Reportes/RCliente.rpt");
                 //repdoc.Load(@"C:\Users\vioma\OneDrive\Documentos\Visual Studio 2017\Projects\SisVentas_ResAlm\CapaPresentacion\Reportes/RProductosStock.rpt");
-                repdoc.Load(@"D:\Reportes\RProductosStock.rpt");
+                repdoc.Load(@"D:\Reportes\RProductos.rpt");
                 crConnectionInfo.ServerName = @"EQUIPO\SQLEXPRESS";
-                crConnectionInfo.DatabaseName = "SISVENTAS_CA";
+                crConnectionInfo.DatabaseName = "BD_RESTAURANTE";
                 crConnectionInfo.UserID = "admin";
                 crConnectionInfo.Password = "1234";
 

@@ -51,5 +51,10 @@ namespace CapaNegocios
             DDescuentoTrabajador Obj = new DDescuentoTrabajador();
             return Obj.EditarEstado(estado, idAdelanto);
         }
+
+        public static DataTable reporteDctos(DateTime fechaInicio, DateTime fechaFin, string estado, int idTrabajador)
+        {
+            return new DDescuentoTrabajador().reporteDctos(fechaInicio, fechaFin, estado, idTrabajador);
+        }
     }
 }

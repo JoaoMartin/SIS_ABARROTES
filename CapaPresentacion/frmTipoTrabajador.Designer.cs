@@ -107,7 +107,7 @@
             this.cbEliminar.Location = new System.Drawing.Point(11, 120);
             this.cbEliminar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbEliminar.Name = "cbEliminar";
-            this.cbEliminar.Size = new System.Drawing.Size(87, 24);
+            this.cbEliminar.Size = new System.Drawing.Size(84, 24);
             this.cbEliminar.TabIndex = 5;
             this.cbEliminar.Text = "Eliminar";
             this.cbEliminar.UseVisualStyleBackColor = true;
@@ -170,7 +170,7 @@
             this.txtIdTipo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtIdTipo.Name = "txtIdTipo";
             this.txtIdTipo.ReadOnly = true;
-            this.txtIdTipo.Size = new System.Drawing.Size(112, 25);
+            this.txtIdTipo.Size = new System.Drawing.Size(112, 27);
             this.txtIdTipo.TabIndex = 20;
             // 
             // label5
@@ -178,7 +178,7 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(7, 157);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(83, 19);
+            this.label5.Size = new System.Drawing.Size(91, 20);
             this.label5.TabIndex = 2;
             this.label5.Text = "Descripción";
             // 
@@ -187,7 +187,7 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(34, 96);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(59, 19);
+            this.label4.Size = new System.Drawing.Size(64, 20);
             this.label4.TabIndex = 1;
             this.label4.Text = "Nombre";
             // 
@@ -196,7 +196,7 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(39, 39);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(54, 19);
+            this.label3.Size = new System.Drawing.Size(59, 20);
             this.label3.TabIndex = 0;
             this.label3.Text = "Código";
             // 
@@ -223,7 +223,7 @@
             // 
             this.tabControl2.Controls.Add(this.tabPage2);
             this.tabControl2.Controls.Add(this.tabPage3);
-            this.tabControl2.Font = new System.Drawing.Font("Roboto", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabControl2.Font = new System.Drawing.Font("Roboto", 9.230769F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl2.Location = new System.Drawing.Point(12, 39);
             this.tabControl2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabControl2.Name = "tabControl2";
@@ -237,11 +237,11 @@
             this.tabPage2.Controls.Add(this.lblTotal);
             this.tabPage2.Controls.Add(this.cbEliminar);
             this.tabPage2.Controls.Add(this.dataListado);
-            this.tabPage2.Location = new System.Drawing.Point(4, 27);
+            this.tabPage2.Location = new System.Drawing.Point(4, 29);
             this.tabPage2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tabPage2.Size = new System.Drawing.Size(905, 416);
+            this.tabPage2.Size = new System.Drawing.Size(905, 414);
             this.tabPage2.TabIndex = 0;
             this.tabPage2.Text = "Listado General";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -261,7 +261,7 @@
             // rbBusqueda
             // 
             this.rbBusqueda.Checked = true;
-            this.rbBusqueda.Font = new System.Drawing.Font("Roboto", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbBusqueda.Font = new System.Drawing.Font("Roboto", 9.230769F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbBusqueda.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.rbBusqueda.Location = new System.Drawing.Point(6, 35);
             this.rbBusqueda.Name = "rbBusqueda";

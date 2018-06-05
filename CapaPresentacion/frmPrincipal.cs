@@ -1011,9 +1011,7 @@ namespace CapaPresentacion
 
         private void reporteDeMovCajaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmReporteMovCaja frm = new frmReporteMovCaja();
-            frm.MdiParent = this;
-            frm.Show();
+         
         }
 
         private void mnuComprobantesAnulados_Click(object sender, EventArgs e)
@@ -1102,6 +1100,48 @@ namespace CapaPresentacion
         private void porFormaDePagoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmVentaFormaPago frm = new frmVentaFormaPago();
+            frm.MdiParent = this;
+            frm.Show();
+        }
+
+        private void pagoPorTrabajadorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmReportePagoPorTrabajador frm = new frmReportePagoPorTrabajador();
+            frm.MdiParent = this;
+            frm.Show();
+        }
+
+        private void adelantosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmReporteAdelantos frm = new frmReporteAdelantos();
+            frm.MdiParent = this;
+            frm.Show();
+        }
+
+        private void dctosTrabajadoresToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmReporteDctoTrabajador frm = new frmReporteDctoTrabajador();
+            frm.MdiParent = this;
+            frm.Show();
+        }
+
+        private void movimientoCajaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmReporteMovCaja frm = new frmReporteMovCaja();
+            frm.MdiParent = this;
+            frm.Show();
+        }
+
+        private void ingresosEgresosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmReporteIngresosEgresos frm = new frmReporteIngresosEgresos();
+            frm.MdiParent = this;
+            frm.Show();
+        }
+
+        private void porCantidadDeProductosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmReporteCantidadProductosVenta frm = new frmReporteCantidadProductosVenta();
             frm.MdiParent = this;
             frm.Show();
         }

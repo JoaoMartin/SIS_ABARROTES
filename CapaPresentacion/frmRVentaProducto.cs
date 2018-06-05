@@ -23,6 +23,7 @@ namespace CapaPresentacion
         {
             try
             {
+                ExcelFormatOptions objExcel = new ExcelFormatOptions();
                 string bandera = frmReporteVentasProducto.f1.lblBandera.Text;
                 string fechaInicio = "";
                 string fechaFin = "";
@@ -75,7 +76,7 @@ namespace CapaPresentacion
                 ConnectionInfo crConnectionInfo = new ConnectionInfo();
                 Tables CrTables;
                 crConnectionInfo.ServerName = @"EQUIPO\SQLEXPRESS";
-                crConnectionInfo.DatabaseName = "SISVENTAS_CA";
+                crConnectionInfo.DatabaseName = "BD_RESTAURANTE";
                 crConnectionInfo.UserID = "admin";
                 crConnectionInfo.Password = "1234";
 
@@ -90,6 +91,7 @@ namespace CapaPresentacion
 
                 cvVentas.ReportSource = repdoc;
                 cvVentas.Refresh();
+                objExcel.ExcelUseConstantColumnWidth = false;
 
             }
 

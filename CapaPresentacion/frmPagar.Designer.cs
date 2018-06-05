@@ -53,13 +53,9 @@
             this.label6 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.cbPaga = new System.Windows.Forms.CheckBox();
-            this.btnEditar = new System.Windows.Forms.Button();
             this.cbTipoCliente = new System.Windows.Forms.ComboBox();
             this.label16 = new System.Windows.Forms.Label();
-            this.btnNuevo = new System.Windows.Forms.Button();
             this.txtIdCliente = new System.Windows.Forms.TextBox();
-            this.btnGuardar = new System.Windows.Forms.Button();
-            this.btnBuscarProveedor = new System.Windows.Forms.Button();
             this.txtDireccion = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.txtNombre = new System.Windows.Forms.TextBox();
@@ -103,11 +99,6 @@
             this.button21 = new System.Windows.Forms.Button();
             this.button22 = new System.Windows.Forms.Button();
             this.btnTicket = new System.Windows.Forms.Button();
-            this.btnDescuentoTotal = new System.Windows.Forms.Button();
-            this.btnCancelar = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.dataListadoProducto = new System.Windows.Forms.DataGridView();
             this.lblBanderaCobro = new System.Windows.Forms.Label();
             this.lblObs = new System.Windows.Forms.Label();
@@ -121,14 +112,26 @@
             this.lblMontoAdelanto = new System.Windows.Forms.Label();
             this.lblTotalReal = new System.Windows.Forms.Label();
             this.lblClase = new System.Windows.Forms.Label();
+            this.lblIdTipoCliente = new System.Windows.Forms.Label();
+            this.lblNota = new System.Windows.Forms.Label();
+            this.btnNota = new System.Windows.Forms.Button();
+            this.btnCancelar = new System.Windows.Forms.Button();
+            this.btnDescuentoTotal = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btnEditar = new System.Windows.Forms.Button();
+            this.btnNuevo = new System.Windows.Forms.Button();
+            this.btnGuardar = new System.Windows.Forms.Button();
+            this.btnBuscarProveedor = new System.Windows.Forms.Button();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataListadoProducto)).BeginInit();
             this.gbRecoge.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataDetalleReserva)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // txtEfectivo
@@ -423,23 +426,6 @@
             this.cbPaga.Visible = false;
             this.cbPaga.CheckedChanged += new System.EventHandler(this.cbPaga_CheckedChanged);
             // 
-            // btnEditar
-            // 
-            this.btnEditar.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnEditar.Enabled = false;
-            this.btnEditar.Font = new System.Drawing.Font("Roboto", 9.846154F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditar.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnEditar.Image = global::CapaPresentacion.Properties.Resources.edit4;
-            this.btnEditar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnEditar.Location = new System.Drawing.Point(375, 234);
-            this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(100, 80);
-            this.btnEditar.TabIndex = 193;
-            this.btnEditar.Text = "&Editar";
-            this.btnEditar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnEditar.UseVisualStyleBackColor = false;
-            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
-            // 
             // cbTipoCliente
             // 
             this.cbTipoCliente.Font = new System.Drawing.Font("Roboto", 14.15385F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -459,22 +445,6 @@
             this.label16.TabIndex = 191;
             this.label16.Text = "T. Cliente";
             // 
-            // btnNuevo
-            // 
-            this.btnNuevo.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnNuevo.Font = new System.Drawing.Font("Roboto", 9.846154F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNuevo.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnNuevo.Image = global::CapaPresentacion.Properties.Resources.new4;
-            this.btnNuevo.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnNuevo.Location = new System.Drawing.Point(270, 233);
-            this.btnNuevo.Name = "btnNuevo";
-            this.btnNuevo.Size = new System.Drawing.Size(100, 80);
-            this.btnNuevo.TabIndex = 33;
-            this.btnNuevo.Text = "&Nuevo";
-            this.btnNuevo.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnNuevo.UseVisualStyleBackColor = false;
-            this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
-            // 
             // txtIdCliente
             // 
             this.txtIdCliente.Font = new System.Drawing.Font("Roboto", 14.15385F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -483,37 +453,6 @@
             this.txtIdCliente.ReadOnly = true;
             this.txtIdCliente.Size = new System.Drawing.Size(61, 38);
             this.txtIdCliente.TabIndex = 32;
-            // 
-            // btnGuardar
-            // 
-            this.btnGuardar.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnGuardar.Enabled = false;
-            this.btnGuardar.Font = new System.Drawing.Font("Roboto", 9.846154F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGuardar.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnGuardar.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardar.Image")));
-            this.btnGuardar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnGuardar.Location = new System.Drawing.Point(481, 233);
-            this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(100, 80);
-            this.btnGuardar.TabIndex = 31;
-            this.btnGuardar.Text = "&Guardar";
-            this.btnGuardar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnGuardar.UseVisualStyleBackColor = false;
-            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
-            // 
-            // btnBuscarProveedor
-            // 
-            this.btnBuscarProveedor.BackColor = System.Drawing.Color.White;
-            this.btnBuscarProveedor.Font = new System.Drawing.Font("Segoe UI Black", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBuscarProveedor.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnBuscarProveedor.Image = global::CapaPresentacion.Properties.Resources.search5;
-            this.btnBuscarProveedor.Location = new System.Drawing.Point(534, 29);
-            this.btnBuscarProveedor.Name = "btnBuscarProveedor";
-            this.btnBuscarProveedor.Size = new System.Drawing.Size(37, 40);
-            this.btnBuscarProveedor.TabIndex = 20;
-            this.btnBuscarProveedor.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnBuscarProveedor.UseVisualStyleBackColor = false;
-            this.btnBuscarProveedor.Click += new System.EventHandler(this.btnBuscarProveedor_Click);
             // 
             // txtDireccion
             // 
@@ -997,72 +936,6 @@
             this.btnTicket.UseVisualStyleBackColor = false;
             this.btnTicket.Click += new System.EventHandler(this.btnTicket_Click);
             // 
-            // btnDescuentoTotal
-            // 
-            this.btnDescuentoTotal.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnDescuentoTotal.Font = new System.Drawing.Font("Roboto Black", 14.15385F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDescuentoTotal.Image = global::CapaPresentacion.Properties.Resources.vale;
-            this.btnDescuentoTotal.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnDescuentoTotal.Location = new System.Drawing.Point(1082, 556);
-            this.btnDescuentoTotal.Name = "btnDescuentoTotal";
-            this.btnDescuentoTotal.Size = new System.Drawing.Size(154, 133);
-            this.btnDescuentoTotal.TabIndex = 171;
-            this.btnDescuentoTotal.Text = "DCTO GRAL";
-            this.btnDescuentoTotal.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnDescuentoTotal.UseVisualStyleBackColor = false;
-            this.btnDescuentoTotal.Click += new System.EventHandler(this.btnDescuentoTotal_Click);
-            // 
-            // btnCancelar
-            // 
-            this.btnCancelar.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnCancelar.Font = new System.Drawing.Font("Roboto Black", 14.15385F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelar.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnCancelar.Image = global::CapaPresentacion.Properties.Resources.if_gtk_cancel_39042;
-            this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnCancelar.Location = new System.Drawing.Point(1082, 403);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(154, 133);
-            this.btnCancelar.TabIndex = 110;
-            this.btnCancelar.Text = "&CANCELAR";
-            this.btnCancelar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnCancelar.UseVisualStyleBackColor = false;
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.button1.Font = new System.Drawing.Font("Roboto Black", 14.15385F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Image = global::CapaPresentacion.Properties.Resources.if_cashbox_45016;
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button1.Location = new System.Drawing.Point(1084, 695);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(154, 122);
-            this.button1.TabIndex = 109;
-            this.button1.Text = "COBRAR";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = global::CapaPresentacion.Properties.Resources.visa;
-            this.pictureBox2.Location = new System.Drawing.Point(152, 258);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(122, 101);
-            this.pictureBox2.TabIndex = 1;
-            this.pictureBox2.TabStop = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::CapaPresentacion.Properties.Resources.efec;
-            this.pictureBox1.Location = new System.Drawing.Point(152, 126);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(122, 101);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            // 
             // dataListadoProducto
             // 
             this.dataListadoProducto.AllowUserToAddRows = false;
@@ -1217,6 +1090,173 @@
             this.lblClase.Text = "1";
             this.lblClase.Visible = false;
             // 
+            // lblIdTipoCliente
+            // 
+            this.lblIdTipoCliente.AutoSize = true;
+            this.lblIdTipoCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblIdTipoCliente.Location = new System.Drawing.Point(380, 250);
+            this.lblIdTipoCliente.Name = "lblIdTipoCliente";
+            this.lblIdTipoCliente.Size = new System.Drawing.Size(76, 29);
+            this.lblIdTipoCliente.TabIndex = 195;
+            this.lblIdTipoCliente.Text = "00.00";
+            this.lblIdTipoCliente.Visible = false;
+            // 
+            // lblNota
+            // 
+            this.lblNota.AutoSize = true;
+            this.lblNota.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNota.Location = new System.Drawing.Point(246, 820);
+            this.lblNota.Name = "lblNota";
+            this.lblNota.Size = new System.Drawing.Size(52, 29);
+            this.lblNota.TabIndex = 197;
+            this.lblNota.Text = "IGV";
+            this.lblNota.Visible = false;
+            // 
+            // btnNota
+            // 
+            this.btnNota.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnNota.Font = new System.Drawing.Font("Roboto Black", 14.15385F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNota.Image = global::CapaPresentacion.Properties.Resources.nuevo2;
+            this.btnNota.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnNota.Location = new System.Drawing.Point(1082, 503);
+            this.btnNota.Name = "btnNota";
+            this.btnNota.Size = new System.Drawing.Size(154, 113);
+            this.btnNota.TabIndex = 196;
+            this.btnNota.Text = "NOTA";
+            this.btnNota.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnNota.UseVisualStyleBackColor = false;
+            this.btnNota.Click += new System.EventHandler(this.btnNota_Click);
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnCancelar.Font = new System.Drawing.Font("Roboto Black", 14.15385F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancelar.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnCancelar.Image = global::CapaPresentacion.Properties.Resources.if_gtk_cancel_39042;
+            this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnCancelar.Location = new System.Drawing.Point(1082, 383);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(154, 115);
+            this.btnCancelar.TabIndex = 110;
+            this.btnCancelar.Text = "&CANCELAR";
+            this.btnCancelar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnCancelar.UseVisualStyleBackColor = false;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
+            // btnDescuentoTotal
+            // 
+            this.btnDescuentoTotal.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnDescuentoTotal.Font = new System.Drawing.Font("Roboto Black", 14.15385F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDescuentoTotal.Image = global::CapaPresentacion.Properties.Resources.vale;
+            this.btnDescuentoTotal.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnDescuentoTotal.Location = new System.Drawing.Point(1082, 622);
+            this.btnDescuentoTotal.Name = "btnDescuentoTotal";
+            this.btnDescuentoTotal.Size = new System.Drawing.Size(154, 113);
+            this.btnDescuentoTotal.TabIndex = 171;
+            this.btnDescuentoTotal.Text = "DCTO GRAL";
+            this.btnDescuentoTotal.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnDescuentoTotal.UseVisualStyleBackColor = false;
+            this.btnDescuentoTotal.Click += new System.EventHandler(this.btnDescuentoTotal_Click);
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.button1.Font = new System.Drawing.Font("Roboto Black", 14.15385F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Image = global::CapaPresentacion.Properties.Resources.if_cashbox_45016;
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.button1.Location = new System.Drawing.Point(1082, 738);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(154, 111);
+            this.button1.TabIndex = 109;
+            this.button1.Text = "COBRAR";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // btnEditar
+            // 
+            this.btnEditar.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnEditar.Enabled = false;
+            this.btnEditar.Font = new System.Drawing.Font("Roboto", 9.846154F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEditar.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnEditar.Image = global::CapaPresentacion.Properties.Resources.edit4;
+            this.btnEditar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnEditar.Location = new System.Drawing.Point(375, 234);
+            this.btnEditar.Name = "btnEditar";
+            this.btnEditar.Size = new System.Drawing.Size(100, 80);
+            this.btnEditar.TabIndex = 193;
+            this.btnEditar.Text = "&Editar";
+            this.btnEditar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnEditar.UseVisualStyleBackColor = false;
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
+            // 
+            // btnNuevo
+            // 
+            this.btnNuevo.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnNuevo.Font = new System.Drawing.Font("Roboto", 9.846154F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNuevo.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnNuevo.Image = global::CapaPresentacion.Properties.Resources.new4;
+            this.btnNuevo.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnNuevo.Location = new System.Drawing.Point(270, 233);
+            this.btnNuevo.Name = "btnNuevo";
+            this.btnNuevo.Size = new System.Drawing.Size(100, 80);
+            this.btnNuevo.TabIndex = 33;
+            this.btnNuevo.Text = "&Nuevo";
+            this.btnNuevo.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnNuevo.UseVisualStyleBackColor = false;
+            this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
+            // 
+            // btnGuardar
+            // 
+            this.btnGuardar.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnGuardar.Enabled = false;
+            this.btnGuardar.Font = new System.Drawing.Font("Roboto", 9.846154F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGuardar.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnGuardar.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardar.Image")));
+            this.btnGuardar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnGuardar.Location = new System.Drawing.Point(481, 233);
+            this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.Size = new System.Drawing.Size(100, 80);
+            this.btnGuardar.TabIndex = 31;
+            this.btnGuardar.Text = "&Guardar";
+            this.btnGuardar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnGuardar.UseVisualStyleBackColor = false;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
+            // 
+            // btnBuscarProveedor
+            // 
+            this.btnBuscarProveedor.BackColor = System.Drawing.Color.White;
+            this.btnBuscarProveedor.Font = new System.Drawing.Font("Segoe UI Black", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBuscarProveedor.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnBuscarProveedor.Image = global::CapaPresentacion.Properties.Resources.search5;
+            this.btnBuscarProveedor.Location = new System.Drawing.Point(534, 29);
+            this.btnBuscarProveedor.Name = "btnBuscarProveedor";
+            this.btnBuscarProveedor.Size = new System.Drawing.Size(37, 40);
+            this.btnBuscarProveedor.TabIndex = 20;
+            this.btnBuscarProveedor.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnBuscarProveedor.UseVisualStyleBackColor = false;
+            this.btnBuscarProveedor.Click += new System.EventHandler(this.btnBuscarProveedor_Click);
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::CapaPresentacion.Properties.Resources.visa;
+            this.pictureBox2.Location = new System.Drawing.Point(152, 258);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(122, 101);
+            this.pictureBox2.TabIndex = 1;
+            this.pictureBox2.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::CapaPresentacion.Properties.Resources.efec;
+            this.pictureBox1.Location = new System.Drawing.Point(152, 126);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(122, 101);
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            // 
             // frmPagar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -1224,6 +1264,9 @@
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1274, 863);
             this.ControlBox = false;
+            this.Controls.Add(this.lblNota);
+            this.Controls.Add(this.btnNota);
+            this.Controls.Add(this.lblIdTipoCliente);
             this.Controls.Add(this.lblClase);
             this.Controls.Add(this.lblSAdelanto);
             this.Controls.Add(this.lblAdelanto);
@@ -1307,12 +1350,12 @@
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataListadoProducto)).EndInit();
             this.gbRecoge.ResumeLayout(false);
             this.gbRecoge.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataDetalleReserva)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1412,5 +1455,8 @@
         private System.Windows.Forms.RadioButton rbCreditoEmitido;
         public System.Windows.Forms.CheckBox cbPaga;
         private System.Windows.Forms.RadioButton rbConsumoT;
+        public System.Windows.Forms.Label lblIdTipoCliente;
+        public System.Windows.Forms.Button btnNota;
+        public System.Windows.Forms.Label lblNota;
     }
 }

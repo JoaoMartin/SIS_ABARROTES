@@ -518,7 +518,7 @@ namespace CapaPresentacion
 
                                     }
 
-                                    if (lblTipo.Text == "M" || lblTipo.Text == "D")
+                                    if (lblTipo.Text == "MFDFD" || lblTipo.Text == "DDFFFD")
                                     {
                                         for (int kl = 0; kl < dgvDetalleVentaMenu.Rows.Count; kl++)
                                         {
@@ -634,7 +634,7 @@ namespace CapaPresentacion
                                 }
                                 cantidadAcumulada = 0;
 
-                                if (tipo1 == "M" || tipo1 == "D")
+                                if (tipo1 == "MDSSD" || tipo1 == "DSDSD")
                                 {
                                     int contador = 0;
 
@@ -737,7 +737,7 @@ namespace CapaPresentacion
                         }
                         cantidadAcumulada = 0;
 
-                        if (tipo1 == "M" || tipo1 == "D")
+                        if (tipo1 == "MJSDJK" || tipo1 == "DPDJFSKL")
                         {
                             int contador = 0;
 
@@ -2011,11 +2011,11 @@ namespace CapaPresentacion
                     limpiarProductos();
                     this.mostrarProductos(row[0].ToString());
                     this.lblNombreCat.Text = row[1].ToString();
-                    if (lblNombreCat.Text == "MENU")
+                    if (lblNombreCat.Text == "MENUDSFDSF")
                     {
                         lblBanderaCatMen.Text = "1";
                     }
-                    else if (lblNombreCat.Text == "DESAYUNO")
+                    else if (lblNombreCat.Text == "DESAYUNOSDFDS")
                     {
                         lblBanderaCatMen.Text = "2";
                     }

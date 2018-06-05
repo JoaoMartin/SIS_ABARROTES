@@ -42,6 +42,7 @@
             this.cvInsumo.Name = "cvInsumo";
             this.cvInsumo.Size = new System.Drawing.Size(1336, 662);
             this.cvInsumo.TabIndex = 1;
+            this.cvInsumo.Load += new System.EventHandler(this.cvInsumo_Load);
             // 
             // frmRInsumo
             // 

@@ -134,5 +134,12 @@ namespace CapaNegocios
             DTrabajador Obj = new DTrabajador();
             return Obj.MostrarTrabajadorDni(nroDoc);
         }
+
+        public static DataTable reportePagoPorTrabajador(int idTrabajador, DateTime fechaInicio, DateTime fechaFin)
+        {
+            DTrabajador Obj = new DTrabajador();
+            Obj.IdTrabajador = idTrabajador;
+            return Obj.reportePagoPorTrabajador(Obj, fechaInicio, fechaFin);
+        }
     }
 }

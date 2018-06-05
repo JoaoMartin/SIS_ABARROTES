@@ -606,7 +606,7 @@ namespace CapaPresentacion
                        formaPago, Convert.ToDecimal(this.lblDctoGeneral.Text.Trim()), Convert.ToInt32(this.lblIdUsuario.Text), "CS", 1, tipoCompr, 1,
                        Convert.ToDecimal(this.lblIgv.Text), "EMITIDA", Convert.ToDecimal(this.lblTotal.Text), efectivo,
                        tarjeta, 00.00m, dtDetalle, vuelto, frmVenta.f1.dtDetalleMenu,
-                       DateTime.Now, 00.00m, Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text), "", "", "", "", lblClase.Text);
+                       DateTime.Now, 00.00m, Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text),lblObs.Text, "", "", "", lblClase.Text);
                     }
                     else if (rbCreditoEmitido.Checked == true)
                     {
@@ -614,7 +614,7 @@ namespace CapaPresentacion
                      formaPago, Convert.ToDecimal(this.lblDctoGeneral.Text.Trim()), Convert.ToInt32(this.lblIdUsuario.Text), "CS", 1, tipoCompr, 1,
                      Convert.ToDecimal(this.lblIgv.Text), "EMITIDA", Convert.ToDecimal(this.lblTotal.Text), efectivo,
                      tarjeta, 00.00m, dtDetalle, vuelto, frmVenta.f1.dtDetalleMenu,
-                     DateTime.Now, 00.00m, Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text), "", "", "", "", lblClase.Text);
+                     DateTime.Now, 00.00m, Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text),lblObs.Text, "", "", "", lblClase.Text);
                     }
 
                     else
@@ -622,7 +622,7 @@ namespace CapaPresentacion
                         rpta = NVenta.InsertarPedidoPagadoCredCor(idCliente, Convert.ToInt32(this.lblIdMesa.Text), DateTime.Now, estadoVenta, formaPago, Convert.ToDecimal(this.lblDctoGeneral.Text)
                                                                            , Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text), "CS", 1, dtDetalle, frmVenta.f1.dtDetalleMenu,
                                                                            DateTime.Now, Convert.ToDecimal(lblTotal.Text), Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text),
-                                                                           "", "", "", "", lblClase.Text);
+                                                                           lblObs.Text, "", "", "", lblClase.Text);
                     }
 
 
@@ -644,7 +644,7 @@ namespace CapaPresentacion
                            formaPago, Convert.ToDecimal(this.lblDctoGeneral.Text.Trim()), Convert.ToInt32(this.lblIdUsuario.Text), "CS", 1, "FACTURA", 1,
                            Convert.ToDecimal(this.lblIgv.Text), "EMITIDA", Convert.ToDecimal(this.lblTotal.Text), efectivo,
                            tarjeta, 00.00m, dtDetalle, vuelto, frmVenta.f1.dtDetalleMenu,
-                           DateTime.Now, 00.00m, Convert.ToInt32(this.lblIdUsuario.Text), "", "", "", "", lblClase.Text);
+                           DateTime.Now, 00.00m, Convert.ToInt32(this.lblIdUsuario.Text),lblObs.Text, "", "", "", lblClase.Text);
 
                         }
                         else if (rbCreditoEmitido.Checked == true)
@@ -653,7 +653,7 @@ namespace CapaPresentacion
                          formaPago, Convert.ToDecimal(this.lblDctoGeneral.Text.Trim()), Convert.ToInt32(this.lblIdUsuario.Text), "CS", 1, "FACTURA", 1,
                          Convert.ToDecimal(this.lblIgv.Text), "EMITIDA", Convert.ToDecimal(this.lblTotal.Text), efectivo,
                          tarjeta, 00.00m, dtDetalle, vuelto, frmVenta.f1.dtDetalleMenu,
-                         DateTime.Now, 00.00m, Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text), "", "", "", "", lblClase.Text);
+                         DateTime.Now, 00.00m, Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text),lblObs.Text, "", "", "", lblClase.Text);
                         }
 
                         else
@@ -661,7 +661,7 @@ namespace CapaPresentacion
                             rpta = NVenta.InsertarPedidoPagadoCredCor(idCliente, Convert.ToInt32(this.lblIdMesa.Text), DateTime.Now, estadoVenta, formaPago, Convert.ToDecimal(this.lblDctoGeneral.Text)
                                                                                , Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text), "CS", 1, dtDetalle, frmVenta.f1.dtDetalleMenu,
                                                                                DateTime.Now, Convert.ToDecimal(lblTotal.Text), Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text),
-                                                                               "", "", "", "", lblClase.Text);
+                                                                               lblObs.Text, "", "", "", lblClase.Text);
                         }
 
                         btn.Enabled = false;
@@ -703,7 +703,7 @@ namespace CapaPresentacion
                         if (cbPaga.Checked)
                         {
                             NDescuentoTrabajador.Insertar(Convert.ToInt32(txtIdCliente.Text), Convert.ToDecimal(lblTotal.Text),
-                                "CONSUMO_", DateTime.Now, "PENDIENTE", lblIdVenta.Text);
+                                "CONSUMO_", DateTime.Now, "PENDIENTE", rpta);
                         }
                         this.Limpiar();
                         cbPaga.Checked = false;
@@ -711,6 +711,7 @@ namespace CapaPresentacion
 
                     }
 
+                    lblObs.Text = "";
                     btn.Enabled = false;
                     cbTipoCliente.Enabled = false;
                     cbTipoCliente.SelectedIndex = -1;
@@ -790,7 +791,7 @@ namespace CapaPresentacion
                                              , Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text), "CS", 1, tipoCompr, 1, Convert.ToDecimal(this.lblIgv.Text), "EMITIDA",
                                              Convert.ToDecimal(this.lblTotal.Text), efectivo, tarjeta, 00.00m,
                                              dtDetalle, vuelto, frmVenta.f1.dtDetalleMenu,
-                                             DateTime.Now, 00.00m, Convert.ToInt32(this.lblIdUsuario.Text), "", "", "", "", lblClase.Text);
+                                             DateTime.Now, 00.00m, Convert.ToInt32(this.lblIdUsuario.Text),lblObs.Text, "", "", "", lblClase.Text);
 
                 }
                 else if (rbCreditoEmitido.Checked == true)
@@ -799,20 +800,21 @@ namespace CapaPresentacion
                                             , Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text), "CS", 1, tipoCompr, 1, Convert.ToDecimal(this.lblIgv.Text), "EMITIDA",
                                             Convert.ToDecimal(this.lblTotal.Text), efectivo, tarjeta, 00.00m,
                                             dtDetalle, vuelto, frmVenta.f1.dtDetalleMenu,
-                                            DateTime.Now, 00.00m, Convert.ToInt32(this.lblIdUsuario.Text), "", "", "", "", lblClase.Text);
+                                            DateTime.Now, 00.00m, Convert.ToInt32(this.lblIdUsuario.Text),lblObs.Text, "", "", "", lblClase.Text);
                 }
                 else
                 {
                     rpta = NVenta.InsertarPedidoPagadoCredCor(idCliente, Convert.ToInt32(this.lblIdMesa.Text), DateTime.Now, estadoVenta, formaPago, Convert.ToDecimal(this.lblDctoGeneral.Text)
                                                                             , Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text), "CS", 1, dtDetalle, frmVenta.f1.dtDetalleMenu,
                                                                             DateTime.Now, Convert.ToDecimal(lblTotal.Text), Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text),
-                                                                            "", "", "", "", lblClase.Text);
+                                                                          lblObs.Text, "", "", "", lblClase.Text);
                 }
 
 
 
 
                 btn.Enabled = false;
+                
             }
             else if (this.lblBanderaComprobante.Text == "2")
             {
@@ -837,14 +839,14 @@ namespace CapaPresentacion
                                                 , Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text), "CS", 1, "FACTURA", 1, Convert.ToDecimal(this.lblIgv.Text), "EMITIDA",
                                                 Convert.ToDecimal(this.lblTotal.Text), efectivo, tarjeta, 00.00m,
                                                 dtDetalle, vuelto, frmVenta.f1.dtDetalleMenu,
-                                                DateTime.Now, 00.00m, Convert.ToInt32(this.lblIdUsuario.Text), "", "", "", "", lblClase.Text);
+                                                DateTime.Now, 00.00m, Convert.ToInt32(this.lblIdUsuario.Text),lblObs.Text, "", "", "", lblClase.Text);
                     }
                     else
                     {
                         rpta = NVenta.InsertarPedidoPagadoCredCor(idCliente, Convert.ToInt32(this.lblIdMesa.Text), DateTime.Now, estadoVenta, formaPago, Convert.ToDecimal(this.lblDctoGeneral.Text)
                                                                                 , Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text), "CS", 1, dtDetalle, frmVenta.f1.dtDetalleMenu,
                                                                                 DateTime.Now, Convert.ToDecimal(lblTotal.Text), Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text),
-                                                                                "", "", "", "", lblClase.Text);
+                                                                                lblObs.Text, "", "", "", lblClase.Text);
                     }
 
 
@@ -915,6 +917,7 @@ namespace CapaPresentacion
 
                     this.Limpiar();
                 }
+                lblObs.Text = "";
                 btn.Enabled = false;
                 cbTipoCliente.Enabled = false;
                 cbTipoCliente.SelectedIndex = -1;
@@ -1521,7 +1524,7 @@ namespace CapaPresentacion
             {
                 formaPago = "CREDITO_NE";
             }
-            else if (rbCreditoEmitido.Checked == true || rbCredioNEm.Checked == true)
+            else if (rbCortesia.Checked == true)
             {
                 formaPago = "CORTESIA";
             }
@@ -1572,6 +1575,7 @@ namespace CapaPresentacion
                     {
                         string idTipoCliente;
                         idTipoCliente = dtClienteVenta.Rows[0][8].ToString();
+                        lblIdTipoCliente.Text = idTipoCliente;
                         NDescuento.DescuentoClientes(idTipoCliente, Convert.ToDecimal(lblSubTotal.Text), Convert.ToDecimal(lblIgv.Text), 00.00m,
                              Convert.ToDecimal(lblDescuento.Text), Convert.ToDecimal(lblDctoGeneral.Text), lblDctoGeneral, lblSubTotal, lblIgv, lblTotal, "T");
                         mostrarTotales();
@@ -1921,6 +1925,11 @@ namespace CapaPresentacion
                 txtEfectivo.Clear();
                 txtTarjeta.Clear();
                 txtVuelto.Clear();
+                string idTipoCliente;
+                idTipoCliente = "0";
+                NDescuento.DescuentoClientes(idTipoCliente, Convert.ToDecimal(lblSubTotal.Text), Convert.ToDecimal(lblIgv.Text), 00.00m,
+                    Convert.ToDecimal(lblDescuento.Text), Convert.ToDecimal(lblDctoGeneral.Text), lblDctoGeneral, lblSubTotal, lblIgv, lblTotal, "T");
+                mostrarTotales();
             }
             else
             {
@@ -1929,7 +1938,17 @@ namespace CapaPresentacion
                 txtEfectivo.Clear();
                 txtTarjeta.Clear();
                 txtEfectivo.ReadOnly = false;
+                NDescuento.DescuentoClientes(lblIdTipoCliente.Text, Convert.ToDecimal(lblSubTotal.Text), Convert.ToDecimal(lblIgv.Text), 00.00m,
+                  Convert.ToDecimal(lblDescuento.Text), Convert.ToDecimal(lblDctoGeneral.Text), lblDctoGeneral, lblSubTotal, lblIgv, lblTotal, "T");
+                mostrarTotales();
             }
+        }
+
+        private void btnNota_Click(object sender, EventArgs e)
+        {
+            frmObs frm = new frmObs();
+            frm.lblBandera.Text = "3";
+            frm.ShowDialog();
         }
 
         private void rbEfectivo_CheckedChanged(object sender, EventArgs e)

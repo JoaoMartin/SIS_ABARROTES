@@ -89,7 +89,7 @@ namespace CapaNegocios
             ticket.TextoCentro("DETALLES");
             ticket.lineasAsteriscos();
 
-            ticket.TextoExtremos("ADELANTO S/ ", adelanto+".00");
+            ticket.TextoExtremos("ADELANTO REMUNERACION", "S/ "+ adelanto+".00");
             ticket.CortaTicket();
             // ticket.ImprimirTicket("COCINA_LALOS");//Nombre de la impresora ticketera
             ticket.ImprimirTicket("Microsoft XPS Document Writer");

@@ -1009,7 +1009,7 @@ namespace CapaDatos
                 SqlParameter ParObs = new SqlParameter();
                 ParObs.ParameterName = "@obs";
                 ParObs.SqlDbType = SqlDbType.VarChar;
-                ParObs.Size = 250;
+                ParObs.Size = 300;
                 ParObs.Value = Venta.Obs;
                 sqlCmd.Parameters.Add(ParObs);
 
@@ -1141,6 +1141,14 @@ namespace CapaDatos
                 ParIdVenta.SqlDbType = SqlDbType.Int;
                 ParIdVenta.Value = Venta.IdVenta;
                 sqlCmd.Parameters.Add(ParIdVenta);
+
+
+                SqlParameter ParObs = new SqlParameter();
+                ParObs.ParameterName = "@obs";
+                ParObs.SqlDbType = SqlDbType.VarChar;
+                ParObs.Size = 300;
+                ParObs.Value = Venta.Obs;
+                sqlCmd.Parameters.Add(ParObs);
 
                 rpta = sqlCmd.ExecuteNonQuery() == 1 ? "OK" : "No se editó el Registro";
             }
@@ -2783,6 +2791,141 @@ namespace CapaDatos
                 ParTipo.Size = 20;
                 ParTipo.Value = forma;
                 sqlCmd.Parameters.Add(ParTipo);
+
+                SqlDataAdapter sqlDat = new SqlDataAdapter(sqlCmd);
+                sqlDat.Fill(dtResultado);
+            }
+            catch (Exception ex)
+            {
+                dtResultado = null;
+            }
+
+            return dtResultado;
+        }
+
+
+        public DataTable mostrarReserva(int idVenta)
+        {
+            DataTable dtResultado = new DataTable("Venta");
+            SqlConnection sqlCon = new SqlConnection();
+            try
+            {
+                sqlCon.ConnectionString = Conexion.cn;
+                SqlCommand sqlCmd = new SqlCommand();
+                sqlCmd.Connection = sqlCon;
+                sqlCmd.CommandText = "sp_mostrarReserva";
+                sqlCmd.CommandType = CommandType.StoredProcedure;
+
+                SqlParameter ParIdVenta = new SqlParameter();
+                ParIdVenta.ParameterName = "@idVenta";
+                ParIdVenta.SqlDbType = SqlDbType.Int;
+                ParIdVenta.Value = idVenta;
+                sqlCmd.Parameters.Add(ParIdVenta);
+
+                SqlDataAdapter sqlDat = new SqlDataAdapter(sqlCmd);
+                sqlDat.Fill(dtResultado);
+            }
+            catch (Exception ex)
+            {
+                dtResultado = null;
+            }
+
+            return dtResultado;
+        }
+
+        public string EditarReserva(DVenta Venta)
+        {
+            string rpta = "";
+            SqlConnection sqlCon = new SqlConnection();
+            try
+            {
+                sqlCon.ConnectionString = Conexion.cn;
+                sqlCon.Open();
+                //Comandos
+                SqlCommand sqlCmd = new SqlCommand();
+                sqlCmd.Connection = sqlCon;
+                sqlCmd.CommandText = "sp_editarReserva";
+                sqlCmd.CommandType = CommandType.StoredProcedure;
+
+                SqlParameter ParIdVenta = new SqlParameter();
+                ParIdVenta.ParameterName = "@idVenta";
+                ParIdVenta.SqlDbType = SqlDbType.Int;
+                ParIdVenta.Value = Venta.IdVenta;
+                sqlCmd.Parameters.Add(ParIdVenta);
+
+                SqlParameter ParFecEntrega = new SqlParameter();
+                ParFecEntrega.ParameterName = "@fecEntrega";
+                ParFecEntrega.SqlDbType = SqlDbType.DateTime;
+                ParFecEntrega.Value = Venta.FechaEntrega;
+                sqlCmd.Parameters.Add(ParFecEntrega);
+
+                SqlParameter ParMotivo = new SqlParameter();
+                ParMotivo.ParameterName = "@motivo";
+                ParMotivo.SqlDbType = SqlDbType.VarChar;
+                ParMotivo.Size = 50;
+                ParMotivo.Value = Venta.Motivo;
+                sqlCmd.Parameters.Add(ParMotivo);
+
+                SqlParameter ParObs = new SqlParameter();
+                ParObs.ParameterName = "@obs";
+                ParObs.SqlDbType = SqlDbType.VarChar;
+                ParObs.Size = 300;
+                ParObs.Value = Venta.Obs;
+                sqlCmd.Parameters.Add(ParObs);
+
+                SqlParameter ParCliente = new SqlParameter();
+                ParCliente.ParameterName = "@cliente";
+                ParCliente.SqlDbType = SqlDbType.VarChar;
+                ParCliente.Size = 60;
+                ParCliente.Value = Venta.Cliente;
+                sqlCmd.Parameters.Add(ParCliente);
+
+                SqlParameter ParTelefono = new SqlParameter();
+                ParTelefono.ParameterName = "@telefono";
+                ParTelefono.SqlDbType = SqlDbType.VarChar;
+                ParTelefono.Size = 40;
+                ParTelefono.Value = Venta.Telefono;
+                sqlCmd.Parameters.Add(ParTelefono);
+
+              
+                rpta = sqlCmd.ExecuteNonQuery() == 1 ? "OK" : "No se editó el Registro";
+            }
+            catch (Exception ex)
+            {
+                rpta = ex.Message;
+            }
+            finally
+            {
+                if (sqlCon.State == ConnectionState.Open) sqlCon.Close();
+            }
+            return rpta;
+        }
+
+        public DataTable reporteCantProductosVendidos(DateTime fechaInicio, DateTime fechaFin)
+        {
+            DataTable dtResultado = new DataTable("Venta");
+            SqlConnection sqlCon = new SqlConnection();
+
+            try
+            {
+                sqlCon.ConnectionString = Conexion.cn;
+                SqlCommand sqlCmd = new SqlCommand();
+                sqlCmd.Connection = sqlCon;
+                sqlCmd.CommandText = "sp_reporteCantProductosVendidos";
+                sqlCmd.CommandType = CommandType.StoredProcedure;
+
+
+                SqlParameter ParFechaInicio = new SqlParameter();
+                ParFechaInicio.ParameterName = "@fechaInicio";
+                ParFechaInicio.SqlDbType = SqlDbType.DateTime;
+                ParFechaInicio.Value = fechaInicio;
+                sqlCmd.Parameters.Add(ParFechaInicio);
+
+                SqlParameter ParFechaFin = new SqlParameter();
+                ParFechaFin.ParameterName = "@fechaFin";
+                ParFechaFin.SqlDbType = SqlDbType.DateTime;
+                ParFechaFin.Value = fechaFin;
+                sqlCmd.Parameters.Add(ParFechaFin);
 
                 SqlDataAdapter sqlDat = new SqlDataAdapter(sqlCmd);
                 sqlDat.Fill(dtResultado);

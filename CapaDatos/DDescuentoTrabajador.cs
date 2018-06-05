@@ -373,5 +373,55 @@ namespace CapaDatos
             return rpta;
         }
 
+        public DataTable reporteDctos(DateTime fechaInicio, DateTime fechaFin, string estado, int idTrabajador)
+        {
+            DataTable dtResultado = new DataTable("Venta");
+            SqlConnection sqlCon = new SqlConnection();
+            try
+            {
+                sqlCon.ConnectionString = Conexion.cn;
+                SqlCommand sqlCmd = new SqlCommand();
+                sqlCmd.Connection = sqlCon;
+                sqlCmd.CommandText = "sp_reporteDctos";
+                sqlCmd.CommandType = CommandType.StoredProcedure;
+
+                SqlParameter ParFechaInicio = new SqlParameter();
+                ParFechaInicio.ParameterName = "@fechaInicio";
+                ParFechaInicio.SqlDbType = SqlDbType.DateTime;
+                ParFechaInicio.Value = fechaInicio;
+                sqlCmd.Parameters.Add(ParFechaInicio);
+
+                SqlParameter ParFechaFin = new SqlParameter();
+                ParFechaFin.ParameterName = "@fechaFin";
+                ParFechaFin.SqlDbType = SqlDbType.DateTime;
+                ParFechaFin.Value = fechaFin;
+                sqlCmd.Parameters.Add(ParFechaFin);
+
+                SqlParameter ParEstado = new SqlParameter();
+                ParEstado.ParameterName = "@estado";
+                ParEstado.SqlDbType = SqlDbType.VarChar;
+                ParEstado.Size = 20;
+                ParEstado.Value = estado;
+                sqlCmd.Parameters.Add(ParEstado);
+
+                SqlParameter ParIdTrabajador = new SqlParameter();
+                ParIdTrabajador.ParameterName = "@idTrabajador";
+                ParIdTrabajador.SqlDbType = SqlDbType.Int;
+                ParIdTrabajador.Value = idTrabajador;
+                sqlCmd.Parameters.Add(ParIdTrabajador);
+
+
+                SqlDataAdapter sqlDat = new SqlDataAdapter(sqlCmd);
+                sqlDat.Fill(dtResultado);
+            }
+            catch (Exception ex)
+            {
+                dtResultado = null;
+            }
+
+            return dtResultado;
+        }
+
+
     }
 }

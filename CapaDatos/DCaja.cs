@@ -246,5 +246,40 @@ namespace CapaDatos
 
             return dtResultado;
         }
+
+        public DataTable reporteIngresosEgresos(DateTime fechaInicio, DateTime fechaFin)
+        {
+            DataTable dtResultado = new DataTable("Movimiento Caja");
+            SqlConnection sqlCon = new SqlConnection();
+            try
+            {
+                sqlCon.ConnectionString = Conexion.cn;
+                SqlCommand sqlCmd = new SqlCommand();
+                sqlCmd.Connection = sqlCon;
+                sqlCmd.CommandText = "sp_reporteIngresosEgresos";
+                sqlCmd.CommandType = CommandType.StoredProcedure;
+
+                SqlParameter ParFechaApertura = new SqlParameter();
+                ParFechaApertura.ParameterName = "@fechaInicio";
+                ParFechaApertura.SqlDbType = SqlDbType.DateTime;
+                ParFechaApertura.Value = fechaInicio;
+                sqlCmd.Parameters.Add(ParFechaApertura);
+
+                SqlParameter ParFechaHoy = new SqlParameter();
+                ParFechaHoy.ParameterName = "@fechaFin";
+                ParFechaHoy.SqlDbType = SqlDbType.DateTime;
+                ParFechaHoy.Value = fechaFin;
+                sqlCmd.Parameters.Add(ParFechaHoy);
+
+                SqlDataAdapter sqlDat = new SqlDataAdapter(sqlCmd);
+                sqlDat.Fill(dtResultado);
+            }
+            catch (Exception ex)
+            {
+                dtResultado = null;
+            }
+
+            return dtResultado;
+        }
     }
 }

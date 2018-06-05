@@ -54,7 +54,7 @@ namespace CapaPresentacion
             this.dataListado.ClearSelection();
             this.dataListado.ColumnHeadersDefaultCellStyle.Font = new Font(dataListado.ColumnHeadersDefaultCellStyle.Font, FontStyle.Bold);
             this.dataListado.AlternatingRowsDefaultCellStyle.BackColor = Color.Beige;
-            this.dataListado.Font = new Font("Roboto", 9);
+            this.dataListado.Font = new Font("Roboto",  9);
             this.dataListado.GridColor = SystemColors.ActiveBorder;
 
         }
@@ -83,6 +83,7 @@ namespace CapaPresentacion
             this.btnRecoger.Enabled = false;
             this.btnCobrar.Enabled = false;
             this.btnAnular.Enabled = false;
+            this.btnEditar.Enabled = false;
         }
 
         private void txtBuscar_TextChanged(object sender, EventArgs e)
@@ -117,11 +118,13 @@ namespace CapaPresentacion
                 btnRecoger.Enabled = true;
                 btnCobrar.Enabled = false;
                 btnAnular.Enabled = true;
+                btnEditar.Enabled = true;
             }else
             {
                 btnRecoger.Enabled = false;
                 btnCobrar.Enabled = true;
                 btnAnular.Enabled = true;
+                btnEditar.Enabled = true;
             }
         }
 
@@ -183,6 +186,13 @@ namespace CapaPresentacion
             {
                 frm.lblEfectivo.Text = lblAdelanto.Text;
             }
+            frm.ShowDialog();
+        }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            fmrEditarReserva frm = new fmrEditarReserva();
+            frm.lblIdVenta.Text = this.lblIdVenta.Text;
             frm.ShowDialog();
         }
     }

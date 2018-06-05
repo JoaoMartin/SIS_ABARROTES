@@ -120,7 +120,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Navy;
-            this.label4.Location = new System.Drawing.Point(414, 14);
+            this.label4.Location = new System.Drawing.Point(523, 14);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(372, 28);
             this.label4.TabIndex = 46;
@@ -131,7 +131,7 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(525, 115);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(138, 19);
+            this.label3.Size = new System.Drawing.Size(126, 18);
             this.label3.TabIndex = 47;
             this.label3.Text = "Seleccione Producto";
             // 
@@ -153,7 +153,7 @@
             this.lblCaja.AutoSize = true;
             this.lblCaja.Location = new System.Drawing.Point(769, 42);
             this.lblCaja.Name = "lblCaja";
-            this.lblCaja.Size = new System.Drawing.Size(17, 19);
+            this.lblCaja.Size = new System.Drawing.Size(15, 18);
             this.lblCaja.TabIndex = 63;
             this.lblCaja.Text = "0";
             this.lblCaja.Visible = false;
@@ -161,10 +161,10 @@
             // rbElegir
             // 
             this.rbElegir.AutoSize = true;
-            this.rbElegir.Font = new System.Drawing.Font("Roboto", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbElegir.Font = new System.Drawing.Font("Roboto", 9.230769F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbElegir.Location = new System.Drawing.Point(22, 140);
             this.rbElegir.Name = "rbElegir";
-            this.rbElegir.Size = new System.Drawing.Size(107, 23);
+            this.rbElegir.Size = new System.Drawing.Size(110, 24);
             this.rbElegir.TabIndex = 72;
             this.rbElegir.Text = "Elegir Fecha";
             this.rbElegir.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -175,10 +175,10 @@
             // 
             this.rbAperturaCaja.AutoSize = true;
             this.rbAperturaCaja.Checked = true;
-            this.rbAperturaCaja.Font = new System.Drawing.Font("Roboto", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbAperturaCaja.Font = new System.Drawing.Font("Roboto", 9.230769F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbAperturaCaja.Location = new System.Drawing.Point(22, 111);
             this.rbAperturaCaja.Name = "rbAperturaCaja";
-            this.rbAperturaCaja.Size = new System.Drawing.Size(117, 23);
+            this.rbAperturaCaja.Size = new System.Drawing.Size(118, 24);
             this.rbAperturaCaja.TabIndex = 71;
             this.rbAperturaCaja.TabStop = true;
             this.rbAperturaCaja.Text = "Apertura Caja";
@@ -189,9 +189,10 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(18, 89);
+            this.label1.Font = new System.Drawing.Font("Roboto", 9.230769F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(18, 82);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(85, 19);
+            this.label1.Size = new System.Drawing.Size(93, 20);
             this.label1.TabIndex = 69;
             this.label1.Text = "Fecha Inicio";
             // 
@@ -213,7 +214,7 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(6, 21);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(85, 19);
+            this.label2.Size = new System.Drawing.Size(78, 18);
             this.label2.TabIndex = 52;
             this.label2.Text = "Fecha Inicio";
             // 
@@ -224,7 +225,7 @@
             this.dtpFechaInicio.Location = new System.Drawing.Point(97, 14);
             this.dtpFechaInicio.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dtpFechaInicio.Name = "dtpFechaInicio";
-            this.dtpFechaInicio.Size = new System.Drawing.Size(198, 27);
+            this.dtpFechaInicio.Size = new System.Drawing.Size(198, 26);
             this.dtpFechaInicio.TabIndex = 50;
             // 
             // dtpFechaFin
@@ -234,7 +235,7 @@
             this.dtpFechaFin.Location = new System.Drawing.Point(94, 66);
             this.dtpFechaFin.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dtpFechaFin.Name = "dtpFechaFin";
-            this.dtpFechaFin.Size = new System.Drawing.Size(198, 27);
+            this.dtpFechaFin.Size = new System.Drawing.Size(198, 26);
             this.dtpFechaFin.TabIndex = 51;
             // 
             // label6
@@ -242,7 +243,7 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(18, 72);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(70, 19);
+            this.label6.Size = new System.Drawing.Size(65, 18);
             this.label6.TabIndex = 53;
             this.label6.Text = "Fecha Fin";
             // 
@@ -251,7 +252,7 @@
             this.lblBandera.AutoSize = true;
             this.lblBandera.Location = new System.Drawing.Point(871, 63);
             this.lblBandera.Name = "lblBandera";
-            this.lblBandera.Size = new System.Drawing.Size(17, 19);
+            this.lblBandera.Size = new System.Drawing.Size(15, 18);
             this.lblBandera.TabIndex = 73;
             this.lblBandera.Text = "0";
             this.lblBandera.Visible = false;
@@ -271,7 +272,7 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(27, 593);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(51, 19);
+            this.label5.Size = new System.Drawing.Size(47, 18);
             this.label5.TabIndex = 76;
             this.label5.Text = "TOTAL";
             // 

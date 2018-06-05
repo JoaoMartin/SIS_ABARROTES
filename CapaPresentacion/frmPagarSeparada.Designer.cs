@@ -114,6 +114,9 @@
             this.button2 = new System.Windows.Forms.Button();
             this.btnTicket = new System.Windows.Forms.Button();
             this.dataListadoProducto = new System.Windows.Forms.DataGridView();
+            this.lblIdTipoCliente = new System.Windows.Forms.Label();
+            this.lblObs = new System.Windows.Forms.Label();
+            this.btnNota = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -173,7 +176,7 @@
             this.label11.Font = new System.Drawing.Font("Roboto", 12.30769F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.Location = new System.Drawing.Point(919, 737);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(33, 28);
+            this.label11.Size = new System.Drawing.Size(33, 26);
             this.label11.TabIndex = 153;
             this.label11.Text = "S/";
             // 
@@ -183,7 +186,7 @@
             this.label5.Font = new System.Drawing.Font("Roboto", 12.30769F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(919, 700);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(33, 28);
+            this.label5.Size = new System.Drawing.Size(33, 26);
             this.label5.TabIndex = 152;
             this.label5.Text = "S/";
             // 
@@ -193,7 +196,7 @@
             this.label2.Font = new System.Drawing.Font("Roboto", 12.30769F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(914, 568);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(33, 28);
+            this.label2.Size = new System.Drawing.Size(33, 26);
             this.label2.TabIndex = 151;
             this.label2.Text = "S/";
             // 
@@ -212,13 +215,13 @@
             // 
             this.btnCobro.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.btnCobro.Enabled = false;
-            this.btnCobro.Font = new System.Drawing.Font("Roboto", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCobro.Font = new System.Drawing.Font("Roboto Black", 12.30769F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCobro.Image = global::CapaPresentacion.Properties.Resources.if_cashbox_45016;
             this.btnCobro.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnCobro.Location = new System.Drawing.Point(1039, 650);
             this.btnCobro.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnCobro.Name = "btnCobro";
-            this.btnCobro.Size = new System.Drawing.Size(165, 109);
+            this.btnCobro.Size = new System.Drawing.Size(142, 109);
             this.btnCobro.TabIndex = 148;
             this.btnCobro.Text = "COBRAR";
             this.btnCobro.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -504,7 +507,7 @@
             this.lblSubTotal.Font = new System.Drawing.Font("Roboto", 12.30769F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSubTotal.Location = new System.Drawing.Point(959, 568);
             this.lblSubTotal.Name = "lblSubTotal";
-            this.lblSubTotal.Size = new System.Drawing.Size(66, 28);
+            this.lblSubTotal.Size = new System.Drawing.Size(62, 26);
             this.lblSubTotal.TabIndex = 142;
             this.lblSubTotal.Text = "00.00";
             // 
@@ -514,7 +517,7 @@
             this.lblIgv.Font = new System.Drawing.Font("Roboto", 12.30769F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblIgv.Location = new System.Drawing.Point(964, 700);
             this.lblIgv.Name = "lblIgv";
-            this.lblIgv.Size = new System.Drawing.Size(66, 28);
+            this.lblIgv.Size = new System.Drawing.Size(62, 26);
             this.lblIgv.TabIndex = 141;
             this.lblIgv.Text = "00.00";
             // 
@@ -534,7 +537,7 @@
             this.lblTotal.Font = new System.Drawing.Font("Roboto", 12.30769F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotal.Location = new System.Drawing.Point(964, 737);
             this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(66, 28);
+            this.lblTotal.Size = new System.Drawing.Size(62, 26);
             this.lblTotal.TabIndex = 139;
             this.lblTotal.Text = "00.00";
             // 
@@ -905,12 +908,12 @@
             // btnDescuentoTotal
             // 
             this.btnDescuentoTotal.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnDescuentoTotal.Font = new System.Drawing.Font("Roboto", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDescuentoTotal.Font = new System.Drawing.Font("Roboto Black", 12.30769F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDescuentoTotal.Image = global::CapaPresentacion.Properties.Resources.vale;
             this.btnDescuentoTotal.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnDescuentoTotal.Location = new System.Drawing.Point(1039, 527);
+            this.btnDescuentoTotal.Location = new System.Drawing.Point(1039, 409);
             this.btnDescuentoTotal.Name = "btnDescuentoTotal";
-            this.btnDescuentoTotal.Size = new System.Drawing.Size(165, 110);
+            this.btnDescuentoTotal.Size = new System.Drawing.Size(138, 110);
             this.btnDescuentoTotal.TabIndex = 172;
             this.btnDescuentoTotal.Text = "DCTO GRAL";
             this.btnDescuentoTotal.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -924,7 +927,7 @@
             this.label14.ForeColor = System.Drawing.Color.Red;
             this.label14.Location = new System.Drawing.Point(919, 651);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(33, 28);
+            this.label14.Size = new System.Drawing.Size(33, 26);
             this.label14.TabIndex = 178;
             this.label14.Text = "S/";
             // 
@@ -935,7 +938,7 @@
             this.lblDctoGeneral.ForeColor = System.Drawing.Color.Red;
             this.lblDctoGeneral.Location = new System.Drawing.Point(959, 651);
             this.lblDctoGeneral.Name = "lblDctoGeneral";
-            this.lblDctoGeneral.Size = new System.Drawing.Size(66, 28);
+            this.lblDctoGeneral.Size = new System.Drawing.Size(62, 26);
             this.lblDctoGeneral.TabIndex = 177;
             this.lblDctoGeneral.Text = "00.00";
             // 
@@ -956,7 +959,7 @@
             this.label12.ForeColor = System.Drawing.Color.Red;
             this.label12.Location = new System.Drawing.Point(914, 613);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(33, 28);
+            this.label12.Size = new System.Drawing.Size(33, 26);
             this.label12.TabIndex = 175;
             this.label12.Text = "S/";
             // 
@@ -977,7 +980,7 @@
             this.lblDescuento.ForeColor = System.Drawing.Color.Red;
             this.lblDescuento.Location = new System.Drawing.Point(960, 613);
             this.lblDescuento.Name = "lblDescuento";
-            this.lblDescuento.Size = new System.Drawing.Size(66, 28);
+            this.lblDescuento.Size = new System.Drawing.Size(62, 26);
             this.lblDescuento.TabIndex = 173;
             this.lblDescuento.Text = "00.00";
             // 
@@ -1171,6 +1174,43 @@
             this.dataListadoProducto.TabIndex = 225;
             this.dataListadoProducto.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataListadoProducto_KeyDown);
             // 
+            // lblIdTipoCliente
+            // 
+            this.lblIdTipoCliente.AutoSize = true;
+            this.lblIdTipoCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblIdTipoCliente.Location = new System.Drawing.Point(352, 212);
+            this.lblIdTipoCliente.Name = "lblIdTipoCliente";
+            this.lblIdTipoCliente.Size = new System.Drawing.Size(76, 29);
+            this.lblIdTipoCliente.TabIndex = 226;
+            this.lblIdTipoCliente.Text = "00.00";
+            this.lblIdTipoCliente.Visible = false;
+            // 
+            // lblObs
+            // 
+            this.lblObs.AutoSize = true;
+            this.lblObs.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblObs.Location = new System.Drawing.Point(49, 734);
+            this.lblObs.Name = "lblObs";
+            this.lblObs.Size = new System.Drawing.Size(52, 29);
+            this.lblObs.TabIndex = 227;
+            this.lblObs.Text = "IGV";
+            this.lblObs.Visible = false;
+            // 
+            // btnNota
+            // 
+            this.btnNota.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnNota.Font = new System.Drawing.Font("Roboto Black", 12.30769F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNota.Image = global::CapaPresentacion.Properties.Resources.nuevo2;
+            this.btnNota.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnNota.Location = new System.Drawing.Point(1039, 529);
+            this.btnNota.Name = "btnNota";
+            this.btnNota.Size = new System.Drawing.Size(138, 114);
+            this.btnNota.TabIndex = 231;
+            this.btnNota.Text = "NOTA";
+            this.btnNota.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnNota.UseVisualStyleBackColor = false;
+            this.btnNota.Click += new System.EventHandler(this.btnNota_Click);
+            // 
             // frmPagarSeparada
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -1178,6 +1218,9 @@
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1207, 778);
             this.ControlBox = false;
+            this.Controls.Add(this.btnNota);
+            this.Controls.Add(this.lblObs);
+            this.Controls.Add(this.lblIdTipoCliente);
             this.Controls.Add(this.btnTicket);
             this.Controls.Add(this.button22);
             this.Controls.Add(this.button21);
@@ -1346,5 +1389,8 @@
         private System.Windows.Forms.RadioButton rbCredioNEm;
         private System.Windows.Forms.RadioButton rbConsumoT;
         public System.Windows.Forms.CheckBox cbPaga;
+        public System.Windows.Forms.Label lblIdTipoCliente;
+        public System.Windows.Forms.Label lblObs;
+        private System.Windows.Forms.Button btnNota;
     }
 }

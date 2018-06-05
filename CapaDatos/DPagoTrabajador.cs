@@ -268,7 +268,7 @@ namespace CapaDatos
                 ParMontoHorasExtras.SqlDbType = SqlDbType.Decimal;
                 ParMontoHorasExtras.Precision = 8;
                 ParMontoHorasExtras.Scale = 2;
-                ParMontoHorasExtras.Value = Pago.MontoPagado;
+                ParMontoHorasExtras.Value = Pago.MontoHorasExtras;
                 sqlCmd.Parameters.Add(ParMontoHorasExtras);
 
                 SqlParameter ParMontoOtrosDctos = new SqlParameter();
