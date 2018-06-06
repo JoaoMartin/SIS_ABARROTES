@@ -77,10 +77,13 @@ namespace CapaPresentacion
                 mnuIngresoDinero.Enabled = true;
                 mnuSalidaDinero.Enabled = true;
                 mnuPuntoVenta.Enabled = true;
-                mnuPorCobrar.Enabled = true;
+                mnuReservas.Enabled = true;
                 //mnuDelivery.Enabled = true;
                 mnuCorteParcial.Enabled = true;
-              
+                mnuConsultaCaja.Enabled = true;
+                mnuDelivery.Enabled = true;
+                mnuCobroDelivery.Enabled = true;
+                mnuCreditosPendientes.Enabled = true;
 
             }
             else if (lblEstadoCaja.Text == "Cerrada" || lblEstadoCaja.Text == "0")
@@ -90,7 +93,7 @@ namespace CapaPresentacion
                 mnuIngresoDinero.Enabled = false;
                 mnuSalidaDinero.Enabled = false;
                 mnuPuntoVenta.Enabled = false;
-                mnuPorCobrar.Enabled = false;
+                mnuReservas.Enabled = false;
                // mnuDelivery.Enabled = false;
                 mnuCorteParcial.Enabled = true;
                 
@@ -109,7 +112,7 @@ namespace CapaPresentacion
                     mnuIngresoDinero.Enabled = true;
                     mnuSalidaDinero.Enabled = true;
                     mnuPuntoVenta.Enabled = true;
-                    mnuPorCobrar.Enabled = true;
+                    mnuReservas.Enabled = true;
                     //mnuDelivery.Enabled = true;
              
 
@@ -121,7 +124,7 @@ namespace CapaPresentacion
                 mnuIngresoDinero.Enabled = false;
                 mnuSalidaDinero.Enabled = false;
                 mnuPuntoVenta.Enabled = false;
-                mnuPorCobrar.Enabled = false;
+                mnuReservas.Enabled = false;
                // mnuDelivery.Enabled = false;
                
             }
@@ -130,59 +133,31 @@ namespace CapaPresentacion
         public void ValidarControles()
         {
             String ahora = DateTime.Now.ToShortDateString();
-            /*
-
-            if (lblEstadoCaja.Text == "0" || (lblEstadoCaja.Text == "Cerrada" && ahora != this.lblFechaCaja.Text))
-            {
-                mnuAperturaCaja.Enabled = true;
-                mnuCerrarCaja.Enabled = false;
-                mnuIngresoDinero.Enabled = false;
-                mnuSalidaDinero.Enabled = false;
-                mnuPuntoVenta.Enabled = false;
-
-            }
-            else if (lblEstadoCaja.Text == "Abierta")
-            {
-                mnuAperturaCaja.Enabled = false;
-                mnuCerrarCaja.Enabled = true;
-                mnuIngresoDinero.Enabled = true;
-                mnuSalidaDinero.Enabled = true;
-                mnuPuntoVenta.Enabled = true;
-            }
-            else if ((lblEstadoCaja.Text == "Cerrada") && (ahora == this.lblFechaCaja.Text))
-            {
-                mnuAperturaCaja.Enabled = false;
-                mnuCerrarCaja.Enabled = false;
-                mnuIngresoDinero.Enabled = true;
-                mnuSalidaDinero.Enabled = true;
-                mnuPuntoVenta.Enabled = true;
-            }*/
             
              if (lblEstadoCaja.Text == "Abierta")
             {
               
-                    mnuAperturaCaja.Enabled = false;
+                   /* mnuAperturaCaja.Enabled = false;
                     mnuCerrarCaja.Enabled = true;
                     mnuIngresoDinero.Enabled = true;
                     mnuSalidaDinero.Enabled = true;
                     mnuPuntoVenta.Enabled = true;
-                    mnuPorCobrar.Enabled = true;
+                    mnuReservas.Enabled = true;
                     //mnuDelivery.Enabled = true;
-                  
-                    mnuCorteParcial.Enabled = true;
+                    mnuCorteParcial.Enabled = true;*/
                 
 
             }
             else if (lblEstadoCaja.Text == "Cerrada" || lblEstadoCaja.Text =="0")
             {
-                mnuAperturaCaja.Enabled = true;
+               /* mnuAperturaCaja.Enabled = true;
                 mnuCerrarCaja.Enabled = false;
                 mnuIngresoDinero.Enabled = false;
                 mnuSalidaDinero.Enabled = false;
                 mnuPuntoVenta.Enabled = false;
-                mnuPorCobrar.Enabled = false;
+                mnuReservas.Enabled = false;
                // mnuDelivery.Enabled = false;
-                mnuCorteParcial.Enabled = false;
+                mnuCorteParcial.Enabled = false;*/
                
             }
         }
@@ -216,11 +191,11 @@ namespace CapaPresentacion
             DataTable dtNivel = NNivel.Mostrar(Convert.ToInt32(dtIdTipoTrabajador.Rows[0][0].ToString()));
             for (int i = 0; i < dtNivel.Rows.Count; i++)
             {
-                if (dtNivel.Rows[i][2].ToString() == "Nota Ingreso")
+                if (dtNivel.Rows[i][2].ToString() == "Almacen_NotaIngreso")
                 {
                     this.mnuNotaIngreso.Enabled = true;
                 }
-                if (dtNivel.Rows[i][2].ToString() == "Nota Salida")
+                if (dtNivel.Rows[i][2].ToString() == "Almacen_NotaSalida")
                 {
                     this.mnuNotaSalida.Enabled = true;
                 }
@@ -228,49 +203,60 @@ namespace CapaPresentacion
                 {
                     this.mnuStock.Enabled = true;
                 }
-                if (dtNivel.Rows[i][2].ToString() == "Ver Movimientos_Almacen")
+                if (dtNivel.Rows[i][2].ToString() == "Almacen_Ver Movimientos")
                 {
                     this.mnuVerMovAlmacen.Enabled = true;
                 }
-                if (dtNivel.Rows[i][2].ToString() == "Comprobante_Anulados")
+                if (dtNivel.Rows[i][2].ToString() == "Consulta_ComprobanteAnulados")
                 {
                     this.mnuComprobantesAnulados.Enabled = true;
                 }
-                if (dtNivel.Rows[i][2].ToString() == "Aperturar Caja" && lblEstadoCaja.Text == "Abierta")
+                if (dtNivel.Rows[i][2].ToString() == "Caja_Aperturar Caja" && lblEstadoCaja.Text == "Abierta")
                 {
                     this.mnuAperturaCaja.Enabled = false;
                 }
 
-                if (dtNivel.Rows[i][2].ToString() == "Aperturar Caja" && (lblEstadoCaja.Text == "Cerrada" || lblEstadoCaja.Text == "0"))
+                if (dtNivel.Rows[i][2].ToString() == "Caja_Aperturar Caja" && (lblEstadoCaja.Text == "Cerrada" || lblEstadoCaja.Text == "0"))
                 {
                     this.mnuAperturaCaja.Enabled = true;
                 }
 
-                if (dtNivel.Rows[i][2].ToString() == "Cerrar Caja" && lblEstadoCaja.Text == "Abierta")
+                if (dtNivel.Rows[i][2].ToString() == "Caja_Cerrar Caja" && lblEstadoCaja.Text == "Abierta")
                 {
                     this.mnuCerrarCaja.Enabled = true;
                 }
 
-                if (dtNivel.Rows[i][2].ToString() == "Cerrar Caja" && (lblEstadoCaja.Text == "Cerrada" || lblEstadoCaja.Text == "0"))
+                if (dtNivel.Rows[i][2].ToString() == "Caja_Cerrar Caja" && (lblEstadoCaja.Text == "Cerrada" || lblEstadoCaja.Text == "0"))
                 {
                     this.mnuCerrarCaja.Enabled = false;
                 }
+                if (dtNivel.Rows[i][2].ToString() == "Caja_CorteParcial" && (lblEstadoCaja.Text == "Cerrada" || lblEstadoCaja.Text == "0"))
+                {
+                    this.mnuCorteParcial.Enabled = false;
+                }
 
-                if (dtNivel.Rows[i][2].ToString() == "Ingreso Dinero" && lblEstadoCaja.Text == "Abierta")
+                if (dtNivel.Rows[i][2].ToString() == "Caja_CorteParcial" && lblEstadoCaja.Text == "Abierta")
+                {
+                    this.mnuCorteParcial.Enabled = true;
+                }
+
+
+
+                if (dtNivel.Rows[i][2].ToString() == "Caja_IngresoDinero" && lblEstadoCaja.Text == "Abierta")
                 {
                     this.mnuIngresoDinero.Enabled = true;
                 }
 
-                if (dtNivel.Rows[i][2].ToString() == "Ingreso Dinero" && (lblEstadoCaja.Text == "Cerrada" || lblEstadoCaja.Text == "0"))
+                if (dtNivel.Rows[i][2].ToString() == "Caja_IngresoDinero" && (lblEstadoCaja.Text == "Cerrada" || lblEstadoCaja.Text == "0"))
                 {
                     this.mnuIngresoDinero.Enabled = false;
                 }
 
-                if (dtNivel.Rows[i][2].ToString() == "Salida Dinero" && lblEstadoCaja.Text == "Abierta")
+                if (dtNivel.Rows[i][2].ToString() == "Caja_SalidaDinero" && lblEstadoCaja.Text == "Abierta")
                 {
                     this.mnuSalidaDinero.Enabled = true;
                 }
-                if (dtNivel.Rows[i][2].ToString() == "Salida Dinero" && (lblEstadoCaja.Text == "Cerrada" || lblEstadoCaja.Text == "0"))
+                if (dtNivel.Rows[i][2].ToString() == "Caja_SalidaDinero" && (lblEstadoCaja.Text == "Cerrada" || lblEstadoCaja.Text == "0"))
                 {
                     this.mnuSalidaDinero.Enabled = false;
                 }
@@ -280,70 +266,74 @@ namespace CapaPresentacion
                 {
                     this.mnuIngresos.Enabled = true;
                 }
-                if (dtNivel.Rows[i][2].ToString() == "Ver Compras")
+                if (dtNivel.Rows[i][2].ToString() == "Compras_VerCompras")
                 {
                     this.mnuVerCompras.Enabled = true;
                 }
-                if (dtNivel.Rows[i][2].ToString() == "Punto de Venta" && lblEstadoCaja.Text == "Abierta")
+                if (dtNivel.Rows[i][2].ToString() == "Venta_PuntoVenta" && lblEstadoCaja.Text == "Abierta")
                 {
                     this.mnuPuntoVenta.Enabled = true;
                   
                 }
-                if (dtNivel.Rows[i][2].ToString() == "Punto de Venta" && (lblEstadoCaja.Text == "Cerrada" || lblEstadoCaja.Text == "0"))
+                if (dtNivel.Rows[i][2].ToString() == "Venta_PuntoVenta" && (lblEstadoCaja.Text == "Cerrada" || lblEstadoCaja.Text == "0"))
                 {
                     this.mnuPuntoVenta.Enabled = false;
                    
                 }
 
-                if (dtNivel.Rows[i][2].ToString() == "Ver Ventas")
+                if (dtNivel.Rows[i][2].ToString() == "Consulta_Ventas")
                 {
                     this.mnuVerVentas.Enabled = true;
                 }
-                if (dtNivel.Rows[i][2].ToString() == "M_AlmacenGestion")
+                if (dtNivel.Rows[i][2].ToString() == "Maestro_AlmacenGestion")
                 {
                     this.mnuGestionAlmacen.Enabled = true;
                 }
-                if (dtNivel.Rows[i][2].ToString() == "M_Categoria")
+                if (dtNivel.Rows[i][2].ToString() == "Maestro_Categoria")
                 {
                     this.mnuCategoria.Enabled = true;
                 }
-                if (dtNivel.Rows[i][2].ToString() == "M_Clientes")
+                if (dtNivel.Rows[i][2].ToString() == "Maestro_Clientes")
                 {
                     this.mnuCliente.Enabled = true;
                 }
-                if (dtNivel.Rows[i][2].ToString() == "M_Insumos")
+                if (dtNivel.Rows[i][2].ToString() == "Maestro_Insumos")
                 {
                     this.mnuInsumos.Enabled = true;
                 }
-                if (dtNivel.Rows[i][2].ToString() == "M_Mesas")
+                if (dtNivel.Rows[i][2].ToString() == "Maestro_Mesas")
                 {
                     this.mnuMesas.Enabled = true;
                 }
-                if (dtNivel.Rows[i][2].ToString() == "M_Productos")
+                if (dtNivel.Rows[i][2].ToString() == "Maestro_Productos")
                 {
                     this.mnuProductos.Enabled = true;
                 }
-                if (dtNivel.Rows[i][2].ToString() == "M_Proveedor")
+                if (dtNivel.Rows[i][2].ToString() == "Maestro_Proveedor")
                 {
                     this.mnuProveedor.Enabled = true;
                 }
-                if (dtNivel.Rows[i][2].ToString() == "M_Platos")
+                if (dtNivel.Rows[i][2].ToString() == "Maestro_Platos")
                 {
                     this.mnuPlatos.Enabled = true;
                 }
-                if (dtNivel.Rows[i][2].ToString() == "M_Salones")
+                if (dtNivel.Rows[i][2].ToString() == "Maestro_Salones")
                 {
                     this.mnuSalones.Enabled = true;
                 }
-                if (dtNivel.Rows[i][2].ToString() == "M_Termino")
+                if (dtNivel.Rows[i][2].ToString() == "Maestro_Termino")
                 {
                     this.mnuTermino.Enabled = true;
                 }
-                if (dtNivel.Rows[i][2].ToString() == "M_TipoTrabajador")
+                if (dtNivel.Rows[i][2].ToString() == "Maestro_TipoCliente")
+                {
+                    this.mnuTipoCliente.Enabled = true;
+                }
+                if (dtNivel.Rows[i][2].ToString() == "Maestro_TipoTrabajador")
                 {
                     this.mnuTipoTrabajador.Enabled = true;
                 }
-                if (dtNivel.Rows[i][2].ToString() == "M_Trabajador")
+                if (dtNivel.Rows[i][2].ToString() == "Maestro_Trabajador")
                 {
                     this.mnuTrabajador.Enabled = true;
                 }
@@ -351,67 +341,89 @@ namespace CapaPresentacion
                 {
                     this.mnuReportes.Enabled = true;
                 }
-                if (dtNivel.Rows[i][2].ToString() == "M_Niveles")
+                if (dtNivel.Rows[i][2].ToString() == "Maestro_Niveles")
                 {
                     this.mnuNiveles.Enabled = true;
                 }
-                if (dtNivel.Rows[i][2].ToString() == "M_UnidadMedida")
+                if (dtNivel.Rows[i][2].ToString() == "Maestro_UnidadMedida")
                 {
                     this.mnuUnidadMedida.Enabled = true;
                 }
-                if (dtNivel.Rows[i][2].ToString() == "Backup")
+                if (dtNivel.Rows[i][2].ToString() == "Utilitario_Backup")
                 {
                     this.mnuBackup.Enabled = true;
                 }
-                if (dtNivel.Rows[i][2].ToString() == "Cambio_Contrasena")
+                if (dtNivel.Rows[i][2].ToString() == "Utilitario_Cambio_Contrasena")
                 {
                     this.mnuCambio.Enabled = true;
                 }
-                if (dtNivel.Rows[i][2].ToString() == "TipoIngresoAlmacen")
+                if (dtNivel.Rows[i][2].ToString() == "Maestro_TipoIngresoAlmacen")
                 {
                     this.mnuTipoMovIngreso.Enabled = true;
                 }
-                if (dtNivel.Rows[i][2].ToString() == "TipoSalidaAlmacen")
+                if (dtNivel.Rows[i][2].ToString() == "Maestro_TipoCliente")
+                {
+                    this.mnuTipoCliente.Enabled = true;
+                }
+                if (dtNivel.Rows[i][2].ToString() == "Maestro_TipoSalidaAlmacen")
                 {
                     this.mnuTipoMovSalida.Enabled = true;
                 }
 
-                if (dtNivel.Rows[i][2].ToString() == "Descuento")
+                if (dtNivel.Rows[i][2].ToString() == "Venta_Descuento")
                 {
                     this.mnuDescuento.Enabled = true;
                 }
-                if (dtNivel.Rows[i][2].ToString() == "Descuento")
+                if (dtNivel.Rows[i][2].ToString() == "Venta_Delivery" && lblEstadoCaja.Text =="Abierta")
                 {
-                    this.mnuDescuento.Enabled = true;
+                    this.mnuDelivery.Enabled = true;
                 }
 
-                if (dtNivel.Rows[i][2].ToString() == "Por Cobrar")
+                if (dtNivel.Rows[i][2].ToString() == "Venta_DeliveryCobro" && lblEstadoCaja.Text =="Abierta")
                 {
-                    this.mnuPorCobrar.Enabled = true;
+                    this.mnuCobroDelivery.Enabled = true;
                 }
-                if (dtNivel.Rows[i][2].ToString() == "Control Caja" && lblEstadoCaja.Text == "Abierta")
-                {
-                    this.mnuConsultaCaja.Enabled = true;
-                }
-                if (dtNivel.Rows[i][2].ToString() == "Control Caja" && (lblEstadoCaja.Text == "Cerrada" || lblEstadoCaja.Text == "0"))
+                if (dtNivel.Rows[i][2].ToString() == "Consulta_Caja" && (lblEstadoCaja.Text == "Cerrada" || lblEstadoCaja.Text == "0"))
                 {
                     this.mnuConsultaCaja.Enabled = false;
                 }
-                if (dtNivel.Rows[i][2].ToString() == "Corte Parcial" && lblEstadoCaja.Text == "Abierta")
+                if (dtNivel.Rows[i][2].ToString() == "Consulta_Caja" && lblEstadoCaja.Text == "Abierta")
                 {
-                    this.mnuCorteParcial.Enabled = true;
+                    this.mnuConsultaCaja.Enabled = true;
                 }
-                if (dtNivel.Rows[i][2].ToString() == "Corte Parcial" && (lblEstadoCaja.Text == "Cerrada" || lblEstadoCaja.Text == "0"))
+
+                if (dtNivel.Rows[i][2].ToString() == "Consulta_Cortes")
                 {
-                    this.mnuCorteParcial.Enabled = false;
+                    this.mnuCortes.Enabled = true;
                 }
                 if (dtNivel.Rows[i][2].ToString() == "Consulta_Cortes")
                 {
                     this.mnuCortes.Enabled = true;
                 }
-                if (dtNivel.Rows[i][2].ToString() == "Consulta_Cierre")
+                if (dtNivel.Rows[i][2].ToString() == "Consulta_CierreCaja" )
                 {
                     this.mnuConsultaCierre.Enabled = true;
+                }
+
+                if (dtNivel.Rows[i][2].ToString() == "Venta_CreditosPendientes" && lblEstadoCaja.Text == "Abierta")
+                {
+                    this.mnuCreditosPendientes.Enabled = true;
+                }
+                if (dtNivel.Rows[i][2].ToString() == "Trabajador_Adelanto")
+                {
+                    this.mnuAdelanto.Enabled = true;
+                }
+                if (dtNivel.Rows[i][2].ToString() == "Trabajador_Descuento")
+                {
+                    this.mnuDescuentoTrabajador.Enabled = true;
+                }
+                if (dtNivel.Rows[i][2].ToString() == "Trabajador_Pago")
+                {
+                    this.mnuPagoTrabajador.Enabled = true;
+                }
+                if (dtNivel.Rows[i][2].ToString() == "Venta_Reservas" && lblEstadoCaja.Text == "Abierta")
+                {
+                    this.mnuReservas.Enabled = true;
                 }
             }
 
@@ -529,8 +541,9 @@ namespace CapaPresentacion
 
         private void frmPrincipal_Load(object sender, EventArgs e)
         {
+            //this.ValidarControles();
             this.ValidarAcceso();
-            this.ValidarControles();
+            
            
         }
 

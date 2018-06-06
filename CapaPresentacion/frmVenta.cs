@@ -2999,15 +2999,15 @@ namespace CapaPresentacion
             DataTable dtNivel = NNivel.Mostrar(Convert.ToInt32(dtIdTipoTrabajador.Rows[0][0].ToString()));
             for (int i = 0; i < dtNivel.Rows.Count; i++)
             {
-                if (dtNivel.Rows[i][2].ToString() == "Venta-Pedido")
+                if (dtNivel.Rows[i][2].ToString() == "PVenta_Pedido")
                 {
                     this.btnPedido.Visible = true;
                 }
-                if (dtNivel.Rows[i][2].ToString() == "Venta-Cambio de Mesa")
+                if (dtNivel.Rows[i][2].ToString() == "PVenta_Cambio de Mesa")
                 {
                     this.btnCambiarMesa.Visible = true;
                 }
-                if (dtNivel.Rows[i][2].ToString() == "Venta-PreCuenta")
+                if (dtNivel.Rows[i][2].ToString() == "PVenta_PreCuenta")
                 {
                     this.btnImprimirPreCuenta.Visible = true;
                 }
@@ -3015,23 +3015,23 @@ namespace CapaPresentacion
                 {
                     this.btnDctoProducto.Visible = true;
                 }
-                if (dtNivel.Rows[i][2].ToString() == "Venta-Dividir Cuenta")
+                if (dtNivel.Rows[i][2].ToString() == "PVenta_Dividir Cuenta")
                 {
                     this.btnDividir.Visible = true;
                 }
-                if (dtNivel.Rows[i][2].ToString() == "Venta-Separar Cuenta")
+                if (dtNivel.Rows[i][2].ToString() == "PVenta_Separar Cuenta")
                 {
                     this.btnSeparar.Visible = true;
                 }
-                if (dtNivel.Rows[i][2].ToString() == "Venta-Cobrar")
+                if (dtNivel.Rows[i][2].ToString() == "PVenta_Cobrar")
                 {
                     this.btnCobrar.Visible = true;
                 }
-                if (dtNivel.Rows[i][2].ToString() == "Venta-CompManual")
+                if (dtNivel.Rows[i][2].ToString() == "PVenta_ComprobanteManual")
                 {
                     this.btnManual.Visible = true;
                 }
-                if (dtNivel.Rows[i][2].ToString() == "Venta-Reservar")
+                if (dtNivel.Rows[i][2].ToString() == "PVenta_Reservar")
                 {
                     this.btnManual.Visible = true;
                 }

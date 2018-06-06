@@ -53,11 +53,11 @@
             this.mnuVerVentas = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuVentas = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuCobroDelivery = new System.Windows.Forms.ToolStripMenuItem();
-            this.creditosPendientesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuCreditosPendientes = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuDelivery = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuDescuento = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuPuntoVenta = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuPorCobrar = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuReservas = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuMaestro = new System.Windows.Forms.ToolStripMenuItem();
             this.almacenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuGestionAlmacen = new System.Windows.Forms.ToolStripMenuItem();
@@ -73,14 +73,14 @@
             this.mnuProveedor = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuSalones = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuTermino = new System.Windows.Forms.ToolStripMenuItem();
-            this.tipoClienteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuTipoCliente = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuTipoTrabajador = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuTrabajador = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuUnidadMedida = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuTrabajadorM = new System.Windows.Forms.ToolStripMenuItem();
-            this.adelantoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.descuentosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pagosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuAdelanto = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuDescuentoTrabajador = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuPagoTrabajador = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuReportes = new System.Windows.Forms.ToolStripMenuItem();
             this.reporteDeVentasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.porClienteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -88,6 +88,7 @@
             this.porInsumoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.porProductoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.porTipoComprobanteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.porCantidadDeProductosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reporteDeComprasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.porProductoToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.porProveedorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -124,7 +125,6 @@
             this.lblMontoCorteCaja = new System.Windows.Forms.Label();
             this.lblFechaCorteCaja = new System.Windows.Forms.Label();
             this.lblApellidos = new System.Windows.Forms.Label();
-            this.porCantidadDeProductosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -266,7 +266,7 @@
             this.mnuIngresos.Enabled = false;
             this.mnuIngresos.Image = ((System.Drawing.Image)(resources.GetObject("mnuIngresos.Image")));
             this.mnuIngresos.Name = "mnuIngresos";
-            this.mnuIngresos.Size = new System.Drawing.Size(169, 26);
+            this.mnuIngresos.Size = new System.Drawing.Size(177, 26);
             this.mnuIngresos.Text = "Ingresos";
             this.mnuIngresos.Click += new System.EventHandler(this.ingresosToolStripMenuItem_Click);
             // 
@@ -275,7 +275,7 @@
             this.mnuVerCompras.Enabled = false;
             this.mnuVerCompras.Image = global::CapaPresentacion.Properties.Resources.if_custom_reports_63120;
             this.mnuVerCompras.Name = "mnuVerCompras";
-            this.mnuVerCompras.Size = new System.Drawing.Size(169, 26);
+            this.mnuVerCompras.Size = new System.Drawing.Size(177, 26);
             this.mnuVerCompras.Text = "Ver Compras";
             this.mnuVerCompras.Click += new System.EventHandler(this.verComprasToolStripMenuItem_Click);
             // 
@@ -351,11 +351,11 @@
             // 
             this.mnuVentas.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuCobroDelivery,
-            this.creditosPendientesToolStripMenuItem,
+            this.mnuCreditosPendientes,
             this.mnuDelivery,
             this.mnuDescuento,
             this.mnuPuntoVenta,
-            this.mnuPorCobrar});
+            this.mnuReservas});
             this.mnuVentas.Font = new System.Drawing.Font("Roboto", 9.230769F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mnuVentas.ForeColor = System.Drawing.Color.Black;
             this.mnuVentas.Image = ((System.Drawing.Image)(resources.GetObject("mnuVentas.Image")));
@@ -365,22 +365,25 @@
             // 
             // mnuCobroDelivery
             // 
+            this.mnuCobroDelivery.Enabled = false;
             this.mnuCobroDelivery.Image = global::CapaPresentacion.Properties.Resources.if_cashbox_45016;
             this.mnuCobroDelivery.Name = "mnuCobroDelivery";
             this.mnuCobroDelivery.Size = new System.Drawing.Size(223, 26);
             this.mnuCobroDelivery.Text = "Cobro Delivery";
             this.mnuCobroDelivery.Click += new System.EventHandler(this.mnuCobroDelivery_Click);
             // 
-            // creditosPendientesToolStripMenuItem
+            // mnuCreditosPendientes
             // 
-            this.creditosPendientesToolStripMenuItem.Image = global::CapaPresentacion.Properties.Resources.icongo;
-            this.creditosPendientesToolStripMenuItem.Name = "creditosPendientesToolStripMenuItem";
-            this.creditosPendientesToolStripMenuItem.Size = new System.Drawing.Size(223, 26);
-            this.creditosPendientesToolStripMenuItem.Text = "Creditos Pendientes";
-            this.creditosPendientesToolStripMenuItem.Click += new System.EventHandler(this.creditosPendientesToolStripMenuItem_Click);
+            this.mnuCreditosPendientes.Enabled = false;
+            this.mnuCreditosPendientes.Image = global::CapaPresentacion.Properties.Resources.icongo;
+            this.mnuCreditosPendientes.Name = "mnuCreditosPendientes";
+            this.mnuCreditosPendientes.Size = new System.Drawing.Size(223, 26);
+            this.mnuCreditosPendientes.Text = "Creditos Pendientes";
+            this.mnuCreditosPendientes.Click += new System.EventHandler(this.creditosPendientesToolStripMenuItem_Click);
             // 
             // mnuDelivery
             // 
+            this.mnuDelivery.Enabled = false;
             this.mnuDelivery.Image = global::CapaPresentacion.Properties.Resources.cesta_de_la_compra;
             this.mnuDelivery.Name = "mnuDelivery";
             this.mnuDelivery.Size = new System.Drawing.Size(223, 26);
@@ -405,14 +408,14 @@
             this.mnuPuntoVenta.Text = "Punto Venta";
             this.mnuPuntoVenta.Click += new System.EventHandler(this.puntoVentaToolStripMenuItem_Click);
             // 
-            // mnuPorCobrar
+            // mnuReservas
             // 
-            this.mnuPorCobrar.Enabled = false;
-            this.mnuPorCobrar.Image = global::CapaPresentacion.Properties.Resources.if_Purse_6699531;
-            this.mnuPorCobrar.Name = "mnuPorCobrar";
-            this.mnuPorCobrar.Size = new System.Drawing.Size(223, 26);
-            this.mnuPorCobrar.Text = "Reservas";
-            this.mnuPorCobrar.Click += new System.EventHandler(this.porCobrarToolStripMenuItem_Click);
+            this.mnuReservas.Enabled = false;
+            this.mnuReservas.Image = global::CapaPresentacion.Properties.Resources.if_Purse_6699531;
+            this.mnuReservas.Name = "mnuReservas";
+            this.mnuReservas.Size = new System.Drawing.Size(223, 26);
+            this.mnuReservas.Text = "Reservas";
+            this.mnuReservas.Click += new System.EventHandler(this.porCobrarToolStripMenuItem_Click);
             // 
             // mnuMaestro
             // 
@@ -428,7 +431,7 @@
             this.mnuProveedor,
             this.mnuSalones,
             this.mnuTermino,
-            this.tipoClienteToolStripMenuItem,
+            this.mnuTipoCliente,
             this.mnuTipoTrabajador,
             this.mnuTrabajador,
             this.mnuUnidadMedida});
@@ -568,12 +571,14 @@
             this.mnuTermino.Text = "Término";
             this.mnuTermino.Click += new System.EventHandler(this.mnuTermino_Click);
             // 
-            // tipoClienteToolStripMenuItem
+            // mnuTipoCliente
             // 
-            this.tipoClienteToolStripMenuItem.Name = "tipoClienteToolStripMenuItem";
-            this.tipoClienteToolStripMenuItem.Size = new System.Drawing.Size(208, 26);
-            this.tipoClienteToolStripMenuItem.Text = "Tipo Cliente";
-            this.tipoClienteToolStripMenuItem.Click += new System.EventHandler(this.tipoClienteToolStripMenuItem_Click);
+            this.mnuTipoCliente.Enabled = false;
+            this.mnuTipoCliente.Image = global::CapaPresentacion.Properties.Resources.usuario;
+            this.mnuTipoCliente.Name = "mnuTipoCliente";
+            this.mnuTipoCliente.Size = new System.Drawing.Size(208, 26);
+            this.mnuTipoCliente.Text = "Tipo Cliente";
+            this.mnuTipoCliente.Click += new System.EventHandler(this.tipoClienteToolStripMenuItem_Click);
             // 
             // mnuTipoTrabajador
             // 
@@ -605,38 +610,41 @@
             // mnuTrabajadorM
             // 
             this.mnuTrabajadorM.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.adelantoToolStripMenuItem,
-            this.descuentosToolStripMenuItem,
-            this.pagosToolStripMenuItem});
+            this.mnuAdelanto,
+            this.mnuDescuentoTrabajador,
+            this.mnuPagoTrabajador});
             this.mnuTrabajadorM.Font = new System.Drawing.Font("Roboto", 9.230769F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mnuTrabajadorM.Image = global::CapaPresentacion.Properties.Resources.usuario;
             this.mnuTrabajadorM.Name = "mnuTrabajadorM";
             this.mnuTrabajadorM.Size = new System.Drawing.Size(115, 24);
             this.mnuTrabajadorM.Text = "Trabajador";
             // 
-            // adelantoToolStripMenuItem
+            // mnuAdelanto
             // 
-            this.adelantoToolStripMenuItem.Image = global::CapaPresentacion.Properties.Resources.icongo;
-            this.adelantoToolStripMenuItem.Name = "adelantoToolStripMenuItem";
-            this.adelantoToolStripMenuItem.Size = new System.Drawing.Size(165, 26);
-            this.adelantoToolStripMenuItem.Text = "Adelanto";
-            this.adelantoToolStripMenuItem.Click += new System.EventHandler(this.adelantoToolStripMenuItem_Click);
+            this.mnuAdelanto.Enabled = false;
+            this.mnuAdelanto.Image = global::CapaPresentacion.Properties.Resources.icongo;
+            this.mnuAdelanto.Name = "mnuAdelanto";
+            this.mnuAdelanto.Size = new System.Drawing.Size(177, 26);
+            this.mnuAdelanto.Text = "Adelanto";
+            this.mnuAdelanto.Click += new System.EventHandler(this.adelantoToolStripMenuItem_Click);
             // 
-            // descuentosToolStripMenuItem
+            // mnuDescuentoTrabajador
             // 
-            this.descuentosToolStripMenuItem.Image = global::CapaPresentacion.Properties.Resources.if_Backspace_clean_clear_delete_remove_erase_1886483;
-            this.descuentosToolStripMenuItem.Name = "descuentosToolStripMenuItem";
-            this.descuentosToolStripMenuItem.Size = new System.Drawing.Size(165, 26);
-            this.descuentosToolStripMenuItem.Text = "Descuentos";
-            this.descuentosToolStripMenuItem.Click += new System.EventHandler(this.descuentosToolStripMenuItem_Click);
+            this.mnuDescuentoTrabajador.Enabled = false;
+            this.mnuDescuentoTrabajador.Image = global::CapaPresentacion.Properties.Resources.if_Backspace_clean_clear_delete_remove_erase_1886483;
+            this.mnuDescuentoTrabajador.Name = "mnuDescuentoTrabajador";
+            this.mnuDescuentoTrabajador.Size = new System.Drawing.Size(177, 26);
+            this.mnuDescuentoTrabajador.Text = "Descuentos";
+            this.mnuDescuentoTrabajador.Click += new System.EventHandler(this.descuentosToolStripMenuItem_Click);
             // 
-            // pagosToolStripMenuItem
+            // mnuPagoTrabajador
             // 
-            this.pagosToolStripMenuItem.Image = global::CapaPresentacion.Properties.Resources.if_cashbox_45016;
-            this.pagosToolStripMenuItem.Name = "pagosToolStripMenuItem";
-            this.pagosToolStripMenuItem.Size = new System.Drawing.Size(165, 26);
-            this.pagosToolStripMenuItem.Text = "Pagos";
-            this.pagosToolStripMenuItem.Click += new System.EventHandler(this.pagosToolStripMenuItem_Click);
+            this.mnuPagoTrabajador.Enabled = false;
+            this.mnuPagoTrabajador.Image = global::CapaPresentacion.Properties.Resources.if_cashbox_45016;
+            this.mnuPagoTrabajador.Name = "mnuPagoTrabajador";
+            this.mnuPagoTrabajador.Size = new System.Drawing.Size(177, 26);
+            this.mnuPagoTrabajador.Text = "Pagos";
+            this.mnuPagoTrabajador.Click += new System.EventHandler(this.pagosToolStripMenuItem_Click);
             // 
             // mnuReportes
             // 
@@ -702,6 +710,13 @@
             this.porTipoComprobanteToolStripMenuItem.Size = new System.Drawing.Size(260, 26);
             this.porTipoComprobanteToolStripMenuItem.Text = "Por Tipo Comprobante";
             this.porTipoComprobanteToolStripMenuItem.Click += new System.EventHandler(this.porTipoComprobanteToolStripMenuItem_Click);
+            // 
+            // porCantidadDeProductosToolStripMenuItem
+            // 
+            this.porCantidadDeProductosToolStripMenuItem.Name = "porCantidadDeProductosToolStripMenuItem";
+            this.porCantidadDeProductosToolStripMenuItem.Size = new System.Drawing.Size(260, 26);
+            this.porCantidadDeProductosToolStripMenuItem.Text = "Por Cantidad de Productos";
+            this.porCantidadDeProductosToolStripMenuItem.Click += new System.EventHandler(this.porCantidadDeProductosToolStripMenuItem_Click);
             // 
             // reporteDeComprasToolStripMenuItem
             // 
@@ -810,6 +825,7 @@
             // 
             // mnuBackup
             // 
+            this.mnuBackup.Enabled = false;
             this.mnuBackup.Image = global::CapaPresentacion.Properties.Resources.if_folder_pink_backup_14922;
             this.mnuBackup.Name = "mnuBackup";
             this.mnuBackup.Size = new System.Drawing.Size(214, 26);
@@ -818,6 +834,7 @@
             // 
             // mnuCambio
             // 
+            this.mnuCambio.Enabled = false;
             this.mnuCambio.Image = global::CapaPresentacion.Properties.Resources.if_lock_open_2856371;
             this.mnuCambio.Name = "mnuCambio";
             this.mnuCambio.Size = new System.Drawing.Size(214, 26);
@@ -1011,13 +1028,6 @@
             this.lblApellidos.Text = "1";
             this.lblApellidos.Visible = false;
             // 
-            // porCantidadDeProductosToolStripMenuItem
-            // 
-            this.porCantidadDeProductosToolStripMenuItem.Name = "porCantidadDeProductosToolStripMenuItem";
-            this.porCantidadDeProductosToolStripMenuItem.Size = new System.Drawing.Size(260, 26);
-            this.porCantidadDeProductosToolStripMenuItem.Text = "Por Cantidad de Productos";
-            this.porCantidadDeProductosToolStripMenuItem.Click += new System.EventHandler(this.porCantidadDeProductosToolStripMenuItem_Click);
-            // 
             // frmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -1129,7 +1139,7 @@
         public System.Windows.Forms.Timer tBackup;
         private System.Windows.Forms.ToolStripMenuItem mnuDescuento;
         private System.Windows.Forms.ToolStripMenuItem porInsumoToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mnuPorCobrar;
+        private System.Windows.Forms.ToolStripMenuItem mnuReservas;
         public System.Windows.Forms.Label lblEstadoTurno;
         public System.Windows.Forms.Label lblMontoCorteCaja;
         public System.Windows.Forms.Label lblFechaCorteCaja;
@@ -1145,13 +1155,13 @@
         private System.Windows.Forms.ToolStripMenuItem reporteDeMovProductosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem porTipoComprobanteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mnuDelivery;
-        private System.Windows.Forms.ToolStripMenuItem tipoClienteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mnuTipoCliente;
         private System.Windows.Forms.ToolStripMenuItem mnuCobroDelivery;
-        private System.Windows.Forms.ToolStripMenuItem creditosPendientesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mnuCreditosPendientes;
         private System.Windows.Forms.ToolStripMenuItem mnuTrabajadorM;
-        private System.Windows.Forms.ToolStripMenuItem descuentosToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem pagosToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem adelantoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mnuDescuentoTrabajador;
+        private System.Windows.Forms.ToolStripMenuItem mnuPagoTrabajador;
+        private System.Windows.Forms.ToolStripMenuItem mnuAdelanto;
         private System.Windows.Forms.ToolStripMenuItem porFormaDePagoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem reporteDeTrabajadoresToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pagoPorTrabajadorToolStripMenuItem;
