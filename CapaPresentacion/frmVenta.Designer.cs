@@ -118,7 +118,6 @@
             this.btnDividir = new System.Windows.Forms.Button();
             this.btnCobrar = new System.Windows.Forms.Button();
             this.btnPedido = new System.Windows.Forms.Button();
-            this.btnCambiarMesa = new System.Windows.Forms.Button();
             this.btnImprimirPreCuenta = new System.Windows.Forms.Button();
             this.btnSeparar = new System.Windows.Forms.Button();
             this.btnDctoProducto = new System.Windows.Forms.Button();
@@ -1033,7 +1032,6 @@
             this.groupBox4.Controls.Add(this.btnDividir);
             this.groupBox4.Controls.Add(this.btnCobrar);
             this.groupBox4.Controls.Add(this.btnPedido);
-            this.groupBox4.Controls.Add(this.btnCambiarMesa);
             this.groupBox4.Controls.Add(this.btnImprimirPreCuenta);
             this.groupBox4.Controls.Add(this.btnSeparar);
             this.groupBox4.Controls.Add(this.btnDctoProducto);
@@ -1124,21 +1122,6 @@
             this.btnPedido.TextAlign = System.Drawing.ContentAlignment.BottomRight;
             this.btnPedido.UseVisualStyleBackColor = false;
             this.btnPedido.Click += new System.EventHandler(this.btnPedido_Click);
-            // 
-            // btnCambiarMesa
-            // 
-            this.btnCambiarMesa.BackColor = System.Drawing.Color.LightGray;
-            this.btnCambiarMesa.Font = new System.Drawing.Font("Roboto", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCambiarMesa.Image = global::CapaPresentacion.Properties.Resources.intercambio;
-            this.btnCambiarMesa.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.btnCambiarMesa.Location = new System.Drawing.Point(380, 20);
-            this.btnCambiarMesa.Name = "btnCambiarMesa";
-            this.btnCambiarMesa.Size = new System.Drawing.Size(221, 66);
-            this.btnCambiarMesa.TabIndex = 63;
-            this.btnCambiarMesa.Text = "CAMBIAR MESA (F3)";
-            this.btnCambiarMesa.TextAlign = System.Drawing.ContentAlignment.BottomRight;
-            this.btnCambiarMesa.UseVisualStyleBackColor = false;
-            this.btnCambiarMesa.Click += new System.EventHandler(this.btnCambiarMesa_Click);
             // 
             // btnImprimirPreCuenta
             // 
@@ -1489,7 +1472,6 @@
         public System.Windows.Forms.Button btnDividir;
         public System.Windows.Forms.Button btnCobrar;
         public System.Windows.Forms.Button btnPedido;
-        public System.Windows.Forms.Button btnCambiarMesa;
         public System.Windows.Forms.Button btnImprimirPreCuenta;
         public System.Windows.Forms.Button btnDctoProducto;
         public System.Windows.Forms.Button btnSeparar;
