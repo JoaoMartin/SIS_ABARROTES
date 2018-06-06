@@ -11,7 +11,7 @@ namespace CapaNegocios
     public class NDetalleVenta
     {
         public static string InsertarAdicPedido(int idVenta, int idProducto, int cantidad, decimal precioVenta, decimal descuento, string nota,string tipo, string barra,
-            DataTable dtDetalleMenu, string estado)
+             string estado)
         {
             DDetalleVenta Obj = new DDetalleVenta();
             Obj.IdVenta = idVenta;
@@ -24,16 +24,8 @@ namespace CapaNegocios
             Obj.Tipo = tipo;
             Obj.Estado = estado;
 
-            List<DDetalleVentaMenu> detallesMenu = new List<DDetalleVentaMenu>();
-            foreach (DataRow row in dtDetalleMenu.Rows)
-            {
-                DDetalleVentaMenu detalleM = new DDetalleVentaMenu();
-                detalleM.IdProducto = Convert.ToInt32(row["Cod"].ToString());
-                detalleM.Cantidad = Convert.ToInt32(row["Cant"].ToString());
-                detalleM.Barra = row["Barra"].ToString();
-                detallesMenu.Add(detalleM);
-            }
-            return Obj.InsertarAdic(Obj,detallesMenu);
+
+            return Obj.InsertarAdic(Obj);
         }
 
         public static string EditarNotaPedido(int idDetalle, string nota, decimal descuento)

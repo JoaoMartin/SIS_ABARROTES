@@ -14,18 +14,12 @@ namespace CapaPresentacion
     public partial class frmVenta : Form
     {
         public string idMesa, nroMesa, idSalon, nombreSalon, idMesero, nombreMesero;
-
-        Button[] btnCategoria, btnProducto;
-        DataTable dtCategoria, dtProducto, dtProdCom;
         public DataTable dtDetalle, dtDetalleVenta, dtDetalleMenu;
         public DataTable dtDetallePedido;
         private bool isNuevo = true;
         public DataRow row;
-        int nroCategoria, cantFilas;
-        private int loc = 0;
-        private int locProducto = 0;
+        private int cantFilas = 0;
         public decimal totalPagado = 0, subTotal = 0;
-        int cantidadAcumulada = 0;
         public static frmVenta f1;
 
         private void MensajeOK(string mensaje)
@@ -81,7 +75,6 @@ namespace CapaPresentacion
                 this.lblBandera.Text = "0";
                 this.dataListadoDetalle.ClearSelection();
                 this.lblBandera.Focus();
-                this.actStockTem();
                 this.txtCantidad.Text = "";
                 //this.txtCantidad.Text = "1";
             }
@@ -95,144 +88,20 @@ namespace CapaPresentacion
 
         private void btnUp_Click(object sender, EventArgs e)
         {
-            if (loc - 250 > 0)
-            {
-                loc -= 276;
-                plCategorias.VerticalScroll.Value = loc;
-                this.dataListadoDetalle.Select();
-            }
-            else
-            {
-                loc = 0;
-                plCategorias.AutoScrollPosition = new Point(0, loc);
-                this.dataListadoDetalle.Select();
-            }
+           
         }
 
         private void btnUpProductos_Click(object sender, EventArgs e)
         {
-            if (locProducto - 150 > 0)
-            {
-                locProducto -= 206;
-                plProductos.VerticalScroll.Value = locProducto;
-                this.dataListadoDetalle.Select();
-            }
-            else
-            {
-                locProducto = 0;
-                plProductos.AutoScrollPosition = new Point(0, locProducto);
-                this.dataListadoDetalle.Select();
-            }
+         
         }
 
         private void btnDownProductos_Click(object sender, EventArgs e)
         {
-            if (locProducto + 110 < plProductos.VerticalScroll.Maximum)
-            {
-                locProducto += 110;
-                plProductos.VerticalScroll.Value = locProducto;
-                this.dataListadoDetalle.Select();
-            }
-            else
-            {
-
-                locProducto = plProductos.VerticalScroll.Maximum;
-                plProductos.AutoScrollPosition = new Point(0, locProducto);
-                this.dataListadoDetalle.Select();
-
-            }
+           
         }
 
-        private void actStockTem()
-        {
-            if (this.lblTipo.Text == "C")
-            {
-                DataTable dtDetProdTemp = NProducto.MostrarDetalleProducto(Convert.ToInt32(this.lblIdProductoCom.Text));
-                if (dtStock.Rows.Count > 0 && dtDetProdTemp.Rows.Count > 0)
-                {
-                    for (int i = 0; i < dtDetProdTemp.Rows.Count; i++)
-                    {
-                        decimal cantReq = Convert.ToDecimal(dtDetProdTemp.Rows[i]["cantidad"].ToString());
-                        for (int j = 0; j < dtStock.Rows.Count; j++)
-                        {
-                            if (dtStock.Rows[j].Cells["Codigo"].Value.ToString() == dtDetProdTemp.Rows[i]["Codigo"].ToString())
-                            {
-                                decimal cant = Convert.ToDecimal(dtStock.Rows[j].Cells["StockQueda"].Value);
-                                decimal cantComp = Convert.ToDecimal(this.lblCantidadCom.Text);
-                                if (this.lblBanderaStock.Text == "0")
-                                {
-                                    this.dtStock[1, j].Value = cant - cantReq;
-                                }
-                                else if (this.lblBanderaStock.Text == "1")
-                                {
-                                    this.dtStock[1, j].Value = cant + cantReq;
-                                }
-                                else if (this.lblBanderaStock.Text == "2")
-                                {
-                                    this.dtStock[1, j].Value = cant + (cantComp * cantReq);
-                                }
-                                else if (this.lblBanderaStock.Text == "3")
-                                {
-                                    decimal cantAct = Convert.ToDecimal(this.txtCantidad.Text.Trim());
-                                    decimal cantTot;
-                                    if (cantAct > cantComp)
-                                    {
-                                        cantTot = cantAct - cantComp;
-                                        this.dtStock[1, j].Value = cant - (cantTot * cantReq);
-                                    }
-                                    else
-                                    {
-                                        cantTot = cantComp - cantAct;
-                                        this.dtStock[1, j].Value = cant + (cantTot * cantReq);
-                                    }
-
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            else if (this.lblTipo.Text == "A")
-            {
-                for (int j = 0; j < dtStock.Rows.Count; j++)
-                {
-                    if (dtStock.Rows[j].Cells["Codigo"].Value.ToString() == this.lblIdProductoCom.Text)
-                    {
-                        decimal cant = Convert.ToDecimal(dtStock.Rows[j].Cells["StockQueda"].Value);
-                        decimal cantComp = Convert.ToDecimal(this.lblCantidadCom.Text);
-                        if (this.lblBanderaStock.Text == "0")
-                        {
-                            this.dtStock[1, j].Value = cant - 1;
-                        }
-                        else if (this.lblBanderaStock.Text == "1")
-                        {
-                            this.dtStock[1, j].Value = cant + 1;
-                        }
-                        else if (this.lblBanderaStock.Text == "2")
-                        {
-                            this.dtStock[1, j].Value = cant + cantComp;
-                        }
-                        else if (this.lblBanderaStock.Text == "3")
-                        {
-                            decimal cantAct = Convert.ToDecimal(this.txtCantidad.Text.Trim());
-                            decimal cantTot;
-                            if (cantAct > cantComp)
-                            {
-                                cantTot = cantAct - cantComp;
-                                this.dtStock[1, j].Value = cant - cantTot;
-                            }
-                            else
-                            {
-                                cantTot = cantComp - cantAct;
-                                this.dtStock[1, j].Value = cant + cantTot;
-                            }
-
-                        }
-                    }
-                }
-            }
-
-        }
+      
 
         private void dataListadoDetalle_Click(object sender, EventArgs e)
         {
@@ -392,19 +261,7 @@ namespace CapaPresentacion
                                         }
                                     }
 
-                                    DataTable dtReceta = NReceta.Mostrar(Convert.ToInt32(this.lblIdProductoCom.Text));
 
-                                    if (dtReceta.Rows.Count > 0)
-                                    {
-                                        int cantInsumo = Convert.ToInt32(this.lblCantidadCom.Text);
-                                        decimal cantTotal;
-                                        for (int k = 0; k < dtReceta.Rows.Count; k++)
-                                        {
-                                            cantTotal = cantInsumo * Convert.ToDecimal(dtReceta.Rows[k][3].ToString());
-                                            NInsumo.EditarStock(Convert.ToInt32(dtReceta.Rows[k][0].ToString()), ((-1) * cantTotal));
-                                        }
-
-                                    }
                                     /*DataTable dtDetalleVentaMenu = NVenta.mostrarDetalleVentaMenu(Convert.ToInt32(this.lblIdProductoCom.Text));
                                     for (int kl = 0; kl < dtDetalleVentaMenu.Rows.Count; kl++)
                                     {
@@ -434,7 +291,7 @@ namespace CapaPresentacion
                                     // this.MensajeOK("Se anuló correctamente el registro");
                                     //dataCocina.Rows.Add(lblDescrProducto.Text, lblCantidadCom.Text, "","");
 
-                                    NImprimirComanda.imprimirCom(this.lblMesero.Text, this.lblSalon.Text, this.lblMesa.Text, dataCocina, "COMANDA ANULACION");
+                                    NImprimirComanda.imprimirCom(this.lblMesero.Text, "","", dataCocina, "COMANDA ANULACION");
                                     if (this.dataListadoDetalle.Rows.Count == 0)
                                     {
                                         NMesa.EditarEstadoMesa(Convert.ToInt32(this.lblIdMesa.Text), "Libre");
@@ -443,7 +300,6 @@ namespace CapaPresentacion
                                         this.Hide();
                                     }
 
-                                    actStockTem();
                                     this.dataListadoDetalle.Select();
 
                                 }
@@ -503,43 +359,6 @@ namespace CapaPresentacion
                                         }
                                     }
 
-
-                                    DataTable dtReceta = NReceta.Mostrar(Convert.ToInt32(this.lblIdProductoCom.Text));
-
-                                    if (dtReceta.Rows.Count > 0)
-                                    {
-                                        int cantInsumo = Convert.ToInt32(this.lblCantidadCom.Text);
-                                        decimal cantTotal;
-                                        for (int k = 0; k < dtReceta.Rows.Count; k++)
-                                        {
-                                            cantTotal = cantInsumo * Convert.ToDecimal(dtReceta.Rows[k][3].ToString());
-                                            NInsumo.EditarStock(Convert.ToInt32(dtReceta.Rows[k][0].ToString()), ((-1) * cantTotal));
-                                        }
-
-                                    }
-
-                                    if (lblTipo.Text == "MFDFD" || lblTipo.Text == "DDFFFD")
-                                    {
-                                        for (int kl = 0; kl < dgvDetalleVentaMenu.Rows.Count; kl++)
-                                        {
-                                            DataTable dtRecetaMenu = NReceta.Mostrar(Convert.ToInt32(dgvDetalleVentaMenu.Rows[kl].Cells[0].Value.ToString()));
-                                            decimal cantTotalMenu;
-                                            if (dtRecetaMenu.Rows.Count > 0)
-                                            {
-                                                int cantInsumoMenu = Convert.ToInt32(dgvDetalleVentaMenu.Rows[kl].Cells[1].Value.ToString());
-                                                for (int rec = 0; rec < dtRecetaMenu.Rows.Count; rec++)
-                                                {
-
-                                                    cantTotalMenu = cantInsumoMenu * Convert.ToDecimal(dtRecetaMenu.Rows[rec][3].ToString());
-                                                    rpta = NInsumo.EditarStock(Convert.ToInt32(dtRecetaMenu.Rows[rec][0].ToString()), ((-1) * cantTotalMenu));
-                                                }
-
-                                            }
-
-
-                                        }
-                                        rpta = NDetalleVenta.EliminarDetalleVentaMenu(Convert.ToInt32(lblidDetalle.Text));
-                                    }
                                 }
                                 else
                                 {
@@ -550,7 +369,7 @@ namespace CapaPresentacion
                                 {
                                     // this.MensajeOK("Se anuló correctamente el registro");
 
-                                    NImprimirComanda.imprimirCom(this.lblMesero.Text, this.lblSalon.Text, this.lblMesa.Text, dataCocina, "COMANDA ANULACION");
+                                    NImprimirComanda.imprimirCom(this.lblMesero.Text,"","", dataCocina, "COMANDA ANULACION");
                                     if (this.dataListadoDetalle.Rows.Count == 0)
                                     {
 
@@ -627,42 +446,6 @@ namespace CapaPresentacion
                                 {
                                     this.btnSeparar.Enabled = true;
                                 }
-                                actStockTem();
-                                if (dataListadoDetalle.Rows.Count == 0)
-                                {
-                                    this.dtStock.Rows.Clear();
-                                }
-                                cantidadAcumulada = 0;
-
-                                if (tipo1 == "MDSSD" || tipo1 == "DSDSD")
-                                {
-                                    int contador = 0;
-
-                                    for (int y = 0; y < dgvBanderaMenu.Rows.Count; y++)
-                                    {
-                                        if (bandMen == dgvBanderaMenu.Rows[y].Cells[1].Value.ToString())
-                                        {
-                                            dgvBanderaMenu.Rows.RemoveAt(y);
-                                            y = -1;
-                                        }
-                                    }
-
-                                    for (int y = 0; y < dtDetalleMenu.Rows.Count; y++)
-                                    {
-                                        if (bandMen == dtDetalleMenu.Rows[y][2].ToString())
-                                        {
-                                            dtDetalleMenu.Rows.RemoveAt(y);
-                                            y = -1;
-                                        }
-                                    }
-
-                                    /* while(bandMen == dgvBanderaMenu.Rows[contador].Cells[1].Value.ToString())
-                                     {
-                                         dgvBanderaMenu.Rows.RemoveAt(contador);
-                                         contador++;
-                                     }*/
-                                    this.dataListadoDetalle.Select();
-                                }
                             }
                             else
                             {
@@ -730,43 +513,6 @@ namespace CapaPresentacion
                         {
                             this.btnSeparar.Enabled = true;
                         }
-                        actStockTem();
-                        if (dataListadoDetalle.Rows.Count == 0)
-                        {
-                            this.dtStock.Rows.Clear();
-                        }
-                        cantidadAcumulada = 0;
-
-                        if (tipo1 == "MJSDJK" || tipo1 == "DPDJFSKL")
-                        {
-                            int contador = 0;
-
-                            for (int y = 0; y < dgvBanderaMenu.Rows.Count; y++)
-                            {
-                                if (bandMen == dgvBanderaMenu.Rows[y].Cells[1].Value.ToString())
-                                {
-                                    dgvBanderaMenu.Rows.RemoveAt(y);
-                                    y = -1;
-                                }
-                            }
-
-                            for (int y = 0; y < dtDetalleMenu.Rows.Count; y++)
-                            {
-                                if (bandMen == dtDetalleMenu.Rows[y][2].ToString())
-                                {
-                                    dtDetalleMenu.Rows.RemoveAt(y);
-                                    y = -1;
-                                }
-                            }
-
-                            /* while(bandMen == dgvBanderaMenu.Rows[contador].Cells[1].Value.ToString())
-                             {
-                                 dgvBanderaMenu.Rows.RemoveAt(contador);
-                                 contador++;
-                             }*/
-                            this.dataListadoDetalle.Select();
-
-                        }
                         this.dataListadoDetalle.Select();
                         if (dataListadoDetalle.Rows.Count > 0)
                         {
@@ -833,12 +579,6 @@ namespace CapaPresentacion
 
         private void CambiarMesa()
         {
-            if (this.lblIdMesa.Text != "0")
-            {
-                frmCambioMesa form = new frmCambioMesa();
-                form.lblIdVenta.Text = this.lblIdVenta.Text;
-                form.ShowDialog();
-            }
         }
         private void btnCambiarMesa_Click(object sender, EventArgs e)
         {
@@ -882,7 +622,7 @@ namespace CapaPresentacion
                                         string barra = dataListadoDetalle.Rows[i].Cells["Barra"].Value.ToString();
                                         string tipo = f1.dataListadoDetalle.Rows[i].Cells["Tipo"].Value.ToString();
                                         rpta = NDetalleVenta.InsertarAdicPedido(Convert.ToInt32(this.lblIdVenta.Text), idProducto, cantidad, prVenta, desc,
-                                            this.dataListadoDetalle.Rows[i].Cells[6].Value.ToString(), tipo, barra, dtDetalleMenu, "Pedido");
+                                            this.dataListadoDetalle.Rows[i].Cells[6].Value.ToString(), tipo, barra, "Pedido");
                                         if (rpta == "OK")
                                         {
                                             // for (int p = cont; p < this.dataListadoDetalle.Rows.Count; p++)
@@ -898,18 +638,6 @@ namespace CapaPresentacion
                                                     int idProducto_Com = Convert.ToInt32(dtDetalleProducto.Rows[j][0].ToString());
                                                     int cantRequerida = Convert.ToInt32(dtDetalleProducto.Rows[j][1].ToString());
                                                     rpta = NProducto.EditarStock(idProducto_Com, cantRequerida * cantPedido);
-
-                                                    DataTable dtRecetaC = NReceta.Mostrar(Convert.ToInt32(idProducto_Com));
-                                                    if(dtRecetaC.Rows.Count > 0)
-                                                    {
-                                                        int cantInsumo = Convert.ToInt32(dataListadoDetalle.Rows[i].Cells["Cant"].Value.ToString());
-                                                        decimal cantTotal;
-                                                        for (int k = 0; k < dtRecetaC.Rows.Count; k++)
-                                                        {
-                                                            cantTotal = cantInsumo * Convert.ToDecimal(dtRecetaC.Rows[k][3].ToString());
-                                                            rpta = NInsumo.EditarStock(Convert.ToInt32(dtRecetaC.Rows[k][0].ToString()), cantTotal);
-                                                        }
-                                                    }
                                                 }
 
                                             }
@@ -919,19 +647,6 @@ namespace CapaPresentacion
                                             //  }
                                         }
 
-                                        DataTable dtReceta = NReceta.Mostrar(Convert.ToInt32(dataListadoDetalle.Rows[i].Cells["Cod"].Value.ToString()));
-
-                                        if (dtReceta.Rows.Count > 0)
-                                        {
-                                            int cantInsumo = Convert.ToInt32(dataListadoDetalle.Rows[i].Cells["Cant"].Value.ToString());
-                                            decimal cantTotal;
-                                            for (int k = 0; k < dtReceta.Rows.Count; k++)
-                                            {
-                                                cantTotal = cantInsumo * Convert.ToDecimal(dtReceta.Rows[k][3].ToString());
-                                                rpta = NInsumo.EditarStock(Convert.ToInt32(dtReceta.Rows[k][0].ToString()), cantTotal);
-                                            }
-
-                                        }
 
                                         if (dataListadoDetalle.Rows[i].Cells["Imprimir"].Value.ToString() == "Cocina")
                                         {
@@ -954,30 +669,14 @@ namespace CapaPresentacion
 
                                     }
 
-                                    for (int kl = 0; kl < dgvBanderaMenu.Rows.Count; kl++)
-                                    {
-                                        DataTable dtRecetaMenu = NReceta.Mostrar(Convert.ToInt32(dgvBanderaMenu.Rows[kl].Cells[0].Value.ToString()));
-                                        decimal cantTotalMenu;
-                                        if (dtRecetaMenu.Rows.Count > 0)
-                                        {
-                                            int cantInsumoMenu = Convert.ToInt32(dgvBanderaMenu.Rows[kl].Cells[2].Value.ToString());
-                                            for (int rec = 0; rec < dtRecetaMenu.Rows.Count; rec++)
-                                            {
 
-                                                cantTotalMenu = cantInsumoMenu * Convert.ToDecimal(dtRecetaMenu.Rows[rec][3].ToString());
-                                                rpta = NInsumo.EditarStock(Convert.ToInt32(dtRecetaMenu.Rows[rec][0].ToString()), cantTotalMenu);
-                                            }
-
-                                        }
-
-                                    }
                                     if (dataCocina.Rows.Count > 0)
                                     {
-                                        NImprimirComanda.imprimirCom(this.lblMesero.Text, this.lblSalon.Text, this.lblMesa.Text, dataCocina, "COMANDA ADICIONAL");
+                                        NImprimirComanda.imprimirCom(this.lblMesero.Text, "","", dataCocina, "COMANDA ADICIONAL");
                                     }
                                     if (dataBar.Rows.Count > 0)
                                     {
-                                        NImprimirComanda.imprimirCom(this.lblMesero.Text, this.lblSalon.Text, this.lblMesa.Text, dataBar, "COMANDA ADICIONAL");
+                                        NImprimirComanda.imprimirCom(this.lblMesero.Text,"","", dataBar, "COMANDA ADICIONAL");
                                     }
                                 }
                                 this.dataListadoDetalle.Select();
@@ -995,7 +694,7 @@ namespace CapaPresentacion
                             // rpta = NVenta.InsertarPedido(null, Convert.ToInt32(this.lblIdMesa.Text), DateTime.Now, "Pedido", "", 
                             //   Convert.ToDecimal(this.txtDescuento.Text), Convert.ToInt32(this.lblIdUsuario.Text), "", 1, dtDetalle);
                             rpta = NVenta.InsertarPedido(null, Convert.ToInt32(this.lblIdMesa.Text), DateTime.Now, "Pedido", "",
-                                Convert.ToDecimal(this.txtDescuento.Text), Convert.ToInt32(idMesero), "", 1, dtDetalle, dtDetalleMenu,
+                                Convert.ToDecimal(this.txtDescuento.Text), Convert.ToInt32(idMesero), "", 1, dtDetalle,
                                 DateTime.Now, 00.00m, Convert.ToInt32(this.idMesero), "", "", "", "","");
                             if (rpta == "OK")
                             {
@@ -1046,46 +745,14 @@ namespace CapaPresentacion
                                         dataBar.Rows.Add(producto, cantidad1, nota, tipo);
                                     }
 
-                                    DataTable dtReceta = NReceta.Mostrar(Convert.ToInt32(dataListadoDetalle.Rows[i].Cells["Cod"].Value.ToString()));
-
-                                    if (dtReceta.Rows.Count > 0)
-                                    {
-                                        int cantInsumo = Convert.ToInt32(dataListadoDetalle.Rows[i].Cells["Cant"].Value.ToString());
-                                        decimal cantTotal;
-                                        for (int k = 0; k < dtReceta.Rows.Count; k++)
-                                        {
-                                            cantTotal = cantInsumo * Convert.ToDecimal(dtReceta.Rows[k][3].ToString());
-                                            rpta = NInsumo.EditarStock(Convert.ToInt32(dtReceta.Rows[k][0].ToString()), cantTotal);
-                                        }
-
-                                    }
-
-
-                                }
-                                for (int kl = 0; kl < dgvBanderaMenu.Rows.Count; kl++)
-                                {
-                                    DataTable dtRecetaMenu = NReceta.Mostrar(Convert.ToInt32(dgvBanderaMenu.Rows[kl].Cells[0].Value.ToString()));
-                                    decimal cantTotalMenu;
-                                    if (dtRecetaMenu.Rows.Count > 0)
-                                    {
-                                        int cantInsumoMenu = Convert.ToInt32(dgvBanderaMenu.Rows[kl].Cells[2].Value.ToString());
-                                        for (int rec = 0; rec < dtRecetaMenu.Rows.Count; rec++)
-                                        {
-
-                                            cantTotalMenu = cantInsumoMenu * Convert.ToDecimal(dtRecetaMenu.Rows[rec][3].ToString());
-                                            rpta = NInsumo.EditarStock(Convert.ToInt32(dtRecetaMenu.Rows[rec][0].ToString()), cantTotalMenu);
-                                        }
-
-                                    }
-
                                 }
                                 if (dataCocina.Rows.Count > 0)
                                 {
-                                    NImprimirComanda.imprimirCom(this.lblMesero.Text, this.lblSalon.Text, this.lblMesa.Text, dataCocina, "");
+                                    NImprimirComanda.imprimirCom(this.lblMesero.Text, "","", dataCocina, "");
                                 }
                                 if (dataBar.Rows.Count > 0)
                                 {
-                                    NImprimirComanda.imprimirCom(this.lblMesero.Text, this.lblSalon.Text, this.lblMesa.Text, dataBar, "");
+                                    NImprimirComanda.imprimirCom(this.lblMesero.Text, "","", dataBar, "");
                                 }
 
                                 this.dataListadoDetalle.Select();
@@ -1157,21 +824,7 @@ namespace CapaPresentacion
 
         private void btnDown_Click(object sender, EventArgs e)
         {
-            if (loc + 150 < plCategorias.VerticalScroll.Maximum)
-            {
-                loc += 150;
-                plCategorias.VerticalScroll.Value = loc;
-                this.dataListadoDetalle.Select();
-            }
-            else
-            {
-
-                loc = plCategorias.VerticalScroll.Maximum;
-                plCategorias.AutoScrollPosition = new Point(0, loc);
-                this.dataListadoDetalle.Select();
-
-            }
-
+        
         }
 
         private void btnEditar_Click(object sender, EventArgs e)
@@ -1327,7 +980,6 @@ namespace CapaPresentacion
                 this.lblPosicion.Text = string.Empty;
                 this.lblBandera.Text = "0";
                 this.dataListadoDetalle.ClearSelection();
-                this.actStockTem();
                 this.lblBandera.Focus();
                 this.dataListadoDetalle.Select();
             }
@@ -1381,7 +1033,6 @@ namespace CapaPresentacion
                         this.lblBandera.Text = "0";
                         this.dataListadoDetalle.ClearSelection();
 
-                        this.actStockTem();
                         this.lblBandera.Focus();
                         this.dataListadoDetalle.Select();
                     }
@@ -1486,27 +1137,12 @@ namespace CapaPresentacion
                                                 rpta = NProducto.EditarStock(idProducto_Com, ((cantRequerida * Convert.ToInt32(this.txtCantidad.Text.Trim()) * -1)));
                                             }
                                         }
-
-                                        DataTable dtReceta = NReceta.Mostrar(Convert.ToInt32(this.lblIdProductoCom.Text));
-
-                                        if (dtReceta.Rows.Count > 0)
-                                        {
-                                            int cantInsumo = Convert.ToInt32(this.txtCantidad.Text.Trim());
-                                            decimal cantTotal;
-                                            for (int k = 0; k < dtReceta.Rows.Count; k++)
-                                            {
-                                                cantTotal = cantInsumo * Convert.ToDecimal(dtReceta.Rows[k][3].ToString());
-                                                NInsumo.EditarStock(Convert.ToInt32(dtReceta.Rows[k][0].ToString()), ((-1) * cantTotal));
-                                            }
-
-                                        }
                                     }
                                     else
                                     {
                                         rpta = "OK";
                                     }
                                     NDetalleVenta.EditarCantidadDetalleVenta(Convert.ToInt32(this.lblidDetalle.Text), Convert.ToInt32(this.txtCantidad.Text.Trim()), Convert.ToInt32(this.lblIdProductoCom.Text));
-                                    this.actStockTem();
                                     this.lblBandera.Focus();
                                     this.Hide();
                                     this.dataListadoDetalle.Select();
@@ -1516,7 +1152,7 @@ namespace CapaPresentacion
                                     MessageBox.Show("Presione el botón QUITAR");
                                     this.dataListadoDetalle.Select();
                                 }
-                                NImprimirComanda.imprimirCom(this.lblMesero.Text, this.lblSalon.Text, this.lblMesa.Text, dataCocina, "COMANDA ANULACIÓN");
+                                NImprimirComanda.imprimirCom(this.lblMesero.Text, "","", dataCocina, "COMANDA ANULACIÓN");
                                 this.dataListadoDetalle.Select();
                             }
                         }
@@ -1544,7 +1180,7 @@ namespace CapaPresentacion
                 if (this.lblBanderaDatatable.Text == "0" && this.lblIdVenta.Text == "0")
                 {
                     rpta = NVenta.InsertarPedidoSeparado(null, Convert.ToInt32(this.lblIdMesa.Text), DateTime.Now, "Pedido CS", "", Convert.ToDecimal(this.txtDescuento.Text),
-                        Convert.ToInt32(idMesero), "CS", 1, dtDetalle, dtDetalleMenu, DateTime.Now, 00.00m, Convert.ToInt32(idMesero), "", "", "", "","");
+                        Convert.ToInt32(idMesero), "CS", 1, dtDetalle,  DateTime.Now, 00.00m, Convert.ToInt32(idMesero), "", "", "", "","");
 
                     this.lblIdVenta.Text = rpta;
                     this.lblBanderaDatatable.Text = "1";
@@ -1568,30 +1204,6 @@ namespace CapaPresentacion
                                     int cantRequerida = Convert.ToInt32(dtDetalleProducto.Rows[j][1].ToString());
 
                                     NProducto.EditarStock(idProducto_Com, cantRequerida * cantPedido);
-                                    DataTable dtRecetaC = NReceta.Mostrar(Convert.ToInt32(idProducto_Com));
-                                    if (dtRecetaC.Rows.Count > 0)
-                                    {
-                                        int cantInsumo = Convert.ToInt32(dataListadoDetalle.Rows[i].Cells["Cant"].Value.ToString());
-                                        decimal cantTotal;
-                                        for (int k = 0; k < dtRecetaC.Rows.Count; k++)
-                                        {
-                                            cantTotal = cantInsumo * Convert.ToDecimal(dtRecetaC.Rows[k][3].ToString());
-                                            NInsumo.EditarStock(Convert.ToInt32(dtRecetaC.Rows[k][0].ToString()), cantTotal);
-                                        }
-                                    }
-                                }
-
-                            }
-                            DataTable dtReceta = NReceta.Mostrar(Convert.ToInt32(dataListadoDetalle.Rows[i].Cells["Cod"].Value.ToString()));
-
-                            if (dtReceta.Rows.Count > 0)
-                            {
-                                int cantInsumo = Convert.ToInt32(dataListadoDetalle.Rows[i].Cells["Cant"].Value.ToString());
-                                decimal cantTotal;
-                                for (int k = 0; k < dtReceta.Rows.Count; k++)
-                                {
-                                    cantTotal = cantInsumo * Convert.ToDecimal(dtReceta.Rows[k][3].ToString());
-                                  NInsumo.EditarStock(Convert.ToInt32(dtReceta.Rows[k][0].ToString()), cantTotal);
                                 }
 
                             }
@@ -1631,7 +1243,7 @@ namespace CapaPresentacion
                             string barra = dataListadoDetalle.Rows[i].Cells["Barra"].Value.ToString();
                             string tipo = dataListadoDetalle.Rows[i].Cells["Tipo"].Value.ToString();
                             rpta = NDetalleVenta.InsertarAdicPedido(Convert.ToInt32(this.lblIdVenta.Text), idProducto, cantidad, prVenta, desc,
-                                this.dataListadoDetalle.Rows[i].Cells[6].Value.ToString(), tipo, barra, dtDetalleMenu, "Pedido");
+                                this.dataListadoDetalle.Rows[i].Cells[6].Value.ToString(), tipo, barra, "Pedido");
                             if (rpta == "OK")
                             {
                                 for (int p = cont; p < this.dataListadoDetalle.Rows.Count; p++)
@@ -1648,30 +1260,6 @@ namespace CapaPresentacion
                                             int cantRequerida = Convert.ToInt32(dtDetalleProducto.Rows[j][1].ToString());
 
                                             rpta = NProducto.EditarStock(idProducto_Com, cantRequerida * cantPedido);
-                                            DataTable dtRecetaC = NReceta.Mostrar(Convert.ToInt32(idProducto_Com));
-                                            if (dtRecetaC.Rows.Count > 0)
-                                            {
-                                                int cantInsumo = Convert.ToInt32(dataListadoDetalle.Rows[i].Cells["Cant"].Value.ToString());
-                                                decimal cantTotal;
-                                                for (int k = 0; k < dtRecetaC.Rows.Count; k++)
-                                                {
-                                                    cantTotal = cantInsumo * Convert.ToDecimal(dtRecetaC.Rows[k][3].ToString());
-                                                    NInsumo.EditarStock(Convert.ToInt32(dtRecetaC.Rows[k][0].ToString()), cantTotal);
-                                                }
-                                            }
-                                        }
-
-                                    }
-                                    DataTable dtReceta = NReceta.Mostrar(Convert.ToInt32(dataListadoDetalle.Rows[p].Cells["Cod"].Value.ToString()));
-
-                                    if (dtReceta.Rows.Count > 0)
-                                    {
-                                        int cantInsumo = Convert.ToInt32(dataListadoDetalle.Rows[p].Cells["Cant"].Value.ToString());
-                                        decimal cantTotal;
-                                        for (int k = 0; k < dtReceta.Rows.Count; k++)
-                                        {
-                                            cantTotal = cantInsumo * Convert.ToDecimal(dtReceta.Rows[k][3].ToString());
-                                           NInsumo.EditarStock(Convert.ToInt32(dtReceta.Rows[k][0].ToString()), cantTotal);
                                         }
 
                                     }
@@ -1714,7 +1302,7 @@ namespace CapaPresentacion
                             string barra = dataListadoDetalle.Rows[i].Cells["Barra"].Value.ToString();
                             string tipo = dataListadoDetalle.Rows[i].Cells["Tipo"].Value.ToString();
                             rpta = NDetalleVenta.InsertarAdicPedido(Convert.ToInt32(this.lblIdVenta.Text), idProducto, cantidad, prVenta, desc,
-                                this.dataListadoDetalle.Rows[i].Cells[6].Value.ToString(), tipo, barra, dtDetalleMenu, "Pedido");
+                                this.dataListadoDetalle.Rows[i].Cells[6].Value.ToString(), tipo, barra,"Pedido");
                             if (rpta == "OK")
                             {
                                 for (int p = cont; p < this.dataListadoDetalle.Rows.Count; p++)
@@ -1752,8 +1340,8 @@ namespace CapaPresentacion
                 form.lblIdTrabajador.Text = idMesero;
                 form.lblIdVenta.Text = this.lblIdVenta.Text;
                 form.lblDescuento_Ind.Text = this.txtDescuento.Text;
-                form.lblSalon.Text = this.lblSalon.Text;
-                form.lblMesa.Text = this.lblMesa.Text;
+                form.lblSalon.Text = "";
+                form.lblMesa.Text = "";
                 form.lblTrabajador.Text = this.lblMesero.Text;
                 form.lblIdUsuario.Text = idMesero;
                 form.ShowDialog();
@@ -1798,12 +1386,6 @@ namespace CapaPresentacion
         public frmVenta()
         {
             InitializeComponent();
-            this.plCategorias.AutoScrollPosition = new Point(90, 0);
-            this.plCategorias.VerticalScroll.Maximum = 900;
-
-            this.plProductos.AutoScrollPosition = new Point(90, 0);
-            this.plProductos.VerticalScroll.Maximum = 900;
-
             frmVenta.f1 = this;
 
         }
@@ -1812,8 +1394,8 @@ namespace CapaPresentacion
         {
             frmDividirCuenta form = new frmDividirCuenta();
             form.lblTrabajador.Text = this.lblMesero.Text;
-            form.lblSalon.Text = this.lblSalon.Text;
-            form.lblMesa.Text = this.lblMesa.Text;
+            form.lblSalon.Text = "";
+            form.lblMesa.Text = "";
             form.lblIdVenta.Text = this.lblIdVenta.Text;
             form.lblIdMesa.Text = this.lblIdMesa.Text;
             form.lblIdTrabajador.Text = idMesero;
@@ -1848,30 +1430,13 @@ namespace CapaPresentacion
             this.dataListadoDetalle.DataSource = this.dtDetalle;
         }
 
-        private void crearTablaMenu()
-        {
 
-            this.dtDetalleMenu = new DataTable("DetalleMenu");
-            this.dtDetalleMenu.Columns.Add("Cod", System.Type.GetType("System.Int32"));
-            this.dtDetalleMenu.Columns.Add("Cant", System.Type.GetType("System.Int32"));
-            this.dtDetalleMenu.Columns.Add("Barra", System.Type.GetType("System.String"));
-            this.dgvDetalleMenu.DataSource = this.dtDetalleMenu;
-        }
 
-        private void PreCuenta()
-        {
-            NImprimirPreCuenta.imprimirCom(Convert.ToInt32(this.lblIdVenta.Text), this.lblMesero.Text, this.lblSalon.Text, this.lblMesa.Text, dataListadoDetalle, this.txtDescuento.Text,
-               this.txtSubTotal.Text, this.txtTotalPagado.Text);
-            NMesa.EditarEstadoMesa(Convert.ToInt32(lblIdMesa.Text), "Por Salir");
-            frmModuloSalon.f3.limpiarMesas();
-            frmModuloSalon.f3.mostrarSalones();
-            this.Close();
-        }
 
         private void btnImprimirPreCuenta_Click(object sender, EventArgs e)
         {
 
-            PreCuenta();
+         
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
@@ -1932,107 +1497,7 @@ namespace CapaPresentacion
 
         }
 
-        private void mostrarCategorias()
-        {
-            dtCategoria = NCategoria.MostrarCatVenta();
-            nroCategoria = dtCategoria.Rows.Count;
-            int y = 30;
-            int x = 25;
-            btnCategoria = new Button[nroCategoria];
-
-            for (int i = 0; i < nroCategoria; i++)
-            {
-                if (i == 9)
-                {
-                    y = 100;
-                    x = 25;
-                }
-                else if (i == 18)
-                {
-                    y = 170;
-                    x = 25;
-                }
-                else if (i == 27)
-                {
-                    y = 240;
-                    x = 25;
-                }
-                else if (i == 36)
-                {
-                    y = 310;
-                    x = 25;
-                }
-                else if (i == 45)
-                {
-                    y = 380;
-                    x = 25;
-                }
-                else if (i == 54)
-                {
-                    y = 450;
-                    x = 25;
-                }
-                else if (i == 63)
-                {
-                    y = 520;
-                    x = 25;
-                }
-                else if (i == 72)
-                {
-                    y = 590;
-                    x = 25;
-                }
-                else if (i == 81)
-                {
-                    y = 660;
-                    x = 25;
-                }
-                DataRow row = dtCategoria.Rows[i];
-                if (i == 0)
-                {
-                    this.lblIdCategoriaPrimera.Text = String.Concat(row[0].ToString());
-                    this.mostrarProductos(this.lblIdCategoriaPrimera.Text);
-                }
-                btnCategoria[i] = new Button();
-                btnCategoria[i].Location = new Point(x, y);
-                btnCategoria[i].Name = string.Concat("btnCategoria", i.ToString());
-                btnCategoria[i].Size = new Size(100, 67);
-                btnCategoria[i].TabIndex = i;
-                btnCategoria[i].Font = new Font("Roboto", 7f, FontStyle.Bold);
-                btnCategoria[i].Text = row[1].ToString();
-                btnCategoria[i].BackColor = Color.FromArgb(250, 250, 250);
-                btnCategoria[i].ForeColor = Color.Black;
-                btnCategoria[i].FlatAppearance.BorderColor = Color.Black;
-                btnCategoria[i].FlatAppearance.BorderSize = 4;
-                btnCategoria[i].Visible = true;
-                btnCategoria[i].Tag = i;
-                btnCategoria[i].Click += new EventHandler((sender, e) =>
-                {
-                    limpiarProductos();
-                    this.mostrarProductos(row[0].ToString());
-                    this.lblNombreCat.Text = row[1].ToString();
-                    if (lblNombreCat.Text == "MENUDSFDSF")
-                    {
-                        lblBanderaCatMen.Text = "1";
-                    }
-                    else if (lblNombreCat.Text == "DESAYUNOSDFDS")
-                    {
-                        lblBanderaCatMen.Text = "2";
-                    }
-                    else
-                    {
-                        lblBanderaCatMen.Text = "0";
-                    }
-                });
-                //this.Controls.Add(this.btnSalon[i]);
-                x += 106;
-
-                // gbCategoria.Controls.Add(btnCategoria[i]);
-                plCategorias.Controls.Add(btnCategoria[i]);
-
-            }
-
-        }
+      
 
         private void dataListadoDetalle_ChangeUICues(object sender, UICuesEventArgs e)
         {
@@ -2041,31 +1506,7 @@ namespace CapaPresentacion
 
         private void btnImprimirComanda_Click(object sender, EventArgs e)
         {
-            string prodIC;
-            int cantIC;
-            string notaIC, tipoC;
-            for (int i = 0; i < dataListadoDetalle.Rows.Count; i++)
-            {
-                if (dataListadoDetalle.Rows[i].Cells[8].Value.ToString().Equals("Cocina"))
-                {
-                    prodIC = dataListadoDetalle.Rows[i].Cells["Descripcion"].Value.ToString();
-                    cantIC = Convert.ToInt32(dataListadoDetalle.Rows[i].Cells["Cant"].Value.ToString());
-                    notaIC = dataListadoDetalle.Rows[i].Cells["Nota"].Value.ToString();
-                    tipoC = dataListadoDetalle.Rows[i].Cells["Tipo"].Value.ToString();
-                    dataCocina.Rows.Add(prodIC, cantIC, notaIC, tipoC);
-                }
-                else
-                {
-                    prodIC = dataListadoDetalle.Rows[i].Cells["Descripcion"].Value.ToString();
-                    cantIC = Convert.ToInt32(dataListadoDetalle.Rows[i].Cells["Cant"].Value.ToString());
-                    notaIC = dataListadoDetalle.Rows[i].Cells["Nota"].Value.ToString();
-                    tipoC = dataListadoDetalle.Rows[i].Cells["Tipo"].Value.ToString();
-                    dataBar.Rows.Add(prodIC, cantIC, notaIC, tipoC);
-                }
-
-            }
-            NImprimirComanda.imprimirCom(this.lblMesero.Text, this.lblSalon.Text, this.lblMesa.Text, dataBar, "");
-            this.Close();
+           
         }
 
         private void ComprobanteManual()
@@ -2119,15 +1560,6 @@ namespace CapaPresentacion
 
             else if (e.KeyValue == (char)Keys.F3)
             {
-                if (btnCambiarMesa.Enabled == true)
-                {
-                    CambiarMesa();
-                }
-
-
-            }
-            else if (e.KeyValue == (char)Keys.F4)
-            {
                 if (btnSeparar.Enabled == true)
                 {
                     SepararCuentas();
@@ -2135,16 +1567,7 @@ namespace CapaPresentacion
 
 
             }
-            else if (e.KeyValue == (char)Keys.F5)
-            {
-                if (btnImprimirPreCuenta.Enabled == true)
-                {
-                    PreCuenta();
-                }
-
-
-            }
-            else if (e.KeyValue == (char)Keys.F6)
+            else if (e.KeyValue == (char)Keys.F4)
             {
                 if (btnManual.Enabled == true)
                 {
@@ -2153,7 +1576,7 @@ namespace CapaPresentacion
 
 
             }
-            else if (e.KeyValue == (char)Keys.F7)
+            else if (e.KeyValue == (char)Keys.F5)
             {
                 if (btnReservar.Enabled == true)
                 {
@@ -2162,11 +1585,11 @@ namespace CapaPresentacion
 
 
             }
-            else if (e.KeyValue == (char)Keys.F8)
+            else if (e.KeyValue == (char)Keys.F6)
             {
                 if (btnDividir.Enabled == true)
                 {
-                    DividirCuenta();
+                   DividirCuenta();
                 }
 
 
@@ -2195,15 +1618,6 @@ namespace CapaPresentacion
 
             else if (e.KeyValue == (char)Keys.F3)
             {
-                if (btnCambiarMesa.Enabled == true)
-                {
-                    CambiarMesa();
-                }
-
-
-            }
-            else if (e.KeyValue == (char)Keys.F4)
-            {
                 if (btnSeparar.Enabled == true)
                 {
                     SepararCuentas();
@@ -2211,16 +1625,7 @@ namespace CapaPresentacion
 
 
             }
-            else if (e.KeyValue == (char)Keys.F5)
-            {
-                if (btnImprimirPreCuenta.Enabled == true)
-                {
-                    PreCuenta();
-                }
-
-
-            }
-            else if (e.KeyValue == (char)Keys.F6)
+            else if (e.KeyValue == (char)Keys.F4)
             {
                 if (btnManual.Enabled == true)
                 {
@@ -2229,7 +1634,7 @@ namespace CapaPresentacion
 
 
             }
-            else if (e.KeyValue == (char)Keys.F7)
+            else if (e.KeyValue == (char)Keys.F5)
             {
                 if (btnReservar.Enabled == true)
                 {
@@ -2238,7 +1643,7 @@ namespace CapaPresentacion
 
 
             }
-            else if (e.KeyValue == (char)Keys.F8)
+            else if (e.KeyValue == (char)Keys.F6)
             {
                 if (btnDividir.Enabled == true)
                 {
@@ -2270,15 +1675,6 @@ namespace CapaPresentacion
 
             else if (e.KeyValue == (char)Keys.F3)
             {
-                if (btnCambiarMesa.Enabled == true)
-                {
-                    CambiarMesa();
-                }
-
-
-            }
-            else if (e.KeyValue == (char)Keys.F4)
-            {
                 if (btnSeparar.Enabled == true)
                 {
                     SepararCuentas();
@@ -2286,16 +1682,7 @@ namespace CapaPresentacion
 
 
             }
-            else if (e.KeyValue == (char)Keys.F5)
-            {
-                if (btnImprimirPreCuenta.Enabled == true)
-                {
-                    PreCuenta();
-                }
-
-
-            }
-            else if (e.KeyValue == (char)Keys.F6)
+            else if (e.KeyValue == (char)Keys.F4)
             {
                 if (btnManual.Enabled == true)
                 {
@@ -2304,7 +1691,7 @@ namespace CapaPresentacion
 
 
             }
-            else if (e.KeyValue == (char)Keys.F7)
+            else if (e.KeyValue == (char)Keys.F5)
             {
                 if (btnReservar.Enabled == true)
                 {
@@ -2313,7 +1700,7 @@ namespace CapaPresentacion
 
 
             }
-            else if (e.KeyValue == (char)Keys.F8)
+            else if (e.KeyValue == (char)Keys.F6)
             {
                 if (btnDividir.Enabled == true)
                 {
@@ -2345,15 +1732,6 @@ namespace CapaPresentacion
 
             else if (e.KeyValue == (char)Keys.F3)
             {
-                if (btnCambiarMesa.Enabled == true)
-                {
-                    CambiarMesa();
-                }
-
-
-            }
-            else if (e.KeyValue == (char)Keys.F4)
-            {
                 if (btnSeparar.Enabled == true)
                 {
                     SepararCuentas();
@@ -2361,16 +1739,7 @@ namespace CapaPresentacion
 
 
             }
-            else if (e.KeyValue == (char)Keys.F5)
-            {
-                if (btnImprimirPreCuenta.Enabled == true)
-                {
-                    PreCuenta();
-                }
-
-
-            }
-            else if (e.KeyValue == (char)Keys.F6)
+            else if (e.KeyValue == (char)Keys.F4)
             {
                 if (btnManual.Enabled == true)
                 {
@@ -2379,7 +1748,7 @@ namespace CapaPresentacion
 
 
             }
-            else if (e.KeyValue == (char)Keys.F7)
+            else if (e.KeyValue == (char)Keys.F5)
             {
                 if (btnReservar.Enabled == true)
                 {
@@ -2388,7 +1757,7 @@ namespace CapaPresentacion
 
 
             }
-            else if (e.KeyValue == (char)Keys.F8)
+            else if (e.KeyValue == (char)Keys.F6)
             {
                 if (btnDividir.Enabled == true)
                 {
@@ -2420,15 +1789,6 @@ namespace CapaPresentacion
 
             else if (e.KeyValue == (char)Keys.F3)
             {
-                if (btnCambiarMesa.Enabled == true)
-                {
-                    CambiarMesa();
-                }
-
-
-            }
-            else if (e.KeyValue == (char)Keys.F4)
-            {
                 if (btnSeparar.Enabled == true)
                 {
                     SepararCuentas();
@@ -2436,16 +1796,7 @@ namespace CapaPresentacion
 
 
             }
-            else if (e.KeyValue == (char)Keys.F5)
-            {
-                if (btnImprimirPreCuenta.Enabled == true)
-                {
-                    PreCuenta();
-                }
-
-
-            }
-            else if (e.KeyValue == (char)Keys.F6)
+            else if (e.KeyValue == (char)Keys.F4)
             {
                 if (btnManual.Enabled == true)
                 {
@@ -2454,7 +1805,7 @@ namespace CapaPresentacion
 
 
             }
-            else if (e.KeyValue == (char)Keys.F7)
+            else if (e.KeyValue == (char)Keys.F5)
             {
                 if (btnReservar.Enabled == true)
                 {
@@ -2463,7 +1814,7 @@ namespace CapaPresentacion
 
 
             }
-            else if (e.KeyValue == (char)Keys.F8)
+            else if (e.KeyValue == (char)Keys.F6)
             {
                 if (btnDividir.Enabled == true)
                 {
@@ -2521,32 +1872,7 @@ namespace CapaPresentacion
 
                                     rpta = NProducto.EditarStock(idProducto_Com, ((cantRequerida * Convert.ToInt32(dtDetalleVenta.Rows[i][2].ToString()) * -1)));
 
-                                    DataTable dtRecetaC = NReceta.Mostrar(Convert.ToInt32(idProducto_Com));
-                                    if (dtRecetaC.Rows.Count > 0)
-                                    {
-                                        int cantInsumo = Convert.ToInt32(dataListadoDetalle.Rows[i].Cells["Cant"].Value.ToString());
-                                        decimal cantTotal;
-                                        for (int k = 0; k < dtRecetaC.Rows.Count; k++)
-                                        {
-                                            cantTotal = cantInsumo * Convert.ToDecimal(dtRecetaC.Rows[k][3].ToString());
-                                            rpta = NInsumo.EditarStock(Convert.ToInt32(dtRecetaC.Rows[k][0].ToString()), cantTotal * -1);
-                                        }
-                                    }
                                 }
-                            }
-
-                            DataTable dtReceta = NReceta.Mostrar(Convert.ToInt32(dtDetalleVenta.Rows[i][0].ToString()));
-
-                            if (dtReceta.Rows.Count > 0)
-                            {
-                                int cantInsumo = Convert.ToInt32(dtDetalleVenta.Rows[i][2].ToString());
-                                decimal cantTotal;
-                                for (int k = 0; k < dtReceta.Rows.Count; k++)
-                                {
-                                    cantTotal = cantInsumo * Convert.ToDecimal(dtReceta.Rows[k][3].ToString());
-                                    NInsumo.EditarStock(Convert.ToInt32(dtReceta.Rows[k][0].ToString()), ((-1) * cantTotal));
-                                }
-
                             }
 
                             dataCocina.Rows.Add(dtDetalleVenta.Rows[i][1].ToString(), dtDetalleVenta.Rows[i][2].ToString(), "", "");
@@ -2554,7 +1880,7 @@ namespace CapaPresentacion
 
                         }
                         NVenta.EliminarCS(Convert.ToInt32(lblIdVenta.Text));
-                        NImprimirComanda.imprimirCom(this.lblMesero.Text, this.lblSalon.Text, this.lblMesa.Text, dataCocina, "COMANDA ANULACION");
+                        NImprimirComanda.imprimirCom(this.lblMesero.Text, "","", dataCocina, "COMANDA ANULACION");
 
 
                         NMesa.EditarEstadoMesa(Convert.ToInt32(this.lblIdMesa.Text), "Libre");
@@ -2570,333 +1896,18 @@ namespace CapaPresentacion
 
         private void frmVenta_FormClosed(object sender, FormClosedEventArgs e)
         {
-            frmModuloSalon.f3.tEstado.Enabled = true;
+
         }
 
         private void mostrarProductos(string idCategoria)
         {
-            lblNroProducto.Text = "0";
-            int nroProductos;
-            dtProducto = NProducto.MostrarProductoCategoria(Convert.ToInt32(idCategoria));
-            nroProductos = dtProducto.Rows.Count;
-
-            int y1 = 20;
-            int x1 = 1;
-
-
-            btnProducto = new Button[nroProductos];
-
-            for (int i = 0; i < nroProductos; i++)
-            {
-                if (i == 9)
-                {
-                    y1 = 120;
-                    x1 = 1;
-                }
-                else if (i == 18)
-                {
-                    y1 = 220;
-                    x1 = 1;
-                }
-                else if (i == 27)
-                {
-                    y1 = 320;
-                    x1 = 1;
-                }
-                else if (i == 36)
-                {
-                    y1 = 420;
-                    x1 = 1;
-                }
-                else if (i == 45)
-                {
-                    y1 = 520;
-                    x1 = 1;
-                }
-                else if (i == 54)
-                {
-                    y1 = 620;
-                    x1 = 1;
-                }
-                else if (i == 63)
-                {
-                    y1 = 720;
-                    x1 = 1;
-                }
-
-                else if (i == 72)
-                {
-                    y1 = 820;
-                    x1 = 1;
-                }
-
-                else if (i == 81)
-                {
-                    y1 = 920;
-                    x1 = 1;
-                }
-                else if (i == 90)
-                {
-                    y1 = 1020;
-                    x1 = 1;
-                }
-                DataRow rowProducto = dtProducto.Rows[i];
-                btnProducto[i] = new Button();
-                btnProducto[i].Location = new Point(x1, y1);
-                btnProducto[i].Name = string.Concat("btnProducto", i.ToString());
-                //String mesa = row[0].ToString();
-                //btnMesa[i].Name = string.Concat("btnMesa",mesa);
-                btnProducto[i].Size = new Size(104, 78);
-                btnProducto[i].Font = new Font("Roboto", 7f, FontStyle.Regular);
-                btnProducto[i].TabIndex = i;
-                btnProducto[i].TextAlign = ContentAlignment.TopCenter;
-                btnProducto[i].Text = rowProducto[1].ToString() + "\n \n" + rowProducto[2].ToString();
-                btnProducto[i].Visible = true;
-                btnProducto[i].BackColor = Color.FromArgb(240, 240, 240);
-                btnProducto[i].ForeColor = Color.Black;
-                btnProducto[i].FlatAppearance.BorderColor = Color.DarkBlue;
-                btnProducto[i].FlatAppearance.BorderSize = 6;
-                btnProducto[i].Tag = i;
-                lblNroProducto.Text = nroProductos.ToString();
-                x1 += 107;
-
-                plProductos.Controls.Add(btnProducto[i]);
-
-                btnProducto[i].Click += new EventHandler((sender, e) =>
-                {
-                    try
-                    {
-    
-                        int cantidad, cantidadActual;
-                        decimal descuentoTotal = Convert.ToDecimal(this.txtDescuento.Text.Trim());
-                        if (this.txtCantidad.Text.Equals("0"))
-                        {
-                            MessageBox.Show("Ingrese un número mayor a 0");
-                        }
-                        else
-                        {
-                            bool registrar = true;
-                            this.lblBandera.Text = "0";
-                            this.dataListadoDetalle.ClearSelection();
-                            if (this.txtCantidad.Text.Equals(string.Empty))
-                            {
-                                cantidad = 1;
-                            }
-                            else
-                            {
-                                cantidad = Convert.ToInt32(this.txtCantidad.Text.Trim());
-                            }
-
-                            if (this.lblIdVenta.Text != "0")
-                            {
-
-                                //foreach (DataRow row in dtDetalleVenta.Rows)
-                                //{
-
-
-                                    string tipoPro = Convert.ToString(rowProducto[3].ToString());
-                                    for (int r = cantFilas; r < dataListadoDetalle.Rows.Count; r++)
-                                    {
-                                        if ((Convert.ToInt32(dtDetalleVenta.Rows[r][0]) == Convert.ToInt32(rowProducto[0].ToString())))
-                                        {
-
-                                            cantidadActual = Convert.ToInt32(row["Cant"]);
-                                            //cantidadActual = Convert.ToInt32(dtDetalleVenta.Rows[r]["Cant"].ToString());
-                                            row["Cant"] = cantidadActual + cantidad;
-                                            decimal subTotal = (cantidadActual + cantidad) * Convert.ToDecimal(rowProducto[2].ToString());
-                                            decimal subTotalActual = Convert.ToDecimal(row["Importe"]);
-                                            row["Importe"] = subTotal - ((cantidadActual + cantidad) * Convert.ToDecimal(rowProducto[6].ToString()));
-                                            row["Descuento"] = (cantidadActual + cantidad) * Convert.ToDecimal(rowProducto[6].ToString());
-                                            row["Tipo"] = rowProducto[3].ToString();
-                                            totalPagado = totalPagado + subTotal - subTotalActual;
-                                            row["Imprimir"] = rowProducto[4].ToString();
-                                            row["Barra"] = "0";
-                                            row["Estado"] = "Pedido";
-
-                                            decimal dctoTotProm = 0, subTotal20 = 0, total20 = 0;
-                                            int cantidad20 = 0;
-
-                                            for (int p = 0; p < dataListadoDetalle.Rows.Count; p++)
-                                            {
-                                                dctoTotProm = dctoTotProm + Convert.ToDecimal(dataListadoDetalle.Rows[p].Cells["Descuento"].Value.ToString());
-                                                cantidad20 = Convert.ToInt32(dataListadoDetalle.Rows[p].Cells["Cant"].Value.ToString());
-                                                subTotal20 = subTotal20 + (cantidad20 * Convert.ToDecimal(dataListadoDetalle.Rows[p].Cells["Precio_Un"].Value.ToString()));
-                                            }
-                                            this.txtDescuento.Text = dctoTotProm.ToString();
-                                            descuentoTotal = Convert.ToDecimal(this.txtDescuento.Text);
-                                            this.txtSubTotal.Text = subTotal20.ToString("#0.00#");
-                                            this.txtTotalPagado.Text = (subTotal20 - descuentoTotal).ToString("#0.00#");
-                                            registrar = false;
-                                            this.dataListadoDetalle.Refresh();
-                                            break;
-
-                                        }
-                                    }
-
-
-                                //}
-                                if (registrar)
-                                {
-                                    //stock = Convert.ToDecimal(rowProducto[5].ToString());
-                                    string tipoProd = rowProducto[3].ToString();
-                                    this.btnReservar.Enabled = false;
-
-                                    decimal subTotal = (cantidad * Convert.ToDecimal(rowProducto[2].ToString()));
-
-                                    totalPagado = totalPagado + subTotal;
-                                    this.txtSubTotal.Text = totalPagado.ToString("#0.00#");
-                                    this.txtTotalPagado.Text = (totalPagado - descuentoTotal).ToString("#0.00#");
-
-                                    row = this.dtDetalleVenta.NewRow();
-                                    row["Cod"] = Convert.ToInt32(rowProducto[0].ToString());
-                                    row["Descripcion"] = rowProducto[1].ToString();
-                                    row["Cant"] = cantidad;
-                                    row["Precio_Un"] = Convert.ToDecimal(rowProducto[2].ToString());
-                                    row["Importe"] = subTotal - cantidad * Convert.ToDecimal(rowProducto[6].ToString());
-                                    row["Nota"] = "";
-                                    row["Descuento"] = cantidad * Convert.ToDecimal(rowProducto[6].ToString());
-                                    row["Tipo"] = rowProducto[3].ToString();
-                                    row["Imprimir"] = rowProducto[4].ToString();
-                                    row["Estado"] = "Pedido";
-                                    this.dtDetalleVenta.Rows.Add(row);
-                                    this.dataListadoDetalle.DataSource = dtDetalleVenta;
-
-                                    this.dataListadoDetalle.ClearSelection();
-                                    this.txtCantidad.Text = "";
-
-
-                                    decimal dctoTotProm = 0;
-                                    for (int p = 0; p < dataListadoDetalle.Rows.Count; p++)
-                                    {
-                                        dctoTotProm = dctoTotProm + Convert.ToDecimal(dataListadoDetalle.Rows[p].Cells["Descuento"].Value.ToString());
-                                    }
-                                    this.txtDescuento.Text = dctoTotProm.ToString();
-                                    this.dataListadoDetalle.Select();
-
-                                }
-
-                            }
-                            else
-                            {
-
-
-                                foreach (DataRow row in dtDetalle.Rows)
-                                {
-
-                                    if ((Convert.ToInt32(row["Cod"]) == Convert.ToInt32(rowProducto[0].ToString())))
-                                    {
-
-                                        cantidadActual = Convert.ToInt32(row["Cant"]);
-
-                                        row["Cant"] = cantidadActual + cantidad;
-                                        decimal subTotal = (cantidadActual + cantidad) * Convert.ToDecimal(rowProducto[2].ToString());
-                                        decimal subTotalActual = Convert.ToDecimal(row["Importe"]);
-                                        row["Importe"] = subTotal - ((cantidadActual + cantidad) * Convert.ToDecimal(rowProducto[6].ToString()));
-                                        row["Descuento"] = (cantidadActual + cantidad) * Convert.ToDecimal(rowProducto[6].ToString());
-                                        row["Tipo"] = rowProducto[3].ToString();
-                                        totalPagado = totalPagado + subTotal - subTotalActual;
-                                        row["Imprimir"] = rowProducto[4].ToString();
-                                        row["Barra"] = "0";
-                                        row["Estado"] = "Pedido";
-
-                                        decimal dctoTotProm = 0, subTotal20 = 0, total20 = 0;
-                                        int cantidad20 = 0;
-
-                                        for (int p = 0; p < dataListadoDetalle.Rows.Count; p++)
-                                        {
-                                            dctoTotProm = dctoTotProm + Convert.ToDecimal(dataListadoDetalle.Rows[p].Cells["Descuento"].Value.ToString());
-                                            cantidad20 = Convert.ToInt32(dataListadoDetalle.Rows[p].Cells["Cant"].Value.ToString());
-                                            subTotal20 = subTotal20 + (cantidad20 * Convert.ToDecimal(dataListadoDetalle.Rows[p].Cells["Precio_Un"].Value.ToString()));
-                                        }
-                                        this.txtDescuento.Text = dctoTotProm.ToString();
-                                        descuentoTotal = Convert.ToDecimal(this.txtDescuento.Text);
-                                        this.txtSubTotal.Text = subTotal20.ToString("#0.00#");
-                                        this.txtTotalPagado.Text = (subTotal20 - descuentoTotal).ToString("#0.00#");
-                                        registrar = false;
-                                        this.dataListadoDetalle.Refresh();
-
-                                    }
-
-                                }
-
-                                if (registrar)
-                                {
-
-                                    //decimal stock;
-                                    string tipoProd;
-
-                                    decimal subTotal = cantidad * Convert.ToDecimal(rowProducto[2].ToString());
-                                    tipoProd = rowProducto[3].ToString();
-
-                                    totalPagado = totalPagado + subTotal;
-                                    this.txtSubTotal.Text = totalPagado.ToString("#0.00#");
-
-                                    row = this.dtDetalle.NewRow();
-
-                                    row["Cod"] = Convert.ToInt32(rowProducto[0].ToString());
-                                    row["Descripcion"] = rowProducto[1].ToString();
-                                    row["Cant"] = cantidad;
-                                    row["Precio_Un"] = Convert.ToDecimal(rowProducto[2].ToString());
-                                    row["Importe"] = subTotal - cantidad * Convert.ToDecimal(rowProducto[6].ToString());
-                                    row["Nota"] = "";
-                                    row["Descuento"] = cantidad * Convert.ToDecimal(rowProducto[6].ToString());
-                                    row["Tipo"] = rowProducto[3].ToString();
-                                    row["Imprimir"] = rowProducto[4].ToString();
-                                    row["Barra"] = "0";
-                                    row["Estado"] = "Pedido";
-                                    this.dtDetalle.Rows.Add(row);
-                                    this.dataListadoDetalle.ClearSelection();
-                                    this.txtCantidad.Text = "";
-                                    decimal dctoTotProm = 0, subTotal20 = 0, total20 = 0;
-                                    int cantidad20 = 0;
-
-                                    for (int p = 0; p < dataListadoDetalle.Rows.Count; p++)
-                                    {
-                                        dctoTotProm = dctoTotProm + Convert.ToDecimal(dataListadoDetalle.Rows[p].Cells["Descuento"].Value.ToString());
-                                        cantidad20 = Convert.ToInt32(dataListadoDetalle.Rows[p].Cells["Cant"].Value.ToString());
-                                        subTotal20 = subTotal20 + (cantidad20 * Convert.ToDecimal(dataListadoDetalle.Rows[p].Cells["Precio_Un"].Value.ToString()));
-                                    }
-                                    this.txtDescuento.Text = dctoTotProm.ToString();
-                                    descuentoTotal = Convert.ToDecimal(this.txtDescuento.Text);
-                                    this.txtSubTotal.Text = subTotal20.ToString("#0.00#");
-                                    this.txtTotalPagado.Text = (subTotal20 - descuentoTotal).ToString("#0.00#");
-
-                                    this.dataListadoDetalle.Refresh();
-                                    this.btnReservar.Enabled = true;
-                                }
-                            }
-
-                        }
-
-                        this.btnPedido.Enabled = true;
-                        this.btnCobrar.Enabled = true;
-                        this.btnImprimirPreCuenta.Enabled = true;
-                        this.btnManual.Enabled = true;
-                        this.btnDividir.Enabled = true;
-                        this.btnDctoProducto.Enabled = true;
-                        if (dataListadoDetalle.Rows.Count > 1)
-                        {
-                            this.btnSeparar.Enabled = true;
-                        }
-                        this.txtCantidad.Text = string.Empty;
-                        this.dataListadoDetalle.Select();
-                        // }
-
-
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message + ex.StackTrace);
-                    }
-                });
-
-            }
+            
 
         }
 
         public void sumaTotal()
         {
-            decimal dctoTotProm = 0, subTotal20 = 0, total20 = 0;
+            decimal dctoTotProm = 0, subTotal20 = 0;
             int cantidad20 = 0;
             decimal descuentoTotal;
 
@@ -2915,14 +1926,6 @@ namespace CapaPresentacion
         private void limpiarProductos()
         {
 
-            if (lblNroProducto.Text != "")
-            {
-                int nro = Convert.ToInt32(lblNroProducto.Text);
-                for (int j = 0; j < nro; j++)
-                {
-                    plProductos.Controls.Remove(btnProducto[j]);
-                }
-            }
         }
 
         private void mostrarDetalleVenta()
@@ -2944,9 +1947,9 @@ namespace CapaPresentacion
 
             dtDetallePedido = NVenta.mostrarDetallePedido(Convert.ToInt32(this.lblIdVenta.Text));
             this.lblIdMesa.Text = dtDetallePedido.Rows[0]["idMesa"].ToString();
-            this.lblMesa.Text = dtDetallePedido.Rows[0]["nomMesa"].ToString();
+           // this.lblMesa.Text = dtDetallePedido.Rows[0]["nomMesa"].ToString();
             this.lblIdSalon.Text = dtDetallePedido.Rows[0]["idSalon"].ToString();
-            this.lblSalon.Text = dtDetallePedido.Rows[0]["nomSalon"].ToString();
+           // this.lblSalon.Text = dtDetallePedido.Rows[0]["nomSalon"].ToString();
             //this.lblMesero.Text = dtDetallePedido.Rows[0]["Mesero"].ToString();
             this.lblIdTrabajador.Text = dtDetallePedido.Rows[0]["idTrabajador"].ToString();
             this.txtDescuento.Text = dtDetallePedido.Rows[0]["descuentoVenta"].ToString();
@@ -2968,13 +1971,11 @@ namespace CapaPresentacion
 
         private void HabilitarUno()
         {
-            this.btnCambiarMesa.Enabled = false;
             this.btnPedido.Enabled = false;
             this.btnCobrar.Enabled = false;
             this.btnDividir.Enabled = false;
             this.btnSeparar.Enabled = false;
             this.btnDctoProducto.Enabled = false;
-            this.btnImprimirPreCuenta.Enabled = false;
             this.btnManual.Enabled = false;
             this.btnGuardar.Enabled = false;
             this.btnReservar.Enabled = false;
@@ -2985,8 +1986,6 @@ namespace CapaPresentacion
         {
             this.btnPedido.Visible = false;
             this.btnCobrar.Visible = false;
-            this.btnImprimirPreCuenta.Visible = false;
-            this.btnCambiarMesa.Visible = false;
             this.btnDctoProducto.Visible = false;
             this.btnSeparar.Visible = false;
             this.btnDividir.Visible = false;
@@ -3003,14 +2002,7 @@ namespace CapaPresentacion
                 {
                     this.btnPedido.Visible = true;
                 }
-                if (dtNivel.Rows[i][2].ToString() == "PVenta_Cambio de Mesa")
-                {
-                    this.btnCambiarMesa.Visible = true;
-                }
-                if (dtNivel.Rows[i][2].ToString() == "PVenta_PreCuenta")
-                {
-                    this.btnImprimirPreCuenta.Visible = true;
-                }
+
                 if (dtNivel.Rows[i][2].ToString() == "Venta-Dcto Individual")
                 {
                     this.btnDctoProducto.Visible = true;
@@ -3043,22 +2035,15 @@ namespace CapaPresentacion
         {
             this.Top = 0;
             this.Left = 0;
-            this.lblMesa.Text = nroMesa;
             this.lblMesero.Text = nombreMesero;
-            this.lblSalon.Text = nombreSalon;
-            this.mostrarCategorias();
             this.crearTabla();
-            this.crearTablaMenu();
             this.ValidarAcceso();
             this.formatoTabla();
-            this.plCategorias.AutoScroll = false;
-            this.plProductos.AutoScroll = false;
             if (this.lblIdVenta.Text != "0")
             {
                 mostrarDetalleVenta();
                 mostrarDetallePedido();
                 this.btnActualizarCantidad.Enabled = false;
-                this.btnImprimirComanda.Enabled = true;
                 this.dataListadoDetalle.Select();
                 this.btnLimpiar.Enabled = true;
                 this.btnReservar.Enabled = false;
@@ -3068,7 +2053,6 @@ namespace CapaPresentacion
             else
             {
                 HabilitarUno();
-                this.btnImprimirComanda.Enabled = false;
                 this.btnLimpiar.Enabled = false;
                 this.dataListadoDetalle.Select();
             }

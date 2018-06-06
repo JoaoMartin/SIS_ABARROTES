@@ -11,7 +11,7 @@ namespace CapaNegocios
     public class NVenta
     {
         public static string InsertarPedido(int? idCliente, int? idMesa, DateTime fecha, string estado, string formaPago, decimal descuento, 
-            int idTrabajador, string modo,int nroCaja,DataTable dtDetalle,DataTable dtDetalleMenu, DateTime fechaEntrega, decimal adelanto,
+            int idTrabajador, string modo,int nroCaja,DataTable dtDetalle, DateTime fechaEntrega, decimal adelanto,
             int idTrabajador_Cobro, string obs, string motivo, string cliente, string telefono, string tipoCliente)
         {
             DVenta Obj = new DVenta();
@@ -49,21 +49,12 @@ namespace CapaNegocios
             }
 
 
-            List<DDetalleVentaMenu> detallesMenu = new List<DDetalleVentaMenu>();
-            foreach (DataRow row in dtDetalleMenu.Rows)
-            {
-                DDetalleVentaMenu detalleM = new DDetalleVentaMenu();
-                detalleM.IdProducto = Convert.ToInt32(row["Cod"].ToString());
-                detalleM.Cantidad = Convert.ToInt32(row["Cant"].ToString());
-                detalleM.Barra = row["Barra"].ToString();
-                detallesMenu.Add(detalleM);
-            }
-            return Obj.InsertarPedido(Obj, detalles, detallesMenu);
+            return Obj.InsertarPedido(Obj, detalles);
         }
 
         public static string InsertarPedidoDelivery(int? idCliente, int? idMesa, DateTime fecha, string estado, string formaPago, decimal descuento, int idTrabajador, string modo, int nroCaja,
                                            string tipoCompr,decimal vuelto, string estadoD, DataTable dtDetalle, decimal total, decimal pagaCon,
-                                           string repartidor, decimal dctoInd, DataTable dtDetalleMenu, DateTime fechaEntrega,decimal adelanto,
+                                           string repartidor, decimal dctoInd, DateTime fechaEntrega,decimal adelanto,
                                            int idTrabajador_Cobro, string obs, string motivo, string cliente, string telefono,string tipoCliente)
         {
             DVenta Obj = new DVenta();
@@ -100,16 +91,6 @@ namespace CapaNegocios
                 detalles.Add(detalle);
             }
 
-            List<DDetalleVentaMenu> detallesMenu1 = new List<DDetalleVentaMenu>();
-            foreach (DataRow row in dtDetalleMenu.Rows)
-            {
-                DDetalleVentaMenu detalleM = new DDetalleVentaMenu();
-                detalleM.IdProducto = Convert.ToInt32(row["Cod"].ToString());
-                detalleM.Cantidad = Convert.ToInt32(row["Cant"].ToString());
-                detalleM.Barra = row["Barra"].ToString();
-
-                detallesMenu1.Add(detalleM);
-            }
 
 
             DDelivery Obj1 = new DDelivery();
@@ -121,12 +102,12 @@ namespace CapaNegocios
             Obj1.Repartidor = repartidor;
             Obj1.DctoInd = dctoInd;
 
-            return Obj.InsertarPedidoDelivery(Obj, detalles, Obj1,detallesMenu1);
+            return Obj.InsertarPedidoDelivery(Obj, detalles, Obj1);
         }
 
         public static string InsertarPedidoPagado(int? idCliente,  int? idMesa, DateTime fecha, string estado, string formaPago, decimal descuento, int idTrabajador, string modo, int nroCaja,
                                                    string tipoCompr,int serie,decimal igv,string estadoComp,decimal monto, decimal efectivo, decimal tarjeta, decimal redondeo,
-                                                   DataTable dtDetalle, decimal vuelto,DataTable dtDetalleMenu, DateTime fechaEntrega, decimal adelanto,
+                                                   DataTable dtDetalle, decimal vuelto,DateTime fechaEntrega, decimal adelanto,
                                                    int idTrabajador_Cobro, string obs, string motivo, string cliente, string telefono, string tipoCliente)
         {
             DVenta Obj = new DVenta();
@@ -164,15 +145,6 @@ namespace CapaNegocios
                 detalles.Add(detalle);
             }
 
-            List<DDetalleVentaMenu> detallesMenu = new List<DDetalleVentaMenu>();
-            foreach (DataRow row in dtDetalleMenu.Rows)
-            {
-                DDetalleVentaMenu detalleM = new DDetalleVentaMenu();
-                detalleM.IdProducto = Convert.ToInt32(row["Cod"].ToString());
-                detalleM.Cantidad = Convert.ToInt32(row["Cant"].ToString());
-                detalleM.Barra = row["Barra"].ToString();
-                detallesMenu.Add(detalleM);
-            }
 
             DComprobante Obj1 = new DComprobante();
             Obj1.TipoComprobante = tipoCompr;
@@ -188,7 +160,7 @@ namespace CapaNegocios
             Obj1.FormaPago = formaPago;
             Obj1.Vuelto = vuelto;
 
-            return Obj.InsertarPedido_Pagado(Obj, detalles,Obj1,detallesMenu);
+            return Obj.InsertarPedido_Pagado(Obj, detalles,Obj1);
         }
 
         public static DataTable mostrarClienteVenta(int idVenta)
@@ -283,7 +255,7 @@ namespace CapaNegocios
         }
 
         public static string InsertarPedidoSeparado(int? idCliente,  int? idMesa, DateTime fecha, string estado, string formaPago, decimal descuento, int idTrabajador,
-            string modo, int nroCaja, DataTable dtDetalle,DataTable dtDetalleMenu, DateTime fechaEntrega, decimal adelanto, int idTrabajador_Cobro, string obs,
+            string modo, int nroCaja, DataTable dtDetalle, DateTime fechaEntrega, decimal adelanto, int idTrabajador_Cobro, string obs,
             string motivo, string cliente, string telefono, string tipoCliente)
         {
             DVenta Obj = new DVenta();
@@ -319,21 +291,11 @@ namespace CapaNegocios
                 detalle.Estado = row["Estado"].ToString();
                 detalles.Add(detalle);
             }
-
-            List<DDetalleVentaMenu> detallesMenu = new List<DDetalleVentaMenu>();
-            foreach (DataRow row in dtDetalleMenu.Rows)
-            {
-                DDetalleVentaMenu detalleM = new DDetalleVentaMenu();
-                detalleM.IdProducto = Convert.ToInt32(row["Cod"].ToString());
-                detalleM.Cantidad = Convert.ToInt32(row["Cant"].ToString());
-                detalleM.Barra = row["Barra"].ToString();
-                detallesMenu.Add(detalleM);
-            }
-            return Obj.InsertarPedido_Dividido(Obj, detalles,detallesMenu);
+            return Obj.InsertarPedido_Dividido(Obj, detalles);
         }
 
         public static string InsertarPedidoDividido(int? idCliente, int? idMesa, DateTime fecha, string estado, string formaPago,
-            decimal descuento, int idTrabajador, string modo, int nroCaja, DataTable dtDetalle, DataTable dtDetalleMenu, DateTime fechaEntrega,
+            decimal descuento, int idTrabajador, string modo, int nroCaja, DataTable dtDetalle, DateTime fechaEntrega,
             decimal adelanto, int idTrabajador_Cobro, string obs, string motivo, string cliente, string telefono, string tipoCliente)
         {
             DVenta Obj = new DVenta();
@@ -369,15 +331,7 @@ namespace CapaNegocios
                 detalles.Add(detalle);
             }
 
-            List<DDetalleVentaMenu> detallesMenu = new List<DDetalleVentaMenu>();
-            foreach (DataRow row in dtDetalleMenu.Rows)
-            {
-                DDetalleVentaMenu detalleM = new DDetalleVentaMenu();
-                detalleM.IdProducto = Convert.ToInt32(row["Cod"].ToString());
-                detalleM.Cantidad = Convert.ToInt32(row["Cant"].ToString());
-                detallesMenu.Add(detalleM);
-            }
-            return Obj.InsertarPedido(Obj, detalles,detallesMenu);
+            return Obj.InsertarPedido(Obj, detalles);
         }
 
         //REPORTES
@@ -437,7 +391,7 @@ namespace CapaNegocios
 
         public static string InsertarPedidoPagadoManual(int? idCliente, int? idMesa, DateTime fecha, string estado, string formaPago, decimal descuento, int idTrabajador, string modo, int nroCaja,
                                                  string tipoCompr, int serie, int nroCom, decimal igv, string estadoComp, decimal monto, decimal efectivo, decimal tarjeta, 
-                                                 decimal redondeo, DataTable dtDetalle, decimal vuelto,DataTable dtDetalleMenu,
+                                                 decimal redondeo, DataTable dtDetalle, decimal vuelto,
                                                  DateTime fechaEntrega, decimal adelanto, int idTrabajador_Cobro, string obs, string motivo, string cliente, string telefono,
                                                  string tipoCliente)
         {
@@ -474,14 +428,7 @@ namespace CapaNegocios
                 detalles.Add(detalle);
             }
 
-            List<DDetalleVentaMenu> detallesMenu = new List<DDetalleVentaMenu>();
-            foreach (DataRow row in dtDetalleMenu.Rows)
-            {
-                DDetalleVentaMenu detalleM = new DDetalleVentaMenu();
-                detalleM.IdProducto = Convert.ToInt32(row["Cod"].ToString());
-                detalleM.Cantidad = Convert.ToInt32(row["Cant"].ToString());
-                detallesMenu.Add(detalleM);
-            }
+          
 
             DComprobante Obj1 = new DComprobante();
             Obj1.TipoComprobante = tipoCompr;
@@ -498,11 +445,11 @@ namespace CapaNegocios
             Obj1.FormaPago = formaPago;
             Obj1.Vuelto = vuelto;
 
-            return Obj.InsertarPedido_PagadoManual(Obj, detalles, Obj1,detallesMenu);
+            return Obj.InsertarPedido_PagadoManual(Obj, detalles, Obj1);
         }
 
         public static string InsertarPedidoPagadoR(int? idCliente, int? idMesa, DateTime fecha, string estado, string formaPago, decimal descuento,
-     int idTrabajador, string modo, int nroCaja, DataTable dtDetalle, DataTable dtDetalleMenu, DateTime fechaEntrega, decimal adelanto,
+     int idTrabajador, string modo, int nroCaja, DataTable dtDetalle, DateTime fechaEntrega, decimal adelanto,
      int idTrabajador_Cobro, string obs, string motivo, string cliente, string telefono, string tipoCliente)
         {
             DVenta Obj = new DVenta();
@@ -540,16 +487,7 @@ namespace CapaNegocios
             }
 
 
-            List<DDetalleVentaMenu> detallesMenu = new List<DDetalleVentaMenu>();
-            foreach (DataRow row in dtDetalleMenu.Rows)
-            {
-                DDetalleVentaMenu detalleM = new DDetalleVentaMenu();
-                detalleM.IdProducto = Convert.ToInt32(row["Cod"].ToString());
-                detalleM.Cantidad = Convert.ToInt32(row["Cant"].ToString());
-                detalleM.Barra = row["Barra"].ToString();
-                detallesMenu.Add(detalleM);
-            }
-            return Obj.InsertarPedidoPagadoR(Obj, detalles, detallesMenu);
+            return Obj.InsertarPedidoPagadoR(Obj, detalles);
         }
 
         public static DataTable MostrarPedidosPendientes()
@@ -599,7 +537,7 @@ namespace CapaNegocios
 
         public static string InsertarPedidoPagadoR(int? idCliente, int? idMesa, DateTime fecha, string estado, string formaPago, decimal descuento, int idTrabajador, string modo, int nroCaja,
                                                   string tipoCompr, int serie, decimal igv, string estadoComp, decimal monto, decimal efectivo, decimal tarjeta, decimal redondeo,
-                                                  DataTable dtDetalle, decimal vuelto, DataTable dtDetalleMenu, DateTime fechaEntrega, decimal adelanto,
+                                                  DataTable dtDetalle, decimal vuelto, DateTime fechaEntrega, decimal adelanto,
                                                   int idTrabajador_Cobro, string obs, string motivo, string cliente, string telefono,string tipoCliente)
         {
             DVenta Obj = new DVenta();
@@ -637,15 +575,6 @@ namespace CapaNegocios
                 detalles.Add(detalle);
             }
 
-            List<DDetalleVentaMenu> detallesMenu = new List<DDetalleVentaMenu>();
-            foreach (DataRow row in dtDetalleMenu.Rows)
-            {
-                DDetalleVentaMenu detalleM = new DDetalleVentaMenu();
-                detalleM.IdProducto = Convert.ToInt32(row["Cod"].ToString());
-                detalleM.Cantidad = Convert.ToInt32(row["Cant"].ToString());
-                detalleM.Barra = row["Barra"].ToString();
-                detallesMenu.Add(detalleM);
-            }
 
             DComprobante Obj1 = new DComprobante();
             Obj1.TipoComprobante = tipoCompr;
@@ -661,7 +590,7 @@ namespace CapaNegocios
             Obj1.FormaPago = formaPago;
             Obj1.Vuelto = vuelto;
 
-            return Obj.InsertarPedido_Pagado(Obj, detalles, Obj1, detallesMenu);
+            return Obj.InsertarPedido_Pagado(Obj, detalles, Obj1);
         }
         public static DataTable reporteVentaFechas_TipoComprobante(DateTime fechaInicio, DateTime fechaFin, string tipo)
         {
@@ -688,7 +617,7 @@ namespace CapaNegocios
         }
 
         public static string InsertarPedidoPagadoCredCor(int? idCliente, int? idMesa, DateTime fecha, string estado, string formaPago, decimal descuento, int idTrabajador, string modo, int nroCaja,
-                                           DataTable dtDetalle, DataTable dtDetalleMenu, DateTime fechaEntrega, decimal adelanto,
+                                           DataTable dtDetalle, DateTime fechaEntrega, decimal adelanto,
                                            int idTrabajador_Cobro, string obs, string motivo, string cliente, string telefono, string tipoCliente)
         {
             DVenta Obj = new DVenta();
@@ -726,18 +655,9 @@ namespace CapaNegocios
                 detalles.Add(detalle);
             }
 
-            List<DDetalleVentaMenu> detallesMenu = new List<DDetalleVentaMenu>();
-            foreach (DataRow row in dtDetalleMenu.Rows)
-            {
-                DDetalleVentaMenu detalleM = new DDetalleVentaMenu();
-                detalleM.IdProducto = Convert.ToInt32(row["Cod"].ToString());
-                detalleM.Cantidad = Convert.ToInt32(row["Cant"].ToString());
-                detalleM.Barra = row["Barra"].ToString();
-                detallesMenu.Add(detalleM);
-            }
 
 
-            return Obj.InsertarPedido_PagadoCreCort(Obj, detalles, detallesMenu);
+            return Obj.InsertarPedido_PagadoCreCort(Obj, detalles);
         }
 
         public static DataTable reporteVentaForma(DateTime fechaInicio, DateTime fechaFin, string forma)

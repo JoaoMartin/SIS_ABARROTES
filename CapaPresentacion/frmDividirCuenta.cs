@@ -195,7 +195,7 @@ namespace CapaPresentacion
                                                          Convert.ToDecimal(this.lblDescuento.Text), Convert.ToInt32(this.lblIdUsuario.Text), "CS", frmVenta.f1.dtDetalle);
                                                          */
                     rpta = NVenta.InsertarPedidoSeparado(null, Convert.ToInt32(this.lblIdMesa.Text), DateTime.Now, "Pedido DV", "",
-                    Convert.ToDecimal(this.lblDescuento.Text), Convert.ToInt32(this.lblIdUsuario.Text), "CD", 1, frmVenta.f1.dtDetalle,
+                    Convert.ToDecimal(this.lblDescuento.Text), Convert.ToInt32(this.lblIdUsuario.Text), "CD", 1,
                     frmVenta.f1.dtDetalleMenu, DateTime.Now, 00.00m, Convert.ToInt32(this.lblIdUsuario.Text), "", "", "", "","");
                     if (rpta != "")
                     {
@@ -260,7 +260,7 @@ namespace CapaPresentacion
                         string tipo = frmVenta.f1.dataListadoDetalle.Rows[i].Cells["Tipo"].Value.ToString();
 
                         rpta = NDetalleVenta.InsertarAdicPedido(Convert.ToInt32(this.lblIdVenta.Text), idProducto, cantidad, prVenta, desc,
-                            frmVenta.f1.dataListadoDetalle.Rows[i].Cells[6].Value.ToString(), tipo, barra, frmVenta.f1.dtDetalleMenu, "Pedido");
+                            frmVenta.f1.dataListadoDetalle.Rows[i].Cells[6].Value.ToString(), tipo, barra, "Pedido");
                         if (rpta == "OK")
                         {
                             for (int p = cont; p < frmVenta.f1.dataListadoDetalle.Rows.Count; p++)

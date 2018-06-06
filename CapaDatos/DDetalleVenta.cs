@@ -167,7 +167,7 @@ namespace CapaDatos
             this.Estado = estado;
         }
 
-        public string Insertar(DDetalleVenta DetalleVenta, ref SqlConnection sqlCon, ref SqlTransaction sqlTran, List<DDetalleVentaMenu> DetalleVentaMenu)
+        public string Insertar(DDetalleVenta DetalleVenta, ref SqlConnection sqlCon, ref SqlTransaction sqlTran)
         {
             string rpta = "";
             try
@@ -249,28 +249,6 @@ namespace CapaDatos
                 sqlCmd.Parameters.Add(ParEstado);
 
                 rpta = sqlCmd.ExecuteNonQuery() >= 1 ? "OK" : "No se ingresó el Registro";
-                if (rpta.Equals("OK"))
-                {
-                    if (DetalleVenta.Tipo == "M")
-                    {
-                        this.IdDetalleVenta = Convert.ToInt32(sqlCmd.Parameters["@idDetalleVenta"].Value);
-                        foreach (DDetalleVentaMenu det in DetalleVentaMenu)
-                        {
-                            det.IdDetalleVenta = this.IdDetalleVenta;
-                            if(DetalleVenta.Barra == det.Barra)
-                            {
-                                rpta = det.Insertar(det, ref sqlCon, ref sqlTran);
-                                if (!rpta.Equals("OK"))
-                                {
-                                    break;
-
-                                }
-                            }
-                            
-                        }
-                    }
-
-                }
 
                 //sqlCmd.ExecuteScalar();
             }
@@ -281,107 +259,9 @@ namespace CapaDatos
             return rpta;
         }
 
-        public string InsertarPrueba(DDetalleVenta DetalleVenta, ref SqlConnection sqlCon, ref SqlTransaction sqlTran, List<DDetalleVentaMenu> DetalleVentaMenu)
-        {
-            string rpta = "";
-            try
-            {
-                //Comandos
-                SqlCommand sqlCmd = new SqlCommand();
-                sqlCmd.Connection = sqlCon;
-                sqlCmd.Transaction = sqlTran;
+       
 
-                sqlCmd.CommandText = "sp_insertarDetalleVentaPrueba";
-                sqlCmd.CommandType = CommandType.StoredProcedure;
-
-                SqlParameter ParIdDetalleVenta = new SqlParameter();
-                ParIdDetalleVenta.ParameterName = "@idDetalleVenta";
-                ParIdDetalleVenta.SqlDbType = SqlDbType.Int;
-                ParIdDetalleVenta.Direction = ParameterDirection.Output;
-                sqlCmd.Parameters.Add(ParIdDetalleVenta);
-
-                SqlParameter ParIdVenta = new SqlParameter();
-                ParIdVenta.ParameterName = "@idVenta";
-                ParIdVenta.SqlDbType = SqlDbType.Int;
-                ParIdVenta.Value = DetalleVenta.IdVenta;
-                sqlCmd.Parameters.Add(ParIdVenta);
-
-                SqlParameter ParidProducto = new SqlParameter();
-                ParidProducto.ParameterName = "@idProducto";
-                ParidProducto.SqlDbType = SqlDbType.Int;
-                ParidProducto.Value = DetalleVenta.IdProducto;
-                sqlCmd.Parameters.Add(ParidProducto);
-
-                SqlParameter ParCantidad = new SqlParameter();
-                ParCantidad.ParameterName = "@cantidad";
-                ParCantidad.SqlDbType = SqlDbType.Int;
-                ParCantidad.Value = DetalleVenta.Cantidad;
-                sqlCmd.Parameters.Add(ParCantidad);
-
-                SqlParameter ParPrecioVenta = new SqlParameter();
-                ParPrecioVenta.ParameterName = "@precioVenta";
-                ParPrecioVenta.SqlDbType = SqlDbType.Decimal;
-                ParPrecioVenta.Precision = 8;
-                ParPrecioVenta.Scale = 2;
-                ParPrecioVenta.Value = DetalleVenta.PrecioVenta;
-                sqlCmd.Parameters.Add(ParPrecioVenta);
-
-                SqlParameter ParDescuento = new SqlParameter();
-                ParDescuento.ParameterName = "@descuento";
-                ParDescuento.SqlDbType = SqlDbType.Decimal;
-                ParDescuento.Precision = 8;
-                ParDescuento.Scale = 2;
-                ParDescuento.Value = DetalleVenta.Descuento;
-                sqlCmd.Parameters.Add(ParDescuento);
-
-                SqlParameter ParNota = new SqlParameter();
-                ParNota.ParameterName = "@nota";
-                ParNota.SqlDbType = SqlDbType.VarChar;
-                ParNota.Size = 250;
-                ParNota.Value = DetalleVenta.Nota;
-                sqlCmd.Parameters.Add(ParNota);
-
-                SqlParameter ParTipo = new SqlParameter();
-                ParTipo.ParameterName = "@tipo";
-                ParTipo.SqlDbType = SqlDbType.Char;
-                ParTipo.Size = 1;
-                ParTipo.Value = DetalleVenta.Tipo;
-                sqlCmd.Parameters.Add(ParTipo);
-
-                rpta = sqlCmd.ExecuteNonQuery() >= 1 ? "OK" : "No se ingresó el Registro";
-                if (rpta.Equals("OK"))
-                {
-                    if(DetalleVenta.Tipo == "M")
-                    {
-                        this.IdDetalleVenta = Convert.ToInt32(sqlCmd.Parameters["@idDetalleVenta"].Value);
-                        foreach (DDetalleVentaMenu det in DetalleVentaMenu)
-                        {
-                            det.IdDetalleVenta = this.IdDetalleVenta;
-
-                            rpta = det.Insertar(det, ref sqlCon, ref sqlTran);
-                            if (!rpta.Equals("OK"))
-                            {
-                                break;
-
-                            }
-                        }
-                    }
-                    
-                }
-
-
-
-                //sqlCmd.ExecuteScalar();
-            }
-            catch (Exception ex)
-            {
-                rpta = ex.Message;
-            }
-            return rpta;
-        }
-
-
-        public string InsertarAdic(DDetalleVenta DetalleVenta, List<DDetalleVentaMenu> DetalleVentaMenu)
+        public string InsertarAdic(DDetalleVenta DetalleVenta)
         {
             string rpta = "";
             SqlConnection sqlCon = new SqlConnection();
@@ -465,25 +345,6 @@ namespace CapaDatos
                 sqlCmd.Parameters.Add(ParEstado);
 
                 rpta = sqlCmd.ExecuteNonQuery() >= 1 ? "OK" : "No se ingresó el Registro";
-                if (rpta.Equals("OK"))
-                {
-                    if (DetalleVenta.Tipo == "M")
-                    {
-                        this.IdDetalleVenta = Convert.ToInt32(sqlCmd.Parameters["@idDetalleVenta"].Value);
-                        foreach (DDetalleVentaMenu det in DetalleVentaMenu)
-                        {
-                            det.IdDetalleVenta = this.IdDetalleVenta;
-
-                            rpta = det.InsertarAdic(det);
-                            if (!rpta.Equals("OK"))
-                            {
-                                break;
-
-                            }
-                        }
-                    }
-
-                }
                 //sqlCmd.ExecuteScalar();
             }
             catch (Exception ex)

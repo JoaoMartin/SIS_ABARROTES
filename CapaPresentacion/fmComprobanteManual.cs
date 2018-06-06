@@ -388,7 +388,7 @@ namespace CapaPresentacion
                                         string barra = frmVenta.f1.dataListadoDetalle.Rows[i].Cells["Barra"].Value.ToString();
                                         string tipo = frmVenta.f1.dataListadoDetalle.Rows[i].Cells["Tipo"].Value.ToString();
                                         NDetalleVenta.InsertarAdicPedido(Convert.ToInt32(frmVenta.f1.lblIdVenta.Text), idProducto, cantidad, prVenta, desc,
-                                            frmVenta.f1.dataListadoDetalle.Rows[i].Cells[6].Value.ToString(),tipo,barra,frmVenta.f1.dtDetalleMenu,"Pedido");
+                                            frmVenta.f1.dataListadoDetalle.Rows[i].Cells[6].Value.ToString(),tipo,barra,"Pedido");
                                         for (int p = cont; p < frmVenta.f1.dataListadoDetalle.Rows.Count; p++)
                                         {
                                             if (frmVenta.f1.dataListadoDetalle.Rows[i].Cells["Tipo"].Value.ToString() == "C")
@@ -462,7 +462,7 @@ namespace CapaPresentacion
                                             // this.imprimir(Convert.ToInt32(this.lblIdVenta.Text));
                                             NImprimir_Comprobante.imprimirComManual(Convert.ToInt32(this.lblIdVenta.Text), tipoCompr, this.txtNombre.Text.Trim(),txtSerie.Text.Trim(),
                                                 txtNroCompr.Text.Trim(),this.txtDireccion.Text.Trim(),
-                                                                              this.txtDocumento.Text.Trim(), frmVenta.f1.lblMesero.Text, frmVenta.f1.lblSalon.Text, frmVenta.f1.lblMesa.Text,
+                                                                              this.txtDocumento.Text.Trim(), frmVenta.f1.lblMesero.Text,"", "",
                                                                               frmVenta.f1.dataListadoDetalle, this.lblDescuento.Text, "00.00", this.lblSubTotal.Text,
                                                                               this.lblIgv.Text, this.lblTotal.Text, efectivo1, vuelto1, tarjeta1, formaPago1, modoProd, "00.00", "");
 
@@ -510,7 +510,7 @@ namespace CapaPresentacion
                                             string barra = frmVenta.f1.dataListadoDetalle.Rows[i].Cells["Barra"].Value.ToString();
                                             
                                             NDetalleVenta.InsertarAdicPedido(Convert.ToInt32(frmVenta.f1.lblIdVenta.Text), idProducto, cantidad, prVenta, desc, 
-                                                frmVenta.f1.dataListadoDetalle.Rows[i].Cells[6].Value.ToString(),tipo,barra, frmVenta.f1.dtDetalleMenu,"Pedido");
+                                                frmVenta.f1.dataListadoDetalle.Rows[i].Cells[6].Value.ToString(),tipo,barra,"Pedido");
 
                                             for (int p = cont; p < frmVenta.f1.dataListadoDetalle.Rows.Count; p++)
                                             {
@@ -588,7 +588,7 @@ namespace CapaPresentacion
                                                 // this.imprimir(Convert.ToInt32(this.lblIdVenta.Text));
                                                 NImprimir_Comprobante.imprimirComManual(Convert.ToInt32(this.lblIdVenta.Text), "FACTURA MANUAL", this.txtNombre.Text.Trim(),txtSerie.Text.Trim(),
                                                     txtNroCompr.Text.Trim(),this.txtDireccion.Text.Trim(),
-                                                                                  this.txtDocumento.Text.Trim(), frmVenta.f1.lblMesero.Text, frmVenta.f1.lblSalon.Text, frmVenta.f1.lblMesa.Text,
+                                                                                  this.txtDocumento.Text.Trim(), frmVenta.f1.lblMesero.Text, "","",
                                                                                   frmVenta.f1.dataListadoDetalle, this.lblDescuento.Text, "00.00", this.lblSubTotal.Text,
                                                                                   this.lblIgv.Text, this.lblTotal.Text, efectivo1, vuelto1, tarjeta1, formaPago1, modoProd, "00.00", "");
                                                 //this.imprimir(Convert.ToInt32(this.lblIdVenta.Text));
@@ -680,7 +680,7 @@ namespace CapaPresentacion
                                                                             , Convert.ToInt32(this.lblIdUsuario.Text), "CU", 1, tipoCompr, Convert.ToInt32(txtSerie.Text.Trim()),
                                                                             Convert.ToInt32(txtNroCompr.Text.Trim()), Convert.ToDecimal(this.lblIgv.Text), "EMITIDA",
                                                                             Convert.ToDecimal(this.lblTotal.Text), pagoEfectivo, pagoTarjeta,
-                                                                            00.00m, frmVenta.f1.dtDetalle, vuelto, frmVenta.f1.dtDetalleMenu,
+                                                                            00.00m, frmVenta.f1.dtDetalle, vuelto, 
                                                                             DateTime.Now, 00.00m, Convert.ToInt32(this.lblIdUsuario.Text), "", "", "","",lblClase.Text);
                                 if (rpta != "")
                                 {
@@ -727,7 +727,7 @@ namespace CapaPresentacion
                                         // this.imprimir(Convert.ToInt32(this.lblIdVenta.Text));
                                         NImprimir_Comprobante.imprimirComManual(Convert.ToInt32(rpta), tipoCompr, this.txtNombre.Text.Trim(),txtSerie.Text.Trim(),txtNroCompr.Text.Trim(),
                                             this.txtDireccion.Text.Trim(),
-                                                                          this.txtDocumento.Text.Trim(), frmVenta.f1.lblMesero.Text, frmVenta.f1.lblSalon.Text, frmVenta.f1.lblMesa.Text,
+                                                                          this.txtDocumento.Text.Trim(), frmVenta.f1.lblMesero.Text,"","",
                                                                           frmVenta.f1.dataListadoDetalle, this.lblDescuento.Text, "00.00", this.lblSubTotal.Text,
                                                                           this.lblIgv.Text, this.lblTotal.Text, efectivo1, vuelto1, tarjeta1, formaPago1, modoProd, "00.00", "");
 
@@ -755,7 +755,7 @@ namespace CapaPresentacion
                                                                             Convert.ToDecimal(this.lblIgv.Text),
                                                                             "EMITIDA", Convert.ToDecimal(this.lblTotal.Text), pagoEfectivo, 
                                                                             pagoTarjeta, 00.00m, frmVenta.f1.dtDetalle, vuelto, 
-                                                                            frmVenta.f1.dtDetalleMenu, DateTime.Now, 00.00m, Convert.ToInt32(this.lblIdUsuario.Text),"","","","",
+                                                                             DateTime.Now, 00.00m, Convert.ToInt32(this.lblIdUsuario.Text),"","","","",
                                                                             lblClase.Text);
                                     if (rpta != "")
                                     {
@@ -769,7 +769,7 @@ namespace CapaPresentacion
                                             enviarFormaPago();
                                             // this.imprimir(Convert.ToInt32(this.lblIdVenta.Text));
                                             NImprimir_Comprobante.imprimirComManual(Convert.ToInt32(rpta), "FACTURA MANUAL", this.txtNombre.Text.Trim(), txtSerie.Text.Trim(), txtNroCompr.Text.Trim(), this.txtDireccion.Text.Trim(),
-                                                                              this.txtDocumento.Text.Trim(), frmVenta.f1.lblMesero.Text, frmVenta.f1.lblSalon.Text, frmVenta.f1.lblMesa.Text,
+                                                                              this.txtDocumento.Text.Trim(), frmVenta.f1.lblMesero.Text, "","",
                                                                               frmVenta.f1.dataListadoDetalle, this.lblDescuento.Text, "00.00", this.lblSubTotal.Text,
                                                                               this.lblIgv.Text, this.lblTotal.Text, efectivo1, vuelto1, tarjeta1, formaPago1, modoProd, "00.00", "");
 

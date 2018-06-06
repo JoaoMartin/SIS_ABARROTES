@@ -605,22 +605,20 @@ namespace CapaPresentacion
                         rpta = NVenta.InsertarPedidoPagado(idCliente, Convert.ToInt32(this.lblIdMesa.Text), DateTime.Now, "PAGADA",
                        formaPago, Convert.ToDecimal(this.lblDctoGeneral.Text.Trim()), Convert.ToInt32(this.lblIdUsuario.Text), "CS", 1, tipoCompr, 1,
                        Convert.ToDecimal(this.lblIgv.Text), "EMITIDA", Convert.ToDecimal(this.lblTotal.Text), efectivo,
-                       tarjeta, 00.00m, dtDetalle, vuelto, frmVenta.f1.dtDetalleMenu,
-                       DateTime.Now, 00.00m, Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text),lblObs.Text, "", "", "", lblClase.Text);
+                       tarjeta, 00.00m, dtDetalle, vuelto, DateTime.Now, 00.00m, Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text),lblObs.Text, "", "", "", lblClase.Text);
                     }
                     else if (rbCreditoEmitido.Checked == true)
                     {
                         rpta = NVenta.InsertarPedidoPagado(idCliente, Convert.ToInt32(this.lblIdMesa.Text), DateTime.Now, estadoVenta,
                      formaPago, Convert.ToDecimal(this.lblDctoGeneral.Text.Trim()), Convert.ToInt32(this.lblIdUsuario.Text), "CS", 1, tipoCompr, 1,
                      Convert.ToDecimal(this.lblIgv.Text), "EMITIDA", Convert.ToDecimal(this.lblTotal.Text), efectivo,
-                     tarjeta, 00.00m, dtDetalle, vuelto, frmVenta.f1.dtDetalleMenu,
-                     DateTime.Now, 00.00m, Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text),lblObs.Text, "", "", "", lblClase.Text);
+                     tarjeta, 00.00m, dtDetalle, vuelto,  DateTime.Now, 00.00m, Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text),lblObs.Text, "", "", "", lblClase.Text);
                     }
 
                     else
                     {
                         rpta = NVenta.InsertarPedidoPagadoCredCor(idCliente, Convert.ToInt32(this.lblIdMesa.Text), DateTime.Now, estadoVenta, formaPago, Convert.ToDecimal(this.lblDctoGeneral.Text)
-                                                                           , Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text), "CS", 1, dtDetalle, frmVenta.f1.dtDetalleMenu,
+                                                                           , Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text), "CS", 1, dtDetalle, 
                                                                            DateTime.Now, Convert.ToDecimal(lblTotal.Text), Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text),
                                                                            lblObs.Text, "", "", "", lblClase.Text);
                     }
@@ -643,8 +641,7 @@ namespace CapaPresentacion
                             rpta = NVenta.InsertarPedidoPagado(idCliente, Convert.ToInt32(this.lblIdMesa.Text), DateTime.Now, "PAGADA",
                            formaPago, Convert.ToDecimal(this.lblDctoGeneral.Text.Trim()), Convert.ToInt32(this.lblIdUsuario.Text), "CS", 1, "FACTURA", 1,
                            Convert.ToDecimal(this.lblIgv.Text), "EMITIDA", Convert.ToDecimal(this.lblTotal.Text), efectivo,
-                           tarjeta, 00.00m, dtDetalle, vuelto, frmVenta.f1.dtDetalleMenu,
-                           DateTime.Now, 00.00m, Convert.ToInt32(this.lblIdUsuario.Text),lblObs.Text, "", "", "", lblClase.Text);
+                           tarjeta, 00.00m, dtDetalle, vuelto, DateTime.Now, 00.00m, Convert.ToInt32(this.lblIdUsuario.Text),lblObs.Text, "", "", "", lblClase.Text);
 
                         }
                         else if (rbCreditoEmitido.Checked == true)
@@ -652,14 +649,13 @@ namespace CapaPresentacion
                             rpta = NVenta.InsertarPedidoPagado(idCliente, Convert.ToInt32(this.lblIdMesa.Text), DateTime.Now, estadoVenta,
                          formaPago, Convert.ToDecimal(this.lblDctoGeneral.Text.Trim()), Convert.ToInt32(this.lblIdUsuario.Text), "CS", 1, "FACTURA", 1,
                          Convert.ToDecimal(this.lblIgv.Text), "EMITIDA", Convert.ToDecimal(this.lblTotal.Text), efectivo,
-                         tarjeta, 00.00m, dtDetalle, vuelto, frmVenta.f1.dtDetalleMenu,
-                         DateTime.Now, 00.00m, Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text),lblObs.Text, "", "", "", lblClase.Text);
+                         tarjeta, 00.00m, dtDetalle, vuelto,DateTime.Now, 00.00m, Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text),lblObs.Text, "", "", "", lblClase.Text);
                         }
 
                         else
                         {
                             rpta = NVenta.InsertarPedidoPagadoCredCor(idCliente, Convert.ToInt32(this.lblIdMesa.Text), DateTime.Now, estadoVenta, formaPago, Convert.ToDecimal(this.lblDctoGeneral.Text)
-                                                                               , Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text), "CS", 1, dtDetalle, frmVenta.f1.dtDetalleMenu,
+                                                                               , Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text), "CS", 1, dtDetalle,
                                                                                DateTime.Now, Convert.ToDecimal(lblTotal.Text), Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text),
                                                                                lblObs.Text, "", "", "", lblClase.Text);
                         }
@@ -790,8 +786,7 @@ namespace CapaPresentacion
                     rpta = NVenta.InsertarPedidoPagado(idCliente, Convert.ToInt32(this.lblIdMesa.Text), DateTime.Now, "PAGADA", formaPago, Convert.ToDecimal(this.lblDctoGeneral.Text.Trim())
                                              , Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text), "CS", 1, tipoCompr, 1, Convert.ToDecimal(this.lblIgv.Text), "EMITIDA",
                                              Convert.ToDecimal(this.lblTotal.Text), efectivo, tarjeta, 00.00m,
-                                             dtDetalle, vuelto, frmVenta.f1.dtDetalleMenu,
-                                             DateTime.Now, 00.00m, Convert.ToInt32(this.lblIdUsuario.Text),lblObs.Text, "", "", "", lblClase.Text);
+                                             dtDetalle, vuelto, DateTime.Now, 00.00m, Convert.ToInt32(this.lblIdUsuario.Text),lblObs.Text, "", "", "", lblClase.Text);
 
                 }
                 else if (rbCreditoEmitido.Checked == true)
@@ -799,13 +794,12 @@ namespace CapaPresentacion
                     rpta = NVenta.InsertarPedidoPagado(idCliente, Convert.ToInt32(this.lblIdMesa.Text), DateTime.Now, estadoVenta, formaPago, Convert.ToDecimal(this.lblDctoGeneral.Text.Trim())
                                             , Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text), "CS", 1, tipoCompr, 1, Convert.ToDecimal(this.lblIgv.Text), "EMITIDA",
                                             Convert.ToDecimal(this.lblTotal.Text), efectivo, tarjeta, 00.00m,
-                                            dtDetalle, vuelto, frmVenta.f1.dtDetalleMenu,
-                                            DateTime.Now, 00.00m, Convert.ToInt32(this.lblIdUsuario.Text),lblObs.Text, "", "", "", lblClase.Text);
+                                            dtDetalle, vuelto, DateTime.Now, 00.00m, Convert.ToInt32(this.lblIdUsuario.Text),lblObs.Text, "", "", "", lblClase.Text);
                 }
                 else
                 {
                     rpta = NVenta.InsertarPedidoPagadoCredCor(idCliente, Convert.ToInt32(this.lblIdMesa.Text), DateTime.Now, estadoVenta, formaPago, Convert.ToDecimal(this.lblDctoGeneral.Text)
-                                                                            , Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text), "CS", 1, dtDetalle, frmVenta.f1.dtDetalleMenu,
+                                                                            , Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text), "CS", 1, dtDetalle, 
                                                                             DateTime.Now, Convert.ToDecimal(lblTotal.Text), Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text),
                                                                           lblObs.Text, "", "", "", lblClase.Text);
                 }
@@ -830,7 +824,7 @@ namespace CapaPresentacion
                         rpta = NVenta.InsertarPedidoPagado(idCliente, Convert.ToInt32(this.lblIdMesa.Text), DateTime.Now, "PAGADA",
                    formaPago, Convert.ToDecimal(this.lblDctoGeneral.Text.Trim()), Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text), "CS", 1, "FACTURA",
                    1, Convert.ToDecimal(this.lblIgv.Text), "EMITIDA", Convert.ToDecimal(this.lblTotal.Text), efectivo, tarjeta, 00.00m,
-                   dtDetalle, vuelto, frmVenta.f1.dtDetalleMenu, DateTime.Now, 00.00m, Convert.ToInt32(this.lblIdUsuario.Text), "",
+                   dtDetalle, vuelto,DateTime.Now, 00.00m, Convert.ToInt32(this.lblIdUsuario.Text), "",
                    "", "", "", lblClase.Text);
                     }
                     else if (rbCreditoEmitido.Checked == true)
@@ -838,13 +832,12 @@ namespace CapaPresentacion
                         rpta = NVenta.InsertarPedidoPagado(idCliente, Convert.ToInt32(this.lblIdMesa.Text), DateTime.Now, estadoVenta, formaPago, Convert.ToDecimal(this.lblDctoGeneral.Text.Trim())
                                                 , Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text), "CS", 1, "FACTURA", 1, Convert.ToDecimal(this.lblIgv.Text), "EMITIDA",
                                                 Convert.ToDecimal(this.lblTotal.Text), efectivo, tarjeta, 00.00m,
-                                                dtDetalle, vuelto, frmVenta.f1.dtDetalleMenu,
-                                                DateTime.Now, 00.00m, Convert.ToInt32(this.lblIdUsuario.Text),lblObs.Text, "", "", "", lblClase.Text);
+                                                dtDetalle, vuelto, DateTime.Now, 00.00m, Convert.ToInt32(this.lblIdUsuario.Text),lblObs.Text, "", "", "", lblClase.Text);
                     }
                     else
                     {
                         rpta = NVenta.InsertarPedidoPagadoCredCor(idCliente, Convert.ToInt32(this.lblIdMesa.Text), DateTime.Now, estadoVenta, formaPago, Convert.ToDecimal(this.lblDctoGeneral.Text)
-                                                                                , Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text), "CS", 1, dtDetalle, frmVenta.f1.dtDetalleMenu,
+                                                                                , Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text), "CS", 1, dtDetalle, 
                                                                                 DateTime.Now, Convert.ToDecimal(lblTotal.Text), Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text),
                                                                                 lblObs.Text, "", "", "", lblClase.Text);
                     }

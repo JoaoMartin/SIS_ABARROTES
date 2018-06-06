@@ -116,7 +116,6 @@ namespace CapaPresentacion
                 frmVenta.f1.dataListadoDetalle.ClearSelection();
                 frmVenta.f1.btnPedido.Enabled = true;
                 frmVenta.f1.btnCobrar.Enabled = true;
-                frmVenta.f1.btnImprimirPreCuenta.Enabled = true;
                 frmVenta.f1.btnManual.Enabled = true;
                 frmVenta.f1.btnDividir.Enabled = true;
                 frmVenta.f1.btnDctoProducto.Enabled = true;

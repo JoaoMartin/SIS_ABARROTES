@@ -526,10 +526,10 @@ namespace CapaPresentacion
 
         private void puntoVentaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmModuloSalon frm = new frmModuloSalon();
+            frmVenta frm = new frmVenta();
             frm.MdiParent = this;
             frm.lblIdUsuario.Text = this.lblIdUsuario.Text;
-            frm.lblUsuario.Text = this.lblUsuario.Text + " " + lblApellidos.Text;
+            frm.nombreMesero = this.lblUsuario.Text + " " + lblApellidos.Text;
             frm.Show();
         }
 

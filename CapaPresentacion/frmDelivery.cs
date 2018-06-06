@@ -1624,7 +1624,7 @@ namespace CapaPresentacion
                             rpta = NVenta.InsertarPedidoDelivery(Convert.ToInt32(txtIdCliente.Text), null, DateTime.Now, "Pedido Delivery", "EFECTIVO", Convert.ToDecimal(this.txtDescuento.Text),
                                 Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text), "", 1, tipoCompr, Convert.ToDecimal(this.txtVuelto.Text), "P", dtDetalle, Convert.ToDecimal(this.txtTotalPagado.Text),
                                 Convert.ToDecimal(this.txtEfectivo.Text.Trim()), this.lblMesero.Text, Convert.ToDecimal(this.txtDescuento.Text),
-                                dtDetalleMenu, DateTime.Now, 00.00m, Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text), "", "", "", "", "");
+                                 DateTime.Now, 00.00m, Convert.ToInt32(frmPrincipal.f1.lblIdUsuario.Text), "", "", "", "", "");
                             if (rpta != "")
                             {
 

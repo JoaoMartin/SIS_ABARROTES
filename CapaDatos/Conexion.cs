@@ -23,7 +23,7 @@ namespace CapaDatos
     //  public static string cn = @"Data Source =EQUIPO\SQLEXPRESS; Initial Catalog=SISVENTAS_CA; User ID=admin; Password=1234";
         //public static string cn = @"Data Source =EQUIPO\SQLEXPRESS; Initial Catalog=BD_RESTAURANTE; User ID=admin; Password=1234";
        // public static string cn = @"Data Source =EQUIPO\SQLEXPRESS; Initial Catalog=LALOSPAN_PRUEBA; User ID=admin; Password=1234";
-       public static string cn = @"Data Source =EQUIPO\SQLEXPRESS; Initial Catalog=BD_RESTAURANTE; User ID=admin; Password=1234";
+       public static string cn = @"Data Source =EQUIPO\SQLEXPRESS; Initial Catalog=BD_ABARROTES; User ID=admin; Password=1234";
 
 
     }

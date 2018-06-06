@@ -32,11 +32,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmVenta));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dataListadoDetalle = new System.Windows.Forms.DataGridView();
-            this.btnImprimirComanda = new System.Windows.Forms.Button();
             this.lblDescrProducto = new System.Windows.Forms.Label();
             this.lblIndice = new System.Windows.Forms.Label();
             this.txtCantidad = new System.Windows.Forms.TextBox();
-            this.btnTermino = new System.Windows.Forms.Button();
             this.button13 = new System.Windows.Forms.Button();
             this.button15 = new System.Windows.Forms.Button();
             this.lblIdMesa = new System.Windows.Forms.Label();
@@ -79,13 +77,9 @@
             this.lblBanderaDatatable = new System.Windows.Forms.Label();
             this.lblidDetalle = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.lblSalon = new System.Windows.Forms.Label();
             this.lblBanderaEstado = new System.Windows.Forms.Label();
             this.lblIdUsuario = new System.Windows.Forms.Label();
-            this.lblMesa = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.lblMesero = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lblBanderaCatMen = new System.Windows.Forms.Label();
             this.lblTipo = new System.Windows.Forms.Label();
@@ -98,10 +92,6 @@
             this.lblImporte = new System.Windows.Forms.Label();
             this.lblPrecioUnitario = new System.Windows.Forms.Label();
             this.lblNroProducto = new System.Windows.Forms.Label();
-            this.plCategorias = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.plProductos = new System.Windows.Forms.Panel();
-            this.label4 = new System.Windows.Forms.Label();
             this.ttMensaje = new System.Windows.Forms.ToolTip(this.components);
             this.errorIcono = new System.Windows.Forms.ErrorProvider(this.components);
             this.lblNroFilas = new System.Windows.Forms.Label();
@@ -113,12 +103,12 @@
             this.StockQueda = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblBanderaStock = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.btnLimpiar = new System.Windows.Forms.Button();
             this.btnReservar = new System.Windows.Forms.Button();
             this.btnManual = new System.Windows.Forms.Button();
             this.btnDividir = new System.Windows.Forms.Button();
             this.btnCobrar = new System.Windows.Forms.Button();
             this.btnPedido = new System.Windows.Forms.Button();
-            this.btnImprimirPreCuenta = new System.Windows.Forms.Button();
             this.btnSeparar = new System.Windows.Forms.Button();
             this.btnDctoProducto = new System.Windows.Forms.Button();
             this.lblNombreCat = new System.Windows.Forms.Label();
@@ -128,36 +118,29 @@
             this.Cant = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvDetalleMenu = new System.Windows.Forms.DataGridView();
             this.dgvDetalleVentaMenu = new System.Windows.Forms.DataGridView();
-            this.btnUpProductos = new System.Windows.Forms.Button();
-            this.btnDownProductos = new System.Windows.Forms.Button();
-            this.btnUp = new System.Windows.Forms.Button();
-            this.btnDown = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
-            this.btnLimpiar = new System.Windows.Forms.Button();
+            this.dgvProductos = new System.Windows.Forms.DataGridView();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataListadoDetalle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataCocina)).BeginInit();
             this.panel1.SuspendLayout();
-            this.plCategorias.SuspendLayout();
-            this.plProductos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorIcono)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtStock)).BeginInit();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBanderaMenu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetalleMenu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetalleVentaMenu)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvProductos)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.WhiteSmoke;
             this.groupBox1.Controls.Add(this.dataListadoDetalle);
-            this.groupBox1.Controls.Add(this.btnImprimirComanda);
             this.groupBox1.Controls.Add(this.lblDescrProducto);
             this.groupBox1.Controls.Add(this.lblIndice);
             this.groupBox1.Controls.Add(this.txtCantidad);
-            this.groupBox1.Controls.Add(this.btnTermino);
             this.groupBox1.Controls.Add(this.button13);
             this.groupBox1.Controls.Add(this.button15);
             this.groupBox1.Controls.Add(this.lblIdMesa);
@@ -196,7 +179,7 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBox1.Size = new System.Drawing.Size(445, 745);
+            this.groupBox1.Size = new System.Drawing.Size(525, 745);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
@@ -212,24 +195,13 @@
             this.dataListadoDetalle.ReadOnly = true;
             this.dataListadoDetalle.RowTemplate.Height = 24;
             this.dataListadoDetalle.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataListadoDetalle.Size = new System.Drawing.Size(437, 468);
+            this.dataListadoDetalle.Size = new System.Drawing.Size(509, 468);
             this.dataListadoDetalle.TabIndex = 32;
             this.dataListadoDetalle.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataListadoDetalle_CellContentClick);
             this.dataListadoDetalle.Click += new System.EventHandler(this.dataListadoDetalle_Click);
             this.dataListadoDetalle.DoubleClick += new System.EventHandler(this.dataListadoDetalle_DoubleClick);
             this.dataListadoDetalle.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataListadoDetalle_KeyDown);
             this.dataListadoDetalle.ChangeUICues += new System.Windows.Forms.UICuesEventHandler(this.dataListadoDetalle_ChangeUICues);
-            // 
-            // btnImprimirComanda
-            // 
-            this.btnImprimirComanda.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnImprimirComanda.Image = global::CapaPresentacion.Properties.Resources.if_document_print_118913__1_;
-            this.btnImprimirComanda.Location = new System.Drawing.Point(388, 25);
-            this.btnImprimirComanda.Name = "btnImprimirComanda";
-            this.btnImprimirComanda.Size = new System.Drawing.Size(55, 45);
-            this.btnImprimirComanda.TabIndex = 94;
-            this.btnImprimirComanda.UseVisualStyleBackColor = false;
-            this.btnImprimirComanda.Click += new System.EventHandler(this.btnImprimirComanda_Click);
             // 
             // lblDescrProducto
             // 
@@ -264,17 +236,6 @@
             this.txtCantidad.TextChanged += new System.EventHandler(this.txtCantidad_TextChanged);
             this.txtCantidad.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCantidad_KeyDown);
             this.txtCantidad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCantidad_KeyPress);
-            // 
-            // btnTermino
-            // 
-            this.btnTermino.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnTermino.Image = global::CapaPresentacion.Properties.Resources.edit4;
-            this.btnTermino.Location = new System.Drawing.Point(327, 25);
-            this.btnTermino.Name = "btnTermino";
-            this.btnTermino.Size = new System.Drawing.Size(55, 45);
-            this.btnTermino.TabIndex = 60;
-            this.btnTermino.UseVisualStyleBackColor = false;
-            this.btnTermino.Click += new System.EventHandler(this.btnTermino_Click);
             // 
             // button13
             // 
@@ -511,7 +472,7 @@
             this.txtTotalPagado.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.txtTotalPagado.Font = new System.Drawing.Font("Roboto", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTotalPagado.ForeColor = System.Drawing.Color.Lime;
-            this.txtTotalPagado.Location = new System.Drawing.Point(309, 669);
+            this.txtTotalPagado.Location = new System.Drawing.Point(379, 666);
             this.txtTotalPagado.Name = "txtTotalPagado";
             this.txtTotalPagado.ReadOnly = true;
             this.txtTotalPagado.Size = new System.Drawing.Size(130, 59);
@@ -524,7 +485,7 @@
             this.txtDescuento.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.txtDescuento.Font = new System.Drawing.Font("Roboto", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDescuento.ForeColor = System.Drawing.Color.Lime;
-            this.txtDescuento.Location = new System.Drawing.Point(309, 618);
+            this.txtDescuento.Location = new System.Drawing.Point(379, 615);
             this.txtDescuento.Name = "txtDescuento";
             this.txtDescuento.ReadOnly = true;
             this.txtDescuento.Size = new System.Drawing.Size(126, 46);
@@ -537,7 +498,7 @@
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Roboto", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(207, 689);
+            this.label15.Location = new System.Drawing.Point(277, 686);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(87, 30);
             this.label15.TabIndex = 39;
@@ -547,7 +508,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(161, 639);
+            this.label7.Location = new System.Drawing.Point(231, 636);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(145, 26);
             this.label7.TabIndex = 52;
@@ -558,7 +519,7 @@
             this.txtSubTotal.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.txtSubTotal.Font = new System.Drawing.Font("Roboto", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSubTotal.ForeColor = System.Drawing.Color.Lime;
-            this.txtSubTotal.Location = new System.Drawing.Point(309, 556);
+            this.txtSubTotal.Location = new System.Drawing.Point(379, 553);
             this.txtSubTotal.Name = "txtSubTotal";
             this.txtSubTotal.ReadOnly = true;
             this.txtSubTotal.Size = new System.Drawing.Size(126, 46);
@@ -588,7 +549,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(192, 577);
+            this.label6.Location = new System.Drawing.Point(262, 574);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(91, 26);
             this.label6.TabIndex = 51;
@@ -697,29 +658,15 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Navy;
-            this.panel1.Controls.Add(this.lblSalon);
             this.panel1.Controls.Add(this.lblBanderaEstado);
             this.panel1.Controls.Add(this.lblIdUsuario);
-            this.panel1.Controls.Add(this.lblMesa);
-            this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.lblMesero);
-            this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label2);
             this.panel1.ForeColor = System.Drawing.Color.White;
             this.panel1.Location = new System.Drawing.Point(12, 10);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(445, 48);
+            this.panel1.Size = new System.Drawing.Size(525, 48);
             this.panel1.TabIndex = 5;
-            // 
-            // lblSalon
-            // 
-            this.lblSalon.AutoSize = true;
-            this.lblSalon.Font = new System.Drawing.Font("Roboto", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSalon.Location = new System.Drawing.Point(153, 17);
-            this.lblSalon.Name = "lblSalon";
-            this.lblSalon.Size = new System.Drawing.Size(40, 18);
-            this.lblSalon.TabIndex = 6;
-            this.lblSalon.Text = "Salon";
             // 
             // lblBanderaEstado
             // 
@@ -743,51 +690,21 @@
             this.lblIdUsuario.Text = "Mesa";
             this.lblIdUsuario.Visible = false;
             // 
-            // lblMesa
-            // 
-            this.lblMesa.AutoSize = true;
-            this.lblMesa.Font = new System.Drawing.Font("Roboto", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMesa.Location = new System.Drawing.Point(48, 16);
-            this.lblMesa.Name = "lblMesa";
-            this.lblMesa.Size = new System.Drawing.Size(40, 18);
-            this.lblMesa.TabIndex = 8;
-            this.lblMesa.Text = "Mesa";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Roboto", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(4, 16);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(43, 18);
-            this.label5.TabIndex = 7;
-            this.label5.Text = "Mesa:";
-            // 
             // lblMesero
             // 
             this.lblMesero.AutoSize = true;
             this.lblMesero.Font = new System.Drawing.Font("Roboto", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMesero.Location = new System.Drawing.Point(348, 17);
+            this.lblMesero.Location = new System.Drawing.Point(100, 20);
             this.lblMesero.Name = "lblMesero";
             this.lblMesero.Size = new System.Drawing.Size(55, 18);
             this.lblMesero.TabIndex = 5;
             this.lblMesero.Text = "Ninguno";
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Roboto", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(97, 17);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(43, 18);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Salón:";
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Roboto", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(270, 17);
+            this.label2.Location = new System.Drawing.Point(24, 20);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(58, 18);
             this.label2.TabIndex = 1;
@@ -797,7 +714,7 @@
             // 
             this.lblBanderaCatMen.AutoSize = true;
             this.lblBanderaCatMen.Font = new System.Drawing.Font("Roboto", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBanderaCatMen.Location = new System.Drawing.Point(532, 61);
+            this.lblBanderaCatMen.Location = new System.Drawing.Point(1458, 389);
             this.lblBanderaCatMen.Name = "lblBanderaCatMen";
             this.lblBanderaCatMen.Size = new System.Drawing.Size(15, 18);
             this.lblBanderaCatMen.TabIndex = 96;
@@ -808,7 +725,7 @@
             // 
             this.lblTipo.AutoSize = true;
             this.lblTipo.Font = new System.Drawing.Font("Roboto", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTipo.Location = new System.Drawing.Point(708, 29);
+            this.lblTipo.Location = new System.Drawing.Point(565, 42);
             this.lblTipo.Name = "lblTipo";
             this.lblTipo.Size = new System.Drawing.Size(42, 18);
             this.lblTipo.TabIndex = 10;
@@ -897,47 +814,6 @@
             this.lblNroProducto.TabIndex = 9;
             this.lblNroProducto.Text = "0";
             // 
-            // plCategorias
-            // 
-            this.plCategorias.AutoScroll = true;
-            this.plCategorias.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.plCategorias.Controls.Add(this.label1);
-            this.plCategorias.Location = new System.Drawing.Point(463, 12);
-            this.plCategorias.Name = "plCategorias";
-            this.plCategorias.Size = new System.Drawing.Size(984, 251);
-            this.plCategorias.TabIndex = 0;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label1.Location = new System.Drawing.Point(3, -3);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(81, 20);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "Categorías";
-            // 
-            // plProductos
-            // 
-            this.plProductos.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.plProductos.Controls.Add(this.label4);
-            this.plProductos.Location = new System.Drawing.Point(463, 274);
-            this.plProductos.Name = "plProductos";
-            this.plProductos.Size = new System.Drawing.Size(984, 344);
-            this.plProductos.TabIndex = 8;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label4.Location = new System.Drawing.Point(3, -3);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(77, 20);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "Productos";
-            // 
             // ttMensaje
             // 
             this.ttMensaje.IsBalloon = true;
@@ -968,7 +844,7 @@
             // 
             this.lblCantidadCom.AutoSize = true;
             this.lblCantidadCom.Font = new System.Drawing.Font("Roboto", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCantidadCom.Location = new System.Drawing.Point(708, 29);
+            this.lblCantidadCom.Location = new System.Drawing.Point(565, 42);
             this.lblCantidadCom.Name = "lblCantidadCom";
             this.lblCantidadCom.Size = new System.Drawing.Size(42, 18);
             this.lblCantidadCom.TabIndex = 11;
@@ -979,7 +855,7 @@
             // 
             this.lblIdProductoCom.AutoSize = true;
             this.lblIdProductoCom.Font = new System.Drawing.Font("Roboto", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblIdProductoCom.Location = new System.Drawing.Point(708, 49);
+            this.lblIdProductoCom.Location = new System.Drawing.Point(542, 67);
             this.lblIdProductoCom.Name = "lblIdProductoCom";
             this.lblIdProductoCom.Size = new System.Drawing.Size(42, 18);
             this.lblIdProductoCom.TabIndex = 85;
@@ -1027,25 +903,39 @@
             // groupBox4
             // 
             this.groupBox4.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.groupBox4.Controls.Add(this.btnLimpiar);
             this.groupBox4.Controls.Add(this.btnReservar);
             this.groupBox4.Controls.Add(this.btnManual);
             this.groupBox4.Controls.Add(this.btnDividir);
             this.groupBox4.Controls.Add(this.btnCobrar);
             this.groupBox4.Controls.Add(this.btnPedido);
-            this.groupBox4.Controls.Add(this.btnImprimirPreCuenta);
             this.groupBox4.Controls.Add(this.btnSeparar);
             this.groupBox4.Controls.Add(this.btnDctoProducto);
             this.groupBox4.Controls.Add(this.lblIdProductoCom);
             this.groupBox4.Controls.Add(this.lblCantidadCom);
             this.groupBox4.Controls.Add(this.lblTipo);
-            this.groupBox4.Location = new System.Drawing.Point(470, 625);
+            this.groupBox4.Location = new System.Drawing.Point(559, 625);
             this.groupBox4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBox4.Size = new System.Drawing.Size(865, 178);
+            this.groupBox4.Size = new System.Drawing.Size(965, 178);
             this.groupBox4.TabIndex = 4;
             this.groupBox4.TabStop = false;
             this.groupBox4.Enter += new System.EventHandler(this.groupBox4_Enter);
+            // 
+            // btnLimpiar
+            // 
+            this.btnLimpiar.BackColor = System.Drawing.Color.LightGray;
+            this.btnLimpiar.Font = new System.Drawing.Font("Roboto", 9.230769F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLimpiar.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnLimpiar.Location = new System.Drawing.Point(829, 19);
+            this.btnLimpiar.Name = "btnLimpiar";
+            this.btnLimpiar.Size = new System.Drawing.Size(118, 145);
+            this.btnLimpiar.TabIndex = 99;
+            this.btnLimpiar.Text = "Limpiar ";
+            this.btnLimpiar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnLimpiar.UseVisualStyleBackColor = false;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
             // btnReservar
             // 
@@ -1053,11 +943,11 @@
             this.btnReservar.Font = new System.Drawing.Font("Roboto", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReservar.Image = global::CapaPresentacion.Properties.Resources.vale;
             this.btnReservar.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.btnReservar.Location = new System.Drawing.Point(380, 101);
+            this.btnReservar.Location = new System.Drawing.Point(259, 104);
             this.btnReservar.Name = "btnReservar";
             this.btnReservar.Size = new System.Drawing.Size(221, 70);
             this.btnReservar.TabIndex = 74;
-            this.btnReservar.Text = "RESERVAR (F7)";
+            this.btnReservar.Text = "RESERVAR (F5)";
             this.btnReservar.TextAlign = System.Drawing.ContentAlignment.BottomRight;
             this.btnReservar.UseVisualStyleBackColor = false;
             this.btnReservar.Click += new System.EventHandler(this.button14_Click_2);
@@ -1068,11 +958,11 @@
             this.btnManual.Font = new System.Drawing.Font("Roboto", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnManual.Image = global::CapaPresentacion.Properties.Resources.if_remove_ticket_49613__1_;
             this.btnManual.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.btnManual.Location = new System.Drawing.Point(186, 101);
+            this.btnManual.Location = new System.Drawing.Point(17, 97);
             this.btnManual.Name = "btnManual";
-            this.btnManual.Size = new System.Drawing.Size(188, 70);
+            this.btnManual.Size = new System.Drawing.Size(180, 70);
             this.btnManual.TabIndex = 73;
-            this.btnManual.Text = "V. MANUAL (F6)";
+            this.btnManual.Text = "V. MANUAL (F4)";
             this.btnManual.TextAlign = System.Drawing.ContentAlignment.BottomRight;
             this.btnManual.UseVisualStyleBackColor = false;
             this.btnManual.Visible = false;
@@ -1084,11 +974,11 @@
             this.btnDividir.Font = new System.Drawing.Font("Roboto", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDividir.Image = global::CapaPresentacion.Properties.Resources.if_12_1874864;
             this.btnDividir.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.btnDividir.Location = new System.Drawing.Point(607, 101);
+            this.btnDividir.Location = new System.Drawing.Point(545, 99);
             this.btnDividir.Name = "btnDividir";
             this.btnDividir.Size = new System.Drawing.Size(252, 70);
             this.btnDividir.TabIndex = 71;
-            this.btnDividir.Text = "DIVIDIR CUENTAS (F8)";
+            this.btnDividir.Text = "DIVIDIR CUENTAS (F6)";
             this.btnDividir.TextAlign = System.Drawing.ContentAlignment.BottomRight;
             this.btnDividir.UseVisualStyleBackColor = false;
             this.btnDividir.Click += new System.EventHandler(this.btnDividir_Click);
@@ -1099,9 +989,9 @@
             this.btnCobrar.Font = new System.Drawing.Font("Roboto", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCobrar.Image = global::CapaPresentacion.Properties.Resources.if_cashbox_45016;
             this.btnCobrar.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.btnCobrar.Location = new System.Drawing.Point(186, 22);
+            this.btnCobrar.Location = new System.Drawing.Point(259, 25);
             this.btnCobrar.Name = "btnCobrar";
-            this.btnCobrar.Size = new System.Drawing.Size(188, 66);
+            this.btnCobrar.Size = new System.Drawing.Size(221, 66);
             this.btnCobrar.TabIndex = 70;
             this.btnCobrar.Text = "COBRAR (F2)";
             this.btnCobrar.TextAlign = System.Drawing.ContentAlignment.BottomRight;
@@ -1114,7 +1004,7 @@
             this.btnPedido.Font = new System.Drawing.Font("Roboto", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPedido.Image = global::CapaPresentacion.Properties.Resources.if_food_hamburder_v1_2386376;
             this.btnPedido.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.btnPedido.Location = new System.Drawing.Point(0, 20);
+            this.btnPedido.Location = new System.Drawing.Point(17, 19);
             this.btnPedido.Name = "btnPedido";
             this.btnPedido.Size = new System.Drawing.Size(180, 68);
             this.btnPedido.TabIndex = 0;
@@ -1123,32 +1013,17 @@
             this.btnPedido.UseVisualStyleBackColor = false;
             this.btnPedido.Click += new System.EventHandler(this.btnPedido_Click);
             // 
-            // btnImprimirPreCuenta
-            // 
-            this.btnImprimirPreCuenta.BackColor = System.Drawing.Color.LightGray;
-            this.btnImprimirPreCuenta.Font = new System.Drawing.Font("Roboto", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnImprimirPreCuenta.Image = global::CapaPresentacion.Properties.Resources.if_order_history_49596;
-            this.btnImprimirPreCuenta.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.btnImprimirPreCuenta.Location = new System.Drawing.Point(4, 101);
-            this.btnImprimirPreCuenta.Name = "btnImprimirPreCuenta";
-            this.btnImprimirPreCuenta.Size = new System.Drawing.Size(176, 70);
-            this.btnImprimirPreCuenta.TabIndex = 72;
-            this.btnImprimirPreCuenta.Text = "PRECUENTA (F5)";
-            this.btnImprimirPreCuenta.TextAlign = System.Drawing.ContentAlignment.BottomRight;
-            this.btnImprimirPreCuenta.UseVisualStyleBackColor = false;
-            this.btnImprimirPreCuenta.Click += new System.EventHandler(this.btnImprimirPreCuenta_Click);
-            // 
             // btnSeparar
             // 
             this.btnSeparar.BackColor = System.Drawing.Color.LightGray;
             this.btnSeparar.Font = new System.Drawing.Font("Roboto", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSeparar.Image = global::CapaPresentacion.Properties.Resources.if_Cut_728989;
             this.btnSeparar.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.btnSeparar.Location = new System.Drawing.Point(607, 20);
+            this.btnSeparar.Location = new System.Drawing.Point(545, 25);
             this.btnSeparar.Name = "btnSeparar";
             this.btnSeparar.Size = new System.Drawing.Size(252, 68);
             this.btnSeparar.TabIndex = 69;
-            this.btnSeparar.Text = "SEPARAR CUENTAS (F4)";
+            this.btnSeparar.Text = "SEPARAR CUENTAS (F3)";
             this.btnSeparar.TextAlign = System.Drawing.ContentAlignment.BottomRight;
             this.btnSeparar.UseVisualStyleBackColor = false;
             this.btnSeparar.Click += new System.EventHandler(this.button16_Click);
@@ -1159,7 +1034,7 @@
             this.btnDctoProducto.Font = new System.Drawing.Font("Roboto", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDctoProducto.Image = global::CapaPresentacion.Properties.Resources.vale;
             this.btnDctoProducto.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.btnDctoProducto.Location = new System.Drawing.Point(676, 27);
+            this.btnDctoProducto.Location = new System.Drawing.Point(590, 50);
             this.btnDctoProducto.Name = "btnDctoProducto";
             this.btnDctoProducto.Size = new System.Drawing.Size(91, 46);
             this.btnDctoProducto.TabIndex = 66;
@@ -1173,7 +1048,7 @@
             // 
             this.lblNombreCat.AutoSize = true;
             this.lblNombreCat.Font = new System.Drawing.Font("Roboto", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNombreCat.Location = new System.Drawing.Point(471, 61);
+            this.lblNombreCat.Location = new System.Drawing.Point(1460, 79);
             this.lblNombreCat.Name = "lblNombreCat";
             this.lblNombreCat.Size = new System.Drawing.Size(55, 18);
             this.lblNombreCat.TabIndex = 95;
@@ -1239,50 +1114,6 @@
             this.dgvDetalleVentaMenu.TabIndex = 97;
             this.dgvDetalleVentaMenu.Visible = false;
             // 
-            // btnUpProductos
-            // 
-            this.btnUpProductos.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnUpProductos.Image = global::CapaPresentacion.Properties.Resources.up31;
-            this.btnUpProductos.Location = new System.Drawing.Point(1453, 514);
-            this.btnUpProductos.Name = "btnUpProductos";
-            this.btnUpProductos.Size = new System.Drawing.Size(53, 45);
-            this.btnUpProductos.TabIndex = 48;
-            this.btnUpProductos.UseVisualStyleBackColor = false;
-            this.btnUpProductos.Click += new System.EventHandler(this.btnUpProductos_Click);
-            // 
-            // btnDownProductos
-            // 
-            this.btnDownProductos.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnDownProductos.Image = global::CapaPresentacion.Properties.Resources.down3;
-            this.btnDownProductos.Location = new System.Drawing.Point(1453, 577);
-            this.btnDownProductos.Name = "btnDownProductos";
-            this.btnDownProductos.Size = new System.Drawing.Size(53, 45);
-            this.btnDownProductos.TabIndex = 49;
-            this.btnDownProductos.UseVisualStyleBackColor = false;
-            this.btnDownProductos.Click += new System.EventHandler(this.btnDownProductos_Click);
-            // 
-            // btnUp
-            // 
-            this.btnUp.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnUp.Image = global::CapaPresentacion.Properties.Resources.up31;
-            this.btnUp.Location = new System.Drawing.Point(1453, 164);
-            this.btnUp.Name = "btnUp";
-            this.btnUp.Size = new System.Drawing.Size(53, 45);
-            this.btnUp.TabIndex = 46;
-            this.btnUp.UseVisualStyleBackColor = false;
-            this.btnUp.Click += new System.EventHandler(this.btnUp_Click);
-            // 
-            // btnDown
-            // 
-            this.btnDown.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnDown.Image = global::CapaPresentacion.Properties.Resources.down3;
-            this.btnDown.Location = new System.Drawing.Point(1453, 215);
-            this.btnDown.Name = "btnDown";
-            this.btnDown.Size = new System.Drawing.Size(53, 45);
-            this.btnDown.TabIndex = 47;
-            this.btnDown.UseVisualStyleBackColor = false;
-            this.btnDown.Click += new System.EventHandler(this.btnDown_Click);
-            // 
             // btnGuardar
             // 
             this.btnGuardar.BackColor = System.Drawing.Color.LightGray;
@@ -1299,19 +1130,15 @@
             this.btnGuardar.Visible = false;
             this.btnGuardar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
-            // btnLimpiar
+            // dgvProductos
             // 
-            this.btnLimpiar.BackColor = System.Drawing.Color.LightGray;
-            this.btnLimpiar.Font = new System.Drawing.Font("Roboto", 9.230769F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLimpiar.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnLimpiar.Location = new System.Drawing.Point(1341, 640);
-            this.btnLimpiar.Name = "btnLimpiar";
-            this.btnLimpiar.Size = new System.Drawing.Size(118, 156);
-            this.btnLimpiar.TabIndex = 99;
-            this.btnLimpiar.Text = "Limpiar ";
-            this.btnLimpiar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnLimpiar.UseVisualStyleBackColor = false;
-            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
+            this.dgvProductos.BackgroundColor = System.Drawing.Color.White;
+            this.dgvProductos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvProductos.Location = new System.Drawing.Point(559, 150);
+            this.dgvProductos.Name = "dgvProductos";
+            this.dgvProductos.RowTemplate.Height = 24;
+            this.dgvProductos.Size = new System.Drawing.Size(965, 468);
+            this.dgvProductos.TabIndex = 0;
             // 
             // frmVenta
             // 
@@ -1319,7 +1146,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(1527, 831);
-            this.Controls.Add(this.btnLimpiar);
+            this.Controls.Add(this.dgvProductos);
             this.Controls.Add(this.lblBanderaCatMen);
             this.Controls.Add(this.dgvDetalleVentaMenu);
             this.Controls.Add(this.dgvDetalleMenu);
@@ -1327,16 +1154,10 @@
             this.Controls.Add(this.lblNombreCat);
             this.Controls.Add(this.lblBanderaStock);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.btnUpProductos);
             this.Controls.Add(this.lblBandera);
-            this.Controls.Add(this.btnDownProductos);
             this.Controls.Add(this.lblNroProducto);
-            this.Controls.Add(this.plProductos);
             this.Controls.Add(this.lblNota);
-            this.Controls.Add(this.btnUp);
             this.Controls.Add(this.lblIdSalon);
-            this.Controls.Add(this.plCategorias);
-            this.Controls.Add(this.btnDown);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.lblBanderaUpdate);
@@ -1365,10 +1186,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataCocina)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.plCategorias.ResumeLayout(false);
-            this.plCategorias.PerformLayout();
-            this.plProductos.ResumeLayout(false);
-            this.plProductos.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorIcono)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtStock)).EndInit();
             this.groupBox4.ResumeLayout(false);
@@ -1376,6 +1193,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvBanderaMenu)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetalleMenu)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetalleVentaMenu)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvProductos)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1384,28 +1202,15 @@
         #endregion
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label5;
-        public System.Windows.Forms.Label lblSalon;
         public System.Windows.Forms.Label lblMesero;
-        public System.Windows.Forms.Label lblMesa;
-        private System.Windows.Forms.Panel plCategorias;
-        private System.Windows.Forms.Label label1;
         public System.Windows.Forms.Label lblNroProducto;
-        private System.Windows.Forms.Panel plProductos;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Button btnDown;
-        private System.Windows.Forms.Button btnUp;
-        private System.Windows.Forms.Button btnUpProductos;
-        private System.Windows.Forms.Button btnDownProductos;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btnActualizarCantidad;
         private System.Windows.Forms.Label lblPrecioUnitario;
         private System.Windows.Forms.Label lblTotalActual;
         public System.Windows.Forms.TextBox txtCantidad;
-        private System.Windows.Forms.Button btnTermino;
         public System.Windows.Forms.DataGridView dataListadoDetalle;
         public System.Windows.Forms.Label lblBandera;
         private System.Windows.Forms.Label lblNota;
@@ -1461,7 +1266,6 @@
         public System.Windows.Forms.Label lblBanderaStock;
         public System.Windows.Forms.Label lblIndice;
         public System.Windows.Forms.Label lblDescrProducto;
-        private System.Windows.Forms.Button btnImprimirComanda;
         private System.Windows.Forms.GroupBox groupBox4;
         public System.Windows.Forms.Label lblNombreCat;
         public System.Windows.Forms.Label lblBanderaCatMen;
@@ -1472,7 +1276,6 @@
         public System.Windows.Forms.Button btnDividir;
         public System.Windows.Forms.Button btnCobrar;
         public System.Windows.Forms.Button btnPedido;
-        public System.Windows.Forms.Button btnImprimirPreCuenta;
         public System.Windows.Forms.Button btnDctoProducto;
         public System.Windows.Forms.Button btnSeparar;
         public System.Windows.Forms.Button btnManual;
@@ -1486,5 +1289,6 @@
         public System.Windows.Forms.Label lblBanderaEstado;
         public System.Windows.Forms.Button btnReservar;
         public System.Windows.Forms.Button btnLimpiar;
+        private System.Windows.Forms.DataGridView dgvProductos;
     }
 }

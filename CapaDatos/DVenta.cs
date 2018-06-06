@@ -303,7 +303,7 @@ namespace CapaDatos
             this.TipoCliente = tipoCliente;
         }
 
-        public string InsertarPedido(DVenta Venta, List<DDetalleVenta> DetalleVenta, List<DDetalleVentaMenu> DetalleVentaMenu)
+        public string InsertarPedido(DVenta Venta, List<DDetalleVenta> DetalleVenta)
         {
             string rpta = "";
             SqlConnection sqlCon = new SqlConnection();
@@ -451,7 +451,7 @@ namespace CapaDatos
                     {
                         det.IdVenta = this.IdVenta;
 
-                        rpta = det.Insertar(det, ref sqlCon, ref sqlTran,DetalleVentaMenu);
+                        rpta = det.Insertar(det, ref sqlCon, ref sqlTran);
                         if (!rpta.Equals("OK"))
                         {
                             break;
@@ -480,7 +480,7 @@ namespace CapaDatos
             return rpta;
         }
 
-        public string InsertarPedidoDelivery(DVenta Venta, List<DDetalleVenta> DetalleVenta, DDelivery Delivery, List<DDetalleVentaMenu> DetalleMenu)
+        public string InsertarPedidoDelivery(DVenta Venta, List<DDetalleVenta> DetalleVenta, DDelivery Delivery)
         {
             string rpta = "";
             SqlConnection sqlCon = new SqlConnection();
@@ -627,7 +627,7 @@ namespace CapaDatos
                     {
                         det.IdVenta = this.IdVenta;
 
-                        rpta = det.Insertar(det, ref sqlCon, ref sqlTran, DetalleMenu);
+                        rpta = det.Insertar(det, ref sqlCon, ref sqlTran);
                         if (!rpta.Equals("OK"))
                         {
                             break;
@@ -660,7 +660,7 @@ namespace CapaDatos
             return rpta;
         }
 
-        public string InsertarPedido_Pagado(DVenta Venta, List<DDetalleVenta> DetalleVenta, DComprobante compr, List<DDetalleVentaMenu> DetalleVentaMenu)
+        public string InsertarPedido_Pagado(DVenta Venta, List<DDetalleVenta> DetalleVenta, DComprobante compr)
         {
             string rpta = "";
             string nroCompr = "";
@@ -808,7 +808,7 @@ namespace CapaDatos
                     {
                         det.IdVenta = this.IdVenta;
 
-                        rpta = det.Insertar(det, ref sqlCon, ref sqlTran,DetalleVentaMenu);
+                        rpta = det.Insertar(det, ref sqlCon, ref sqlTran);
                         if (!rpta.Equals("OK"))
                         {
                             break;
@@ -1163,7 +1163,7 @@ namespace CapaDatos
             return rpta;
         }
 
-        public string InsertarPedido_Dividido(DVenta Venta, List<DDetalleVenta> DetalleVenta, List<DDetalleVentaMenu> DetalleVentaMenu)
+        public string InsertarPedido_Dividido(DVenta Venta, List<DDetalleVenta> DetalleVenta)
         {
             string rpta = "";
             SqlConnection sqlCon = new SqlConnection();
@@ -1309,7 +1309,7 @@ namespace CapaDatos
                     {
                         det.IdVenta = this.IdVenta;
 
-                        rpta = det.Insertar(det, ref sqlCon, ref sqlTran, DetalleVentaMenu);
+                        rpta = det.Insertar(det, ref sqlCon, ref sqlTran);
                         if (!rpta.Equals("OK"))
                         {
                             break;
@@ -1769,7 +1769,7 @@ namespace CapaDatos
             return dtResultado;
         }
 
-        public string InsertarPedido_PagadoManual(DVenta Venta, List<DDetalleVenta> DetalleVenta, DComprobante compr, List<DDetalleVentaMenu> DetalleVentaMenu)
+        public string InsertarPedido_PagadoManual(DVenta Venta, List<DDetalleVenta> DetalleVenta, DComprobante compr)
         {
             string rpta = "";
             string nroCompr = "";
@@ -1916,7 +1916,7 @@ namespace CapaDatos
                     {
                         det.IdVenta = this.IdVenta;
 
-                        rpta = det.Insertar(det, ref sqlCon, ref sqlTran,DetalleVentaMenu);
+                        rpta = det.Insertar(det, ref sqlCon, ref sqlTran);
                         if (!rpta.Equals("OK"))
                         {
                             break;
@@ -1949,7 +1949,7 @@ namespace CapaDatos
             return rpta;
         }
 
-        public string InsertarPedidoPagadoR(DVenta Venta, List<DDetalleVenta> DetalleVenta, List<DDetalleVentaMenu> DetalleVentaMenu)
+        public string InsertarPedidoPagadoR(DVenta Venta, List<DDetalleVenta> DetalleVenta)
         {
             string rpta = "";
             SqlConnection sqlCon = new SqlConnection();
@@ -2096,7 +2096,7 @@ namespace CapaDatos
                     {
                         det.IdVenta = this.IdVenta;
 
-                        rpta = det.Insertar(det, ref sqlCon, ref sqlTran, DetalleVentaMenu);
+                        rpta = det.Insertar(det, ref sqlCon, ref sqlTran);
                         if (!rpta.Equals("OK"))
                         {
                             break;
@@ -2454,7 +2454,7 @@ namespace CapaDatos
             return rpta;
         }
 
-        public string InsertarPedido_PagadoCreCort(DVenta Venta, List<DDetalleVenta> DetalleVenta, List<DDetalleVentaMenu> DetalleVentaMenu)
+        public string InsertarPedido_PagadoCreCort(DVenta Venta, List<DDetalleVenta> DetalleVenta)
         {
             string rpta = "";
            
@@ -2602,7 +2602,7 @@ namespace CapaDatos
                     {
                         det.IdVenta = this.IdVenta;
 
-                        rpta = det.Insertar(det, ref sqlCon, ref sqlTran, DetalleVentaMenu);
+                        rpta = det.Insertar(det, ref sqlCon, ref sqlTran);
                         if (!rpta.Equals("OK"))
                         {
                             break;

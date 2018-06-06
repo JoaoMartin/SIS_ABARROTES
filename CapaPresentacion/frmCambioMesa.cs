@@ -177,10 +177,10 @@ namespace CapaPresentacion
                         if (rpta == "OK")
                         {
                             frmVenta.f1.lblIdMesa.Text = row[0].ToString();
-                            frmVenta.f1.lblMesa.Text = row[1].ToString();
+                           // frmVenta.f1.lblMesa.Text = row[1].ToString();
 
                             frmVenta.f1.lblIdSalon.Text = this.lblIdSalon.Text;
-                            frmVenta.f1.lblSalon.Text = this.lblNombreSalon.Text;
+                            //frmVenta.f1.lblSalon.Text = this.lblNombreSalon.Text;
 
                             frmModuloSalon.f3.limpiarMesas();
                             frmModuloSalon.f3.mostrarSalones();
