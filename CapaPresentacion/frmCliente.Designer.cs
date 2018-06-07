@@ -101,7 +101,7 @@
             this.txtBuscar.Location = new System.Drawing.Point(30, 67);
             this.txtBuscar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtBuscar.Name = "txtBuscar";
-            this.txtBuscar.Size = new System.Drawing.Size(601, 34);
+            this.txtBuscar.Size = new System.Drawing.Size(619, 34);
             this.txtBuscar.TabIndex = 1;
             this.txtBuscar.TextChanged += new System.EventHandler(this.txtBuscar_TextChanged);
             // 
@@ -337,10 +337,10 @@
             // rbTipoCliente
             // 
             this.rbTipoCliente.AutoSize = true;
-            this.rbTipoCliente.Font = new System.Drawing.Font("Roboto", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbTipoCliente.Font = new System.Drawing.Font("Roboto", 9.230769F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbTipoCliente.Location = new System.Drawing.Point(384, 37);
             this.rbTipoCliente.Name = "rbTipoCliente";
-            this.rbTipoCliente.Size = new System.Drawing.Size(94, 22);
+            this.rbTipoCliente.Size = new System.Drawing.Size(110, 24);
             this.rbTipoCliente.TabIndex = 10;
             this.rbTipoCliente.Text = "Tipo Cliente";
             this.rbTipoCliente.UseVisualStyleBackColor = true;
@@ -361,10 +361,10 @@
             // 
             this.rbTodos.AutoSize = true;
             this.rbTodos.Checked = true;
-            this.rbTodos.Font = new System.Drawing.Font("Roboto", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbTodos.Font = new System.Drawing.Font("Roboto", 9.230769F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbTodos.Location = new System.Drawing.Point(522, 36);
             this.rbTodos.Name = "rbTodos";
-            this.rbTodos.Size = new System.Drawing.Size(109, 22);
+            this.rbTodos.Size = new System.Drawing.Size(127, 24);
             this.rbTodos.TabIndex = 4;
             this.rbTodos.TabStop = true;
             this.rbTodos.Text = "Mostrar Todos";
@@ -374,10 +374,10 @@
             // rbTipoDoc
             // 
             this.rbTipoDoc.AutoSize = true;
-            this.rbTipoDoc.Font = new System.Drawing.Font("Roboto", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbTipoDoc.Font = new System.Drawing.Font("Roboto", 9.230769F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbTipoDoc.Location = new System.Drawing.Point(247, 36);
             this.rbTipoDoc.Name = "rbTipoDoc";
-            this.rbTipoDoc.Size = new System.Drawing.Size(87, 22);
+            this.rbTipoDoc.Size = new System.Drawing.Size(99, 24);
             this.rbTipoDoc.TabIndex = 3;
             this.rbTipoDoc.Text = "DNI o RUC";
             this.rbTipoDoc.UseVisualStyleBackColor = true;
@@ -386,10 +386,10 @@
             // rbNombre
             // 
             this.rbNombre.AutoSize = true;
-            this.rbNombre.Font = new System.Drawing.Font("Roboto", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbNombre.Font = new System.Drawing.Font("Roboto", 9.230769F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbNombre.Location = new System.Drawing.Point(30, 36);
             this.rbNombre.Name = "rbNombre";
-            this.rbNombre.Size = new System.Drawing.Size(159, 22);
+            this.rbNombre.Size = new System.Drawing.Size(189, 24);
             this.rbNombre.TabIndex = 2;
             this.rbNombre.Text = "Nombre o Razón Social";
             this.rbNombre.UseVisualStyleBackColor = true;

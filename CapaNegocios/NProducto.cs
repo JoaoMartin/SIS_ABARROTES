@@ -10,7 +10,8 @@ namespace CapaNegocios
 {
     public class NProducto
     {
-        public static string Insertar(string nombre, string descripcion, decimal stock, decimal precioVenta, string tipo, string estado, int idCategoria, string imprimir, decimal stockMinimo, decimal costo, int idUnidadMedida)
+        public static string Insertar(string nombre, string descripcion, decimal stock, decimal precioVenta, string tipo, string estado, int idCategoria, string imprimir, 
+            decimal stockMinimo, decimal costo, int idUnidadMedida, decimal precioVentaxMayor, int? idMarca)
         {
             DProducto Obj = new DProducto();
             Obj.Nombre = nombre;
@@ -24,10 +25,13 @@ namespace CapaNegocios
             Obj.StockMinimo = stockMinimo;
             Obj.Costo = costo;
             Obj.IdUnidadMedida = idUnidadMedida;
+            Obj.PrecioVentaxMayor = precioVentaxMayor;
+            Obj.IdMarca = idMarca;
             return Obj.Insertar(Obj);
         }
 
-        public static string Editar(int idProducto, string nombre, string descripcion, decimal stock, decimal precioVenta, string tipo, string estado, int idCategoria, string imprimir, decimal stockMinimo, decimal costo, int idUnidadMedida)
+        public static string Editar(int idProducto, string nombre, string descripcion, decimal stock, decimal precioVenta, string tipo, string estado, int idCategoria, string imprimir, 
+            decimal stockMinimo, decimal costo, int idUnidadMedida, decimal precioVentaxMayor, int? idMarca)
         {
             DProducto Obj = new DProducto();
             Obj.IdProducto = idProducto;
@@ -42,6 +46,8 @@ namespace CapaNegocios
             Obj.StockMinimo = stockMinimo;
             Obj.Costo = costo;
             Obj.IdUnidadMedida = idUnidadMedida;
+            Obj.PrecioVentaxMayor = precioVentaxMayor;
+            Obj.IdMarca = idMarca;
             return Obj.Editar(Obj);
         }
 
@@ -126,6 +132,12 @@ namespace CapaNegocios
             Obj.TextoBuscar = textoBuscar;
             return Obj.BuscarCategoriaProducto(Obj);
         }
+        public static DataTable BuscarMarcaProducto(string textoBuscar)
+        {
+            DProducto Obj = new DProducto();
+            Obj.TextoBuscar = textoBuscar;
+            return Obj.BuscarMarcaProducto(Obj);
+        }
 
         public static DataTable BuscarCategoriaProductoPlato(string textoBuscar)
         {
@@ -183,7 +195,8 @@ namespace CapaNegocios
             return Obj.BuscarNombeProductoArticulo(Obj);
         }
 
-        public static string InsertarProductoCompuesto(string nombre, string descripcion, decimal stock, decimal precioVenta, string tipo, string estado, int idCategoria, string imprimir, decimal stockMinimo, decimal costo, DataTable dtDetalle, int idUnidadMedida)
+        public static string InsertarProductoCompuesto(string nombre, string descripcion, decimal stock, decimal precioVenta, string tipo, string estado, int idCategoria, string imprimir,
+            decimal stockMinimo, decimal costo, DataTable dtDetalle, int idUnidadMedida, decimal precioVentaxMayor, int? idMarca)
         {
             DProducto Obj = new DProducto();
             Obj.Nombre = nombre;
@@ -197,6 +210,8 @@ namespace CapaNegocios
             Obj.StockMinimo = stockMinimo;
             Obj.Costo = costo;
             Obj.IdUnidadMedida = idUnidadMedida;
+            Obj.PrecioVentaxMayor = precioVentaxMayor;
+            Obj.IdMarca = idMarca;
 
             List<DDetalleProducto> detalles = new List<DDetalleProducto>();
             foreach (DataRow row in dtDetalle.Rows)

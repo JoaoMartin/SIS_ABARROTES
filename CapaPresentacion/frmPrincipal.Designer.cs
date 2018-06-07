@@ -125,6 +125,7 @@
             this.lblMontoCorteCaja = new System.Windows.Forms.Label();
             this.lblFechaCorteCaja = new System.Windows.Forms.Label();
             this.lblApellidos = new System.Windows.Forms.Label();
+            this.mnuMarca = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -266,7 +267,7 @@
             this.mnuIngresos.Enabled = false;
             this.mnuIngresos.Image = ((System.Drawing.Image)(resources.GetObject("mnuIngresos.Image")));
             this.mnuIngresos.Name = "mnuIngresos";
-            this.mnuIngresos.Size = new System.Drawing.Size(177, 26);
+            this.mnuIngresos.Size = new System.Drawing.Size(169, 26);
             this.mnuIngresos.Text = "Ingresos";
             this.mnuIngresos.Click += new System.EventHandler(this.ingresosToolStripMenuItem_Click);
             // 
@@ -275,7 +276,7 @@
             this.mnuVerCompras.Enabled = false;
             this.mnuVerCompras.Image = global::CapaPresentacion.Properties.Resources.if_custom_reports_63120;
             this.mnuVerCompras.Name = "mnuVerCompras";
-            this.mnuVerCompras.Size = new System.Drawing.Size(177, 26);
+            this.mnuVerCompras.Size = new System.Drawing.Size(169, 26);
             this.mnuVerCompras.Text = "Ver Compras";
             this.mnuVerCompras.Click += new System.EventHandler(this.verComprasToolStripMenuItem_Click);
             // 
@@ -424,6 +425,7 @@
             this.mnuCategoria,
             this.mnuCliente,
             this.mnuInsumos,
+            this.mnuMarca,
             this.mnuMesas,
             this.mnuNiveles,
             this.mnuPlatos,
@@ -624,7 +626,7 @@
             this.mnuAdelanto.Enabled = false;
             this.mnuAdelanto.Image = global::CapaPresentacion.Properties.Resources.icongo;
             this.mnuAdelanto.Name = "mnuAdelanto";
-            this.mnuAdelanto.Size = new System.Drawing.Size(177, 26);
+            this.mnuAdelanto.Size = new System.Drawing.Size(165, 26);
             this.mnuAdelanto.Text = "Adelanto";
             this.mnuAdelanto.Click += new System.EventHandler(this.adelantoToolStripMenuItem_Click);
             // 
@@ -633,7 +635,7 @@
             this.mnuDescuentoTrabajador.Enabled = false;
             this.mnuDescuentoTrabajador.Image = global::CapaPresentacion.Properties.Resources.if_Backspace_clean_clear_delete_remove_erase_1886483;
             this.mnuDescuentoTrabajador.Name = "mnuDescuentoTrabajador";
-            this.mnuDescuentoTrabajador.Size = new System.Drawing.Size(177, 26);
+            this.mnuDescuentoTrabajador.Size = new System.Drawing.Size(165, 26);
             this.mnuDescuentoTrabajador.Text = "Descuentos";
             this.mnuDescuentoTrabajador.Click += new System.EventHandler(this.descuentosToolStripMenuItem_Click);
             // 
@@ -642,7 +644,7 @@
             this.mnuPagoTrabajador.Enabled = false;
             this.mnuPagoTrabajador.Image = global::CapaPresentacion.Properties.Resources.if_cashbox_45016;
             this.mnuPagoTrabajador.Name = "mnuPagoTrabajador";
-            this.mnuPagoTrabajador.Size = new System.Drawing.Size(177, 26);
+            this.mnuPagoTrabajador.Size = new System.Drawing.Size(165, 26);
             this.mnuPagoTrabajador.Text = "Pagos";
             this.mnuPagoTrabajador.Click += new System.EventHandler(this.pagosToolStripMenuItem_Click);
             // 
@@ -1028,6 +1030,16 @@
             this.lblApellidos.Text = "1";
             this.lblApellidos.Visible = false;
             // 
+            // mnuMarca
+            // 
+            this.mnuMarca.Enabled = false;
+            this.mnuMarca.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.230769F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mnuMarca.Image = global::CapaPresentacion.Properties.Resources.link;
+            this.mnuMarca.Name = "mnuMarca";
+            this.mnuMarca.Size = new System.Drawing.Size(208, 26);
+            this.mnuMarca.Text = "Marca";
+            this.mnuMarca.Click += new System.EventHandler(this.mnuMarca_Click);
+            // 
             // frmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -1171,6 +1183,7 @@
         private System.Windows.Forms.ToolStripMenuItem movimientoCajaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ingresosEgresosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem porCantidadDeProductosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mnuMarca;
     }
 }
 

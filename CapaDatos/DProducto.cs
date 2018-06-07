@@ -24,6 +24,8 @@ namespace CapaDatos
         private decimal _Costo;
         private int _IdUnidadMedida;
         private decimal _StockTienda;
+        private decimal _PrecioVentaxMayor;
+        private int? _IdMarca;
 
         public int IdProducto
         {
@@ -207,9 +209,36 @@ namespace CapaDatos
             }
         }
 
+        public decimal PrecioVentaxMayor
+        {
+            get
+            {
+                return _PrecioVentaxMayor;
+            }
+
+            set
+            {
+                _PrecioVentaxMayor = value;
+            }
+        }
+
+        public int? IdMarca
+        {
+            get
+            {
+                return _IdMarca;
+            }
+
+            set
+            {
+                _IdMarca = value;
+            }
+        }
+
         public DProducto() { }
 
-        public DProducto(int idProducto, string nombre, string descripcion, decimal stock, decimal precioVenta, string tipo, string estado, int idCategoria, string textoBuscar, string imprimir, decimal stockMinimo, decimal costo, int idUnidadMedida, decimal stockTienda)
+        public DProducto(int idProducto, string nombre, string descripcion, decimal stock, decimal precioVenta, string tipo, string estado, int idCategoria, string textoBuscar, 
+            string imprimir, decimal stockMinimo, decimal costo, int idUnidadMedida, decimal stockTienda, decimal precioVentaxMayor, int idMarca)
         {
             this.IdProducto = idProducto;
             this.Nombre = nombre;
@@ -225,6 +254,8 @@ namespace CapaDatos
             this.Costo = costo;
             this.IdUnidadMedida = idUnidadMedida;
             this.StockTienda = stockTienda;
+            this.PrecioVentaxMayor = precioVentaxMayor;
+            this.IdMarca = idMarca;
         }
 
         public string Insertar(DProducto Producto)
@@ -326,6 +357,20 @@ namespace CapaDatos
                 ParIdUnidadMedida.SqlDbType = SqlDbType.Int;
                 ParIdUnidadMedida.Value = Producto.IdUnidadMedida;
                 sqlCmd.Parameters.Add(ParIdUnidadMedida);
+
+                SqlParameter ParPrcioVentaxMayor = new SqlParameter();
+                ParPrcioVentaxMayor.ParameterName = "@precioVentaxMayor";
+                ParPrcioVentaxMayor.SqlDbType = SqlDbType.Decimal;
+                ParPrcioVentaxMayor.Precision = 8;
+                ParPrcioVentaxMayor.Scale = 2;
+                ParPrcioVentaxMayor.Value = Producto.PrecioVentaxMayor;
+                sqlCmd.Parameters.Add(ParPrcioVentaxMayor);
+
+                SqlParameter ParIdMarca = new SqlParameter();
+                ParIdMarca.ParameterName = "@idMarca";
+                ParIdMarca.SqlDbType = SqlDbType.Int;
+                ParIdMarca.Value = Producto.IdMarca;
+                sqlCmd.Parameters.Add(ParIdMarca);
 
                 rpta = sqlCmd.ExecuteNonQuery() == 1 ? "OK" : "No se ingresó el Registro";
             }
@@ -439,6 +484,19 @@ namespace CapaDatos
                 ParIdUnidadMedida.Value = Producto.IdUnidadMedida;
                 sqlCmd.Parameters.Add(ParIdUnidadMedida);
 
+                SqlParameter ParPrcioVentaxMayor = new SqlParameter();
+                ParPrcioVentaxMayor.ParameterName = "@precioVentaxMayor";
+                ParPrcioVentaxMayor.SqlDbType = SqlDbType.Decimal;
+                ParPrcioVentaxMayor.Precision = 8;
+                ParPrcioVentaxMayor.Scale = 2;
+                ParPrcioVentaxMayor.Value = Producto.PrecioVentaxMayor;
+                sqlCmd.Parameters.Add(ParPrcioVentaxMayor);
+
+                SqlParameter ParIdMarca = new SqlParameter();
+                ParIdMarca.ParameterName = "@idMarca";
+                ParIdMarca.SqlDbType = SqlDbType.Int;
+                ParIdMarca.Value = Producto.IdMarca;
+                sqlCmd.Parameters.Add(ParIdMarca);
 
                 rpta = sqlCmd.ExecuteNonQuery() == 1 ? "OK" : "No se editó el Registro";
             }
@@ -774,6 +832,39 @@ namespace CapaDatos
                 SqlCommand sqlCmd = new SqlCommand();
                 sqlCmd.Connection = sqlCon;
                 sqlCmd.CommandText = "sp_buscarCategoriaProducto";
+                sqlCmd.CommandType = CommandType.StoredProcedure;
+
+                SqlParameter ParTextoBuscar = new SqlParameter();
+                ParTextoBuscar.ParameterName = "@textoBuscar";
+                ParTextoBuscar.SqlDbType = SqlDbType.VarChar;
+                ParTextoBuscar.Size = 50;
+                ParTextoBuscar.Value = Producto.TextoBuscar;
+
+                sqlCmd.Parameters.Add(ParTextoBuscar);
+
+                SqlDataAdapter sqlDat = new SqlDataAdapter(sqlCmd);
+                sqlDat.Fill(dtResultado);
+            }
+            catch (Exception ex)
+            {
+                dtResultado = null;
+            }
+
+            return dtResultado;
+        }
+
+
+        public DataTable BuscarMarcaProducto(DProducto Producto)
+        {
+            DataTable dtResultado = new DataTable("Producto");
+            SqlConnection sqlCon = new SqlConnection();
+
+            try
+            {
+                sqlCon.ConnectionString = Conexion.cn;
+                SqlCommand sqlCmd = new SqlCommand();
+                sqlCmd.Connection = sqlCon;
+                sqlCmd.CommandText = "sp_buscarMarcaProducto";
                 sqlCmd.CommandType = CommandType.StoredProcedure;
 
                 SqlParameter ParTextoBuscar = new SqlParameter();
@@ -1152,6 +1243,20 @@ namespace CapaDatos
                 ParIdUnidadMedida.SqlDbType = SqlDbType.Int;
                 ParIdUnidadMedida.Value = Producto.IdUnidadMedida;
                 sqlCmd.Parameters.Add(ParIdUnidadMedida);
+
+                SqlParameter ParPrcioVentaxMayor = new SqlParameter();
+                ParPrcioVentaxMayor.ParameterName = "@precioVentaxMayor";
+                ParPrcioVentaxMayor.SqlDbType = SqlDbType.Decimal;
+                ParPrcioVentaxMayor.Precision = 8;
+                ParPrcioVentaxMayor.Scale = 2;
+                ParPrcioVentaxMayor.Value = Producto.PrecioVentaxMayor;
+                sqlCmd.Parameters.Add(ParPrcioVentaxMayor);
+
+                SqlParameter ParIdMarca = new SqlParameter();
+                ParIdMarca.ParameterName = "@idMarca";
+                ParIdMarca.SqlDbType = SqlDbType.Int;
+                ParIdMarca.Value = Producto.IdMarca;
+                sqlCmd.Parameters.Add(ParIdMarca);
 
                 rpta = sqlCmd.ExecuteNonQuery() >= 1 ? "OK" : "No se ingresó el Registro";
                 if (rpta.Equals("OK"))

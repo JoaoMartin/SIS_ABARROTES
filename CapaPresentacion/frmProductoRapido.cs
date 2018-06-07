@@ -64,12 +64,17 @@ namespace CapaPresentacion
             try
             {
                 string rpta = "";
-                int idCategoria, idUnidad;
+                int idCategoria, idUnidad, idMarca;
 
                 if (this.cbCategoria.SelectedIndex == -1)
                 {
                     MensajeError("Seleccione una categoría");
                     errorIcono.SetError(cbCategoria, "Seleccione una categoría");
+                }
+                else if (this.cbMarca.SelectedIndex == -1)
+                {
+                    MensajeError("Seleccione una marca");
+                    errorIcono.SetError(cbMarca, "Seleccione una marca");
                 }
                 else if (this.cbUnidad.SelectedIndex == -1)
                 {
@@ -88,7 +93,9 @@ namespace CapaPresentacion
                 
                     idCategoria = Convert.ToInt32(this.cbCategoria.SelectedValue.ToString());
                     idUnidad = Convert.ToInt32(this.cbUnidad.SelectedValue.ToString());
-                    rpta = NProducto.Insertar(this.txtNombre.Text.Trim().ToUpper(), "",0,00.00m,"A", "A", idCategoria,imprimir,0,00.00m,idUnidad);
+                    idMarca = Convert.ToInt32(this.cbMarca.SelectedValue.ToString());
+                    
+                    rpta = NProducto.Insertar(this.txtNombre.Text.Trim().ToUpper(), "",0,00.00m,"A", "A", idCategoria,imprimir,0,00.00m,idUnidad,00.00m,idMarca);
 
                      if (rpta.Equals("OK"))
                      {

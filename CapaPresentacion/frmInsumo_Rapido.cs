@@ -71,7 +71,7 @@ namespace CapaPresentacion
                     string imprimir = "";
 
                     idUnidad = Convert.ToInt32(this.cbUnidad.SelectedValue.ToString());
-                    rpta = NProducto.Insertar(this.txtNombre.Text.Trim().ToUpper(), "", 0, 00.00m,"I","A",10, imprimir, 0, 00.00m, idUnidad);
+                    rpta = NProducto.Insertar(this.txtNombre.Text.Trim().ToUpper(), "", 0, 00.00m,"I","A",10, imprimir, 0, 00.00m, idUnidad,00.00m,null);
 
                     if (rpta.Equals("OK"))
                     {

@@ -58,6 +58,9 @@
             this.txtBuscar = new System.Windows.Forms.TextBox();
             this.lblTipo = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.txtPrecioVentaxMayor = new System.Windows.Forms.TextBox();
+            this.txtStockActual = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
             this.cbUnidad = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
@@ -81,7 +84,6 @@
             this.rbCompuesto = new System.Windows.Forms.RadioButton();
             this.txtStockMinimo = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.cbImprimir = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.lblNroFilas = new System.Windows.Forms.Label();
             this.lblPosic = new System.Windows.Forms.Label();
@@ -93,8 +95,10 @@
             this.btnNuevo = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
-            this.label15 = new System.Windows.Forms.Label();
-            this.txtStockActual = new System.Windows.Forms.TextBox();
+            this.cbImprimir = new System.Windows.Forms.ComboBox();
+            this.cbMarca = new System.Windows.Forms.ComboBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.rbMarca = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataListado)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorIcono)).BeginInit();
             this.tabControl2.SuspendLayout();
@@ -163,7 +167,7 @@
             this.rbProducto.Checked = true;
             this.rbProducto.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbProducto.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.rbProducto.Location = new System.Drawing.Point(115, 83);
+            this.rbProducto.Location = new System.Drawing.Point(115, 66);
             this.rbProducto.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.rbProducto.Name = "rbProducto";
             this.rbProducto.Size = new System.Drawing.Size(98, 27);
@@ -177,7 +181,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Roboto", 9.230769F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(65, 90);
+            this.label5.Location = new System.Drawing.Point(65, 73);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(40, 20);
             this.label5.TabIndex = 22;
@@ -187,13 +191,13 @@
             // 
             this.cbCategoria.BackColor = System.Drawing.Color.White;
             this.cbCategoria.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbCategoria.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbCategoria.Font = new System.Drawing.Font("Roboto", 11.07692F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbCategoria.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.cbCategoria.FormattingEnabled = true;
-            this.cbCategoria.Location = new System.Drawing.Point(114, 147);
+            this.cbCategoria.Location = new System.Drawing.Point(114, 111);
             this.cbCategoria.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbCategoria.Name = "cbCategoria";
-            this.cbCategoria.Size = new System.Drawing.Size(312, 31);
+            this.cbCategoria.Size = new System.Drawing.Size(312, 32);
             this.cbCategoria.TabIndex = 4;
             this.cbCategoria.SelectedIndexChanged += new System.EventHandler(this.cbCategoria_SelectedIndexChanged);
             // 
@@ -221,36 +225,36 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Roboto", 9.230769F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(6, 378);
+            this.label7.Location = new System.Drawing.Point(22, 378);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(96, 20);
+            this.label7.Size = new System.Drawing.Size(81, 20);
             this.label7.TabIndex = 16;
-            this.label7.Text = "Precio Venta";
+            this.label7.Text = "P.VxMenor";
             // 
             // txtDescripcion
             // 
             this.txtDescripcion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtDescripcion.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDescripcion.Font = new System.Drawing.Font("Roboto", 9.846154F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDescripcion.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.txtDescripcion.Location = new System.Drawing.Point(114, 270);
             this.txtDescripcion.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtDescripcion.Multiline = true;
             this.txtDescripcion.Name = "txtDescripcion";
             this.txtDescripcion.Size = new System.Drawing.Size(312, 86);
-            this.txtDescripcion.TabIndex = 6;
+            this.txtDescripcion.TabIndex = 8;
             this.txtDescripcion.TextChanged += new System.EventHandler(this.txtDescripcion_TextChanged);
             // 
             // txtPrecioVenta
             // 
             this.txtPrecioVenta.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtPrecioVenta.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPrecioVenta.Font = new System.Drawing.Font("Roboto", 9.846154F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPrecioVenta.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.txtPrecioVenta.Location = new System.Drawing.Point(115, 368);
             this.txtPrecioVenta.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtPrecioVenta.MaxLength = 11;
             this.txtPrecioVenta.Name = "txtPrecioVenta";
-            this.txtPrecioVenta.Size = new System.Drawing.Size(98, 30);
-            this.txtPrecioVenta.TabIndex = 7;
+            this.txtPrecioVenta.Size = new System.Drawing.Size(98, 29);
+            this.txtPrecioVenta.TabIndex = 9;
             this.txtPrecioVenta.TextChanged += new System.EventHandler(this.txtPrecioVenta_TextChanged);
             this.txtPrecioVenta.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrecioVenta_KeyPress);
             // 
@@ -267,13 +271,13 @@
             // txtNombre
             // 
             this.txtNombre.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtNombre.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNombre.Font = new System.Drawing.Font("Roboto", 9.846154F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNombre.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.txtNombre.Location = new System.Drawing.Point(114, 232);
             this.txtNombre.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(312, 30);
-            this.txtNombre.TabIndex = 5;
+            this.txtNombre.Size = new System.Drawing.Size(312, 29);
+            this.txtNombre.TabIndex = 7;
             this.txtNombre.TextChanged += new System.EventHandler(this.txtNombre_TextChanged);
             // 
             // txtIdProducto
@@ -345,6 +349,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.rbMarca);
             this.groupBox1.Controls.Add(this.rbNombre);
             this.groupBox1.Controls.Add(this.rbTodos);
             this.groupBox1.Controls.Add(this.rbCategoria);
@@ -360,9 +365,10 @@
             // rbNombre
             // 
             this.rbNombre.AutoSize = true;
+            this.rbNombre.Font = new System.Drawing.Font("Roboto", 9.230769F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbNombre.Location = new System.Drawing.Point(24, 37);
             this.rbNombre.Name = "rbNombre";
-            this.rbNombre.Size = new System.Drawing.Size(86, 22);
+            this.rbNombre.Size = new System.Drawing.Size(80, 24);
             this.rbNombre.TabIndex = 8;
             this.rbNombre.Text = "Nombre";
             this.rbNombre.UseVisualStyleBackColor = true;
@@ -372,9 +378,10 @@
             // 
             this.rbTodos.AutoSize = true;
             this.rbTodos.Checked = true;
-            this.rbTodos.Location = new System.Drawing.Point(285, 37);
+            this.rbTodos.Font = new System.Drawing.Font("Roboto", 9.230769F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbTodos.Location = new System.Drawing.Point(446, 37);
             this.rbTodos.Name = "rbTodos";
-            this.rbTodos.Size = new System.Drawing.Size(138, 22);
+            this.rbTodos.Size = new System.Drawing.Size(123, 24);
             this.rbTodos.TabIndex = 12;
             this.rbTodos.TabStop = true;
             this.rbTodos.Text = "Mostrar Todos";
@@ -384,9 +391,10 @@
             // rbCategoria
             // 
             this.rbCategoria.AutoSize = true;
+            this.rbCategoria.Font = new System.Drawing.Font("Roboto", 9.230769F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbCategoria.Location = new System.Drawing.Point(167, 37);
             this.rbCategoria.Name = "rbCategoria";
-            this.rbCategoria.Size = new System.Drawing.Size(99, 22);
+            this.rbCategoria.Size = new System.Drawing.Size(91, 24);
             this.rbCategoria.TabIndex = 9;
             this.rbCategoria.Text = "Categoría";
             this.rbCategoria.UseVisualStyleBackColor = true;
@@ -394,12 +402,12 @@
             // 
             // txtBuscar
             // 
-            this.txtBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBuscar.ForeColor = System.Drawing.Color.Navy;
-            this.txtBuscar.Location = new System.Drawing.Point(20, 74);
+            this.txtBuscar.Font = new System.Drawing.Font("Roboto", 12.30769F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBuscar.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.txtBuscar.Location = new System.Drawing.Point(24, 66);
             this.txtBuscar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtBuscar.Name = "txtBuscar";
-            this.txtBuscar.Size = new System.Drawing.Size(794, 26);
+            this.txtBuscar.Size = new System.Drawing.Size(794, 34);
             this.txtBuscar.TabIndex = 1;
             this.txtBuscar.TextChanged += new System.EventHandler(this.txtBuscar_TextChanged);
             // 
@@ -415,6 +423,9 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.cbMarca);
+            this.tabPage3.Controls.Add(this.label16);
+            this.tabPage3.Controls.Add(this.txtPrecioVentaxMayor);
             this.tabPage3.Controls.Add(this.txtStockActual);
             this.tabPage3.Controls.Add(this.label15);
             this.tabPage3.Controls.Add(this.cbUnidad);
@@ -424,7 +435,6 @@
             this.tabPage3.Controls.Add(this.rbCompuesto);
             this.tabPage3.Controls.Add(this.txtStockMinimo);
             this.tabPage3.Controls.Add(this.label10);
-            this.tabPage3.Controls.Add(this.cbImprimir);
             this.tabPage3.Controls.Add(this.label2);
             this.tabPage3.Controls.Add(this.rbProducto);
             this.tabPage3.Controls.Add(this.label7);
@@ -450,24 +460,60 @@
             this.tabPage3.Text = "Nuevo/Modificar";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // txtPrecioVentaxMayor
+            // 
+            this.txtPrecioVentaxMayor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtPrecioVentaxMayor.Font = new System.Drawing.Font("Roboto", 9.846154F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPrecioVentaxMayor.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.txtPrecioVentaxMayor.Location = new System.Drawing.Point(328, 372);
+            this.txtPrecioVentaxMayor.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtPrecioVentaxMayor.MaxLength = 11;
+            this.txtPrecioVentaxMayor.Name = "txtPrecioVentaxMayor";
+            this.txtPrecioVentaxMayor.Size = new System.Drawing.Size(98, 29);
+            this.txtPrecioVentaxMayor.TabIndex = 10;
+            this.txtPrecioVentaxMayor.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrecioVentaxMayor_KeyPress);
+            // 
+            // txtStockActual
+            // 
+            this.txtStockActual.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtStockActual.Font = new System.Drawing.Font("Roboto", 9.846154F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtStockActual.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.txtStockActual.Location = new System.Drawing.Point(115, 416);
+            this.txtStockActual.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtStockActual.MaxLength = 11;
+            this.txtStockActual.Name = "txtStockActual";
+            this.txtStockActual.Size = new System.Drawing.Size(98, 29);
+            this.txtStockActual.TabIndex = 11;
+            this.txtStockActual.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtStockActual_KeyPress);
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Roboto", 9.230769F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(5, 426);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(96, 20);
+            this.label15.TabIndex = 63;
+            this.label15.Text = "Stock Actual";
+            // 
             // cbUnidad
             // 
             this.cbUnidad.BackColor = System.Drawing.Color.White;
             this.cbUnidad.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbUnidad.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbUnidad.Font = new System.Drawing.Font("Roboto", 11.07692F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbUnidad.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.cbUnidad.FormattingEnabled = true;
-            this.cbUnidad.Location = new System.Drawing.Point(114, 186);
+            this.cbUnidad.Location = new System.Drawing.Point(114, 150);
             this.cbUnidad.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbUnidad.Name = "cbUnidad";
-            this.cbUnidad.Size = new System.Drawing.Size(312, 31);
-            this.cbUnidad.TabIndex = 62;
+            this.cbUnidad.Size = new System.Drawing.Size(312, 32);
+            this.cbUnidad.TabIndex = 5;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Roboto", 9.230769F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(48, 197);
+            this.label8.Location = new System.Drawing.Point(48, 161);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(60, 20);
             this.label8.TabIndex = 61;
@@ -477,7 +523,7 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Roboto", 9.230769F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(27, 159);
+            this.label14.Location = new System.Drawing.Point(27, 123);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(75, 20);
             this.label14.TabIndex = 60;
@@ -664,27 +710,28 @@
             // txtCantidad
             // 
             this.txtCantidad.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtCantidad.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCantidad.Font = new System.Drawing.Font("Roboto", 9.846154F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCantidad.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.txtCantidad.Location = new System.Drawing.Point(145, 140);
             this.txtCantidad.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtCantidad.Name = "txtCantidad";
             this.txtCantidad.ReadOnly = true;
-            this.txtCantidad.Size = new System.Drawing.Size(98, 30);
+            this.txtCantidad.Size = new System.Drawing.Size(98, 29);
             this.txtCantidad.TabIndex = 58;
+            this.txtCantidad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCantidad_KeyPress);
             // 
             // txtPrecioVentaCompues
             // 
             this.txtPrecioVentaCompues.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtPrecioVentaCompues.Enabled = false;
-            this.txtPrecioVentaCompues.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPrecioVentaCompues.Font = new System.Drawing.Font("Roboto", 9.846154F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPrecioVentaCompues.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.txtPrecioVentaCompues.Location = new System.Drawing.Point(22, 140);
             this.txtPrecioVentaCompues.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtPrecioVentaCompues.MaxLength = 11;
             this.txtPrecioVentaCompues.Name = "txtPrecioVentaCompues";
             this.txtPrecioVentaCompues.ReadOnly = true;
-            this.txtPrecioVentaCompues.Size = new System.Drawing.Size(98, 30);
+            this.txtPrecioVentaCompues.Size = new System.Drawing.Size(98, 29);
             this.txtPrecioVentaCompues.TabIndex = 58;
             // 
             // label11
@@ -700,13 +747,13 @@
             // txtProductoCompuesto
             // 
             this.txtProductoCompuesto.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtProductoCompuesto.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtProductoCompuesto.Font = new System.Drawing.Font("Roboto", 9.846154F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtProductoCompuesto.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.txtProductoCompuesto.Location = new System.Drawing.Point(22, 59);
             this.txtProductoCompuesto.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtProductoCompuesto.Name = "txtProductoCompuesto";
             this.txtProductoCompuesto.ReadOnly = true;
-            this.txtProductoCompuesto.Size = new System.Drawing.Size(312, 30);
+            this.txtProductoCompuesto.Size = new System.Drawing.Size(312, 29);
             this.txtProductoCompuesto.TabIndex = 57;
             // 
             // rbCompuesto
@@ -714,7 +761,7 @@
             this.rbCompuesto.AutoSize = true;
             this.rbCompuesto.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbCompuesto.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.rbCompuesto.Location = new System.Drawing.Point(277, 83);
+            this.rbCompuesto.Location = new System.Drawing.Point(277, 66);
             this.rbCompuesto.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.rbCompuesto.Name = "rbCompuesto";
             this.rbCompuesto.Size = new System.Drawing.Size(116, 27);
@@ -726,14 +773,14 @@
             // txtStockMinimo
             // 
             this.txtStockMinimo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtStockMinimo.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtStockMinimo.Font = new System.Drawing.Font("Roboto", 9.846154F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtStockMinimo.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.txtStockMinimo.Location = new System.Drawing.Point(329, 416);
             this.txtStockMinimo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtStockMinimo.Name = "txtStockMinimo";
             this.txtStockMinimo.ReadOnly = true;
-            this.txtStockMinimo.Size = new System.Drawing.Size(100, 30);
-            this.txtStockMinimo.TabIndex = 9;
+            this.txtStockMinimo.Size = new System.Drawing.Size(100, 29);
+            this.txtStockMinimo.TabIndex = 12;
             // 
             // label10
             // 
@@ -745,31 +792,15 @@
             this.label10.TabIndex = 53;
             this.label10.Text = "Stock Mínimo";
             // 
-            // cbImprimir
-            // 
-            this.cbImprimir.BackColor = System.Drawing.Color.White;
-            this.cbImprimir.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbImprimir.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbImprimir.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.cbImprimir.FormattingEnabled = true;
-            this.cbImprimir.Items.AddRange(new object[] {
-            "Cocina",
-            "Bar"});
-            this.cbImprimir.Location = new System.Drawing.Point(115, 459);
-            this.cbImprimir.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.cbImprimir.Name = "cbImprimir";
-            this.cbImprimir.Size = new System.Drawing.Size(312, 31);
-            this.cbImprimir.TabIndex = 9;
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Roboto", 9.230769F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(33, 470);
+            this.label2.Location = new System.Drawing.Point(243, 378);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(68, 20);
+            this.label2.Size = new System.Drawing.Size(80, 20);
             this.label2.TabIndex = 51;
-            this.label2.Text = "Enviar a:";
+            this.label2.Text = "P.VxMayor";
             // 
             // lblNroFilas
             // 
@@ -913,28 +944,57 @@
             this.btnCancelar.UseVisualStyleBackColor = false;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
-            // label15
+            // cbImprimir
             // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Roboto", 9.230769F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(5, 426);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(96, 20);
-            this.label15.TabIndex = 63;
-            this.label15.Text = "Stock Actual";
+            this.cbImprimir.BackColor = System.Drawing.Color.White;
+            this.cbImprimir.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbImprimir.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbImprimir.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.cbImprimir.FormattingEnabled = true;
+            this.cbImprimir.Items.AddRange(new object[] {
+            "Cocina",
+            "Bar"});
+            this.cbImprimir.Location = new System.Drawing.Point(850, 14);
+            this.cbImprimir.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbImprimir.Name = "cbImprimir";
+            this.cbImprimir.Size = new System.Drawing.Size(18, 31);
+            this.cbImprimir.TabIndex = 9;
+            this.cbImprimir.Visible = false;
             // 
-            // txtStockActual
+            // cbMarca
             // 
-            this.txtStockActual.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtStockActual.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtStockActual.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.txtStockActual.Location = new System.Drawing.Point(115, 416);
-            this.txtStockActual.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtStockActual.MaxLength = 11;
-            this.txtStockActual.Name = "txtStockActual";
-            this.txtStockActual.Size = new System.Drawing.Size(98, 30);
-            this.txtStockActual.TabIndex = 8;
-            this.txtStockActual.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtStockActual_KeyPress);
+            this.cbMarca.BackColor = System.Drawing.Color.White;
+            this.cbMarca.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbMarca.Font = new System.Drawing.Font("Roboto", 11.07692F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbMarca.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.cbMarca.FormattingEnabled = true;
+            this.cbMarca.Location = new System.Drawing.Point(114, 187);
+            this.cbMarca.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbMarca.Name = "cbMarca";
+            this.cbMarca.Size = new System.Drawing.Size(312, 32);
+            this.cbMarca.TabIndex = 6;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Roboto", 9.230769F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(48, 198);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(51, 20);
+            this.label16.TabIndex = 64;
+            this.label16.Text = "Marca";
+            // 
+            // rbMarca
+            // 
+            this.rbMarca.AutoSize = true;
+            this.rbMarca.Font = new System.Drawing.Font("Roboto", 9.230769F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbMarca.Location = new System.Drawing.Point(317, 37);
+            this.rbMarca.Name = "rbMarca";
+            this.rbMarca.Size = new System.Drawing.Size(69, 24);
+            this.rbMarca.TabIndex = 13;
+            this.rbMarca.Text = "Marca";
+            this.rbMarca.UseVisualStyleBackColor = true;
+            this.rbMarca.CheckedChanged += new System.EventHandler(this.rbMarca_CheckedChanged);
             // 
             // frmProducto
             // 
@@ -950,6 +1010,7 @@
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.cbImprimir);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -1010,8 +1071,6 @@
         private System.Windows.Forms.RadioButton rbTodos;
         private System.Windows.Forms.RadioButton rbCategoria;
         private System.Windows.Forms.TextBox txtBuscar;
-        private System.Windows.Forms.ComboBox cbImprimir;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtStockMinimo;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.RadioButton rbCompuesto;
@@ -1043,5 +1102,11 @@
         public System.Windows.Forms.Label lblTipoProducto;
         private System.Windows.Forms.TextBox txtStockActual;
         private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.TextBox txtPrecioVentaxMayor;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox cbImprimir;
+        private System.Windows.Forms.ComboBox cbMarca;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.RadioButton rbMarca;
     }
 }

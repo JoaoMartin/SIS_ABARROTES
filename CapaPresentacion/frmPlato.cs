@@ -348,7 +348,7 @@ namespace CapaPresentacion
                             if (cbCategoria.Text == "MENUSDSFD" || cbCategoria.Text == "DESAYUNOSDFDS")
                             {
                                 rpta = NProducto.InsertarProductoCompuesto(this.txtNombre.Text.Trim().ToUpper(), txtDescripcion.Text.Trim(), stock,
-                                                  Convert.ToDecimal(this.txtPrecioVenta.Text.Trim()), tipo, "A", idCategoria, imprimir, 0, 00.00m, dtDetalle, idUnidad);
+                                                  Convert.ToDecimal(this.txtPrecioVenta.Text.Trim()), tipo, "A", idCategoria, imprimir, 0, 00.00m, dtDetalle, idUnidad,00.00m,null);
                                 limpiarDetalle();
                                 limpiarDatatable();
                                 this.lblIdProductoCom.Text = "0";
@@ -359,7 +359,7 @@ namespace CapaPresentacion
                             else
                             {
                                 rpta = NProducto.Insertar(this.txtNombre.Text.Trim().ToUpper(), txtDescripcion.Text.Trim(), stock,
-                                                  Convert.ToDecimal(this.txtPrecioVenta.Text.Trim()), tipo, "A", idCategoria, imprimir, stockMinimo, 00.00m, idUnidad);
+                                                  Convert.ToDecimal(this.txtPrecioVenta.Text.Trim()), tipo, "A", idCategoria, imprimir, stockMinimo, 00.00m, idUnidad,00.00m,null);
                                 this.lblIdProductoCom.Text = "0";
                                 this.lblTotalVenta.Text = "00.00";
                             
@@ -374,7 +374,7 @@ namespace CapaPresentacion
                                 int nroFilas = Convert.ToInt32(this.lblNroFilas.Text);
 
                                 rpta = NProducto.Editar(Convert.ToInt32(this.txtIdProducto.Text), this.txtNombre.Text.Trim().ToUpper(), txtDescripcion.Text.Trim(), stock,
-                                   Convert.ToDecimal(this.txtPrecioVenta.Text.Trim()), tipo, "A", idCategoria, imprimir,0, 00.00m, idUnidad);
+                                   Convert.ToDecimal(this.txtPrecioVenta.Text.Trim()), tipo, "A", idCategoria, imprimir,0, 00.00m, idUnidad,00.00m,null);
                                 if (nroFilas < dataListadoDetalle.Rows.Count && rpta == "OK")
                                 {
                                     int cantidad, codigo;
@@ -396,7 +396,7 @@ namespace CapaPresentacion
                             else
                             {
                                 rpta = NProducto.Editar(Convert.ToInt32(this.txtIdProducto.Text), this.txtNombre.Text.Trim().ToUpper(), txtDescripcion.Text.Trim(), stock,
-                                     Convert.ToDecimal(this.txtPrecioVenta.Text.Trim()), tipo, "A", idCategoria, imprimir, 0, 00.00m, idUnidad);
+                                     Convert.ToDecimal(this.txtPrecioVenta.Text.Trim()), tipo, "A", idCategoria, imprimir, 0, 00.00m, idUnidad,00.00m,null);
                                 this.lblIdProductoCom.Text = "0";
                             }
 

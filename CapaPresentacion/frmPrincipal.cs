@@ -425,6 +425,10 @@ namespace CapaPresentacion
                 {
                     this.mnuReservas.Enabled = true;
                 }
+                if (dtNivel.Rows[i][2].ToString() == "Maestro_Marca")
+                {
+                    this.mnuMarca.Enabled = true;
+                }
             }
 
 
@@ -530,7 +534,9 @@ namespace CapaPresentacion
             frm.MdiParent = this;
             frm.lblIdUsuario.Text = this.lblIdUsuario.Text;
             frm.nombreMesero = this.lblUsuario.Text + " " + lblApellidos.Text;
+            
             frm.Show();
+            frm.dgvProductos.ClearSelection();
         }
 
   
@@ -1157,6 +1163,14 @@ namespace CapaPresentacion
             frmReporteCantidadProductosVenta frm = new frmReporteCantidadProductosVenta();
             frm.MdiParent = this;
             frm.Show();
+        }
+
+        private void mnuMarca_Click(object sender, EventArgs e)
+        {
+            frmMarca frm = new frmMarca();
+            frm.MdiParent = this;
+            frm.Show();
+            frm.dataListado.ClearSelection();
         }
     }
 }

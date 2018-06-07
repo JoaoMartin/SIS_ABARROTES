@@ -114,10 +114,10 @@
             // 
             // txtBuscar
             // 
-            this.txtBuscar.Font = new System.Drawing.Font("Roboto", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBuscar.Font = new System.Drawing.Font("Roboto", 11.07692F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBuscar.Location = new System.Drawing.Point(6, 64);
             this.txtBuscar.Name = "txtBuscar";
-            this.txtBuscar.Size = new System.Drawing.Size(600, 30);
+            this.txtBuscar.Size = new System.Drawing.Size(600, 31);
             this.txtBuscar.TabIndex = 1;
             this.txtBuscar.TextChanged += new System.EventHandler(this.txtBuscar_TextChanged);
             // 
@@ -231,7 +231,7 @@
             this.label1.ForeColor = System.Drawing.Color.Navy;
             this.label1.Location = new System.Drawing.Point(310, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(135, 38);
+            this.label1.Size = new System.Drawing.Size(131, 37);
             this.label1.TabIndex = 3;
             this.label1.Text = "MARCAS";
             // 
@@ -300,7 +300,7 @@
             this.cbEliminar.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.cbEliminar.Location = new System.Drawing.Point(17, 130);
             this.cbEliminar.Name = "cbEliminar";
-            this.cbEliminar.Size = new System.Drawing.Size(87, 24);
+            this.cbEliminar.Size = new System.Drawing.Size(84, 24);
             this.cbEliminar.TabIndex = 5;
             this.cbEliminar.Text = "Eliminar";
             this.cbEliminar.UseVisualStyleBackColor = true;
@@ -358,7 +358,6 @@
         }
 
         #endregion
-        private System.Windows.Forms.DataGridView dataListado;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Eliminar;
         private System.Windows.Forms.Label lblTotal;
         private System.Windows.Forms.Button btnEliminar;
@@ -380,5 +379,6 @@
         private System.Windows.Forms.CheckBox cbEliminar;
         private System.Windows.Forms.RadioButton rbBusqueda;
         private System.Windows.Forms.GroupBox groupBox1;
+        public System.Windows.Forms.DataGridView dataListado;
     }
 }

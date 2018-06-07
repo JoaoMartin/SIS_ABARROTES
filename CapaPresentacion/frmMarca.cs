@@ -135,11 +135,11 @@ namespace CapaPresentacion
                     {
                         if (this.IsNuevo)
                         {
-                            this.MensajeOK("Se insertó correcatamente");
+                            this.MensajeOK("Se insertó corrcatamente");
                         }
                         else
                         {
-                            this.MensajeOK("Se actualizó correcatamente");
+                            this.MensajeOK("Se actualizó corrcatamente");
                         }
                     }
                     else
@@ -153,6 +153,8 @@ namespace CapaPresentacion
                     this.Limpiar();
                     this.Mostrar();
                     this.tabControl2.SelectedIndex = 0;
+                    this.txtBuscar.Clear();
+                    this.txtBuscar.Select();
                 }
             }
             catch (Exception ex)
@@ -169,6 +171,7 @@ namespace CapaPresentacion
             this.Mostrar();
             this.Habilitar(false);
             this.Botones();
+            txtBuscar.Select();
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
@@ -188,9 +191,10 @@ namespace CapaPresentacion
             this.Botones();
             this.Limpiar();
             this.Habilitar(true);
-            this.txtNombre.Focus();
+           
             this.dataListado.ClearSelection();
             this.tabControl2.SelectedIndex = 1;
+            this.txtNombre.Select();
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
@@ -237,7 +241,10 @@ namespace CapaPresentacion
             this.Habilitar(false);
             this.dataListado.ClearSelection();
             this.tabControl2.SelectedIndex = 0;
+            this.txtBuscar.Clear();
+            this.txtBuscar.Select();
         }
+        
 
         private void cbEliminar_CheckedChanged(object sender, EventArgs e)
         {
@@ -299,6 +306,8 @@ namespace CapaPresentacion
                     this.Limpiar();
                     this.btnEliminar.Enabled = false;
                     this.btnCancelar.Enabled = false;
+                    this.txtBuscar.Clear();
+                    this.txtBuscar.Select();
                 }
             }
             catch (Exception ex)

@@ -39,6 +39,8 @@
             this.errorIcono = new System.Windows.Forms.ErrorProvider(this.components);
             this.cbUnidad = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
+            this.cbMarca = new System.Windows.Forms.ComboBox();
+            this.label16 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errorIcono)).BeginInit();
             this.SuspendLayout();
             // 
@@ -46,44 +48,44 @@
             // 
             this.cbCategoria.BackColor = System.Drawing.Color.White;
             this.cbCategoria.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbCategoria.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbCategoria.Font = new System.Drawing.Font("Roboto", 11.07692F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbCategoria.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.cbCategoria.FormattingEnabled = true;
             this.cbCategoria.Location = new System.Drawing.Point(143, 31);
             this.cbCategoria.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.cbCategoria.Name = "cbCategoria";
-            this.cbCategoria.Size = new System.Drawing.Size(350, 34);
+            this.cbCategoria.Size = new System.Drawing.Size(350, 32);
             this.cbCategoria.TabIndex = 21;
             // 
             // txtNombre
             // 
             this.txtNombre.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtNombre.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNombre.Font = new System.Drawing.Font("Roboto", 11.07692F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNombre.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.txtNombre.Location = new System.Drawing.Point(143, 137);
+            this.txtNombre.Location = new System.Drawing.Point(142, 186);
             this.txtNombre.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(351, 34);
+            this.txtNombre.Size = new System.Drawing.Size(351, 31);
             this.txtNombre.TabIndex = 22;
             this.txtNombre.TextChanged += new System.EventHandler(this.txtNombre_TextChanged);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Roboto", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(62, 144);
+            this.label4.Font = new System.Drawing.Font("Roboto", 9.230769F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(61, 193);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(72, 23);
+            this.label4.Size = new System.Drawing.Size(64, 20);
             this.label4.TabIndex = 24;
             this.label4.Text = "Nombre";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Roboto", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Font = new System.Drawing.Font("Roboto", 9.230769F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.Location = new System.Drawing.Point(48, 39);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(85, 23);
+            this.label9.Size = new System.Drawing.Size(75, 20);
             this.label9.TabIndex = 23;
             this.label9.Text = "Categoría";
             // 
@@ -94,7 +96,7 @@
             this.btnGuardar.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnGuardar.Image = global::CapaPresentacion.Properties.Resources.save21;
             this.btnGuardar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnGuardar.Location = new System.Drawing.Point(250, 190);
+            this.btnGuardar.Location = new System.Drawing.Point(267, 235);
             this.btnGuardar.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(110, 75);
@@ -111,7 +113,7 @@
             this.btnCancelar.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnCancelar.Image = global::CapaPresentacion.Properties.Resources.cancel2;
             this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnCancelar.Location = new System.Drawing.Point(366, 190);
+            this.btnCancelar.Location = new System.Drawing.Point(383, 235);
             this.btnCancelar.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(110, 75);
@@ -133,31 +135,56 @@
             // 
             this.cbUnidad.BackColor = System.Drawing.Color.White;
             this.cbUnidad.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbUnidad.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbUnidad.Font = new System.Drawing.Font("Roboto", 11.07692F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbUnidad.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.cbUnidad.FormattingEnabled = true;
             this.cbUnidad.Location = new System.Drawing.Point(143, 83);
             this.cbUnidad.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbUnidad.Name = "cbUnidad";
-            this.cbUnidad.Size = new System.Drawing.Size(350, 34);
+            this.cbUnidad.Size = new System.Drawing.Size(350, 32);
             this.cbUnidad.TabIndex = 64;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Roboto", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Font = new System.Drawing.Font("Roboto", 9.230769F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.Location = new System.Drawing.Point(62, 91);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(68, 23);
+            this.label8.Size = new System.Drawing.Size(60, 20);
             this.label8.TabIndex = 63;
             this.label8.Text = "Medida";
+            // 
+            // cbMarca
+            // 
+            this.cbMarca.BackColor = System.Drawing.Color.White;
+            this.cbMarca.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbMarca.Font = new System.Drawing.Font("Roboto", 11.07692F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbMarca.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.cbMarca.FormattingEnabled = true;
+            this.cbMarca.Location = new System.Drawing.Point(143, 135);
+            this.cbMarca.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbMarca.Name = "cbMarca";
+            this.cbMarca.Size = new System.Drawing.Size(350, 32);
+            this.cbMarca.TabIndex = 65;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Roboto", 9.230769F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(77, 146);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(51, 20);
+            this.label16.TabIndex = 66;
+            this.label16.Text = "Marca";
             // 
             // frmProductoRapido
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(527, 284);
+            this.ClientSize = new System.Drawing.Size(527, 324);
+            this.Controls.Add(this.cbMarca);
+            this.Controls.Add(this.label16);
             this.Controls.Add(this.cbUnidad);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.btnGuardar);
@@ -192,5 +219,7 @@
         private System.Windows.Forms.ErrorProvider errorIcono;
         private System.Windows.Forms.ComboBox cbUnidad;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.ComboBox cbMarca;
+        private System.Windows.Forms.Label label16;
     }
 }

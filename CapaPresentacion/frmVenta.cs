@@ -32,6 +32,287 @@ namespace CapaPresentacion
             MessageBox.Show(mensaje, "Sistema de Ventas", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
+        private void Añadir()
+        {
+            try
+            {
+                int cantidad, cantidadActual;
+                decimal descuentoTotal = Convert.ToDecimal(this.txtDescuento.Text.Trim());
+                if (this.txtCantidad.Text.Equals("0"))
+                {
+                    MessageBox.Show("Ingrese un número mayor a 0");
+                }
+                else
+                {
+                    bool registrar = true;
+                    this.lblBandera.Text = "0";
+                    this.dataListadoDetalle.ClearSelection();
+                    if (this.txtCantidad.Text.Equals(string.Empty))
+                    {
+                        cantidad = 1;
+                    }
+                    else
+                    {
+                        cantidad = Convert.ToInt32(this.txtCantidad.Text.Trim());
+                    }
+
+                    if (this.lblIdVenta.Text != "0")
+                    {
+
+                        //foreach (DataRow row in dtDetalleVenta.Rows)
+                        //{
+
+
+                        string tipoPro = Convert.ToString(dgvProductos.CurrentRow.Cells[9].Value);
+                        for (int r = cantFilas; r < dataListadoDetalle.Rows.Count; r++)
+                        {
+                            if ((Convert.ToInt32(dtDetalleVenta.Rows[r][0]) == Convert.ToInt32(dgvProductos.CurrentRow.Cells[0].Value)))
+                            {
+
+                                cantidadActual = Convert.ToInt32(row["Cant"]);
+                                //cantidadActual = Convert.ToInt32(dtDetalleVenta.Rows[r]["Cant"].ToString());
+                                row["Cant"] = cantidadActual + cantidad;
+                                decimal subTotal = (cantidadActual + cantidad) * Convert.ToDecimal(dgvProductos.CurrentRow.Cells[6].Value);
+                                decimal subTotalActual = Convert.ToDecimal(row["Importe"]);
+                                row["Importe"] = subTotal - ((cantidadActual + cantidad) * Convert.ToDecimal(dgvProductos.CurrentRow.Cells[16].Value));
+                                row["Descuento"] = (cantidadActual + cantidad) * Convert.ToDecimal(dgvProductos.CurrentRow.Cells[16].Value);
+                                row["Tipo"] = Convert.ToString(dgvProductos.CurrentRow.Cells[9].Value);
+                                totalPagado = totalPagado + subTotal - subTotalActual;
+                                row["Imprimir"] = "";
+                                row["Barra"] = "0";
+                                row["Estado"] = "Pedido";
+
+                                decimal dctoTotProm = 0, subTotal20 = 0;
+                                int cantidad20 = 0;
+
+                                for (int p = 0; p < dataListadoDetalle.Rows.Count; p++)
+                                {
+                                    dctoTotProm = dctoTotProm + Convert.ToDecimal(dataListadoDetalle.Rows[p].Cells["Descuento"].Value.ToString());
+                                    cantidad20 = Convert.ToInt32(dataListadoDetalle.Rows[p].Cells["Cant"].Value.ToString());
+                                    subTotal20 = subTotal20 + (cantidad20 * Convert.ToDecimal(dataListadoDetalle.Rows[p].Cells["Precio_Un"].Value.ToString()));
+                                }
+                                this.txtDescuento.Text = dctoTotProm.ToString();
+                                descuentoTotal = Convert.ToDecimal(this.txtDescuento.Text);
+                                this.txtSubTotal.Text = subTotal20.ToString("#0.00#");
+                                this.txtTotalPagado.Text = (subTotal20 - descuentoTotal).ToString("#0.00#");
+                                registrar = false;
+                                this.dataListadoDetalle.Refresh();
+                                break;
+
+                            }
+                        }
+
+
+                        //}
+                        if (registrar)
+                        {
+                            //stock = Convert.ToDecimal(rowProducto[5].ToString());
+                            string tipoProd = Convert.ToString(dgvProductos.CurrentRow.Cells[9].Value);
+                            this.btnReservar.Enabled = false;
+
+                            decimal subTotal = (cantidad * Convert.ToDecimal(dgvProductos.CurrentRow.Cells[6].Value));
+
+                            totalPagado = totalPagado + subTotal;
+                            this.txtSubTotal.Text = totalPagado.ToString("#0.00#");
+                            this.txtTotalPagado.Text = (totalPagado - descuentoTotal).ToString("#0.00#");
+
+                            row = this.dtDetalleVenta.NewRow();
+                            row["Cod"] = Convert.ToInt32(dgvProductos.CurrentRow.Cells[0].Value);
+                            row["Descripcion"] = dgvProductos.CurrentRow.Cells[3].Value.ToString() + " " + dgvProductos.CurrentRow.Cells[2].Value.ToString();
+                            row["Cant"] = cantidad;
+                            row["Precio_Un"] = Convert.ToDecimal(dgvProductos.CurrentRow.Cells[6].Value);
+                            row["Importe"] = subTotal - cantidad * Convert.ToDecimal(dgvProductos.CurrentRow.Cells[16].Value);
+                            row["Nota"] = "";
+                            row["Descuento"] = cantidad * Convert.ToDecimal(dgvProductos.CurrentRow.Cells[16].Value);
+                            row["Tipo"] = dgvProductos.CurrentRow.Cells[9].Value.ToString();
+                            row["Imprimir"] = "";
+                            row["Estado"] = "Pedido";
+                            this.dtDetalleVenta.Rows.Add(row);
+                            this.dataListadoDetalle.DataSource = dtDetalleVenta;
+
+                            this.dataListadoDetalle.ClearSelection();
+                            this.txtCantidad.Text = "";
+
+
+                            decimal dctoTotProm = 0;
+                            for (int p = 0; p < dataListadoDetalle.Rows.Count; p++)
+                            {
+                                dctoTotProm = dctoTotProm + Convert.ToDecimal(dataListadoDetalle.Rows[p].Cells["Descuento"].Value.ToString());
+                            }
+                            this.txtDescuento.Text = dctoTotProm.ToString();
+                            this.dataListadoDetalle.Select();
+
+                        }
+
+                    }
+                    else
+                    {
+
+
+                        foreach (DataRow row in dtDetalle.Rows)
+                        {
+
+                            if ((Convert.ToInt32(row["Cod"]) == Convert.ToInt32(dgvProductos.CurrentRow.Cells[0].Value)))
+                            {
+
+                                cantidadActual = Convert.ToInt32(row["Cant"]);
+
+                                row["Cant"] = cantidadActual + cantidad;
+                                decimal subTotal = (cantidadActual + cantidad) * Convert.ToDecimal(dgvProductos.CurrentRow.Cells[6].Value);
+                                decimal subTotalActual = Convert.ToDecimal(row["Importe"]);
+                                row["Importe"] = subTotal - ((cantidadActual + cantidad) * Convert.ToDecimal(dgvProductos.CurrentRow.Cells[16].Value));
+                                row["Descuento"] = (cantidadActual + cantidad) * Convert.ToDecimal(dgvProductos.CurrentRow.Cells[16].Value);
+                                row["Tipo"] = dgvProductos.CurrentRow.Cells[9].Value.ToString();
+                                totalPagado = totalPagado + subTotal - subTotalActual;
+                                row["Imprimir"] = "";
+                                row["Barra"] = "0";
+                                row["Estado"] = "Pedido";
+
+                                decimal dctoTotProm = 0, subTotal20 = 0;
+                                int cantidad20 = 0;
+
+                                for (int p = 0; p < dataListadoDetalle.Rows.Count; p++)
+                                {
+                                    dctoTotProm = dctoTotProm + Convert.ToDecimal(dataListadoDetalle.Rows[p].Cells["Descuento"].Value.ToString());
+                                    cantidad20 = Convert.ToInt32(dataListadoDetalle.Rows[p].Cells["Cant"].Value.ToString());
+                                    subTotal20 = subTotal20 + (cantidad20 * Convert.ToDecimal(dataListadoDetalle.Rows[p].Cells["Precio_Un"].Value.ToString()));
+                                }
+                                this.txtDescuento.Text = dctoTotProm.ToString();
+                                descuentoTotal = Convert.ToDecimal(this.txtDescuento.Text);
+                                this.txtSubTotal.Text = subTotal20.ToString("#0.00#");
+                                this.txtTotalPagado.Text = (subTotal20 - descuentoTotal).ToString("#0.00#");
+                                registrar = false;
+                                this.dataListadoDetalle.Refresh();
+
+                            }
+
+                        }
+
+                        if (registrar)
+                        {
+
+                            //decimal stock;
+                            string tipoProd;
+
+                            decimal subTotal = cantidad * Convert.ToDecimal(dgvProductos.CurrentRow.Cells[6].Value);
+                            tipoProd = dgvProductos.CurrentRow.Cells[9].Value.ToString();
+
+                            totalPagado = totalPagado + subTotal;
+                            this.txtSubTotal.Text = totalPagado.ToString("#0.00#");
+
+                            row = this.dtDetalle.NewRow();
+
+                            row["Cod"] = Convert.ToInt32(dgvProductos.CurrentRow.Cells[0].Value);
+                            row["Descripcion"] = dgvProductos.CurrentRow.Cells[3].Value.ToString() + " " + dgvProductos.CurrentRow.Cells[2].Value.ToString();
+                            row["Cant"] = cantidad;
+                            row["Precio_Un"] = Convert.ToDecimal(dgvProductos.CurrentRow.Cells[6].Value);
+                            row["Importe"] = subTotal - cantidad * Convert.ToDecimal(dgvProductos.CurrentRow.Cells[16].Value);
+                            row["Nota"] = "";
+                            row["Descuento"] = cantidad * Convert.ToDecimal(dgvProductos.CurrentRow.Cells[16].Value);
+                            row["Tipo"] = dgvProductos.CurrentRow.Cells[9].Value.ToString();
+                            row["Imprimir"] = "";
+                            row["Barra"] = "0";
+                            row["Estado"] = "Pedido";
+                            this.dtDetalle.Rows.Add(row);
+                            this.dataListadoDetalle.ClearSelection();
+                            this.txtCantidad.Text = "";
+                            decimal dctoTotProm = 0, subTotal20 = 0;
+                            int cantidad20 = 0;
+
+                            for (int p = 0; p < dataListadoDetalle.Rows.Count; p++)
+                            {
+                                dctoTotProm = dctoTotProm + Convert.ToDecimal(dataListadoDetalle.Rows[p].Cells["Descuento"].Value.ToString());
+                                cantidad20 = Convert.ToInt32(dataListadoDetalle.Rows[p].Cells["Cant"].Value.ToString());
+                                subTotal20 = subTotal20 + (cantidad20 * Convert.ToDecimal(dataListadoDetalle.Rows[p].Cells["Precio_Un"].Value.ToString()));
+                            }
+                            this.txtDescuento.Text = dctoTotProm.ToString();
+                            descuentoTotal = Convert.ToDecimal(this.txtDescuento.Text);
+                            this.txtSubTotal.Text = subTotal20.ToString("#0.00#");
+                            this.txtTotalPagado.Text = (subTotal20 - descuentoTotal).ToString("#0.00#");
+
+                            this.dataListadoDetalle.Refresh();
+                            this.btnReservar.Enabled = true;
+                        }
+                    }
+
+                }
+
+                this.btnPedido.Enabled = true;
+                this.btnCobrar.Enabled = true;
+
+                this.btnManual.Enabled = true;
+                this.btnDividir.Enabled = true;
+                this.btnDctoProducto.Enabled = true;
+                if (dataListadoDetalle.Rows.Count > 1)
+                {
+                    this.btnSeparar.Enabled = true;
+                }
+                this.txtCantidad.Text = string.Empty;
+                this.dataListadoDetalle.Select();
+                // }
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + ex.StackTrace);
+            }
+        }
+
+        private void ocultarColumnas()
+        {
+            this.dgvProductos.Columns[0].Visible = false;
+            //this.dgvProductos.Columns[8].Visible = false;
+
+            this.dgvProductos.Columns[9].Visible = false;
+            this.dgvProductos.Columns[10].Visible = false;
+            this.dgvProductos.Columns[11].Visible = false;
+            this.dgvProductos.Columns[12].Visible = false;
+            this.dgvProductos.Columns[13].Visible = false;
+            this.dgvProductos.Columns[14].Visible = false;
+            this.dgvProductos.Columns[15].Visible = false;
+            //this.dgvProductos.Columns[16].Visible = false;
+            //this.dataListado.Columns[14].Visible = false;
+
+
+            // DataGridView1.Columns(1).Width = 150
+            //this.dataListado.Columns[1].Width = 70;
+            this.dgvProductos.Columns[1].Width = 152;
+            this.dgvProductos.Columns[2].Width = 140;
+            this.dgvProductos.Columns[3].Width = 285;
+            this.dgvProductos.Columns[4].Width = 97;
+            this.dgvProductos.Columns[5].Width = 92;
+            this.dgvProductos.Columns[6].Width = 92;
+            this.dgvProductos.Columns[7].Width = 92;
+            this.dgvProductos.Columns[8].Width = 250;
+            // this.dataListado.Columns[7].Width = 120;
+
+            this.dgvProductos.ClearSelection();
+            this.dgvProductos.RowTemplate.Height = 30;
+            this.dgvProductos.ColumnHeadersDefaultCellStyle.Font = new Font(this.dgvProductos.ColumnHeadersDefaultCellStyle.Font, FontStyle.Bold);
+            this.dgvProductos.DefaultCellStyle.Font = new Font("Roboto", 9);
+            this.dgvProductos.RowsDefaultCellStyle.BackColor = Color.White;
+            this.dgvProductos.AlternatingRowsDefaultCellStyle.BackColor = Color.Beige;
+            this.dgvProductos.GridColor = SystemColors.ActiveBorder;
+
+        }
+
+        private void cargarProducto()
+        {
+            this.dgvProductos.DataSource = NProducto.Mostrar();
+
+            if (this.dgvProductos.Rows.Count == 0)
+            {
+                this.dgvProductos.Visible = false;
+            }
+            else
+            {
+                this.dgvProductos.Visible = true;
+
+                this.ocultarColumnas();
+            }
+        }
+
         private void actualizarProducto()
         {
             if (this.txtCantidad.Text.Equals("0") || (this.txtCantidad.Text.Trim() == string.Empty))
@@ -88,20 +369,20 @@ namespace CapaPresentacion
 
         private void btnUp_Click(object sender, EventArgs e)
         {
-           
+
         }
 
         private void btnUpProductos_Click(object sender, EventArgs e)
         {
-         
+
         }
 
         private void btnDownProductos_Click(object sender, EventArgs e)
         {
-           
+
         }
 
-      
+
 
         private void dataListadoDetalle_Click(object sender, EventArgs e)
         {
@@ -291,7 +572,7 @@ namespace CapaPresentacion
                                     // this.MensajeOK("Se anuló correctamente el registro");
                                     //dataCocina.Rows.Add(lblDescrProducto.Text, lblCantidadCom.Text, "","");
 
-                                    NImprimirComanda.imprimirCom(this.lblMesero.Text, "","", dataCocina, "COMANDA ANULACION");
+                                    NImprimirComanda.imprimirCom(this.lblMesero.Text, "", "", dataCocina, "COMANDA ANULACION");
                                     if (this.dataListadoDetalle.Rows.Count == 0)
                                     {
                                         NMesa.EditarEstadoMesa(Convert.ToInt32(this.lblIdMesa.Text), "Libre");
@@ -369,7 +650,7 @@ namespace CapaPresentacion
                                 {
                                     // this.MensajeOK("Se anuló correctamente el registro");
 
-                                    NImprimirComanda.imprimirCom(this.lblMesero.Text,"","", dataCocina, "COMANDA ANULACION");
+                                    NImprimirComanda.imprimirCom(this.lblMesero.Text, "", "", dataCocina, "COMANDA ANULACION");
                                     if (this.dataListadoDetalle.Rows.Count == 0)
                                     {
 
@@ -672,11 +953,11 @@ namespace CapaPresentacion
 
                                     if (dataCocina.Rows.Count > 0)
                                     {
-                                        NImprimirComanda.imprimirCom(this.lblMesero.Text, "","", dataCocina, "COMANDA ADICIONAL");
+                                        NImprimirComanda.imprimirCom(this.lblMesero.Text, "", "", dataCocina, "COMANDA ADICIONAL");
                                     }
                                     if (dataBar.Rows.Count > 0)
                                     {
-                                        NImprimirComanda.imprimirCom(this.lblMesero.Text,"","", dataBar, "COMANDA ADICIONAL");
+                                        NImprimirComanda.imprimirCom(this.lblMesero.Text, "", "", dataBar, "COMANDA ADICIONAL");
                                     }
                                 }
                                 this.dataListadoDetalle.Select();
@@ -693,9 +974,9 @@ namespace CapaPresentacion
                         {
                             // rpta = NVenta.InsertarPedido(null, Convert.ToInt32(this.lblIdMesa.Text), DateTime.Now, "Pedido", "", 
                             //   Convert.ToDecimal(this.txtDescuento.Text), Convert.ToInt32(this.lblIdUsuario.Text), "", 1, dtDetalle);
-                            rpta = NVenta.InsertarPedido(null, Convert.ToInt32(this.lblIdMesa.Text), DateTime.Now, "Pedido", "",
+                            rpta = NVenta.InsertarPedido(null,null, DateTime.Now, "Pedido", "",
                                 Convert.ToDecimal(this.txtDescuento.Text), Convert.ToInt32(idMesero), "", 1, dtDetalle,
-                                DateTime.Now, 00.00m, Convert.ToInt32(this.idMesero), "", "", "", "","");
+                                DateTime.Now, 00.00m, Convert.ToInt32(this.idMesero), "", "", "", "", "");
                             if (rpta == "OK")
                             {
 
@@ -713,17 +994,6 @@ namespace CapaPresentacion
                                             int cantRequerida = Convert.ToInt32(dtDetalleProducto.Rows[j][1].ToString());
                                             rpta = NProducto.EditarStock(idProducto_Com, cantRequerida * cantPedido);
 
-                                            DataTable dtRecetaC = NReceta.Mostrar(Convert.ToInt32(idProducto_Com));
-                                            if (dtRecetaC.Rows.Count > 0)
-                                            {
-                                                int cantInsumo = Convert.ToInt32(dataListadoDetalle.Rows[i].Cells["Cant"].Value.ToString());
-                                                decimal cantTotal;
-                                                for (int k = 0; k < dtRecetaC.Rows.Count; k++)
-                                                {
-                                                    cantTotal = cantInsumo * Convert.ToDecimal(dtRecetaC.Rows[k][3].ToString());
-                                                    rpta = NInsumo.EditarStock(Convert.ToInt32(dtRecetaC.Rows[k][0].ToString()), cantTotal);
-                                                }
-                                            }
                                         }
 
                                     }
@@ -748,11 +1018,11 @@ namespace CapaPresentacion
                                 }
                                 if (dataCocina.Rows.Count > 0)
                                 {
-                                    NImprimirComanda.imprimirCom(this.lblMesero.Text, "","", dataCocina, "");
+                                    NImprimirComanda.imprimirCom(this.lblMesero.Text, "", "", dataCocina, "");
                                 }
                                 if (dataBar.Rows.Count > 0)
                                 {
-                                    NImprimirComanda.imprimirCom(this.lblMesero.Text, "","", dataBar, "");
+                                    NImprimirComanda.imprimirCom(this.lblMesero.Text, "", "", dataBar, "");
                                 }
 
                                 this.dataListadoDetalle.Select();
@@ -767,11 +1037,8 @@ namespace CapaPresentacion
                     {
                         if (this.isNuevo)
                         {
-                            //this.MensajeOK("Se insertó correctamente");
-                            frmModuloSalon.f3.limpiarMesas();
-                            frmModuloSalon.f3.mostrarSalones();
-                            frmModuloSalon.f3.tEstado.Enabled = true;
-                            this.Hide();
+
+                            this.Close();
                             this.dataListadoDetalle.Select();
                         }
                     }
@@ -824,7 +1091,7 @@ namespace CapaPresentacion
 
         private void btnDown_Click(object sender, EventArgs e)
         {
-        
+
         }
 
         private void btnEditar_Click(object sender, EventArgs e)
@@ -1152,7 +1419,7 @@ namespace CapaPresentacion
                                     MessageBox.Show("Presione el botón QUITAR");
                                     this.dataListadoDetalle.Select();
                                 }
-                                NImprimirComanda.imprimirCom(this.lblMesero.Text, "","", dataCocina, "COMANDA ANULACIÓN");
+                                NImprimirComanda.imprimirCom(this.lblMesero.Text, "", "", dataCocina, "COMANDA ANULACIÓN");
                                 this.dataListadoDetalle.Select();
                             }
                         }
@@ -1180,7 +1447,7 @@ namespace CapaPresentacion
                 if (this.lblBanderaDatatable.Text == "0" && this.lblIdVenta.Text == "0")
                 {
                     rpta = NVenta.InsertarPedidoSeparado(null, Convert.ToInt32(this.lblIdMesa.Text), DateTime.Now, "Pedido CS", "", Convert.ToDecimal(this.txtDescuento.Text),
-                        Convert.ToInt32(idMesero), "CS", 1, dtDetalle,  DateTime.Now, 00.00m, Convert.ToInt32(idMesero), "", "", "", "","");
+                        Convert.ToInt32(idMesero), "CS", 1, dtDetalle, DateTime.Now, 00.00m, Convert.ToInt32(idMesero), "", "", "", "", "");
 
                     this.lblIdVenta.Text = rpta;
                     this.lblBanderaDatatable.Text = "1";
@@ -1302,7 +1569,7 @@ namespace CapaPresentacion
                             string barra = dataListadoDetalle.Rows[i].Cells["Barra"].Value.ToString();
                             string tipo = dataListadoDetalle.Rows[i].Cells["Tipo"].Value.ToString();
                             rpta = NDetalleVenta.InsertarAdicPedido(Convert.ToInt32(this.lblIdVenta.Text), idProducto, cantidad, prVenta, desc,
-                                this.dataListadoDetalle.Rows[i].Cells[6].Value.ToString(), tipo, barra,"Pedido");
+                                this.dataListadoDetalle.Rows[i].Cells[6].Value.ToString(), tipo, barra, "Pedido");
                             if (rpta == "OK")
                             {
                                 for (int p = cont; p < this.dataListadoDetalle.Rows.Count; p++)
@@ -1366,12 +1633,12 @@ namespace CapaPresentacion
             form.lblIdMesa.Text = this.lblIdMesa.Text;
             form.lblDescuento.Text = this.txtDescuento.Text;
             form.lblIdTrabajador.Text = idMesero;
-            form.lblIdUsuario.Text = idMesero;
+            form.lblIdUsuario.Text = frmPrincipal.f1.lblIdUsuario.Text;
             decimal subtotal1 = 00.00m;
             //subtotal1 = ((Convert.ToDecimal(this.txtSubTotal.Text) - Convert.ToDecimal(this.txtDescuento.Text)) / 1.18m);
-             subtotal1 = ((totalRed) / 1.18m);
+            subtotal1 = ((totalRed) / 1.18m);
             form.lblSubTotal.Text = string.Format(" {0:#,##0.00}", Convert.ToDouble(subtotal1));
-           // decimal igvC = (Convert.ToDecimal(this.txtTotalPagado.Text) - subtotal1);
+            // decimal igvC = (Convert.ToDecimal(this.txtTotalPagado.Text) - subtotal1);
             decimal igvC = (totalRed - subtotal1);
             form.lblIgv.Text = string.Format(" {0:#,##0.00}", Convert.ToDouble(igvC));
             form.lblBanderaCobro.Text = "0";
@@ -1436,7 +1703,7 @@ namespace CapaPresentacion
         private void btnImprimirPreCuenta_Click(object sender, EventArgs e)
         {
 
-         
+
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
@@ -1497,7 +1764,7 @@ namespace CapaPresentacion
 
         }
 
-      
+
 
         private void dataListadoDetalle_ChangeUICues(object sender, UICuesEventArgs e)
         {
@@ -1506,7 +1773,7 @@ namespace CapaPresentacion
 
         private void btnImprimirComanda_Click(object sender, EventArgs e)
         {
-           
+
         }
 
         private void ComprobanteManual()
@@ -1589,7 +1856,7 @@ namespace CapaPresentacion
             {
                 if (btnDividir.Enabled == true)
                 {
-                   DividirCuenta();
+                    DividirCuenta();
                 }
 
 
@@ -1880,7 +2147,7 @@ namespace CapaPresentacion
 
                         }
                         NVenta.EliminarCS(Convert.ToInt32(lblIdVenta.Text));
-                        NImprimirComanda.imprimirCom(this.lblMesero.Text, "","", dataCocina, "COMANDA ANULACION");
+                        NImprimirComanda.imprimirCom(this.lblMesero.Text, "", "", dataCocina, "COMANDA ANULACION");
 
 
                         NMesa.EditarEstadoMesa(Convert.ToInt32(this.lblIdMesa.Text), "Libre");
@@ -1901,7 +2168,7 @@ namespace CapaPresentacion
 
         private void mostrarProductos(string idCategoria)
         {
-            
+
 
         }
 
@@ -1921,6 +2188,130 @@ namespace CapaPresentacion
             descuentoTotal = Convert.ToDecimal(this.txtDescuento.Text);
             this.txtSubTotal.Text = subTotal20.ToString("#0.00#");
             this.txtTotalPagado.Text = (subTotal20 - descuentoTotal).ToString("#0.00#");
+        }
+
+        private void rbNombre_CheckedChanged(object sender, EventArgs e)
+        {
+            this.cargarProducto();
+            this.txtBuscar.Text = string.Empty;
+            this.txtBuscar.Select();
+        }
+
+        private void rbCategoria_CheckedChanged(object sender, EventArgs e)
+        {
+            this.cargarProducto();
+            this.txtBuscar.Text = string.Empty;
+            this.txtBuscar.Select();
+        }
+
+        private void rbMarca_CheckedChanged(object sender, EventArgs e)
+        {
+            this.cargarProducto();
+            this.txtBuscar.Text = string.Empty;
+            this.txtBuscar.Select();
+        }
+
+        private void rbTodos_CheckedChanged(object sender, EventArgs e)
+        {
+            this.cargarProducto();
+            this.txtBuscar.Text = string.Empty;
+            this.txtBuscar.Select();
+        }
+
+        private void txtBuscar_TextChanged(object sender, EventArgs e)
+        {
+            if (txtBuscar.Text.Trim().Length == 0)
+            {
+                cargarProducto();
+                return;
+            }
+
+            if (this.rbNombre.Checked == true || this.rbTodos.Checked == true)
+            {
+                this.BuscarNombre();
+            }
+            else if (this.rbCategoria.Checked == true)
+            {
+                this.BuscarCategoria();
+            }
+            else if (this.rbMarca.Checked == true)
+            {
+                this.BuscarMarca();
+            }
+        }
+
+        private void BuscarCategoria()
+        {
+            this.dgvProductos.DataSource = NProducto.BuscarCategoriaProducto(this.txtBuscar.Text.Trim());
+            this.ocultarColumnas();
+
+        }
+
+        private void BuscarMarca()
+        {
+            this.dgvProductos.DataSource = NProducto.BuscarMarcaProducto(this.txtBuscar.Text.Trim());
+            this.ocultarColumnas();
+
+        }
+
+        private void BuscarNombre()
+        {
+            this.dgvProductos.DataSource = NProducto.BuscarNombeProducto(this.txtBuscar.Text.Trim());
+            this.ocultarColumnas();
+
+        }
+
+        private void txtBuscar_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (dgvProductos.Rows.Count > 0)
+            {
+                if (e.KeyCode == Keys.Down)//TECLA ABAJO
+                {
+                    dgvProductos.Rows[0].Selected = true;
+                    dgvProductos.Focus();
+                    if (e.KeyCode == Keys.Escape)
+                    {
+                        txtBuscar.Clear();
+                        txtBuscar.Select();
+                    }
+
+                }
+            }
+        }
+
+        private void dgvProductos_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
+
+        private void dgvProductos_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                dgvProductos.ClearSelection();
+                txtBuscar.Focus();
+            }
+            if (e.KeyCode == Keys.Enter)
+            {
+                Añadir();
+                e.SuppressKeyPress = true;
+                dgvProductos.Focus();
+            }
+        }
+
+        private void dgvProductos_Click(object sender, EventArgs e)
+        {
+            Añadir();
+        }
+
+        private void dgvProductos_RowEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            //Añadir();
+        }
+
+        private void dgvProductos_KeyUp(object sender, KeyEventArgs e)
+        {
+           
         }
 
         private void limpiarProductos()
@@ -1947,9 +2338,9 @@ namespace CapaPresentacion
 
             dtDetallePedido = NVenta.mostrarDetallePedido(Convert.ToInt32(this.lblIdVenta.Text));
             this.lblIdMesa.Text = dtDetallePedido.Rows[0]["idMesa"].ToString();
-           // this.lblMesa.Text = dtDetallePedido.Rows[0]["nomMesa"].ToString();
+            // this.lblMesa.Text = dtDetallePedido.Rows[0]["nomMesa"].ToString();
             this.lblIdSalon.Text = dtDetallePedido.Rows[0]["idSalon"].ToString();
-           // this.lblSalon.Text = dtDetallePedido.Rows[0]["nomSalon"].ToString();
+            // this.lblSalon.Text = dtDetallePedido.Rows[0]["nomSalon"].ToString();
             //this.lblMesero.Text = dtDetallePedido.Rows[0]["Mesero"].ToString();
             this.lblIdTrabajador.Text = dtDetallePedido.Rows[0]["idTrabajador"].ToString();
             this.txtDescuento.Text = dtDetallePedido.Rows[0]["descuentoVenta"].ToString();
@@ -2039,6 +2430,8 @@ namespace CapaPresentacion
             this.crearTabla();
             this.ValidarAcceso();
             this.formatoTabla();
+            this.cargarProducto();
+
             if (this.lblIdVenta.Text != "0")
             {
                 mostrarDetalleVenta();
@@ -2048,7 +2441,7 @@ namespace CapaPresentacion
                 this.btnLimpiar.Enabled = true;
                 this.btnReservar.Enabled = false;
                 cantFilas = dataListadoDetalle.Rows.Count;
-                
+
             }
             else
             {
@@ -2057,7 +2450,7 @@ namespace CapaPresentacion
                 this.dataListadoDetalle.Select();
             }
 
-
+            this.txtBuscar.Select();
         }
     }
 }

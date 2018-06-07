@@ -222,7 +222,7 @@ namespace CapaPresentacion
                                                 //stockMinimo, "A");
 
                         rpta = NProducto.Insertar(this.txtNombre.Text.Trim().ToUpper(), this.txtDescripcion.Text.Trim(),stockActual,00.00m,"I", "A",idInsumo,
-                                                    "", stockMinimo, costo, Convert.ToInt32(this.cbUnidad.SelectedValue));
+                                                    "", stockMinimo, costo, Convert.ToInt32(this.cbUnidad.SelectedValue),00.00m,null);
                     }
                     else
                     {
@@ -230,7 +230,7 @@ namespace CapaPresentacion
                         //stockMinimo, "A");
 
                         rpta = NProducto.Editar(Convert.ToInt32(this.txtIdInsumo.Text), this.txtNombre.Text.Trim().ToUpper(), this.txtDescripcion.Text.Trim(),stockActual, 00.00m, "I", "A",idInsumo,
-                                                    "", stockMinimo, costo, Convert.ToInt32(this.cbUnidad.SelectedValue));
+                                                    "", stockMinimo, costo, Convert.ToInt32(this.cbUnidad.SelectedValue),00.00m,null);
                     }
 
                     if (rpta.Equals("OK"))
